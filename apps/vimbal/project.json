@@ -1,0 +1,91 @@
+{
+  "projectType": "application",
+  "root": "apps/vimbal",
+  "sourceRoot": "apps/vimbal/src",
+  "prefix": "vimbal",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/vimbal",
+        "index": "apps/vimbal/src/index.html",
+        "main": "apps/vimbal/src/main.ts",
+        "polyfills": "apps/vimbal/src/polyfills.ts",
+        "tsConfig": "apps/vimbal/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/vimbal/src/favicon.ico", "apps/vimbal/src/assets"],
+        "styles": ["apps/vimbal/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/vimbal/src/environments/environment.ts",
+              "with": "apps/vimbal/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "vimbal:build:production"
+        },
+        "development": {
+          "browserTarget": "vimbal:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "vimbal:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/vimbal/src/**/*.ts",
+          "apps/vimbal/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/vimbal"],
+      "options": {
+        "jestConfig": "apps/vimbal/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

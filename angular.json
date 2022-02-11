@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "vimbal": "apps/vimbal",
+    "vimbal-e2e": "apps/vimbal-e2e"
+  }
+}
