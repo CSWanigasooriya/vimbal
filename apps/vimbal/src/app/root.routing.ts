@@ -6,6 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    loadChildren: () => import('./base/base.module').then((m) => m.BaseModule),
   },
 ];
 
