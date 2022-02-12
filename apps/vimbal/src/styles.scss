@@ -46,14 +46,10 @@ $vimbal-dark-theme: mat.define-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.core-theme($vimbal-light-theme);
-@include mat.button-theme($vimbal-light-theme);
 @include mat.all-component-themes($vimbal-light-theme);
 
 .dark-theme {
-  @include mat.core-theme($vimbal-dark-theme);
-  @include mat.button-theme($vimbal-dark-theme);
-  @include mat.all-component-themes($vimbal-dark-theme);
+  @include mat.all-component-colors($vimbal-dark-theme);
   background: mat.get-color-from-palette(
     mat.define-palette(mat.$gray-palette),
     900
