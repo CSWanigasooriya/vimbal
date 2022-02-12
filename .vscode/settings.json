@@ -1,0 +1,6 @@
+{
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+  "scss.lint.unknownAtRules": "ignore"
+}

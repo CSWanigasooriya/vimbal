@@ -1,4 +1,3 @@
-import { StorageService } from './../services/storage.service';
 import { Component, Inject, Optional } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AppConfig, APP_CONFIG } from '../config/app.config';

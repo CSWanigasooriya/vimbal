@@ -8,8 +8,8 @@ export class GlobalRippleOptionsService implements RippleGlobalOptions {
   /** Whether ripples should be disabled globally. */
   disabled = false;
   animation = {
-    enterDuration: 300,
-    exitDuration: 0,
+    enterDuration: 500,
+    exitDuration: 300,
   };
 
   terminateOnPointerUp = true;
