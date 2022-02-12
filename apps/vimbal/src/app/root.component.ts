@@ -1,3 +1,4 @@
+import { StorageService } from './../services/storage.service';
 import { Component, Inject, Optional } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AppConfig, APP_CONFIG } from '../config/app.config';
@@ -14,10 +15,10 @@ export class RootComponent {
     private _logger: LoggerService,
     private _titleService: Title
   ) {
-    this._logger.logInfo('Vimbal initialized');
-    this._logger.logDebug('Vimbal initialized');
-    this._logger.logError('Vimbal initialized');
-    this._logger.logObject({ 'Vimbal initialized': 'Vimbal initialized' });
+    this._logger.logInfo('Vimbal Info');
+    this._logger.logDebug('Vimbal Debug');
+    this._logger.logError('Vimbal Error');
+    this._logger.logObject({ 1: 'Vimbal initialized' });
     this._titleService.setTitle(
       `${config?.title} | Decentralized publications`
     );

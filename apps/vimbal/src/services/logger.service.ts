@@ -6,16 +6,17 @@ import { Injectable } from '@angular/core';
 export class LoggerService {
   logs: string[] = [];
 
-  logInfo(msg: string): void {
+  logInfo(msg: string | null): void {
     this.log(`%c INFO: ${msg} ⚠️`, false, 'color: yellow;');
   }
-  logDebug(msg: string) {
+  logDebug(msg: string | null) {
     this.log(`%c DEBUG: ${msg} 🛠️`, false, 'color: blue;');
   }
-  logError(msg: string) {
+  logError(msg: string | null) {
     this.log(`%c ERROR: ${msg}`, true, 'color: red;');
   }
-  logObject(obj: object) {
+
+  logObject(obj: object | null) {
     console.table(obj || {});
   }
 
