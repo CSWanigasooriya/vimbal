@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AppConfig, APP_CONFIG } from '../config/app.config';
 
 @Component({
   selector: 'vimbal-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./root.component.scss'],
 })
 export class RootComponent {
-  title = 'vimbal';
+  title: string;
+  constructor(@Inject(APP_CONFIG) config: AppConfig) {
+    this.title = config.title;
+  }
 }

@@ -22,6 +22,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from '@angular/material/tooltip';
+import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -73,4 +74,5 @@ export const PROVIDERS_CONFIG = [
     provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     useValue: { autoActiveFirstOption: true },
   },
+  { provide: APP_CONFIG, useValue: VIMBAL_DI_CONFIG },
 ];
