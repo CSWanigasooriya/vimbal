@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/vimbal",
         "index": "apps/vimbal/src/index.html",
@@ -14,9 +16,17 @@
         "polyfills": "apps/vimbal/src/polyfills.ts",
         "tsConfig": "apps/vimbal/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/vimbal/src/favicon.ico", "apps/vimbal/src/assets"],
-        "styles": ["apps/vimbal/src/styles.scss"],
-        "scripts": []
+        "assets": [
+          "apps/vimbal/src/favicon.ico",
+          "apps/vimbal/src/assets",
+          "apps/vimbal/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "apps/vimbal/src/styles.scss"
+        ],
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/vimbal/ngsw-config.json"
       },
       "configurations": {
         "production": {
@@ -80,7 +90,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/vimbal"],
+      "outputs": [
+        "coverage/apps/vimbal"
+      ],
       "options": {
         "jestConfig": "apps/vimbal/jest.config.js",
         "passWithNoTests": true
