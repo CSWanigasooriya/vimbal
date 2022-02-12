@@ -7,11 +7,14 @@ import { PROVIDERS_CONFIG } from '../config/providers.config';
 import { RootComponent } from './root.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LayoutComponent } from './layout/layout.component';
+import { RootRoutingModule } from './root.routing';
 @NgModule({
-  declarations: [RootComponent],
+  declarations: [RootComponent, LayoutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RootRoutingModule,
     MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
