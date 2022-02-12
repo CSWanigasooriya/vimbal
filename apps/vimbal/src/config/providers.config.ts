@@ -23,6 +23,9 @@ import {
   MatTooltipDefaultOptions,
 } from '@angular/material/tooltip';
 import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config';
+import { LoggerService } from '../services/logger.service';
+import { StorageService } from '../services/storage.service';
+import { Title } from '@angular/platform-browser';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -75,4 +78,7 @@ export const PROVIDERS_CONFIG = [
     useValue: { autoActiveFirstOption: true },
   },
   { provide: APP_CONFIG, useValue: VIMBAL_DI_CONFIG },
+  { provide: LoggerService },
+  { provide: StorageService },
+  { provide: Title },
 ];
