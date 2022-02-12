@@ -15,8 +15,11 @@ export class RootComponent {
     private _titleService: Title
   ) {
     this._logger.logInfo('Vimbal initialized');
+    this._logger.logDebug('Vimbal initialized');
+    this._logger.logError('Vimbal initialized');
+    this._logger.logObject({ 'Vimbal initialized': 'Vimbal initialized' });
     this._titleService.setTitle(
-      `${config?.title} || Decentralized publications`
+      `${config?.title} | Decentralized publications`
     );
   }
 }

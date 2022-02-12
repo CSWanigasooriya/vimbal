@@ -7,21 +7,24 @@ export class LoggerService {
   logs: string[] = [];
 
   logInfo(msg: string): void {
-    this.log(`INFO: ${msg}`);
+    this.log(`%c INFO: ${msg} ⚠️`, false, 'color: yellow;');
   }
   logDebug(msg: string) {
-    this.log(`DEBUG: ${msg}`);
+    this.log(`%c DEBUG: ${msg} 🛠️`, false, 'color: blue;');
   }
   logError(msg: string) {
-    this.log(`ERROR: ${msg}`, true);
+    this.log(`%c ERROR: ${msg}`, true, 'color: red;');
+  }
+  logObject(obj: object) {
+    console.table(obj || {});
   }
 
-  private log(msg: string, isErr = false) {
+  private log(msg: string, isErr = false, style?: string) {
     this.logs.push(msg);
     if (isErr) {
-      console.error(msg);
+      console.error(msg, style);
     } else {
-      console.log(msg);
+      console.log(msg, style);
     }
   }
 }
