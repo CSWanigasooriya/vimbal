@@ -1,6 +1,7 @@
 # Vimbal
 
 ## Commit Guidelines
+
 ```
 <type>(<scope>): <short summary>
   │       │             │
@@ -13,5 +14,6 @@
   │                          devtools
   │
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
-  ```
+```
+
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
