@@ -51,7 +51,10 @@ $vimbal-dark-theme: mat.define-dark-theme(
 
 .dark-theme {
   @include mat.all-component-colors($vimbal-dark-theme);
-  color: mat.get-color-from-palette($vimbal-dark-text-palette, 'text');
+  color: mat.get-color-from-palette(
+    $vimbal-dark-text-palette,
+    'darker-contrast'
+  );
   background: mat.get-color-from-palette(
     mat.define-palette(mat.$gray-palette),
     900

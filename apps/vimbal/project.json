@@ -91,6 +91,16 @@
         "jestConfig": "apps/vimbal/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "prerender": false,
+        "ssr": false,
+        "browserTarget": "vimbal:build:production",
+        "firebaseProject": "vimbal",
+        "firebaseHostingSite": "vimbal"
+      }
     }
   },
   "tags": []

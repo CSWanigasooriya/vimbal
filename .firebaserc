@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vimbal": {
+      "hosting": {
+        "vimbal": [
+          "vimbal"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vimbal"
+  }
+}

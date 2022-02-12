@@ -39,7 +39,6 @@ export const PROVIDERS_CONFIG = [
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
     useValue: {
       appearance: 'outline',
-      floatLabel: 'always',
     },
   },
   {
