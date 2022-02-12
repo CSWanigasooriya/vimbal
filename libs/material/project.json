@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/material"],
+      "outputs": [
+        "dist/libs/material"
+      ],
       "options": {
         "project": "libs/material/ng-package.json"
       },
@@ -22,7 +24,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/material"],
+      "outputs": [
+        "coverage/libs/material"
+      ],
       "options": {
         "jestConfig": "libs/material/jest.config.js",
         "passWithNoTests": true

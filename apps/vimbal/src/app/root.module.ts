@@ -5,9 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@vimbal/material';
 import { PROVIDERS_CONFIG } from '../config/providers.config';
 import { RootComponent } from './root.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [RootComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
+  imports: [BrowserModule, BrowserAnimationsModule, MaterialModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the app is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})],
   providers: [PROVIDERS_CONFIG],
   bootstrap: [RootComponent],
 })
