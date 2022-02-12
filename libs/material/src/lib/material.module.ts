@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -40,6 +41,7 @@ import { MatTreeModule } from '@angular/material/tree';
   declarations: [],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatNativeDateModule,
@@ -78,6 +80,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTableModule,
   ],
   exports: [
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatNativeDateModule,

@@ -4,6 +4,22 @@
   "sourceRoot": "libs/material/src",
   "prefix": "vimbal",
   "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/material"],
+      "options": {
+        "project": "libs/material/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/material/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/material/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/material"],
