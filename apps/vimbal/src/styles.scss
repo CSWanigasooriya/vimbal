@@ -21,6 +21,7 @@ $vimbal-dark-accent: mat.define-palette(mat.$blue-palette, A100);
 $vimbal-light-warn: mat.define-palette(mat.$red-palette, 600);
 $vimbal-dark-warn: mat.define-palette(mat.$red-palette, A100);
 
+$vimbal-dark-text-palette: mat.define-palette(mat.$gray-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $vimbal-light-theme: mat.define-light-theme(
@@ -33,7 +34,7 @@ $vimbal-light-theme: mat.define-light-theme(
   )
 );
 
-$vimbal-dark-theme: mat.define-light-theme(
+$vimbal-dark-theme: mat.define-dark-theme(
   (
     color: (
       primary: $vimbal-dark-primary,
@@ -50,10 +51,27 @@ $vimbal-dark-theme: mat.define-light-theme(
 
 .dark-theme {
   @include mat.all-component-colors($vimbal-dark-theme);
+  color: mat.get-color-from-palette($vimbal-dark-text-palette, 'text');
   background: mat.get-color-from-palette(
     mat.define-palette(mat.$gray-palette),
     900
   );
+
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: mat.get-color-from-palette($vimbal-dark-accent);
+  }
+
+  .mat-form-field-appearance-fill.mat-focused .mat-form-field-label {
+    color: mat.get-color-from-palette($vimbal-dark-accent);
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: mat.get-color-from-palette($vimbal-dark-accent);
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+    color: mat.get-color-from-palette($vimbal-dark-accent);
+  }
 }
 
 html,
