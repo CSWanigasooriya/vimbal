@@ -25,12 +25,17 @@ import {
   getRemoteConfig,
 } from '@angular/fire/remote-config';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { RootRoutingModule } from './root.routing';
+import { LayoutComponent } from './layout/layout.component';
+import { AuthModule } from '@vimbal/auth';
 @NgModule({
-  declarations: [RootComponent],
+  declarations: [RootComponent, LayoutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RootRoutingModule,
     MaterialModule,
+    AuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
