@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "auth": "libs/auth",
+    "data-models": "libs/data-models",
     "layout": "libs/layout",
     "material": "libs/material",
     "vimbal": "apps/vimbal",
