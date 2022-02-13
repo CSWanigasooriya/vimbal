@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "auth": "libs/auth",
+    "layout": "libs/layout",
     "material": "libs/material",
     "vimbal": "apps/vimbal",
     "vimbal-e2e": "apps/vimbal-e2e"
