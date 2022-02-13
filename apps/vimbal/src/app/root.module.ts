@@ -57,7 +57,7 @@ import { AuthModule } from '@vimbal/auth';
   bootstrap: [RootComponent],
 })
 export class RootModule {
-  // constructor(overlayContainer: OverlayContainer) {
-  //   overlayContainer.getContainerElement().classList.add('dark-theme');
-  // }
+  constructor(overlayContainer: OverlayContainer) {
+    overlayContainer.getContainerElement().classList.add('dark-theme');
+  }
 }
