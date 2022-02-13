@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@vimbal/layout": ["libs/layout/src/index.ts"],
       "@vimbal/material": ["libs/material/src/index.ts"]
     }
   },
