@@ -47,4 +47,24 @@ export class AuthService {
       }
     }
   }
+
+  async requestWalletPermission() {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_requestPermissions',
+        params: [
+          {
+            eth_accounts: {},
+          },
+        ],
+      });
+    } catch (error: any) {
+      if (error.code === 4001) {
+        // userRejectedRequest error
+        this._loggerService.logInfo('Please connect to MetaMask.');
+      } else {
+        this._loggerService.logError(error.message);
+      }
+    }
+  }
 }

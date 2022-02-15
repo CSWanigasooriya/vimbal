@@ -33,8 +33,8 @@ import { Title } from '@angular/platform-browser';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
-  showDelay: 1000,
-  hideDelay: 1000,
+  showDelay: 100,
+  hideDelay: 50,
   touchendHideDelay: 1000,
 };
 

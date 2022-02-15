@@ -3,12 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  OnDestroy,
   Optional,
 } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { LoggerService } from '@vimbal/service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppConfig, APP_CONFIG } from '../config/app.config';
 import { decrement, increment, reset } from './state/counter/counter.actions';
 
@@ -18,17 +20,21 @@ import { decrement, increment, reset } from './state/counter/counter.actions';
   styleUrls: ['./root.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RootComponent {
+export class RootComponent implements OnDestroy {
   count$: Observable<number>;
   theme$: Observable<boolean>;
 
+  private subscriptions = new Subscription();
+
   constructor(
+    private _iconRegistry: MatIconRegistry,
     private _overlayContainer: OverlayContainer,
     private store: Store<{ count: number; theme: boolean }>,
     @Optional() @Inject(APP_CONFIG) config: AppConfig,
     private _loggerService: LoggerService,
     private _titleService: Title
   ) {
+    this._iconRegistry.setDefaultFontSetClass('material-icons-outlined');
     this._overlayContainer.getContainerElement().classList.add('dark-theme');
     this._loggerService.logInfo('Vimbal Info');
     this._loggerService.logDebug('Vimbal Debug');
@@ -39,22 +45,22 @@ export class RootComponent {
     );
     this.count$ = store.select('count');
     this.theme$ = store.select('theme');
-    this.count$.subscribe((count) => {
-      this._loggerService.logObject({ count });
-    });
-    this.theme$.subscribe((theme) => {
-      this._loggerService.logObject({ theme });
-    });
 
-    this.theme$.subscribe((theme) => {
-      theme
-        ? this._overlayContainer
-            .getContainerElement()
-            .classList.add('dark-theme')
-        : this._overlayContainer
-            .getContainerElement()
-            .classList.remove('dark-theme');
-    });
+    this.subscriptions.add(
+      this.theme$.subscribe((theme) => {
+        theme
+          ? this._overlayContainer
+              .getContainerElement()
+              .classList.add('dark-theme')
+          : this._overlayContainer
+              .getContainerElement()
+              .classList.remove('dark-theme');
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   increment() {

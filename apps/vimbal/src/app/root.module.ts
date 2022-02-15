@@ -1,5 +1,5 @@
+import { SheetComponent } from './shared/sheet/sheet.component';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import {
   getAnalytics,
@@ -37,12 +37,14 @@ import { themeReducer } from './state/theme/theme.reducer';
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: ['count', 'theme'] })(reducer);
+  return localStorageSync({ keys: ['count', 'theme'], rehydrate: true })(
+    reducer
+  );
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
-  declarations: [RootComponent, LayoutComponent],
+  declarations: [RootComponent, LayoutComponent, SheetComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
