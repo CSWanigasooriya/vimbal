@@ -12,8 +12,6 @@ export class DashboardComponent {
   metamask() {
     this._authService.isMetaMaskInstalled();
     // this._authService.metaMaskStartOnBoarding();
-    this._authService.getMetaMaskAccounts().then((accounts) => {
-      console.log(accounts);
-    });
+    this._authService.getMetaMaskAccounts();
   }
 }
