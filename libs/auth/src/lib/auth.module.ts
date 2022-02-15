@@ -1,8 +1,13 @@
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MetaMaskComponent } from './meta-mask/meta-mask.component';
 import { ContainerComponent } from './container/container.component';
-import { MetaMaskComponent } from './container/meta-mask/meta-mask.component';
+
+const childRoutes: Routes = [
+  { path: 'meta-mask', component: MetaMaskComponent },
+  { path: '', pathMatch: '', redirectTo: 'meta-mask' },
+];
 
 @NgModule({
   imports: [
@@ -11,7 +16,7 @@ import { MetaMaskComponent } from './container/meta-mask/meta-mask.component';
       {
         path: '',
         component: ContainerComponent,
-        children: [{ path: 'meta-mask', component: MetaMaskComponent }],
+        children: childRoutes,
       },
     ]),
   ],
