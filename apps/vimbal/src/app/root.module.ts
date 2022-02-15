@@ -27,6 +27,12 @@ import { environment } from '../environments/environment';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { counterReducer } from './state/counter.reducer';
+import { hydrationMetaReducer } from './state/hydration/hydration.reducer';
+import { UiModule } from '@vimbal/ui';
+
 @NgModule({
   declarations: [RootComponent, LayoutComponent],
   imports: [
@@ -34,6 +40,11 @@ import { RootRoutingModule } from './root.routing';
     BrowserAnimationsModule,
     RootRoutingModule,
     MaterialModule,
+    StoreModule.forRoot(
+      { count: counterReducer },
+      { metaReducers: [hydrationMetaReducer] }
+    ),
+    StoreDevtoolsModule.instrument({}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
