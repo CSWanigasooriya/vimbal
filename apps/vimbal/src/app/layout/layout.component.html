@@ -3,6 +3,13 @@
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+    <button mat-icon-button>
+      <img
+        matListAvatar
+        src="/assets/icons/icon-72x72.png"
+        class="brand-logo"
+      />
+    </button>
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="account">
