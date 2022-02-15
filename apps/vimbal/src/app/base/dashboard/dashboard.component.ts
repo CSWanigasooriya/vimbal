@@ -1,5 +1,5 @@
-import { AuthService } from './../../../services/auth.service';
 import { Component } from '@angular/core';
+import { AuthService } from '@vimbal/service';
 
 @Component({
   selector: 'vimbal-dashboard',
@@ -12,8 +12,6 @@ export class DashboardComponent {
   metamask() {
     this._authService.isMetaMaskInstalled();
     // this._authService.metaMaskStartOnBoarding();
-    this._authService.getMetaMaskAccounts().then((accounts) => {
-      console.log(accounts);
-    });
+    this._authService.getMetaMaskAccounts();
   }
 }

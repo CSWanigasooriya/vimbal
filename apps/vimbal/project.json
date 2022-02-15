@@ -16,8 +16,12 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/vimbal/src/favicon.ico",
-          "apps/vimbal/src/assets",
-          "apps/vimbal/src/manifest.webmanifest"
+          "apps/vimbal/src/manifest.webmanifest",
+          {
+            "glob": "**/*",
+            "input": "./libs/ui/src/lib/assets",
+            "output": "./assets"
+          }
         ],
         "styles": ["apps/vimbal/src/styles.scss"],
         "scripts": [],

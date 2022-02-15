@@ -1,4 +1,9 @@
-import { AuthService } from './../services/auth.service';
+import {
+  AuthService,
+  GlobalRippleOptionsService,
+  LoggerService,
+  StorageService,
+} from '@vimbal/service';
 import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -18,14 +23,12 @@ import {
 } from '@angular/material/checkbox';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { GlobalRippleOptionsService } from '../services/global-ripple-options.service';
 import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from '@angular/material/tooltip';
 import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config';
-import { LoggerService } from '../services/logger.service';
-import { StorageService } from '../services/storage.service';
+
 import { Title } from '@angular/platform-browser';
 
 /** Custom options the configure the tooltip's default show/hide delays. */

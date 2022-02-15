@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/service",
+  "sourceRoot": "libs/service/src",
+  "prefix": "vimbal",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/service"],
+      "options": {
+        "project": "libs/service/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/service/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/service/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/service"],
+      "options": {
+        "jestConfig": "libs/service/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/service/src/**/*.ts",
+          "libs/service/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

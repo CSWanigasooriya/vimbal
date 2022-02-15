@@ -21,12 +21,17 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from '@vimbal/material';
 import { PROVIDERS_CONFIG } from '../config/providers.config';
 import { environment } from '../environments/environment';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
+import { counterReducer } from './state/counter.reducer';
+import { hydrationMetaReducer } from './state/hydration/hydration.reducer';
+
 @NgModule({
   declarations: [RootComponent, LayoutComponent],
   imports: [
@@ -34,6 +39,11 @@ import { RootRoutingModule } from './root.routing';
     BrowserAnimationsModule,
     RootRoutingModule,
     MaterialModule,
+    StoreModule.forRoot(
+      { count: counterReducer },
+      { metaReducers: [hydrationMetaReducer] }
+    ),
+    StoreDevtoolsModule.instrument({}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
