@@ -88,10 +88,6 @@ $vimbal-dark-theme: mat.define-dark-theme(
     $vimbal-dark-text-palette,
     'darker-contrast'
   );
-  background: mat.get-color-from-palette(
-    mat.define-palette(mat.$gray-palette),
-    900
-  );
 
   .mat-form-field.mat-focused .mat-form-field-ripple {
     background-color: mat.get-color-from-palette($vimbal-dark-accent);

@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,11 +6,11 @@ import {
   Optional,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
 import { LoggerService } from '@vimbal/service';
 import { Observable } from 'rxjs';
 import { AppConfig, APP_CONFIG } from '../config/app.config';
-import { Store } from '@ngrx/store';
-import { decrement, increment, reset } from './state/counter.actions';
+import { decrement, increment, reset } from './state/counter/counter.actions';
 
 @Component({
   selector: 'vimbal-root',
@@ -19,13 +20,16 @@ import { decrement, increment, reset } from './state/counter.actions';
 })
 export class RootComponent {
   count$: Observable<number>;
+  theme$: Observable<boolean>;
 
   constructor(
-    private store: Store<{ count: number }>,
+    private _overlayContainer: OverlayContainer,
+    private store: Store<{ count: number; theme: boolean }>,
     @Optional() @Inject(APP_CONFIG) config: AppConfig,
     private _loggerService: LoggerService,
     private _titleService: Title
   ) {
+    this._overlayContainer.getContainerElement().classList.add('dark-theme');
     this._loggerService.logInfo('Vimbal Info');
     this._loggerService.logDebug('Vimbal Debug');
     this._loggerService.logError('Vimbal Error');
@@ -34,6 +38,23 @@ export class RootComponent {
       `${config?.title} | Decentralized publications`
     );
     this.count$ = store.select('count');
+    this.theme$ = store.select('theme');
+    this.count$.subscribe((count) => {
+      this._loggerService.logObject({ count });
+    });
+    this.theme$.subscribe((theme) => {
+      this._loggerService.logObject({ theme });
+    });
+
+    this.theme$.subscribe((theme) => {
+      theme
+        ? this._overlayContainer
+            .getContainerElement()
+            .classList.add('dark-theme')
+        : this._overlayContainer
+            .getContainerElement()
+            .classList.remove('dark-theme');
+    });
   }
 
   increment() {

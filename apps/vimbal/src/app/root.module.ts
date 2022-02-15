@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import {
@@ -21,16 +22,24 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from '@vimbal/material';
+import { localStorageSync } from 'ngrx-store-localstorage';
 import { PROVIDERS_CONFIG } from '../config/providers.config';
 import { environment } from '../environments/environment';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
-import { counterReducer } from './state/counter.reducer';
-import { hydrationMetaReducer } from './state/hydration/hydration.reducer';
+import { counterReducer } from './state/counter/counter.reducer';
+import { themeReducer } from './state/theme/theme.reducer';
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({ keys: ['count', 'theme'] })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [RootComponent, LayoutComponent],
@@ -40,8 +49,8 @@ import { hydrationMetaReducer } from './state/hydration/hydration.reducer';
     RootRoutingModule,
     MaterialModule,
     StoreModule.forRoot(
-      { count: counterReducer },
-      { metaReducers: [hydrationMetaReducer] }
+      { count: counterReducer, theme: themeReducer },
+      { metaReducers: metaReducers }
     ),
     StoreDevtoolsModule.instrument({}),
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -64,8 +73,4 @@ import { hydrationMetaReducer } from './state/hydration/hydration.reducer';
   providers: [PROVIDERS_CONFIG, ScreenTrackingService, UserTrackingService],
   bootstrap: [RootComponent],
 })
-export class RootModule {
-  constructor(overlayContainer: OverlayContainer) {
-    overlayContainer.getContainerElement().classList.add('dark-theme');
-  }
-}
+export class RootModule {}
