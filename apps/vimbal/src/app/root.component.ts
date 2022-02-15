@@ -1,7 +1,7 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { LoggerService } from '@vimbal/service';
 import { AppConfig, APP_CONFIG } from '../config/app.config';
-import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'vimbal-root',

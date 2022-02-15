@@ -1,5 +1,5 @@
-import { AuthService } from './../../../services/auth.service';
 import { Component } from '@angular/core';
+import { AuthService } from '@vimbal/service';
 
 @Component({
   selector: 'vimbal-dashboard',

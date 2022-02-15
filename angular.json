@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "material": "libs/material",
+    "service": "libs/service",
     "vimbal": "apps/vimbal",
     "vimbal-e2e": "apps/vimbal-e2e"
   }
