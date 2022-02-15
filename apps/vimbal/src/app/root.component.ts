@@ -11,13 +11,13 @@ import { LoggerService } from '../services/logger.service';
 export class RootComponent {
   constructor(
     @Optional() @Inject(APP_CONFIG) config: AppConfig,
-    private _logger: LoggerService,
+    private _loggerService: LoggerService,
     private _titleService: Title
   ) {
-    this._logger.logInfo('Vimbal Info');
-    this._logger.logDebug('Vimbal Debug');
-    this._logger.logError('Vimbal Error');
-    this._logger.logObject({ 1: 'Vimbal initialized' });
+    this._loggerService.logInfo('Vimbal Info');
+    this._loggerService.logDebug('Vimbal Debug');
+    this._loggerService.logError('Vimbal Error');
+    this._loggerService.logObject({ 1: 'Vimbal initialized' });
     this._titleService.setTitle(
       `${config?.title} | Decentralized publications`
     );
