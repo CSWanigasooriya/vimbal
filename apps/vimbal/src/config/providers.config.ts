@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -80,4 +81,5 @@ export const PROVIDERS_CONFIG = [
   { provide: LoggerService },
   { provide: StorageService },
   { provide: Title },
+  { provide: AuthService },
 ];

@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vimbal/auth": ["libs/auth/src/index.ts"],
-      "@vimbal/layout": ["libs/layout/src/index.ts"],
       "@vimbal/material": ["libs/material/src/index.ts"]
     }
   },
