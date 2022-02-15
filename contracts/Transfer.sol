@@ -14,8 +14,7 @@ contract Transfer {
     function pay(address payable _to) public payable returns (bool) {
         to = _to;
         to.transfer(msg.value);
-        emit Pay(to, from, ms
-        g.value);
+        emit Pay(to, from, msg.value);
         return true;
     }
 }
