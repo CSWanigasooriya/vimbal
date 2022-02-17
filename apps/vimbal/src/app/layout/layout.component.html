@@ -12,21 +12,26 @@
     </button>
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
     <span class="spacer"></span>
+    <button
+      mat-icon-button
+      (click)="toggleDarkMode()"
+      [matTooltip]="(theme$ | async) === true ? 'light_mode' : 'dark_mode'"
+    >
+      <mat-icon>{{
+        (theme$ | async) === true ? 'light_mode' : 'dark_mode'
+      }}</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="account">
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #account="matMenu">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-      </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
+      <button mat-menu-item (click)="openBottomSheet()">
+        <mat-icon>network_ping</mat-icon>
+        <span>Network</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
+        <mat-icon>cloud_off</mat-icon>
+        <span>Disconnect</span>
       </button>
     </mat-menu>
   </mat-toolbar>
