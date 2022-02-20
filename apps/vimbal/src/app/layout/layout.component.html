@@ -37,7 +37,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container
-    class="sidenav-containert"
+    class="sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
   >
     <mat-sidenav
@@ -47,7 +47,7 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <mat-nav-list class="invisible-scroll m-list">
+      <mat-nav-list>
         <mat-list-item routerLink="." *ngFor="let nav of fillerNav">
           <mat-icon mat-list-icon>home</mat-icon>
           <div mat-line *ngIf="!isCompact">{{ nav }}</div>

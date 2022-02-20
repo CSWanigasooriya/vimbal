@@ -48,15 +48,3 @@ h1.app-name {
 .mat-sidenav-content {
   padding: 10px;
 }
-
-.invisible-scroll {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.invisible-scroll::-webkit-scrollbar {
-  display: none;
-}
-.m-list {
-  flex-grow: 1;
-  overflow: auto;
-}
