@@ -1,3 +1,4 @@
+import { slideInAnimation } from './core/animation/slide-in.animation';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
@@ -8,17 +9,23 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LoggerService } from '@vimbal/service';
 import { Observable, Subscription } from 'rxjs';
-import { AppConfig, APP_CONFIG } from '../config/app.config';
-import { decrement, increment, reset } from './state/counter/counter.actions';
+import { AppConfig, APP_CONFIG } from './core/config/app.config';
+import {
+  decrement,
+  increment,
+  reset,
+} from './core/state/counter/counter.actions';
+import { fadeInAnimation } from './core/animation/fade-in.animation';
 
 @Component({
   selector: 'vimbal-root',
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInAnimation],
 })
 export class RootComponent implements OnDestroy {
   count$: Observable<number>;
@@ -31,20 +38,16 @@ export class RootComponent implements OnDestroy {
     private _overlayContainer: OverlayContainer,
     private store: Store<{ count: number; theme: boolean }>,
     @Optional() @Inject(APP_CONFIG) config: AppConfig,
-    private _loggerService: LoggerService,
     private _titleService: Title
   ) {
+    this.count$ = store.select('count');
+    this.theme$ = store.select('theme');
+
     this._iconRegistry.setDefaultFontSetClass('material-icons-outlined');
     this._overlayContainer.getContainerElement().classList.add('dark-theme');
-    this._loggerService.logInfo('Vimbal Info');
-    this._loggerService.logDebug('Vimbal Debug');
-    this._loggerService.logError('Vimbal Error');
-    this._loggerService.logObject({ 1: 'Vimbal initialized' });
     this._titleService.setTitle(
       `${config?.title} | Decentralized publications`
     );
-    this.count$ = store.select('count');
-    this.theme$ = store.select('theme');
 
     this.subscriptions.add(
       this.theme$.subscribe((theme) => {
@@ -73,5 +76,9 @@ export class RootComponent implements OnDestroy {
 
   reset() {
     this.store.dispatch(reset());
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
   }
 }

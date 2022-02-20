@@ -8,10 +8,6 @@
   right: 0;
 }
 
-mat-sidenav {
-  width: 200px;
-}
-
 .toolbar {
   z-index: 2;
   @apply shadow-md;
@@ -31,6 +27,12 @@ h1.app-name {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
+  &.mat-nav-list {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .is-mobile .sidenav-container {
@@ -45,4 +47,16 @@ h1.app-name {
 
 .mat-sidenav-content {
   padding: 10px;
+}
+
+.invisible-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.invisible-scroll::-webkit-scrollbar {
+  display: none;
+}
+.m-list {
+  flex-grow: 1;
+  overflow: auto;
 }

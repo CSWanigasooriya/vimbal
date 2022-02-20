@@ -1,6 +1,6 @@
-import { VIMBAL_DI_CONFIG } from './../../../config/app.config';
 import { Action } from '@ngrx/store';
 import { createReducer, on } from '@ngrx/store';
+import { VIMBAL_DI_CONFIG } from '../../config/app.config';
 import { mode } from './theme.actions';
 
 export const initialState = VIMBAL_DI_CONFIG.dark_theme;

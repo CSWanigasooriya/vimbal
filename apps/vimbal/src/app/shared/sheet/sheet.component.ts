@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, Inject } from '@angular/core';
 import {
   MatBottomSheetRef,
@@ -12,7 +13,7 @@ import {
 export class SheetComponent implements OnInit {
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<SheetComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { names: string[] }
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
