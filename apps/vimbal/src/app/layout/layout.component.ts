@@ -1,25 +1,33 @@
-import { SheetComponent } from './../shared/sheet/sheet.component';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { APP_CONFIG, AppConfig } from './../../config/app.config';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   ChangeDetectorRef,
   Component,
   Inject,
   OnDestroy,
+  OnInit,
   Optional,
+  ViewChild,
 } from '@angular/core';
-import { mode } from '../state/theme/theme.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { toggle } from '../core/state/sidebar/sidebar.actions';
+import { mode } from '../core/state/theme/theme.actions';
+import { AppConfig, APP_CONFIG } from './../core/config/app.config';
+import { SheetComponent } from './../shared/sheet/sheet.component';
 
 @Component({
   selector: 'vimbal-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnDestroy {
+export class LayoutComponent implements OnInit, OnDestroy {
+  @ViewChild('snav') snav: MatSidenav | undefined;
+
+  isCompact = false;
   theme$: Observable<boolean>;
+  sidebar$: Observable<boolean>;
 
   mobileQuery: MediaQueryList;
 
@@ -29,19 +37,29 @@ export class LayoutComponent implements OnDestroy {
 
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private store: Store<{ count: number; theme: boolean }>,
+    private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher
   ) {
     this.theme$ = store.select('theme');
+    this.sidebar$ = store.select('sidebar');
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  ngOnInit(): void {
+    console.log();
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  toggleSidebar() {
+    // this.snav?.toggle();
+    this.store.dispatch(toggle());
   }
 
   toggleDarkMode() {

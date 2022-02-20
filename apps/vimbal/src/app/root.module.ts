@@ -1,4 +1,3 @@
-import { SheetComponent } from './shared/sheet/sheet.component';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NgModule } from '@angular/core';
 import {
@@ -26,20 +25,23 @@ import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from '@vimbal/material';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { PROVIDERS_CONFIG } from '../config/providers.config';
 import { environment } from '../environments/environment';
+import { PROVIDERS_CONFIG } from './core/config/providers.config';
+import { counterReducer } from './core/state/counter/counter.reducer';
+import { sidebarReducer } from './core/state/sidebar/sidebar.reducer';
+import { themeReducer } from './core/state/theme/theme.reducer';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
-import { counterReducer } from './state/counter/counter.reducer';
-import { themeReducer } from './state/theme/theme.reducer';
+import { SheetComponent } from './shared/sheet/sheet.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: ['count', 'theme'], rehydrate: true })(
-    reducer
-  );
+  return localStorageSync({
+    keys: ['count', 'theme', 'sidebar'],
+    rehydrate: true,
+  })(reducer);
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
@@ -51,7 +53,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     RootRoutingModule,
     MaterialModule,
     StoreModule.forRoot(
-      { count: counterReducer, theme: themeReducer },
+      { count: counterReducer, theme: themeReducer, sidebar: sidebarReducer },
       { metaReducers: metaReducers }
     ),
     StoreDevtoolsModule.instrument({}),
@@ -72,7 +74,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
   ],
-  providers: [PROVIDERS_CONFIG, ScreenTrackingService, UserTrackingService],
+  providers: [PROVIDERS_CONFIG],
   bootstrap: [RootComponent],
 })
 export class RootModule {}
