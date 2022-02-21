@@ -1,6 +1,6 @@
 <div class="layout-container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar class="toolbar">
-    <button mat-icon-button (click)="isCompact = !isCompact">
+    <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>{{ snav.opened ? 'menu_open' : 'menu' }}</mat-icon>
     </button>
     <button mat-icon-button>
@@ -39,6 +39,7 @@
   <mat-sidenav-container
     class="sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    autosize
   >
     <mat-sidenav
       #snav

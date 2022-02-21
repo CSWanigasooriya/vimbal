@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   Inject,
@@ -9,9 +10,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { toggle } from '../core/state/sidebar/sidebar.actions';
 import { mode } from '../core/state/theme/theme.actions';
 import { AppConfig, APP_CONFIG } from './../core/config/app.config';
@@ -22,8 +23,13 @@ import { SheetComponent } from './../shared/sheet/sheet.component';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+  private subscriptions = new Subscription();
+
   @ViewChild('snav') snav: MatSidenav | undefined;
+  @ViewChild(MatSidenavContainer) sidenavContainer:
+    | MatSidenavContainer
+    | undefined;
 
   isCompact = false;
   theme$: Observable<boolean>;
@@ -53,13 +59,23 @@ export class LayoutComponent implements OnInit, OnDestroy {
     console.log();
   }
 
+  ngAfterViewInit(): void {
+    this.subscriptions.add(
+      this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
+        console.log('scrolled');
+      })
+    );
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.subscriptions.unsubscribe();
   }
 
   toggleSidebar() {
     // this.snav?.toggle();
-    this.store.dispatch(toggle());
+    this.isCompact = !this.isCompact;
+    // this.store.dispatch(toggle());
   }
 
   toggleDarkMode() {
