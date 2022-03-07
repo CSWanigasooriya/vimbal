@@ -19,6 +19,10 @@
   z-index: 2;
 }
 
+.is-compact .sidenav-item {
+  border-radius: 50%;
+}
+
 h1.app-name {
   margin-left: 8px;
 }
@@ -27,12 +31,6 @@ h1.app-name {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
-  &.mat-nav-list {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 .is-mobile .sidenav-container {
@@ -41,10 +39,77 @@ h1.app-name {
   flex: 1 0 auto;
 }
 
+.sidenav {
+  background-color: transparent;
+}
+
+.is-mobile .sidenav {
+  background-color: inherit;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .mat-sidenav-content {
   padding: 10px;
+}
+
+// Sidenav
+
+.sidenav {
+  max-height: 100vh;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.items {
+  display: block;
+  overflow: auto;
+  margin-right: 5px;
+}
+
+.item {
+  display: flex;
+  border-radius: 0px 100px 100px 0px;
+  cursor: pointer;
+  max-height: 54px;
+  transition: all 0.041s ease;
+}
+
+.is-compact .item {
+  margin: 0 0 0 5px;
+  height: 54px;
+  width: 54px;
+  border-radius: 100px;
+}
+
+.item.active {
+  background: #01616417;
+}
+
+.item.active .mat-line {
+  color: #016064;
+}
+.item.active .mat-list-icon {
+  color: #016064;
+}
+.item .mat-line {
+  font-weight: 600;
+  font-size: 12px;
+  color: #5f6368;
+}
+.item * {
+  pointer-events: none;
+}
+.item .mat-list-icon {
+  padding: 0%;
+  color: #5f6368;
+}
+.item:not(.active):hover {
+  background: rgba(0, 0, 0, 0.04);
 }

@@ -4,10 +4,6 @@ import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('@vimbal/auth').then((m) => m.AuthModule),
-  },
-  {
     path: '',
     component: LayoutComponent,
     loadChildren: () => import('./base/base.module').then((m) => m.BaseModule),
