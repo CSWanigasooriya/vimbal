@@ -1,7 +1,7 @@
 <div class="layout-container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar class="toolbar">
-    <button mat-icon-button (click)="isCompact = !isCompact">
-      <mat-icon>{{ snav.opened ? 'menu_open' : 'menu' }}</mat-icon>
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>{{ snav.opened ? 'menu' : 'menu' }}</mat-icon>
     </button>
     <button mat-icon-button>
       <img
@@ -39,6 +39,7 @@
   <mat-sidenav-container
     class="sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    autosize
   >
     <mat-sidenav
       #snav
@@ -46,11 +47,29 @@
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
+      class="sidenav"
     >
-      <mat-nav-list>
-        <mat-list-item routerLink="." *ngFor="let nav of fillerNav">
+      <mat-nav-list [class.is-compact]="isCompact">
+        <mat-list-item
+          routerLink="."
+          *ngFor="let nav of fillerNav"
+          class="sidenav-item"
+          matRipple
+          [matRippleDisabled]="true"
+        >
           <mat-icon mat-list-icon>home</mat-icon>
           <div mat-line *ngIf="!isCompact">{{ nav }}</div>
+        </mat-list-item>
+        <mat-list-item
+          class="sidebar-footer-content sidenav-item"
+          matRipple
+          [matRippleDisabled]="true"
+          (click)="isCompact = !isCompact"
+        >
+          <mat-icon mat-list-icon>{{
+            isCompact ? 'keyboard_arrow_right' : 'keyboard_arrow_left'
+          }}</mat-icon>
+          <div mat-line *ngIf="!isCompact">Collapse</div>
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
