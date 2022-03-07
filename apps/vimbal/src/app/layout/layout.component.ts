@@ -37,7 +37,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 12 }, (_, i) => `Nav Item ${i + 1}`);
+  fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
 
@@ -74,8 +74,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleSidebar() {
     // this.snav?.toggle();
-    this.isCompact = !this.isCompact;
-    // this.store.dispatch(toggle());
+    // this.isCompact = !this.isCompact;
+    this.store.dispatch(toggle());
   }
 
   toggleDarkMode() {

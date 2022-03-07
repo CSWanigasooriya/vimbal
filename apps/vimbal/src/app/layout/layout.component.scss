@@ -19,6 +19,10 @@
   z-index: 2;
 }
 
+.is-compact .sidenav-item {
+  border-radius: 50%;
+}
+
 h1.app-name {
   margin-left: 8px;
 }
@@ -27,11 +31,6 @@ h1.app-name {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
-  &.mat-nav-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 .is-mobile .sidenav-container {
@@ -40,10 +39,24 @@ h1.app-name {
   flex: 1 0 auto;
 }
 
+.sidenav {
+  background-color: transparent;
+}
+
+.is-mobile .sidenav {
+  background-color: inherit;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .mat-sidenav-content {
   padding: 10px;
+}
+
+.sidebar-footer-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
