@@ -37,8 +37,6 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
-
   private _mobileQueryListener: () => void;
 
   constructor(

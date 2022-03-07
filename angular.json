@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "auth": "libs/auth",
     "material": "libs/material",
     "model": "libs/model",
     "service": "libs/service",
