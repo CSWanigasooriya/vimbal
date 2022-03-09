@@ -1,4 +1,3 @@
-import { slideInAnimation } from './core/animation/slide-in.animation';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
@@ -12,13 +11,13 @@ import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { fadeInAnimation } from './core/animation/fade-in.animation';
 import { AppConfig, APP_CONFIG } from './core/config/app.config';
 import {
   decrement,
   increment,
   reset,
 } from './core/state/counter/counter.actions';
-import { fadeInAnimation } from './core/animation/fade-in.animation';
 
 @Component({
   selector: 'vimbal-root',

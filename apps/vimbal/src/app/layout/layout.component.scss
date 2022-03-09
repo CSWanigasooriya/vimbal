@@ -64,17 +64,27 @@ h1.app-name {
 .bottom {
   position: absolute;
   bottom: 0;
-  left: 0;
+  width: 100%;
+
+  .mat-line {
+    font-weight: 600;
+    font-size: 12px;
+    color: #5f6368;
+  }
+  .mat-list-icon {
+    margin: auto;
+    padding: 0;
+    color: #5f6368;
+  }
 }
 
 .items {
-  display: block;
   overflow: auto;
-  margin-right: 5px;
 }
 
 .item {
   display: flex;
+  margin: 0 auto;
   border-radius: 0px 100px 100px 0px;
   cursor: pointer;
   max-height: 54px;
@@ -82,7 +92,6 @@ h1.app-name {
 }
 
 .is-compact .item {
-  margin: 0 0 0 5px;
   height: 54px;
   width: 54px;
   border-radius: 100px;
@@ -107,9 +116,51 @@ h1.app-name {
   pointer-events: none;
 }
 .item .mat-list-icon {
-  padding: 0%;
+  padding: 0;
   color: #5f6368;
 }
 .item:not(.active):hover {
   background: rgba(0, 0, 0, 0.04);
+}
+
+//Button
+.new-btn {
+  display: flex;
+  align-items: center;
+  margin: 10px 8px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+  border: none;
+  background: white;
+  padding: 5px 16px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.new-btn * {
+  pointer-events: none;
+}
+.new-btn:hover {
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  background: #f8f9fa;
+}
+.new-btn:focus {
+  background-color: #f8f9fa;
+}
+.new-btn:active {
+  background-color: #e2e2e2;
+}
+.new-btn .icon {
+  margin-right: 10px;
+}
+.new-btn .name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 9px;
+  color: #3c4043;
+}
+
+.is-compact .new-btn .icon {
+  margin-right: 0px;
 }

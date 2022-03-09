@@ -50,9 +50,14 @@
       fixedTopGap="56"
     >
       <mat-nav-list class="items" [class.is-compact]="isCompact">
-        <!--
         <button class="new-btn">
-          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+          <span class="icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+            >
               <path fill="#34A853" d="M16 16v14h4V20z" />
               <path fill="#4285F4" d="M30 16H20l-4 4h14z" />
               <path fill="#FBBC05" d="M6 16v4h10l4-4z" />
@@ -61,8 +66,8 @@
             </svg>
           </span>
 
-          <span class="name" *ngIf="!isCompact">New</span>
-        </button> -->
+          <span class="name" *ngIf="!isCompact">Submit Paper</span>
+        </button>
 
         <mat-list-item
           class="item"
@@ -88,7 +93,6 @@
 
         <div class="bottom">
           <mat-list-item
-            class="item"
             matRipple
             [matRippleDisabled]="true"
             (click)="isCompact = !isCompact"
