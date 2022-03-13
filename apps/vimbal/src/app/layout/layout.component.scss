@@ -91,12 +91,6 @@ h1.app-name {
   transition: all 0.041s ease;
 }
 
-.is-compact .item {
-  height: 54px;
-  width: 54px;
-  border-radius: 100px;
-}
-
 .item.active {
   background: #01616417;
 }
@@ -123,6 +117,35 @@ h1.app-name {
   background: rgba(0, 0, 0, 0.04);
 }
 
+//Dark theme
+.is-dark .item.active {
+  background-color: rgba(63, 76, 107, 0.315);
+}
+
+.is-dark .item .mat-line {
+  color: #cccccc;
+}
+
+.is-dark .item .mat-list-icon {
+  color: #cccccc;
+}
+
+.is-dark .item.active .mat-list-icon {
+  color: #82b1ff;
+}
+
+.is-dark .item.active .mat-line {
+  color: #82b1ff;
+}
+
+//Compact theme
+
+.is-compact .item {
+  height: 54px;
+  width: 54px;
+  border-radius: 100px;
+}
+
 //Button
 .new-btn {
   display: flex;
@@ -132,7 +155,8 @@ h1.app-name {
     0 1px 3px 1px rgba(60, 64, 67, 0.149);
   border: none;
   background: white;
-  padding: 5px 16px;
+  padding: 10px;
+  height: 54px;
   border-radius: 100px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -159,6 +183,12 @@ h1.app-name {
   font-weight: 500;
   margin-right: 9px;
   color: #3c4043;
+}
+
+.is-compact .new-btn {
+  height: 54px;
+  width: 54px;
+  border-radius: 100px;
 }
 
 .is-compact .new-btn .icon {

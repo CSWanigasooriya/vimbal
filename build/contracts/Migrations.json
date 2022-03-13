@@ -56,9 +56,7 @@
   "ast": {
     "absolutePath": "/C/Users/chama/Documents/Production/vimbal/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [
-        32
-      ]
+      "Migrations": [32]
     },
     "id": 33,
     "license": "MIT",
@@ -66,15 +64,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:32:0"
       },
@@ -85,9 +75,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 32,
-        "linearizedBaseContracts": [
-          32
-        ],
+        "linearizedBaseContracts": [32],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -268,10 +256,7 @@
                       "id": 9,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "204:7:0",
                       "typeDescriptions": {
@@ -450,24 +435,14 @@
     "attributes": {
       "absolutePath": "/C/Users/chama/Documents/Production/vimbal/contracts/Migrations.sol",
       "exportedSymbols": {
-        "Migrations": [
-          32
-        ]
+        "Migrations": [32]
       },
       "license": "MIT"
     },
     "children": [
       {
         "attributes": {
-          "literals": [
-            "solidity",
-            ">=",
-            "0.4",
-            ".22",
-            "<",
-            "0.9",
-            ".0"
-          ]
+          "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"]
         },
         "id": 1,
         "name": "PragmaDirective",
@@ -476,17 +451,11 @@
       {
         "attributes": {
           "abstract": false,
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [null],
           "contractKind": "contract",
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            32
-          ],
+          "linearizedBaseContracts": [32],
           "name": "Migrations",
           "scope": 33
         },
@@ -526,9 +495,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "overloadedDeclarations": [
-                        null
-                      ],
+                      "overloadedDeclarations": [null],
                       "referencedDeclaration": 4294967281,
                       "type": "msg",
                       "value": "msg"
@@ -583,9 +550,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 8,
@@ -603,9 +568,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -624,8 +587,7 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                4294967278,
-                                4294967278
+                                4294967278, 4294967278
                               ],
                               "referencedDeclaration": 4294967278,
                               "type": "function (bool,string memory) pure",
@@ -661,9 +623,7 @@
                                 "children": [
                                   {
                                     "attributes": {
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 4294967281,
                                       "type": "msg",
                                       "value": "msg"
@@ -679,9 +639,7 @@
                               },
                               {
                                 "attributes": {
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 5,
                                   "type": "address",
                                   "value": "owner"
@@ -783,9 +741,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 25,
@@ -797,9 +753,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "overloadedDeclarations": [
-                        null
-                      ],
+                      "overloadedDeclarations": [null],
                       "referencedDeclaration": 19,
                       "type": "modifier ()",
                       "value": "restricted"
@@ -829,9 +783,7 @@
                         "children": [
                           {
                             "attributes": {
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 7,
                               "type": "uint256",
                               "value": "last_completed_migration"
@@ -842,9 +794,7 @@
                           },
                           {
                             "attributes": {
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 21,
                               "type": "uint256",
                               "value": "completed"
@@ -891,12 +841,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x4eBBe705C8216EbB9241e3438a915F4252c3cF8D",
-      "transactionHash": "0x8d41b33a05bd416b033b4562b7fa20f4c0f14a43be7511bedc8ef3949c328337"
+      "address": "0x23E889284b6457e682B3130e6500C22012708471",
+      "transactionHash": "0xc15526f0ff41c44cdd3ecf1bfa71836c464babdff93bae4c47bc8b3f6a5e6aa8"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2022-03-12T17:13:53.849Z",
+  "updatedAt": "2022-03-13T20:17:27.024Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

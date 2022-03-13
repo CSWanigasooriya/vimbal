@@ -49,7 +49,11 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <mat-nav-list class="items" [class.is-compact]="isCompact">
+      <mat-nav-list
+        class="items"
+        [class.is-compact]="isCompact"
+        [class.is-dark]="(theme$ | async) === true"
+      >
         <button class="new-btn">
           <span class="icon"
             ><svg
