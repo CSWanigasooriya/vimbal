@@ -1,0 +1,115 @@
+<div class="layout-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>{{ snav.opened ? 'menu' : 'menu' }}</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <img
+        matListAvatar
+        src="/assets/icons/icon-72x72.png"
+        class="brand-logo"
+      />
+    </button>
+    <h1 class="app-name">{{ config?.title | uppercase }}</h1>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      (click)="toggleDarkMode()"
+      [matTooltip]="(theme$ | async) === true ? 'light_mode' : 'dark_mode'"
+    >
+      <mat-icon>{{
+        (theme$ | async) === true ? 'light_mode' : 'dark_mode'
+      }}</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="account">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #account="matMenu">
+      <button mat-menu-item (click)="openBottomSheet()">
+        <mat-icon>network_ping</mat-icon>
+        <span>Network</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>cloud_off</mat-icon>
+        <span>Disconnect</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+    class="sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    autosize
+  >
+    <mat-sidenav
+      class="sidenav"
+      #snav
+      [opened]="(sidebar$ | async) === true"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <mat-nav-list class="items" [class.is-compact]="isCompact">
+        <button class="new-btn">
+          <span class="icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+            >
+              <path fill="#34A853" d="M16 16v14h4V20z" />
+              <path fill="#4285F4" d="M30 16H20l-4 4h14z" />
+              <path fill="#FBBC05" d="M6 16v4h10l4-4z" />
+              <path fill="#EA4335" d="M20 16V6h-4v14z" />
+              <path fill="none" d="M0 0h36v36H0z" />
+            </svg>
+          </span>
+
+          <span class="name" *ngIf="!isCompact">Submit Paper</span>
+        </button>
+
+        <mat-list-item
+          class="item"
+          [routerLink]="'/dashboard'"
+          routerLinkActive="active"
+          matRipple
+          [matRippleDisabled]="true"
+        >
+          <mat-icon mat-list-icon>home</mat-icon>
+          <div mat-line *ngIf="!isCompact">Dashboard</div>
+        </mat-list-item>
+
+        <mat-list-item
+          class="item"
+          [routerLink]="'/auth'"
+          routerLinkActive="active"
+          matRipple
+          [matRippleDisabled]="true"
+        >
+          <mat-icon mat-list-icon>search</mat-icon>
+          <div mat-line *ngIf="!isCompact">Browse</div>
+        </mat-list-item>
+
+        <div class="bottom">
+          <mat-list-item
+            matRipple
+            [matRippleDisabled]="true"
+            (click)="isCompact = !isCompact"
+          >
+            <mat-icon mat-list-icon>{{
+              isCompact ? 'keyboard_arrow_right' : 'keyboard_arrow_left'
+            }}</mat-icon>
+            <div mat-line *ngIf="!isCompact">Collapse</div>
+          </mat-list-item>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- <div class="progress" style="--v:40%"></div> -->
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

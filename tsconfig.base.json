@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vimbal/material": ["libs/material/src/index.ts"]
+      "@vimbal/material": ["libs/material/src/index.ts"],
+      "@vimbal/model": ["libs/model/src/index.ts"],
+      "@vimbal/service": ["libs/service/src/index.ts"],
+      "@vimbal/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

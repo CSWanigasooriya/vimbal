@@ -1,6 +1,7 @@
 # Vimbal
 
 ## Commit Guidelines
+
 ```
 <type>(<scope>): <short summary>
   │       │             │
@@ -12,6 +13,7 @@
   │                          upgrade|zone.js|packaging|changelog|docs-infra|migrations|ngcc|ve|
   │                          devtools
   │
-  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
-  ```
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test|chore
+```
+
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.

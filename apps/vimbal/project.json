@@ -14,17 +14,27 @@
         "polyfills": "apps/vimbal/src/polyfills.ts",
         "tsConfig": "apps/vimbal/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/vimbal/src/favicon.ico", "apps/vimbal/src/assets"],
+        "assets": [
+          "apps/vimbal/src/favicon.ico",
+          "apps/vimbal/src/manifest.webmanifest",
+          {
+            "glob": "**/*",
+            "input": "./libs/ui/src/lib/assets",
+            "output": "./assets"
+          }
+        ],
         "styles": ["apps/vimbal/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/vimbal/ngsw-config.json"
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -84,6 +94,16 @@
       "options": {
         "jestConfig": "apps/vimbal/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "prerender": false,
+        "ssr": false,
+        "browserTarget": "vimbal:build:production",
+        "firebaseProject": "vimbal",
+        "firebaseHostingSite": "vimbal"
       }
     }
   },

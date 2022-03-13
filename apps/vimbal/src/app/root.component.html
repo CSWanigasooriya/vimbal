@@ -1,0 +1,6 @@
+<div
+  [class.dark-theme]="(theme$ | async) === true ? 'dark-theme' : ''"
+  [@fadeInAnimation]="prepareRoute(outlet)"
+>
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
