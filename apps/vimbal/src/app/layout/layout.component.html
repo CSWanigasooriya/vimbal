@@ -11,7 +11,15 @@
       />
     </button>
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
+
     <span class="spacer"></span>
+    <input
+      class="search"
+      type="text"
+      placeholder="Search..."
+      *ngIf="!mobileQuery.matches"
+    />
+
     <button
       mat-icon-button
       (click)="toggleDarkMode()"

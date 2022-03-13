@@ -194,3 +194,18 @@ h1.app-name {
 .is-compact .new-btn .icon {
   margin-right: 0px;
 }
+
+.search {
+  height: 44px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  font: 16px arial, sans-serif;
+  color: gray;
+  padding-left: 17px;
+}
+.search:hover,
+.search:focus {
+  outline: none;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
