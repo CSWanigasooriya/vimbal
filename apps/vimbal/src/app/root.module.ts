@@ -28,6 +28,7 @@ import { themeReducer } from './core/state/theme/theme.reducer';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
+import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
 
 export function localStorageSyncReducer(
@@ -41,7 +42,12 @@ export function localStorageSyncReducer(
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
-  declarations: [RootComponent, LayoutComponent, SheetComponent],
+  declarations: [
+    RootComponent,
+    LayoutComponent,
+    SheetComponent,
+    ErrorComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
