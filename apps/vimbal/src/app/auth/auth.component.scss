@@ -1,0 +1,17 @@
+.mat-app-background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  border-radius: 0.5em;
+}
+
+.mat-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

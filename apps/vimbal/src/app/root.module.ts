@@ -30,6 +30,7 @@ import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
 import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
+import { AuthComponent } from './auth/auth.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -47,6 +48,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     LayoutComponent,
     SheetComponent,
     ErrorComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
