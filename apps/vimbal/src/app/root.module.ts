@@ -21,6 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from '@vimbal/material';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
+import { AuthComponent } from './auth/auth.component';
 import { PROVIDERS_CONFIG } from './core/config/providers.config';
 import { counterReducer } from './core/state/counter/counter.reducer';
 import { sidebarReducer } from './core/state/sidebar/sidebar.reducer';
@@ -30,7 +31,6 @@ import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
 import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
-import { AuthComponent } from './auth/auth.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>

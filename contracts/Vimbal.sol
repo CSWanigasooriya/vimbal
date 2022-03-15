@@ -40,7 +40,7 @@ contract Vimbal {
     {
         require(bytes(_fileHash).length > 0);
         require(bytes(_description).length > 0);
-        require(msg.sender != address(0));
+        require(msg.sender != address(0x0));
         fileCount++;
 
         files[fileCount] = File(
