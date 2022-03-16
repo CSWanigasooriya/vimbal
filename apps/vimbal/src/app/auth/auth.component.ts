@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AuthService, StorageService } from '@vimbal/service';
+import { AuthService } from '@vimbal/service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,18 +15,12 @@ export class AuthComponent {
   constructor(
     private store: Store<{ count: number; theme: boolean }>,
     private _authService: AuthService,
-    private _storageService: StorageService
+    private _router: Router
   ) {
     this.theme$ = this.store.select('theme');
   }
 
   connectMetaMask() {
-    // this._authService.requestWalletPermission();
-    this._authService.getMetaMaskAccounts().then((accounts) => {
-      if (!accounts) {
-        this._authService.metaMaskStartOnBoarding();
-      }
-      this._storageService.set('accounts', accounts);
-    });
+    this._authService.requestWalletPermission();
   }
 }

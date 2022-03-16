@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { LoggerService } from './logger.service';
 import { Injectable, NgZone } from '@angular/core';
 import MetaMaskOnboarding from '@metamask/onboarding';
-
+import { ethers } from 'ethers';
+import Vimbal from 'build/contracts/Vimbal.json';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LoggerService } from './logger.service';
+import { ChainData } from '@vimbal/model';
 declare global {
   interface Window {
     ethereum: any;
@@ -14,10 +16,15 @@ declare global {
 })
 export class AuthService {
   forwarderOrigin = 'http://localhost:4200';
+  ganacheUrl = 'http://127.0.0.1:7545';
 
   onboarding = new MetaMaskOnboarding({
     // forwarderOrigin: this.forwarderOrigin,
   });
+
+  provider = new ethers.providers.JsonRpcProvider(this.ganacheUrl);
+
+  signer = this.provider.getSigner();
 
   constructor(private _ngZone: NgZone, private _loggerService: LoggerService) {}
 
@@ -35,17 +42,24 @@ export class AuthService {
     });
   }
 
-  async getMetaMaskAccounts() {
-    try {
-      return await window.ethereum.request({ method: 'eth_requestAccounts' });
-    } catch (error: any) {
-      if (error.code === 4001) {
-        // userRejectedRequest error
-        this._loggerService.logInfo('Please connect to MetaMask.');
-      } else {
-        this._loggerService.logError(error.message);
-      }
-    }
+  async getUserWalletAddress() {
+    return await this.signer.getAddress();
+  }
+
+  async getCurrentBlock() {
+    return await this.provider.getBlockNumber();
+  }
+
+  async getBlockchainData(): Promise<ChainData> {
+    const network = await this.provider.getNetwork();
+    const networkData = Vimbal.networks[5777];
+    const contract = new ethers.Contract(
+      networkData.address,
+      Vimbal.abi,
+      this.signer
+    );
+
+    return { network, networkData, contract };
   }
 
   async requestWalletPermission() {
@@ -61,7 +75,7 @@ export class AuthService {
     } catch (error: any) {
       if (error.code === 4001) {
         // userRejectedRequest error
-        this._loggerService.logInfo('Please connect to MetaMask.');
+        this._loggerService.logInfo('Please connect your wallet.');
       } else {
         this._loggerService.logError(error.message);
       }
