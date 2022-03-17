@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export interface DialogData {
   title: string;
   message: string;
+  description: string;
   okayButton: {
     text: string;
     action: () => void;

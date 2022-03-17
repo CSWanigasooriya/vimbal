@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NgModule } from '@angular/core';
 import { getAnalytics, provideAnalytics } from '@angular/fire/analytics';
@@ -29,8 +30,10 @@ import { themeReducer } from './core/state/theme/theme.reducer';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
+import { DialogComponent } from './shared/dialog/dialog.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
+import { UploaderComponent } from './shared/uploader/uploader.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -49,12 +52,15 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     SheetComponent,
     ErrorComponent,
     AuthComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RootRoutingModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(
       { count: counterReducer, theme: themeReducer, sidebar: sidebarReducer },
       { metaReducers: metaReducers }

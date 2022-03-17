@@ -1,4 +1,3 @@
-import { DialogComponent } from './../shared/dialog/dialog.component';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -14,12 +13,13 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
+import { DialogData } from '@vimbal/model';
 import { Observable, Subscription } from 'rxjs';
+import { SubmitComponent } from '../base/components/submit/submit.component';
 import { toggle } from '../core/state/sidebar/sidebar.actions';
 import { mode } from '../core/state/theme/theme.actions';
 import { AppConfig, APP_CONFIG } from './../core/config/app.config';
 import { SheetComponent } from './../shared/sheet/sheet.component';
-import { DialogData } from '@vimbal/model';
 
 @Component({
   selector: 'vimbal-layout',
@@ -27,6 +27,7 @@ import { DialogData } from '@vimbal/model';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+  public isLoading = false;
   private subscriptions = new Subscription();
 
   @ViewChild('snav') snav: MatSidenav | undefined;
@@ -90,26 +91,38 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
         names: ['One', 'Two', 'Three'],
       },
     });
+    this.subscriptions.add(
+      bottomSheetRef.afterDismissed().subscribe((result) => {
+        console.log(result);
+      })
+    );
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+    const dialogRef = this.dialog.open(SubmitComponent, {
+      width: '50vw',
       data: {
         title: 'Submit paper ',
         message: 'Message',
+        description: 'Description',
         cancelButton: {
           text: 'Cancel',
           color: 'primary',
           type: 'mat-stroked-button',
         },
-        okayButton: { text: 'OKAY', color: 'primary', type: 'mat-flat-button' },
+        okayButton: {
+          text: 'OKAY',
+          color: 'primary',
+          type: 'mat-raised-button',
+        },
       } as DialogData,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+    this.subscriptions.add(
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+        console.log(result);
+      })
+    );
   }
 }

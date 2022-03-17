@@ -8,6 +8,17 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": [
+          "buffer",
+          "hash.js",
+          "blob-to-it",
+          "ipfs-utils/src/http.js",
+          "dag-jose",
+          "ipfs-utils/src/files/url-source.js",
+          "multiaddr",
+          "ipfs-utils/src/env.js",
+          "debug"
+        ],
         "outputPath": "dist/apps/vimbal",
         "index": "apps/vimbal/src/index.html",
         "main": "apps/vimbal/src/main.ts",
