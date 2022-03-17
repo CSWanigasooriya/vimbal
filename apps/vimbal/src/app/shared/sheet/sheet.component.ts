@@ -1,3 +1,4 @@
+import { AuthService } from '@vimbal/service';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Inject, OnInit } from '@angular/core';
 import {
@@ -11,10 +12,17 @@ import {
   styleUrls: ['./sheet.component.scss'],
 })
 export class SheetComponent implements OnInit {
+  public walletAddress!: string;
+
   constructor(
+    private _authService: AuthService,
     private _bottomSheetRef: MatBottomSheetRef<SheetComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
-  ) {}
+  ) {
+    this._authService.getUserWalletAddress().then((address) => {
+      this.walletAddress = address;
+    });
+  }
 
   ngOnInit(): void {
     console.log(this.data);

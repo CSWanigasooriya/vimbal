@@ -34,6 +34,7 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/analytics';
+import { MAT_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@angular/material/expansion';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -83,6 +84,13 @@ export const PROVIDERS_CONFIG = [
   {
     provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     useValue: { autoActiveFirstOption: true },
+  },
+  {
+    provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
+    useValue: {
+      expandedHeight: '54px',
+      collapsedHeight: '54px',
+    },
   },
   { provide: APP_CONFIG, useValue: VIMBAL_DI_CONFIG },
   ScreenTrackingService,

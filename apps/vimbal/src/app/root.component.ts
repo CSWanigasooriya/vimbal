@@ -1,11 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnDestroy,
-  Optional,
-} from '@angular/core';
+import { Component, Inject, OnDestroy, Optional } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
@@ -23,7 +17,6 @@ import {
   selector: 'vimbal-root',
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInAnimation],
 })
 export class RootComponent implements OnDestroy {

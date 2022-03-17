@@ -80,6 +80,7 @@ h1.app-name {
 
 .items {
   overflow: auto;
+  padding-right: 10px;
 }
 
 .item {
@@ -139,6 +140,10 @@ h1.app-name {
 }
 
 //Compact theme
+
+.is-compact .items {
+  padding-right: 0;
+}
 
 .is-compact .item {
   height: 54px;

@@ -1,44 +1,50 @@
-import { OnInit } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core';
-import { ChainData } from '@vimbal/model';
-import { AuthService } from '@vimbal/service';
+import { Component, OnDestroy } from '@angular/core';
+import { ChainData, FileContract, IpfsReceipt } from '@vimbal/model';
+import { AuthService, IpfsService } from '@vimbal/service';
 import { Buffer } from 'buffer';
-import { create } from 'ipfs-http-client';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'vimbal-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy {
   public userWalletAddress!: string;
   public currentBlockNumber!: number;
   public chainData!: ChainData;
-  public files!: any;
-  // connect to the default API address http://localhost:5001
-  client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+  public files: FileContract[] = [];
+  public ipfsReceipt: BehaviorSubject<Partial<IpfsReceipt>> =
+    new BehaviorSubject({} as Partial<IpfsReceipt>);
 
-  fileName = '';
-
-  constructor(private _authService: AuthService) {
-    _authService.getUserWalletAddress().then((address) => {
+  constructor(
+    private _authService: AuthService,
+    private _ipfsService: IpfsService
+  ) {
+    this._authService.getUserWalletAddress().then((address) => {
       this.userWalletAddress = address;
     });
 
-    _authService.getCurrentBlock().then((blockNumber) => {
+    this._authService.getCurrentBlock().then((blockNumber) => {
       this.currentBlockNumber = blockNumber;
     });
 
-    _authService.getBlockchainData().then((data: any) => {
+    this._authService.getBlockchainData().then(async (data: any) => {
       this.chainData = data;
-      const fileCount = this.chainData.contract.fileCount();
+      const fileCount = await this.chainData.contract.fileCount();
+      const fileCountInt = parseInt(fileCount, 16);
 
-      for (let index = 0; index <= fileCount; index++) {
-        const file = this.chainData.contract['files'](index);
-        this.files = [...this.files, file];
+      for (let index = 0; index <= fileCountInt; index++) {
+        const file = await this.chainData.contract['files'](index);
+
+        this.files = [...this.files, this.formatFileData(file)];
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ipfsReceipt.unsubscribe();
   }
 
   //Convert to IPFS format
@@ -51,20 +57,26 @@ export class DashboardComponent {
 
     reader.onloadend = () => {
       const buffer = Buffer.from(reader.result as ArrayBuffer);
-      this.uploadFile(buffer);
+      this._ipfsService.uploadFile(buffer).then((res) => {
+        this.ipfsReceipt.next(res);
+      });
     };
   }
 
-  async uploadFile(buffer: Buffer) {
-    // call Core API methods
-    await this.client.add(buffer).then(async (res) => {
-      console.log(res);
-      const upload = await this.chainData.contract.uploadFile(
-        res.path,
-        'description'
-      );
-      const receipt = await upload.wait();
-      console.log(receipt);
-    });
+  formatFileData(file: FileContract) {
+    return {
+      id: parseInt(file.id.toString(), 16),
+      hash: file.hash,
+      description: file.description,
+      tipAmount: parseInt(file.tipAmount.toString(), 16),
+      timestamp: parseInt(file.timestamp.toString(), 16),
+      author: file.author,
+    };
+  }
+
+  getIpfsUri(hash?: string) {
+    return hash
+      ? `https://ipfs.infura.io/ipfs/${hash}`
+      : `https://ipfs.infura.io/ipfs/QmYrMrdam6mkYja2Sq4DcZ4eZPo23yMUiQ5tt2GqAEBZ1g`;
   }
 }

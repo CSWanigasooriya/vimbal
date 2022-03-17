@@ -55,13 +55,10 @@
       [opened]="(sidebar$ | async) === true"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
+      [class.is-compact]="isCompact"
       fixedTopGap="56"
     >
-      <mat-nav-list
-        class="items"
-        [class.is-compact]="isCompact"
-        [class.is-dark]="(theme$ | async) === true"
-      >
+      <mat-nav-list class="items" [class.is-dark]="(theme$ | async) === true">
         <button class="new-btn">
           <span class="icon"
             ><svg
