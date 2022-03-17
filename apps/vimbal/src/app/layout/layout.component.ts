@@ -1,3 +1,4 @@
+import { DialogComponent } from './../shared/dialog/dialog.component';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -10,6 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -17,6 +19,7 @@ import { toggle } from '../core/state/sidebar/sidebar.actions';
 import { mode } from '../core/state/theme/theme.actions';
 import { AppConfig, APP_CONFIG } from './../core/config/app.config';
 import { SheetComponent } from './../shared/sheet/sheet.component';
+import { DialogData } from '@vimbal/model';
 
 @Component({
   selector: 'vimbal-layout',
@@ -40,6 +43,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   constructor(
+    public dialog: MatDialog,
     private _bottomSheet: MatBottomSheet,
     private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
@@ -85,6 +89,27 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       data: {
         names: ['One', 'Two', 'Three'],
       },
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {
+        title: 'Submit paper ',
+        message: 'Message',
+        cancelButton: {
+          text: 'Cancel',
+          color: 'primary',
+          type: 'mat-stroked-button',
+        },
+        okayButton: { text: 'OKAY', color: 'primary', type: 'mat-flat-button' },
+      } as DialogData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
     });
   }
 }

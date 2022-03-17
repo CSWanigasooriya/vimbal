@@ -45,7 +45,7 @@ $cyan-palette: (
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $vimbal-light-primary: mat.define-palette($cyan-palette, 900);
-$vimbal-dark-primary: mat.define-palette(mat.$blue-gray-palette, 900);
+$vimbal-dark-primary: mat.define-palette(mat.$blue-palette, A100);
 
 $vimbal-light-accent: mat.define-palette(mat.$orange-palette, A100);
 $vimbal-dark-accent: mat.define-palette(mat.$blue-palette, A100);

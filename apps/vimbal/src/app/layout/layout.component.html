@@ -59,7 +59,7 @@
       fixedTopGap="56"
     >
       <mat-nav-list class="items" [class.is-dark]="(theme$ | async) === true">
-        <button class="new-btn">
+        <button class="new-btn" (click)="openDialog()">
           <span class="icon"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -117,8 +117,23 @@
 
     <mat-sidenav-content>
       <!-- <div class="progress" style="--v:40%"></div> -->
+      <mat-tab-group dynamicHeight>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">home</mat-icon>
+            Home
+          </ng-template>
+          <router-outlet></router-outlet>
+        </mat-tab>
 
-      <router-outlet></router-outlet>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">reviews</mat-icon>
+            Reviews
+          </ng-template>
+          Content 2
+        </mat-tab>
+      </mat-tab-group>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
