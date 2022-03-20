@@ -10,9 +10,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
+import { DialogData } from '@vimbal/model';
 import { Observable, Subscription } from 'rxjs';
+import { SubmitComponent } from '../base/components/submit/submit.component';
 import { toggle } from '../core/state/sidebar/sidebar.actions';
 import { mode } from '../core/state/theme/theme.actions';
 import { AppConfig, APP_CONFIG } from './../core/config/app.config';
@@ -40,6 +43,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   constructor(
+    public dialog: MatDialog,
     private _bottomSheet: MatBottomSheet,
     private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
@@ -86,5 +90,38 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
         names: ['One', 'Two', 'Three'],
       },
     });
+    this.subscriptions.add(
+      bottomSheetRef.afterDismissed().subscribe((result) => {
+        console.log(result);
+      })
+    );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SubmitComponent, {
+      // panelClass: ['md:w-4/5', 'w-5/6'],
+      height: '98vh',
+      width: '98vw',
+      data: {
+        title: 'SUBMIT PAPER',
+        cancelButton: {
+          text: 'CANCEL',
+          color: 'primary',
+          type: 'mat-stroked-button',
+        },
+        okayButton: {
+          text: 'OKAY',
+          color: 'primary',
+          type: 'mat-raised-button',
+        },
+      } as DialogData,
+    });
+
+    this.subscriptions.add(
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+        console.log(result);
+      })
+    );
   }
 }

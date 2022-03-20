@@ -1,6 +1,8 @@
 import {
   AuthService,
+  ChainService,
   GlobalRippleOptionsService,
+  IpfsService,
   LoggerService,
   StorageService,
 } from '@vimbal/service';
@@ -34,6 +36,7 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/analytics';
+import { MAT_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@angular/material/expansion';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -64,7 +67,10 @@ export const PROVIDERS_CONFIG = [
     },
   },
   { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+  {
+    provide: MAT_DIALOG_DEFAULT_OPTIONS,
+    useValue: { panelClass: 'mat-dialog-override', hasBackdrop: true },
+  },
   { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
@@ -84,6 +90,13 @@ export const PROVIDERS_CONFIG = [
     provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     useValue: { autoActiveFirstOption: true },
   },
+  {
+    provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
+    useValue: {
+      expandedHeight: '54px',
+      collapsedHeight: '54px',
+    },
+  },
   { provide: APP_CONFIG, useValue: VIMBAL_DI_CONFIG },
   ScreenTrackingService,
   UserTrackingService,
@@ -91,4 +104,6 @@ export const PROVIDERS_CONFIG = [
   StorageService,
   Title,
   AuthService,
+  IpfsService,
+  ChainService,
 ];

@@ -1,4 +1,4 @@
-var Transfer = artifacts.require("Transfer");
+var Vimbal = artifacts.require("Vimbal");
 module.exports = function (deployer) {
-  deployer.deploy(Transfer);
+  deployer.deploy(Vimbal);
 };

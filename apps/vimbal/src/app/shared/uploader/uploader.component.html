@@ -1,0 +1,32 @@
+<form>
+  <div class="flex flex-row justify-between flex-wrap">
+    <div class="flex-auto">
+      <p>
+        <mat-form-field>
+          <mat-label>Upload File</mat-label>
+          <input
+            matInput
+            readonly
+            [value]="getIpfsPath((ipfsReceipt | async)?.path)"
+            (click)="fileUpload.click()"
+          />
+          <mat-icon matSuffix>link</mat-icon>
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="flex-initial">
+      <div class="file-upload">
+        <button mat-mini-fab color="primary" (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <input
+    type="file"
+    (change)="captureFile($event)"
+    class="file-input"
+    #fileUpload
+  />
+</form>

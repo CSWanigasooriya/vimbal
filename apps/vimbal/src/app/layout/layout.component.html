@@ -6,12 +6,24 @@
     <button mat-icon-button>
       <img
         matListAvatar
-        src="/assets/icons/icon-72x72.png"
+        [src]="
+          (theme$ | async) === true
+            ? '/assets/icons/icon-dark-72x72.png'
+            : '/assets/icons/icon-72x72.png'
+        "
         class="brand-logo"
       />
     </button>
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
+
     <span class="spacer"></span>
+    <input
+      class="search"
+      type="text"
+      placeholder="Search..."
+      *ngIf="!mobileQuery.matches"
+    />
+
     <button
       mat-icon-button
       (click)="toggleDarkMode()"
@@ -47,10 +59,11 @@
       [opened]="(sidebar$ | async) === true"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
+      [class.is-compact]="isCompact"
       fixedTopGap="56"
     >
-      <mat-nav-list class="items" [class.is-compact]="isCompact">
-        <button class="new-btn">
+      <mat-nav-list class="items" [class.is-dark]="(theme$ | async) === true">
+        <button class="new-btn" (click)="openDialog()">
           <span class="icon"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -107,8 +120,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <!-- <div class="progress" style="--v:40%"></div> -->
-
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

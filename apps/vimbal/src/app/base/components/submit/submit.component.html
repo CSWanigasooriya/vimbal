@@ -1,0 +1,146 @@
+<h1 mat-dialog-title>{{ data?.title }}</h1>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="paperSubmitForm" novalidate>
+    <p>
+      <mat-form-field>
+        <mat-label>Paper Title</mat-label>
+        <input
+          matInput
+          placeholder="Enter your paper title"
+          formControlName="title"
+        />
+        <mat-icon matSuffix>toc</mat-icon>
+        <mat-error *ngIf="getFormControl('title').invalid">
+          <span *ngIf="hasError('title', 'required')"
+            >Title is <b>required</b></span
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Abstract</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter your paper abstract"
+          formControlName="abstract"
+        ></textarea>
+        <mat-hint>Optional</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Keywords</mat-label>
+        <mat-chip-list #keywordsList multiple formArrayName="keywords">
+          <mat-chip
+            *ngFor="let keyword of keywordsSet; let i = index"
+            [removable]="removable"
+            (removed)="removeKeyword(keyword)"
+          >
+            {{ keyword }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            #keywordInput
+            placeholder="Add keywords"
+            [matChipInputFor]="keywordsList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addKeywordFromInput($event)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+    </p>
+
+    <div formArrayName="authors">
+      <div class="flex flex-row justify-between flex-wrap">
+        <div class="flex-initial">
+          <h3>Authors</h3>
+        </div>
+        <div class="flex-initial">
+          <button
+            type="button"
+            mat-raised-button
+            color="accent"
+            (click)="addAuthor()"
+          >
+            <mat-icon>supervisor_account</mat-icon>
+            Add Author
+          </button>
+        </div>
+      </div>
+
+      <div class="list-container">
+        <div
+          *ngFor="
+            let authorArray of getFormArray('authors').controls;
+            let i = index
+          "
+        >
+          <mat-form-field>
+            <mat-label>Author Name {{ i + 1 }}</mat-label>
+            <input
+              #authorItem
+              tabindex="1"
+              matInput
+              placeholder="Author's Name"
+              [formControlName]="i"
+              (keydown.enter)="addAuthor()"
+            />
+            <button
+              *ngIf="i > 0"
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="removeAuthor(i)"
+            >
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- <div *ngFor="let authorArray of getFormArray('authors').controls; let i=index">
+            <mat-form-field>
+              <mat-label>Authors</mat-label>
+              <mat-chip-list #authorChipList aria-label="Authors" multiple [formControlName]="i">
+                <mat-chip *ngFor="let author of authorsSet" [selected]="author" [value]="author"
+                  (removed)="removeAuthor(author)">
+                  {{author}}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+                <input placeholder="New Author..." [matChipInputFor]="authorChipList"
+                  (matChipInputTokenEnd)="addAuthorFromInput($event)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div> -->
+    </div>
+
+    <vimbal-uploader (fileBuffer)="patchFileBuffer($event)"></vimbal-uploader>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    type="button"
+    mat-button
+    mat-dialog-close
+    [class]="data.cancelButton?.type"
+    [color]="data.cancelButton?.color"
+  >
+    {{ data.cancelButton?.text }}
+  </button>
+  <button
+    type="submit"
+    mat-button
+    (click)="submitForm()"
+    cdkFocusInitial
+    [class]="data.okayButton?.type"
+    [color]="data.okayButton?.color"
+  >
+    {{ data.okayButton?.text }}
+  </button>
+</mat-dialog-actions>

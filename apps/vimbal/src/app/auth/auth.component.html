@@ -1,0 +1,51 @@
+<div class="mat-app-background" [class.dark-theme]="(theme$ | async) === true">
+  <div class="container" #container>
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="#" class="sign-in-form">
+          <h1>Chamath</h1>
+        </form>
+        <form action="#" class="sign-up-form">
+          <h1>Wanigasooriya</h1>
+        </form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New here ?</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+            ex ratione. Aliquid!
+          </p>
+          <button
+            mat-stroked-button
+            class="transparent"
+            (click)="toggleClass()"
+          >
+            Sign up
+          </button>
+        </div>
+        <img src="" class="image imagesign-up" alt="" />
+      </div>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us ?</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+            laboriosam ad deleniti.
+          </p>
+          <button
+            mat-stroked-button
+            class="transparent"
+            (click)="toggleClass()"
+          >
+            Sign in
+          </button>
+        </div>
+        <img src="" class="image imagesign-in" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

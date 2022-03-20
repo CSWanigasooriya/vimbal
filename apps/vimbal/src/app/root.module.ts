@@ -13,6 +13,7 @@ import {
   provideRemoteConfig,
 } from '@angular/fire/remote-config';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -21,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from '@vimbal/material';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
+import { AuthComponent } from './auth/auth.component';
 import { PROVIDERS_CONFIG } from './core/config/providers.config';
 import { counterReducer } from './core/state/counter/counter.reducer';
 import { sidebarReducer } from './core/state/sidebar/sidebar.reducer';
@@ -28,6 +30,8 @@ import { themeReducer } from './core/state/theme/theme.reducer';
 import { LayoutComponent } from './layout/layout.component';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root.routing';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
 
 export function localStorageSyncReducer(
@@ -41,12 +45,21 @@ export function localStorageSyncReducer(
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
-  declarations: [RootComponent, LayoutComponent, SheetComponent],
+  declarations: [
+    RootComponent,
+    LayoutComponent,
+    SheetComponent,
+    ErrorComponent,
+    AuthComponent,
+    DialogComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RootRoutingModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(
       { count: counterReducer, theme: themeReducer, sidebar: sidebarReducer },
       { metaReducers: metaReducers }
