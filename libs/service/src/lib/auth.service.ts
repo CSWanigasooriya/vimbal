@@ -17,13 +17,10 @@ declare global {
 export class AuthService {
   forwarderOrigin = 'http://localhost:4200';
   ganacheUrl = 'http://127.0.0.1:7545';
-
   onboarding = new MetaMaskOnboarding({
     // forwarderOrigin: this.forwarderOrigin,
   });
-
   provider = new ethers.providers.JsonRpcProvider(this.ganacheUrl);
-
   signer = this.provider.getSigner();
 
   constructor(private _ngZone: NgZone, private _loggerService: LoggerService) {}
@@ -44,22 +41,6 @@ export class AuthService {
 
   async getUserWalletAddress() {
     return await this.signer.getAddress();
-  }
-
-  async getCurrentBlock() {
-    return await this.provider.getBlockNumber();
-  }
-
-  async getBlockchainData(): Promise<ChainData> {
-    const network = await this.provider.getNetwork();
-    const networkData = Vimbal.networks[5777];
-    const contract = new ethers.Contract(
-      networkData.address,
-      Vimbal.abi,
-      this.signer
-    );
-
-    return { network, networkData, contract };
   }
 
   async requestWalletPermission() {

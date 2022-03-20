@@ -17,8 +17,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@vimbal/directive": ["libs/directive/src/index.ts"],
       "@vimbal/material": ["libs/material/src/index.ts"],
       "@vimbal/model": ["libs/model/src/index.ts"],
+      "@vimbal/pipe": ["libs/pipe/src/index.ts"],
       "@vimbal/service": ["libs/service/src/index.ts"],
       "@vimbal/ui": ["libs/ui/src/index.ts"]
     }

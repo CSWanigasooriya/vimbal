@@ -1,0 +1,39 @@
+{
+  "projectType": "library",
+  "root": "libs/pipe",
+  "sourceRoot": "libs/pipe/src",
+  "prefix": "vimbal",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/pipe"],
+      "options": {
+        "project": "libs/pipe/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/pipe/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/pipe/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pipe"],
+      "options": {
+        "jestConfig": "libs/pipe/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/pipe/src/**/*.ts", "libs/pipe/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

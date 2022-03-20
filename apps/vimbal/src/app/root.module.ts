@@ -1,4 +1,3 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NgModule } from '@angular/core';
 import { getAnalytics, provideAnalytics } from '@angular/fire/analytics';
@@ -14,6 +13,7 @@ import {
   provideRemoteConfig,
 } from '@angular/fire/remote-config';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -33,7 +33,6 @@ import { RootRoutingModule } from './root.routing';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { SheetComponent } from './shared/sheet/sheet.component';
-import { UploaderComponent } from './shared/uploader/uploader.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>

@@ -1,6 +1,4 @@
 <div class="layout-container" [class.is-mobile]="mobileQuery.matches">
-  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-
   <mat-toolbar class="toolbar">
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>{{ snav.opened ? 'menu' : 'menu' }}</mat-icon>
@@ -8,7 +6,11 @@
     <button mat-icon-button>
       <img
         matListAvatar
-        src="/assets/icons/icon-72x72.png"
+        [src]="
+          (theme$ | async) === true
+            ? '/assets/icons/icon-dark-72x72.png'
+            : '/assets/icons/icon-72x72.png'
+        "
         class="brand-logo"
       />
     </button>
@@ -118,23 +120,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <!-- <div class="progress" style="--v:40%"></div> -->
-      <mat-tab-group dynamicHeight>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="tab-icon">home</mat-icon>
-            Home
-          </ng-template>
-          <router-outlet></router-outlet>
-        </mat-tab>
-
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="tab-icon">reviews</mat-icon>
-            Reviews
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

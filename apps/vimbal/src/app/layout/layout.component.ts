@@ -27,7 +27,6 @@ import { SheetComponent } from './../shared/sheet/sheet.component';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
-  public isLoading = false;
   private subscriptions = new Subscription();
 
   @ViewChild('snav') snav: MatSidenav | undefined;
@@ -100,13 +99,13 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SubmitComponent, {
-      width: '50vw',
+      // panelClass: ['md:w-4/5', 'w-5/6'],
+      height: '98vh',
+      width: '98vw',
       data: {
-        title: 'Submit paper ',
-        message: 'Message',
-        description: 'Description',
+        title: 'SUBMIT PAPER',
         cancelButton: {
-          text: 'Cancel',
+          text: 'CANCEL',
           color: 'primary',
           type: 'mat-stroked-button',
         },

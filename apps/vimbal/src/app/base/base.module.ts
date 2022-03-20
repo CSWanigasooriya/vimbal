@@ -8,6 +8,7 @@ import { BaseRoutingModule } from './base-routing.module';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SubmitComponent } from './components/submit/submit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 const baseModules = [DashboardComponent];
 
@@ -17,6 +18,7 @@ const baseModules = [DashboardComponent];
     SubmitComponent,
     PreviewComponent,
     UploaderComponent,
+    FeedComponent,
   ],
   imports: [
     CommonModule,

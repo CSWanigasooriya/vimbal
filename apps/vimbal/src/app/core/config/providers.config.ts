@@ -1,6 +1,8 @@
 import {
   AuthService,
+  ChainService,
   GlobalRippleOptionsService,
+  IpfsService,
   LoggerService,
   StorageService,
 } from '@vimbal/service';
@@ -65,7 +67,10 @@ export const PROVIDERS_CONFIG = [
     },
   },
   { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+  {
+    provide: MAT_DIALOG_DEFAULT_OPTIONS,
+    useValue: { panelClass: 'mat-dialog-override', hasBackdrop: true },
+  },
   { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
@@ -99,4 +104,6 @@ export const PROVIDERS_CONFIG = [
   StorageService,
   Title,
   AuthService,
+  IpfsService,
+  ChainService,
 ];

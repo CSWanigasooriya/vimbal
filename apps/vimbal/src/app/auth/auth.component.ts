@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthService } from '@vimbal/service';
@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
+  @ViewChild('container', { read: ElementRef, static: false })
+  container!: ElementRef;
+
   theme$: Observable<boolean>;
 
   constructor(
@@ -22,5 +25,9 @@ export class AuthComponent {
 
   connectMetaMask() {
     this._authService.requestWalletPermission();
+  }
+
+  toggleClass() {
+    this.container.nativeElement.classList.toggle('slide');
   }
 }

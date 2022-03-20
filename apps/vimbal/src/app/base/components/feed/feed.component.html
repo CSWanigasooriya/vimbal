@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header class="truncate">
+    <img matCardAvatar [src]="" />
+    <mat-card-title>{{ fileData?.hash }}</mat-card-title>
+    <mat-card-subtitle>{{ fileData?.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>ID: {{ fileData?.id }}</p>
+    <p>Tip: {{ fileData?.tipAmount }}</p>
+    <p>Timestamp: {{ fileData?.timestamp }}</p>
+    <p>Owner: {{ fileData?.owner }}</p>
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <button mat-stroked-button color="primary">
+      <mat-icon>emoji_events</mat-icon>
+      Tip
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/preview/{{ fileData.id }}"
+    >
+      View
+    </button>
+  </mat-card-actions>
+</mat-card>

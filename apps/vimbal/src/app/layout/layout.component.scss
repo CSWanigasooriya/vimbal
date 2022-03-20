@@ -190,6 +190,42 @@ h1.app-name {
   color: #3c4043;
 }
 
+.is-dark .new-btn {
+  display: flex;
+  align-items: center;
+  margin: 10px 8px;
+  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302),
+    0 1px 3px 1px rgba(14, 14, 14, 0.149);
+  border: none;
+  background: #1d1d1d;
+  padding: 10px;
+  height: 54px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.is-dark .new-btn:hover {
+  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302),
+    0 1px 3px 1px rgba(14, 14, 14, 0.149);
+  background: #444444;
+}
+.is-dark .new-btn:focus {
+  background-color: #505050;
+}
+.is-dark .new-btn:active {
+  background-color: #00000038;
+}
+.is-dark .new-btn .icon {
+  margin-right: 10px;
+}
+.is-dark .new-btn .name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 9px;
+  color: #a1aab3;
+}
+
 .is-compact .new-btn {
   height: 54px;
   width: 54px;
@@ -213,8 +249,4 @@ h1.app-name {
 .search:focus {
   outline: none;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-
-.tab-icon {
-  margin-right: 8px;
 }

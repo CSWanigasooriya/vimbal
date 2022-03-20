@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChainData, IpfsReceipt } from '@vimbal/model';
 import { Injectable } from '@angular/core';
+import { ChainData, FileContract, IpfsReceipt } from '@vimbal/model';
 import { Buffer } from 'buffer';
 import { create } from 'ipfs-http-client';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from './auth.service';
+import { ChainService } from './chain.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,22 +17,30 @@ export class IpfsService {
   // connect to the default API address http://localhost:5001
   client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
 
-  constructor(private _authService: AuthService) {
-    this._authService.getBlockchainData().then((data: any) => {
+  constructor(private _chainService: ChainService) {
+    this._chainService.getBlockchainData().then((data: any) => {
       this.chainData = data;
     });
   }
 
   async uploadFile(buffer: Buffer) {
-    // call Core API methods
-    await this.client.add(buffer).then(async (response) => {
-      const upload = await this.chainData.contract.uploadFile(
-        response.path,
-        'description'
-      );
-      await upload.wait();
-      this.ipfsReceipt.next(response);
-    });
+    console.log('Uploading file to ipfs...');
+    await this.client
+      .add(buffer)
+      .then(async (response) => {
+        const upload = await this.chainData.contract.uploadFile(
+          response.path,
+          'title',
+          'authors',
+          'keywords',
+          'abstract'
+        );
+        await upload.wait();
+        this.ipfsReceipt.next(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     return this.ipfsReceipt.value;
   }
