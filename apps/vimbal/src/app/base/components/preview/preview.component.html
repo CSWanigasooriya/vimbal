@@ -1,3 +1,29 @@
 <p>{{ fileId }}</p>
 
 <p>{{ file }}</p>
+
+<ul>
+  <li>{{ decodeData(file?.authors) }}</li>
+  <li *ngFor=""></li>
+</ul>
+
+<mat-progress-bar
+  style="margin: 0 auto"
+  diameter="100"
+  strokeWidth="4"
+  *ngIf="isLoading"
+  mode="indeterminate"
+  color="primary"
+>
+</mat-progress-bar>
+
+<ngx-doc-viewer
+  [url]="getIpfsUri()"
+  viewer="google"
+  class="doc-viewer"
+  [googleCheckContentLoaded]="true"
+  [googleCheckInterval]="3000"
+  [googleMaxChecks]="5"
+  (loaded)="contentLoaded()"
+>
+</ngx-doc-viewer>

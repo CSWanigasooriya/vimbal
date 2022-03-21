@@ -11,8 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent implements OnInit {
+  public isLoading = true;
   public fileId!: number;
   public file!: FileContract;
+  public authors: string[] = [];
+  public keywords: string[] = [];
 
   private subscriptions = new Subscription();
 
@@ -25,11 +28,24 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFile();
+    this.authors = this.decodeData(this.file?.authors).split(',') || [];
   }
 
   getFile() {
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.file = await data.contract['files'](this.fileId);
     });
+  }
+
+  getIpfsUri() {
+    return `https://ipfs.io/ipfs/${this.file?.hash}`;
+  }
+
+  contentLoaded() {
+    this.isLoading = false;
+  }
+
+  decodeData(data?: string) {
+    return data ? atob(data) : '';
   }
 }

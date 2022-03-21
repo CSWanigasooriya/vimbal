@@ -43,13 +43,15 @@ export class RootComponent implements OnDestroy {
 
     this.subscriptions.add(
       this.theme$.subscribe((theme) => {
-        theme
-          ? this._overlayContainer
-              .getContainerElement()
-              .classList.add('dark-theme')
-          : this._overlayContainer
-              .getContainerElement()
-              .classList.remove('dark-theme');
+        if (theme) {
+          this._overlayContainer
+            .getContainerElement()
+            .classList.add('dark-theme');
+        } else {
+          this._overlayContainer
+            .getContainerElement()
+            .classList.remove('dark-theme');
+        }
       })
     );
   }

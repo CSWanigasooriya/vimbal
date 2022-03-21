@@ -56,8 +56,13 @@
     <mat-sidenav
       class="sidenav"
       #snav
-      [opened]="(sidebar$ | async) === true"
+      opened
+      (mouseover)="isCompact = false"
+      (mouseleave)="isCompact = true"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [@openCloseSidenav]="
+        !mobileQuery.matches ? (!isCompact ? 'open' : 'closed') : ''
+      "
       [fixedInViewport]="mobileQuery.matches"
       [class.is-compact]="isCompact"
       fixedTopGap="56"
@@ -79,7 +84,7 @@
             </svg>
           </span>
 
-          <span class="name" *ngIf="!isCompact">Submit Paper</span>
+          <span class="name truncate" *ngIf="!isCompact">Submit Paper</span>
         </button>
 
         <mat-list-item
@@ -119,7 +124,11 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content
+      [@openCloseSidenavContent]="
+        !mobileQuery.matches ? (!isCompact ? 'open' : 'closed') : ''
+      "
+    >
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

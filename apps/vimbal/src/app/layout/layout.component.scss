@@ -79,7 +79,7 @@ h1.app-name {
 }
 
 .items {
-  overflow: auto;
+  overflow: hidden;
   padding-right: 10px;
 }
 
@@ -148,6 +148,7 @@ h1.app-name {
 .is-compact .item {
   height: 54px;
   width: 54px;
+  margin: 0 8px;
   border-radius: 100px;
 }
 

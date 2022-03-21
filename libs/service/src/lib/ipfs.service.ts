@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
-import { ChainData, FileContract, IpfsReceipt } from '@vimbal/model';
+import {
+  ChainData,
+  FileContract,
+  IpfsReceipt,
+  WithDateFormat,
+} from '@vimbal/model';
 import { Buffer } from 'buffer';
 import { create } from 'ipfs-http-client';
 import { BehaviorSubject } from 'rxjs';
@@ -23,17 +28,17 @@ export class IpfsService {
     });
   }
 
-  async uploadFile(buffer: Buffer) {
+  async uploadFile(buffer: Buffer, file: WithDateFormat<FileContract>) {
     console.log('Uploading file to ipfs...');
     await this.client
       .add(buffer)
       .then(async (response) => {
         const upload = await this.chainData.contract.uploadFile(
           response.path,
-          'title',
-          'authors',
-          'keywords',
-          'abstract'
+          file.title,
+          file.authors,
+          file.keywords,
+          file.description //abstract
         );
         await upload.wait();
         this.ipfsReceipt.next(response);

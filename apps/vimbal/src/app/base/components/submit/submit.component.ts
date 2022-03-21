@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, FileContract } from '@vimbal/model';
+import { DialogData, FileContract, WithDateFormat } from '@vimbal/model';
 import { IpfsService } from '@vimbal/service';
 
 @Component({
@@ -120,13 +120,27 @@ export class SubmitComponent
 
   uploadFileToIpfs(buffer: Buffer) {
     const fileData = {
-      title: this.paperSubmitForm.value.title,
+      title: this.paperSubmitForm.value?.title,
+      authors: this.encodeData(
+        this.paperSubmitForm.value.authors
+          .map((author: any) => author)
+          .join(',')
+      ),
+      keywords: this.encodeData(
+        this.paperSubmitForm.value?.keywords
+          .map((keyword: any) => keyword)
+          .join(',')
+      ),
       description: this.paperSubmitForm.value.abstract,
-    } as FileContract;
+    } as WithDateFormat<FileContract>;
 
-    this._ipfsService.uploadFile(buffer).then(() => {
+    this._ipfsService.uploadFile(buffer, fileData).then(() => {
       this.dialogRef.close(this.paperSubmitForm.value);
     });
+  }
+
+  encodeData(data: string) {
+    return btoa(data);
   }
 
   submitForm() {

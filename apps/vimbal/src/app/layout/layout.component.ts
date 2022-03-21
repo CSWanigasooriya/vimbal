@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -16,6 +23,10 @@ import { Store } from '@ngrx/store';
 import { DialogData } from '@vimbal/model';
 import { Observable, Subscription } from 'rxjs';
 import { SubmitComponent } from '../base/components/submit/submit.component';
+import {
+  sideNavAnimation,
+  sideNavContainerAnimation,
+} from '../core/animation/side-bar.animations';
 import { toggle } from '../core/state/sidebar/sidebar.actions';
 import { mode } from '../core/state/theme/theme.actions';
 import { AppConfig, APP_CONFIG } from './../core/config/app.config';
@@ -25,6 +36,7 @@ import { SheetComponent } from './../shared/sheet/sheet.component';
   selector: 'vimbal-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
+  animations: [sideNavAnimation, sideNavContainerAnimation],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription();
