@@ -11,6 +11,12 @@ Install Angular CLI
 ```
 npm install -g @angular/cli
 ```
+
+Install Truffle
+```
+npm install -g truffle@5.1.65
+```
+
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
