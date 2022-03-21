@@ -43,7 +43,7 @@ truffle migrate --reset
 
 8. Serve the application
 ```
-
+npm start
 ```
 
 ## Commit Guidelines
