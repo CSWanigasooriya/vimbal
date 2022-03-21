@@ -7,6 +7,10 @@
 - NodeJs: [NodeJs](https://nodejs.org/en/download/)  
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
 
+Install Angular CLI
+```
+npm install -g @angular/cli
+```
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
