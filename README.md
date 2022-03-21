@@ -17,6 +17,7 @@ Install Truffle
 npm install -g truffle@5.1.65
 ```
 
+Clone Project and Navigate to Folder
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
