@@ -3,7 +3,7 @@
 ## How to Setup
 
 `
-Install Ganache: [](https://trufflesuite.com/ganache/index.html)
+Install Ganache: [](/https://trufflesuite.com/ganache/index.html)
 `
 
 ```
