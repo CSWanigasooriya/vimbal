@@ -10,6 +10,9 @@
 
 1. Open Ganache and Start an Instance
 
+![image](https://user-images.githubusercontent.com/53285026/159238772-6c711d55-e072-4d85-a7ab-70deac50dbaf.png)
+
+
 2. Install Angular CLI
 ```
 npm install -g @angular/cli
