@@ -2,7 +2,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { toggle } from './sidebar.actions';
 
-export const initialState = false;
+export const initialState = true;
 
 const _sidebarReducer = createReducer(
   initialState,

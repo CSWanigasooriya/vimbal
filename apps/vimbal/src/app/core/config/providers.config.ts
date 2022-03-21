@@ -1,3 +1,32 @@
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
+import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
+import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
+import {
+  MatCheckboxDefaultOptions,
+  MAT_CHECKBOX_DEFAULT_OPTIONS,
+} from '@angular/material/checkbox';
+import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
+import {
+  ErrorStateMatcher,
+  MAT_DATE_LOCALE,
+  MAT_RIPPLE_GLOBAL_OPTIONS,
+  ShowOnDirtyErrorStateMatcher,
+} from '@angular/material/core';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MAT_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@angular/material/expansion';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import {
+  MatTooltipDefaultOptions,
+  MAT_TOOLTIP_DEFAULT_OPTIONS,
+} from '@angular/material/tooltip';
+import { Title } from '@angular/platform-browser';
 import {
   AuthService,
   ChainService,
@@ -6,38 +35,7 @@ import {
   LoggerService,
   StorageService,
 } from '@vimbal/service';
-import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import {
-  ErrorStateMatcher,
-  MAT_DATE_LOCALE,
-  MAT_RIPPLE_GLOBAL_OPTIONS,
-  ShowOnDirtyErrorStateMatcher,
-} from '@angular/material/core';
-import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
-import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
-import {
-  MatCheckboxDefaultOptions,
-  MAT_CHECKBOX_DEFAULT_OPTIONS,
-} from '@angular/material/checkbox';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import {
-  MAT_TOOLTIP_DEFAULT_OPTIONS,
-  MatTooltipDefaultOptions,
-} from '@angular/material/tooltip';
 import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config';
-
-import { Title } from '@angular/platform-browser';
-import {
-  ScreenTrackingService,
-  UserTrackingService,
-} from '@angular/fire/analytics';
-import { MAT_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@angular/material/expansion';
-import { PipeModule } from '@vimbal/pipe';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
