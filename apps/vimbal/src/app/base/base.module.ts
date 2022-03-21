@@ -1,14 +1,14 @@
-import { UploaderComponent } from './../shared/uploader/uploader.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@vimbal/material';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { UploaderComponent } from './../shared/uploader/uploader.component';
 import { BaseRoutingModule } from './base-routing.module';
+import { FeedComponent } from './components/feed/feed.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SubmitComponent } from './components/submit/submit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FeedComponent } from './components/feed/feed.component';
 
 const baseModules = [DashboardComponent];
 

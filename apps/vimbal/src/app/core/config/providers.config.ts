@@ -37,6 +37,7 @@ import {
   UserTrackingService,
 } from '@angular/fire/analytics';
 import { MAT_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@angular/material/expansion';
+import { PipeModule } from '@vimbal/pipe';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -106,4 +107,5 @@ export const PROVIDERS_CONFIG = [
   AuthService,
   IpfsService,
   ChainService,
+  PipeModule,
 ];
