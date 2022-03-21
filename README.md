@@ -2,9 +2,18 @@
 
 ## How to Setup
 
-`
+```
+Install Ganache: https://trufflesuite.com/ganache/index.html
+```
+
+```
 git clone https://github.com/CSWanigasooriya/vimbal
-`
+cd vimbal
+```
+
+```
+
+```
 
 ## Commit Guidelines
 
