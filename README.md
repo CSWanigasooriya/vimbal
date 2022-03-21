@@ -1,5 +1,11 @@
 # Vimbal
 
+## How to Setup
+
+`
+git clone https://github.com/CSWanigasooriya/vimbal
+`
+
 ## Commit Guidelines
 
 ```
