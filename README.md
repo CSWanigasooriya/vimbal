@@ -30,8 +30,15 @@ cd vimbal
 npm install
 ```
 
+6. Compile Smart Contracts
+```
+truffle compile
+```
 
-
+7. Migrate Contracts to Blockchain
+```
+truffle migrate --reset
+```
 
 ## Commit Guidelines
 
