@@ -2,9 +2,9 @@
 
 ## How to Setup
 
-`
-Install Ganache: [](/https://trufflesuite.com/ganache/index.html)
-`
+### Prerequisites
+
+Install Ganache: https://trufflesuite.com/ganache/index.html
 
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
