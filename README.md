@@ -6,6 +6,7 @@
 
 - NodeJs: [NodeJs](https://nodejs.org/en/download/)  
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
+- MetaMask Extension: [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en)
 
 1. Open Ganache and Start an Instance
 
@@ -38,6 +39,11 @@ truffle compile
 7. Migrate Contracts to Blockchain
 ```
 truffle migrate --reset
+```
+
+8. Serve the application
+```
+
 ```
 
 ## Commit Guidelines
