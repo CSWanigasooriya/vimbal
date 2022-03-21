@@ -23,8 +23,9 @@ git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
 ```
 
+Install Node Modules
 ```
-
+npm install
 ```
 
 ## Commit Guidelines
