@@ -35,7 +35,7 @@ export class SubmitComponent
   implements AfterViewInit, AfterViewChecked, OnDestroy
 {
   private subscriptions = new Subscription();
-
+  public isProcessing = false;
   public removable = true;
   public addOnBlur = true;
 
@@ -119,6 +119,7 @@ export class SubmitComponent
   }
 
   uploadFileToIpfs(buffer: Buffer) {
+    this.isProcessing = true;
     const fileData = {
       title: this.paperSubmitForm.value?.title,
       authors: this.encodeData(
@@ -135,6 +136,7 @@ export class SubmitComponent
     } as WithDateFormat<FileContract>;
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {
+      this.isProcessing = false;
       this.dialogRef.close(this.paperSubmitForm.value);
     });
   }

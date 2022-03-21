@@ -13,7 +13,7 @@ export class DashboardComponent {
   public userWalletAddress!: string;
   public currentBlockNumber!: number;
   public chainData!: ChainData;
-  public files: WithDateFormat<FileContract>[] = [];
+  public files: FileContract[] = [];
 
   constructor(
     private _authService: AuthService,
@@ -46,10 +46,12 @@ export class DashboardComponent {
       id: parseInt(file.id.toString(), 16),
       hash: file.hash,
       title: file.title,
+      authors: file.authors,
+      keywords: file.keywords,
       description: file.description,
       tipAmount: parseInt(file.tipAmount.toString(), 16),
-      timestamp: new Date(parseInt(file.timestamp.toString(), 16)),
+      timestamp: parseInt(file.timestamp.toString(), 16),
       owner: file.owner,
-    } as WithDateFormat<FileContract>;
+    } as FileContract;
   }
 }

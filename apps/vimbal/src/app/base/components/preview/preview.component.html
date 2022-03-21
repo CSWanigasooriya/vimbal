@@ -3,8 +3,9 @@
 <p>{{ file }}</p>
 
 <ul>
-  <li>{{ decodeData(file?.authors) }}</li>
-  <li *ngFor=""></li>
+  <li *ngFor="let author of decodeData(file?.authors) | splitBy: ','">
+    {{ author }}
+  </li>
 </ul>
 
 <mat-progress-bar

@@ -28,7 +28,6 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFile();
-    this.authors = this.decodeData(this.file?.authors).split(',') || [];
   }
 
   getFile() {

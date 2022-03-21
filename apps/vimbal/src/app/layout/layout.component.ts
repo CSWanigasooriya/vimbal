@@ -1,10 +1,3 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -66,7 +59,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sidebar$ = store.select('sidebar');
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
   ngOnInit(): void {
@@ -82,7 +75,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
     this.subscriptions.unsubscribe();
   }
 
@@ -122,7 +115,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
           type: 'mat-stroked-button',
         },
         okayButton: {
-          text: 'OKAY',
+          text: 'SUBMIT',
           color: 'primary',
           type: 'mat-raised-button',
         },
@@ -131,8 +124,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe((result) => {
-        console.log('The dialog was closed');
-        console.log(result);
+        if (result) {
+          window.location.reload();
+        }
       })
     );
   }

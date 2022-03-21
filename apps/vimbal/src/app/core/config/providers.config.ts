@@ -107,5 +107,4 @@ export const PROVIDERS_CONFIG = [
   AuthService,
   IpfsService,
   ChainService,
-  PipeModule,
 ];
