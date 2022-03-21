@@ -7,26 +7,31 @@
 - NodeJs: [NodeJs](https://nodejs.org/en/download/)  
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
 
-Install Angular CLI
+1. Open Ganache and Start an Instance
+
+2. Install Angular CLI
 ```
 npm install -g @angular/cli
 ```
 
-Install Truffle
+3. Install Truffle
 ```
 npm install -g truffle@5.1.65
 ```
 
-Clone Project and Navigate to Folder
+4. Clone Project and Navigate to Folder
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
 ```
 
-Install Node Modules
+5. Install Node Modules
 ```
 npm install
 ```
+
+
+
 
 ## Commit Guidelines
 
