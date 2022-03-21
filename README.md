@@ -4,8 +4,8 @@
 
 ### Prerequisites
 
-NodeJs: https://nodejs.org/en/download/ 
-Ganache: https://trufflesuite.com/ganache/index.html
+-NodeJs: [NodeJs](https://nodejs.org/en/download/)  
+-Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
 
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
