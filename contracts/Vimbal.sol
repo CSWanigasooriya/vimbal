@@ -17,7 +17,6 @@ contract Vimbal {
         string keywords;
         string description;
         uint256 tipAmount;
-        uint256 timestamp;
         address payable owner;
     }
 
@@ -29,7 +28,6 @@ contract Vimbal {
         string keywords,
         string description,
         uint256 tipAmount,
-        uint256 timestamp,
         address payable owner
     );
 
@@ -41,7 +39,6 @@ contract Vimbal {
         string keywords,
         string description,
         uint256 tipAmount,
-        uint256 timestamp,
         address payable owner
     );
 
@@ -66,7 +63,6 @@ contract Vimbal {
             _keywords,
             _description,
             0,
-            block.timestamp,
             payable(address(msg.sender))
         );
 
@@ -78,7 +74,6 @@ contract Vimbal {
             _keywords,
             _description,
             0,
-            block.timestamp,
             payable(address(msg.sender))
         );
     }
@@ -101,7 +96,6 @@ contract Vimbal {
             _file.keywords,
             _file.description,
             _file.tipAmount,
-            _file.timestamp,
             _file.owner
         );
     }

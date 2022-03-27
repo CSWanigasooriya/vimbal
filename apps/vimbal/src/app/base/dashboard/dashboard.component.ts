@@ -22,11 +22,12 @@ export class DashboardComponent {
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.isLoading = false;
+      console.log(data);
       this.chainData = data;
-      const fileCount = await this.chainData.methods?.fileCount();
+      const fileCount = await this.chainData.methods?.fileCount().call();
       const fileCountInt = parseInt(fileCount, 16);
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await this.chainData.methods.files;
+        const file = await this.chainData.methods?.files(index).call();
         this.files = [...this.files, this.formatFileData(file)];
       }
     });
@@ -41,7 +42,6 @@ export class DashboardComponent {
       keywords: file.keywords,
       description: file.description,
       tipAmount: parseInt(file.tipAmount.toString(), 16),
-      timestamp: parseInt(file.timestamp.toString(), 16),
       owner: file.owner,
     } as FileContract;
   }

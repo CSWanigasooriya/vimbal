@@ -32,7 +32,7 @@ export class PreviewComponent implements OnInit {
 
   getFile() {
     this._chainService.getBlockchainData().then(async (data: any) => {
-      this.file = await data.contract['files'](this.fileId);
+      this.file = await data.methods.files(this.fileId).call();
     });
   }
 

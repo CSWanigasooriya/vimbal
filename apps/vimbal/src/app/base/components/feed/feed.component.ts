@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FileContract, WithDateFormat } from '@vimbal/model';
+import { FileContract } from '@vimbal/model';
 
 @Component({
   selector: 'vimbal-feed',
@@ -8,21 +8,20 @@ import { FileContract, WithDateFormat } from '@vimbal/model';
 })
 export class FeedComponent implements OnInit {
   @Input() fileData: FileContract;
-  formatedFileData!: Partial<WithDateFormat<FileContract>>;
+  formatedFileData!: Partial<FileContract>;
 
   constructor() {
     this.fileData = {} as FileContract;
   }
 
   ngOnInit(): void {
-    const fileData: WithDateFormat<FileContract> = {
+    const fileData: FileContract = {
       id: this.fileData.id,
       hash: this.fileData.hash,
       title: this.fileData.title,
       description: this.fileData.description,
       authors: this.fileData.authors,
       keywords: this.fileData.keywords,
-      timestamp: new Date(this.fileData.timestamp),
       owner: this.fileData.owner,
       tipAmount: this.fileData.tipAmount,
     };

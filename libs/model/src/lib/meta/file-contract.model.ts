@@ -6,10 +6,5 @@ export interface FileContract {
   keywords: string;
   description: string;
   tipAmount: number;
-  timestamp: number;
   owner: number;
 }
-
-export type WithDateFormat<T> = Omit<T, 'timestamp'> & {
-  timestamp: Date;
-};

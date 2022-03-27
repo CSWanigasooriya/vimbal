@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, FileContract, WithDateFormat } from '@vimbal/model';
+import { DialogData, FileContract } from '@vimbal/model';
 import { IpfsService } from '@vimbal/service';
 
 @Component({
@@ -133,7 +133,7 @@ export class SubmitComponent
           .join(',')
       ),
       description: this.paperSubmitForm.value.abstract,
-    } as WithDateFormat<FileContract>;
+    } as FileContract;
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {
       this.isProcessing = false;

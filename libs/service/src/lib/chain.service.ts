@@ -13,18 +13,10 @@ declare global {
 export class ChainService {
   ganacheUrl = 'http://127.0.0.1:7545';
 
-  async getBlockchainData(): Promise<ChainData> {
+  async getBlockchainData(): Promise<Partial<ChainData>> {
     const web3 = window.web3;
     const networkId = await web3.eth.net.getId();
     const networkData = Vimbal.networks[5777];
-    if (networkData) {
-      console.log('networkData', networkData);
-      const vimal = new web3.eth.Contract(Vimbal.abi, networkData.address);
-      console.log('vimal', vimal);
-    } else {
-      window.alert('Network is not supported');
-    }
-
-    return {} as ChainData;
+    return new web3.eth.Contract(Vimbal.abi, networkData.address);
   }
 }
