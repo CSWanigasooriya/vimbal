@@ -1,10 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ChainData {
-  network: {
-    name: string;
-    chainId: number;
-    ensAddress?: string;
-    _defaultProvider?: ((providers: any, options?: any) => any) | undefined;
-  };
-  networkData: any;
-  contract: any;
+  methods: any;
+  _address: string;
 }

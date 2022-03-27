@@ -1,30 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ChainData } from '@vimbal/model';
 import Vimbal from 'build/contracts/Vimbal.json';
-import { ethers } from 'ethers';
+declare global {
+  interface Window {
+    ethereum: any;
+    web3: any;
+  }
+}
 @Injectable({
   providedIn: 'root',
 })
 export class ChainService {
   ganacheUrl = 'http://127.0.0.1:7545';
 
-  provider = new ethers.providers.JsonRpcProvider(this.ganacheUrl);
-
-  signer = this.provider.getSigner();
-
-  async getCurrentBlock() {
-    return await this.provider.getBlockNumber();
-  }
-
   async getBlockchainData(): Promise<ChainData> {
-    const network = await this.provider.getNetwork();
+    const web3 = window.web3;
+    const networkId = await web3.eth.net.getId();
     const networkData = Vimbal.networks[5777];
-    const contract = new ethers.Contract(
-      networkData.address,
-      Vimbal.abi,
-      this.signer
-    );
+    if (networkData) {
+      console.log('networkData', networkData);
+      const vimal = new web3.eth.Contract(Vimbal.abi, networkData.address);
+      console.log('vimal', vimal);
+    } else {
+      window.alert('Network is not supported');
+    }
 
-    return { network, networkData, contract };
+    return {} as ChainData;
   }
 }

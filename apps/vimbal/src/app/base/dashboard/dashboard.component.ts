@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { ChainData, FileContract, WithDateFormat } from '@vimbal/model';
+import { ChainData, FileContract } from '@vimbal/model';
 import { AuthService, ChainService, IpfsService } from '@vimbal/service';
 
 @Component({
@@ -20,22 +20,13 @@ export class DashboardComponent {
     private _chainService: ChainService,
     private _ipfsService: IpfsService
   ) {
-    this._authService.getUserWalletAddress().then((address) => {
-      this.userWalletAddress = address;
-    });
-
-    this._chainService.getCurrentBlock().then((blockNumber) => {
-      this.currentBlockNumber = blockNumber;
-    });
-
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.isLoading = false;
       this.chainData = data;
-      const fileCount = await this.chainData.contract.fileCount();
+      const fileCount = await this.chainData.methods?.fileCount();
       const fileCountInt = parseInt(fileCount, 16);
-
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await this.chainData.contract['files'](index);
+        const file = await this.chainData.methods.files;
         this.files = [...this.files, this.formatFileData(file)];
       }
     });

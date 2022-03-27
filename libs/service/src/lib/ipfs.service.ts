@@ -33,14 +33,14 @@ export class IpfsService {
     await this.client
       .add(buffer)
       .then(async (response) => {
-        const upload = await this.chainData.contract.uploadFile(
-          response.path,
-          file.title,
-          file.authors,
-          file.keywords,
-          file.description //abstract
-        );
-        await upload.wait();
+        // const upload = await this.chainData.contract.uploadFile(
+        //   response.path,
+        //   file.title,
+        //   file.authors,
+        //   file.keywords,
+        //   file.description //abstract
+        // );
+        // await upload.wait();
         this.ipfsReceipt.next(response);
       })
       .catch((err) => {

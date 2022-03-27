@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
@@ -47,7 +48,9 @@
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js'; // Included with Angular CLI.
-
+(window as any).global = window;
+global.Buffer = global.Buffer || require('buffer').Buffer;
+global.process = require('process');
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
