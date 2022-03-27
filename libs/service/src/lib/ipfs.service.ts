@@ -26,7 +26,6 @@ export class IpfsService {
   constructor(private _chainService: ChainService) {
     this._chainService.getBlockchainData().then((data: any) => {
       this.chainData = data;
-      console.log('IpfsService: chainData', this.chainData);
     });
   }
 

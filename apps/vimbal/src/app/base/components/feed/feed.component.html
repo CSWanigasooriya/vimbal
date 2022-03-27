@@ -2,17 +2,23 @@
   <mat-card-header class="truncate">
     <img matCardAvatar [src]="" />
     <mat-card-title>{{ formatedFileData?.hash }}</mat-card-title>
-    <mat-card-subtitle>{{ formatedFileData?.description }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ formatedFileData?.authors }}</mat-card-subtitle>
+    <div fxFlex></div>
+    <div fxLayoutAlign="center none">
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
   </mat-card-header>
   <mat-card-content>
     <p>ID: {{ formatedFileData?.id }}</p>
     <p>Tip: {{ formatedFileData?.tipAmount }}</p>
     <p>Owner: {{ formatedFileData?.owner }}</p>
   </mat-card-content>
-  <mat-card-actions align="start">
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
     <button mat-stroked-button color="primary">
-      <mat-icon>emoji_events</mat-icon>
       Tip
+      <mat-icon>trending_up</mat-icon>
     </button>
     <button
       mat-raised-button

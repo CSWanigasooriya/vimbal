@@ -34,6 +34,13 @@ export class AuthService {
     });
   }
 
+  //get wallet address
+  async getWalletAddress(): Promise<string> {
+    const { ethereum } = window;
+    const accounts = await ethereum.enable();
+    return accounts[0];
+  }
+
   async requestWalletPermission() {
     try {
       await window.ethereum.request({

@@ -21,7 +21,9 @@ export class SheetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    this._authService.getWalletAddress().then((address: string) => {
+      this.walletAddress = address;
+    });
   }
 
   openLink(event: MouseEvent): void {
