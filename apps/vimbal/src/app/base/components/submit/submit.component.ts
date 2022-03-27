@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, FileContract, WithDateFormat } from '@vimbal/model';
+import { DialogData, FileContract } from '@vimbal/model';
 import { IpfsService } from '@vimbal/service';
 
 @Component({
@@ -35,7 +35,7 @@ export class SubmitComponent
   implements AfterViewInit, AfterViewChecked, OnDestroy
 {
   private subscriptions = new Subscription();
-
+  public isProcessing = false;
   public removable = true;
   public addOnBlur = true;
 
@@ -119,6 +119,7 @@ export class SubmitComponent
   }
 
   uploadFileToIpfs(buffer: Buffer) {
+    this.isProcessing = true;
     const fileData = {
       title: this.paperSubmitForm.value?.title,
       authors: this.encodeData(
@@ -132,9 +133,10 @@ export class SubmitComponent
           .join(',')
       ),
       description: this.paperSubmitForm.value.abstract,
-    } as WithDateFormat<FileContract>;
+    } as FileContract;
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {
+      this.isProcessing = false;
       this.dialogRef.close(this.paperSubmitForm.value);
     });
   }

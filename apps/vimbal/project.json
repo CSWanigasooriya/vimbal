@@ -17,7 +17,9 @@
           "ipfs-utils/src/files/url-source.js",
           "multiaddr",
           "ipfs-utils/src/env.js",
-          "debug"
+          "debug",
+          "stream",
+          "web3"
         ],
         "outputPath": "dist/apps/vimbal",
         "index": "apps/vimbal/src/index.html",

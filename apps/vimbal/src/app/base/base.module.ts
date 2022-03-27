@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@vimbal/material';
+import { PipeModule } from '@vimbal/pipe';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { UploaderComponent } from './../shared/uploader/uploader.component';
 import { BaseRoutingModule } from './base-routing.module';
@@ -27,6 +28,7 @@ const baseModules = [DashboardComponent];
     NgxDocViewerModule,
     FormsModule,
     ReactiveFormsModule,
+    PipeModule,
   ],
 })
 export class BaseModule {}

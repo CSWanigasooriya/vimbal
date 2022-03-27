@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, Inject, OnDestroy, Optional } from '@angular/core';
+import { Component, Inject, OnDestroy, Optional, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
@@ -12,6 +12,7 @@ import {
   increment,
   reset,
 } from './core/state/counter/counter.actions';
+import Web3 from 'web3';
 
 @Component({
   selector: 'vimbal-root',
@@ -19,7 +20,7 @@ import {
   styleUrls: ['./root.component.scss'],
   animations: [fadeInAnimation],
 })
-export class RootComponent implements OnDestroy {
+export class RootComponent implements OnInit, OnDestroy {
   count$: Observable<number>;
   theme$: Observable<boolean>;
 
@@ -56,6 +57,10 @@ export class RootComponent implements OnDestroy {
     );
   }
 
+  ngOnInit(): void {
+    this.loadWeb3();
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
@@ -74,5 +79,16 @@ export class RootComponent implements OnDestroy {
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet.isActivated ? outlet.activatedRoute : '';
+  }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      //..
+    }
   }
 }

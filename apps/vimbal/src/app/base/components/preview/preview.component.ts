@@ -28,12 +28,11 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFile();
-    this.authors = this.decodeData(this.file?.authors).split(',') || [];
   }
 
   getFile() {
     this._chainService.getBlockchainData().then(async (data: any) => {
-      this.file = await data.contract['files'](this.fileId);
+      this.file = await data.methods.files(this.fileId).call();
     });
   }
 

@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'splitBy',
 })
 export class SplitByPipe implements PipeTransform {
-  transform(value: string, symbol: string): string[] {
-    return value.split(symbol);
+  transform(value?: string, symbol?: string): string[] {
+    return value ? value.split(symbol ? symbol : '') : [];
   }
 }

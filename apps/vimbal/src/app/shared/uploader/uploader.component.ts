@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
-import { IpfsReceipt } from '@vimbal/model';
+import { Component, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Buffer } from 'buffer';
 import { BehaviorSubject } from 'rxjs';
 @Component({
@@ -10,11 +9,11 @@ import { BehaviorSubject } from 'rxjs';
 export class UploaderComponent implements OnDestroy {
   @Output() fileBuffer = new EventEmitter<Buffer>();
 
-  public ipfsReceipt: BehaviorSubject<Partial<IpfsReceipt>> =
-    new BehaviorSubject({} as Partial<IpfsReceipt>);
+  public fileName$: BehaviorSubject<string> = new BehaviorSubject('');
 
   ngOnDestroy(): void {
-    this.ipfsReceipt.unsubscribe();
+    this.fileName$.complete();
+    this.fileName$.unsubscribe();
   }
 
   getIpfsPath(path?: string) {
@@ -26,6 +25,7 @@ export class UploaderComponent implements OnDestroy {
     event.preventDefault();
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
+    this.fileName$.next(file.name);
     const reader = new window.FileReader();
     reader?.readAsArrayBuffer(file);
 

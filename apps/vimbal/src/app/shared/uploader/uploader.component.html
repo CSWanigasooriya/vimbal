@@ -7,7 +7,7 @@
           <input
             matInput
             readonly
-            [value]="getIpfsPath((ipfsReceipt | async)?.path)"
+            [value]="fileName$ | async"
             (click)="fileUpload.click()"
           />
           <mat-icon matSuffix>link</mat-icon>

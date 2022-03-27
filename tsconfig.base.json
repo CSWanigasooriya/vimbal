@@ -22,7 +22,22 @@
       "@vimbal/model": ["libs/model/src/index.ts"],
       "@vimbal/pipe": ["libs/pipe/src/index.ts"],
       "@vimbal/service": ["libs/service/src/index.ts"],
-      "@vimbal/ui": ["libs/ui/src/index.ts"]
+      "@vimbal/ui": ["libs/ui/src/index.ts"],
+      "assert": ["./node_modules/assert"],
+      "buffer": ["./node_modules/buffer"],
+      "crypto": ["./node_modules/crypto-browserify"],
+      "http": ["./node_modules/stream-http"],
+      "https": ["./node_modules/stream-http"],
+      "os": ["./node_modules/os-browserify/browser"],
+      "path": ["./node_modules/path-browserify"],
+      "querystring": ["./node_modules/querystring"],
+      "stream": ["./node_modules/stream-browserify"],
+      "stream-http": ["./node_modules/stream-http"],
+      "string_decoder": ["./node_modules/string_decoder"],
+      "url": ["./node_modules/url"],
+      "util": ["./node_modules/util"],
+      "vm": ["./node_modules/vm"],
+      "zlib": ["./node_modules/browserify-zlib"]
     }
   },
   "exclude": ["node_modules", "tmp"]

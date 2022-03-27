@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { ChainData, FileContract, WithDateFormat } from '@vimbal/model';
+import { ChainData, FileContract } from '@vimbal/model';
 import { AuthService, ChainService, IpfsService } from '@vimbal/service';
 
 @Component({
@@ -13,29 +13,21 @@ export class DashboardComponent {
   public userWalletAddress!: string;
   public currentBlockNumber!: number;
   public chainData!: ChainData;
-  public files: WithDateFormat<FileContract>[] = [];
+  public files: FileContract[] = [];
 
   constructor(
     private _authService: AuthService,
     private _chainService: ChainService,
     private _ipfsService: IpfsService
   ) {
-    this._authService.getUserWalletAddress().then((address) => {
-      this.userWalletAddress = address;
-    });
-
-    this._chainService.getCurrentBlock().then((blockNumber) => {
-      this.currentBlockNumber = blockNumber;
-    });
-
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.isLoading = false;
+      console.log(data);
       this.chainData = data;
-      const fileCount = await this.chainData.contract.fileCount();
+      const fileCount = await this.chainData.methods?.fileCount().call();
       const fileCountInt = parseInt(fileCount, 16);
-
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await this.chainData.contract['files'](index);
+        const file = await this.chainData.methods?.files(index).call();
         this.files = [...this.files, this.formatFileData(file)];
       }
     });
@@ -46,10 +38,11 @@ export class DashboardComponent {
       id: parseInt(file.id.toString(), 16),
       hash: file.hash,
       title: file.title,
+      authors: file.authors,
+      keywords: file.keywords,
       description: file.description,
       tipAmount: parseInt(file.tipAmount.toString(), 16),
-      timestamp: new Date(parseInt(file.timestamp.toString(), 16)),
       owner: file.owner,
-    } as WithDateFormat<FileContract>;
+    } as FileContract;
   }
 }

@@ -1,10 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { ethers } from 'ethers';
-import Vimbal from 'build/contracts/Vimbal.json';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LoggerService } from './logger.service';
-import { ChainData } from '@vimbal/model';
 declare global {
   interface Window {
     ethereum: any;
@@ -20,8 +17,6 @@ export class AuthService {
   onboarding = new MetaMaskOnboarding({
     // forwarderOrigin: this.forwarderOrigin,
   });
-  provider = new ethers.providers.JsonRpcProvider(this.ganacheUrl);
-  signer = this.provider.getSigner();
 
   constructor(private _ngZone: NgZone, private _loggerService: LoggerService) {}
 
@@ -39,8 +34,11 @@ export class AuthService {
     });
   }
 
-  async getUserWalletAddress() {
-    return await this.signer.getAddress();
+  //get wallet address
+  async getWalletAddress(): Promise<string> {
+    const { ethereum } = window;
+    const accounts = await ethereum.enable();
+    return accounts[0];
   }
 
   async requestWalletPermission() {

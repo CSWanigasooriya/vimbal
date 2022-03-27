@@ -8,11 +8,15 @@
       <mat-progress-spinner
         diameter="100"
         strokeWidth="4"
+        style="margin: 15vh auto"
         *ngIf="isLoading"
         mode="indeterminate"
         color="primary"
       >
       </mat-progress-spinner>
+      <p *ngIf="isLoading" style="margin: 15vh auto">
+        Connecting to Ethereum Network...
+      </p>
       <ng-container *ngFor="let item of files">
         <vimbal-feed [fileData]="item"></vimbal-feed>
         <!-- <ngx-doc-viewer

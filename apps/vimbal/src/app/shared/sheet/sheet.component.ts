@@ -18,14 +18,12 @@ export class SheetComponent implements OnInit {
     private _authService: AuthService,
     private _bottomSheetRef: MatBottomSheetRef<SheetComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
-  ) {
-    this._authService.getUserWalletAddress().then((address) => {
-      this.walletAddress = address;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    this._authService.getWalletAddress().then((address: string) => {
+      this.walletAddress = address;
+    });
   }
 
   openLink(event: MouseEvent): void {
