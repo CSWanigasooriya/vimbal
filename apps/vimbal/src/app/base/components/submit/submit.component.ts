@@ -35,9 +35,10 @@ export class SubmitComponent
   implements AfterViewInit, AfterViewChecked, OnDestroy
 {
   private subscriptions = new Subscription();
-  public isProcessing = false;
-  public removable = true;
-  public addOnBlur = true;
+
+  isProcessing = false;
+  removable = true;
+  addOnBlur = true;
 
   @ViewChild('keywordsList') keywordsList!: MatChipList;
   @ViewChildren('authorItem') authorItem!: QueryList<ElementRef>;
@@ -55,7 +56,7 @@ export class SubmitComponent
     fileBuffer: [''],
   });
 
-  public hasError = (controlName: string, errorName: string) => {
+  hasError = (controlName: string, errorName: string) => {
     return this.paperSubmitForm.controls[controlName].hasError(errorName);
   };
 
@@ -124,17 +125,17 @@ export class SubmitComponent
       title: this.paperSubmitForm.value?.title,
       authors: this.encodeData(
         this.paperSubmitForm.value.authors
-          .filter((author: string) => author !== '')
+          ?.filter((author: string) => author !== '')
           .map((author: any) => author)
           .join(',')
       ),
       keywords: this.encodeData(
         this.paperSubmitForm.value?.keywords
-          .filter((author: string) => author !== '')
+          ?.filter((author: string) => author !== '')
           .map((keyword: any) => keyword)
           .join(',')
       ),
-      description: this.paperSubmitForm.value.abstract,
+      description: this.paperSubmitForm.value?.abstract,
     } as FileContract;
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {

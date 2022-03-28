@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileContract } from '@vimbal/model';
-import { ChainService } from '@vimbal/service';
+import { AuthService, ChainService } from '@vimbal/service';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'vimbal-feed',
@@ -10,12 +11,16 @@ import { ChainService } from '@vimbal/service';
 export class FeedComponent implements OnInit {
   @Input() fileData: FileContract;
   formatedFileData!: Partial<FileContract>;
+  walletAddress!: string;
 
-  constructor(private _chainService: ChainService) {
+  constructor(
+    private _authService: AuthService,
+    private _chainService: ChainService
+  ) {
     this.fileData = {} as FileContract;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const fileData: FileContract = {
       id: this.fileData.id,
       hash: this.fileData.hash,
@@ -28,6 +33,7 @@ export class FeedComponent implements OnInit {
     };
 
     this.formatedFileData = fileData;
+    this.walletAddress = await this._authService.getWalletAddress();
   }
 
   async tipAuthor(id?: number) {
@@ -47,5 +53,9 @@ export class FeedComponent implements OnInit {
 
   decodeData(data?: string) {
     return data ? atob(data) : '';
+  }
+
+  isOwner() {
+    return of(this.fileData?.owner.toString() === this.walletAddress);
   }
 }

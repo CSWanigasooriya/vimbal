@@ -15,7 +15,13 @@
 
   <div class="loaded-content" [class.blurred]="isProcessing">
     <h1 mat-dialog-title>{{ data?.title }}</h1>
+
     <mat-dialog-content class="mat-typography">
+      <p>
+        Please make sure to enter valid information, this data cannot be altered
+        after submitting to the blockchain.
+      </p>
+
       <form [formGroup]="paperSubmitForm" novalidate>
         <p>
           <mat-form-field>

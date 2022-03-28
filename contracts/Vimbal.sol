@@ -8,6 +8,7 @@ contract Vimbal {
     uint256 public fileCount = 0;
 
     mapping(uint256 => File) public files;
+    mapping(string => File) public filesByHash;
 
     struct File {
         uint256 id;
@@ -66,6 +67,8 @@ contract Vimbal {
             payable(address(msg.sender))
         );
 
+        filesByHash[_fileHash] = files[fileCount];
+
         emit FileCreated(
             fileCount,
             _fileHash,
@@ -88,6 +91,8 @@ contract Vimbal {
         _file.tipAmount = _file.tipAmount + msg.value;
         files[_id] = _file;
 
+        filesByHash[_file.hash] = files[fileCount];
+
         emit FileTipped(
             _id,
             _file.hash,
@@ -98,5 +103,9 @@ contract Vimbal {
             _file.tipAmount,
             _file.owner
         );
+    }
+
+    function isFileOwned(string memory fileHash) public view returns (bool) {
+        return fileCount > 0 && bytes(filesByHash[fileHash].hash).length > 0;
     }
 }

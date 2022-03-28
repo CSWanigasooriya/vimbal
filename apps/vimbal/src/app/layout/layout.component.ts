@@ -67,11 +67,12 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.subscriptions.add(
-      this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
-        console.log('scrolled');
-      })
-    );
+    // this.subscriptions.add(
+    //   this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
+    // console.log('scrolled');
+    //   })
+    // );
+    console.log('init');
   }
 
   ngOnDestroy(): void {
@@ -125,7 +126,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          window.location.reload();
+          // window.location.reload();
         }
       })
     );

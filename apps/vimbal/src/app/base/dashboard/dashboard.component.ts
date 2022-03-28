@@ -9,12 +9,12 @@ import { AuthService, ChainService, IpfsService } from '@vimbal/service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  public isLoading = true;
-  public userWalletAddress!: string;
-  public currentBlockNumber!: number;
-  public chainData!: ChainData;
-  public files: FileContract[] = [];
-  public selectedTabIndex = 0;
+  isLoading = true;
+  userWalletAddress!: string;
+  currentBlockNumber!: number;
+  chainData!: ChainData;
+  files: FileContract[] = [];
+  selectedTabIndex = 0;
 
   constructor(
     private _authService: AuthService,

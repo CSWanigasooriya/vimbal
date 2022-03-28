@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export * from './lib/service.module';
 export * from './lib/logger.service';
 export * from './lib/auth.service';

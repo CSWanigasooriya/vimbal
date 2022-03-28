@@ -11,11 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent implements OnInit {
-  public isLoading = true;
-  public fileId!: number;
-  public file!: FileContract;
-  public authors: string[] = [];
-  public keywords: string[] = [];
+  isLoading = true;
+  fileId!: number;
+  file!: FileContract;
+  authors: string[] = [];
+  keywords: string[] = [];
 
   private subscriptions = new Subscription();
 

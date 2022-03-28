@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UploaderComponent implements OnDestroy {
   @Output() fileBuffer = new EventEmitter<Buffer>();
 
-  public fileName$: BehaviorSubject<string> = new BehaviorSubject('');
+  fileName$: BehaviorSubject<string> = new BehaviorSubject('');
 
   ngOnDestroy(): void {
     this.fileName$.complete();
