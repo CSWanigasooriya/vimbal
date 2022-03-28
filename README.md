@@ -12,39 +12,42 @@
 
 ![image](https://user-images.githubusercontent.com/53285026/159238772-6c711d55-e072-4d85-a7ab-70deac50dbaf.png)
 
+2. Copy Private Key from Ganache Account
 
-2. Install Angular CLI
+![image](https://user-images.githubusercontent.com/53285026/160361607-2eeb1baf-2820-4678-acfd-84b35de73283.png)
+
+3. Install Angular CLI
 ```
 npm install -g @angular/cli
 ```
 
-3. Install Truffle
+4. Install Truffle
 ```
 npm install -g truffle@5.1.65
 ```
 
-4. Clone Project and Navigate to Folder
+5. Clone Project and Navigate to Folder
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
 ```
 
-5. Install Node Modules
+6. Install Node Modules
 ```
 npm install
 ```
 
-6. Compile Smart Contracts
+7. Compile Smart Contracts
 ```
 truffle compile
 ```
 
-7. Migrate Contracts to Blockchain
+8. Migrate Contracts to Blockchain
 ```
 truffle migrate --reset
 ```
 
-8. Serve the application
+9. Serve the application
 ```
 npm start
 ```
