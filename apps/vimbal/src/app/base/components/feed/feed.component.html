@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="mat-elevation-z4 hover:drop-shadow-lg" matRipple>
   <mat-card-header class="truncate">
-    <img matCardAvatar [src]="" />
+    <img matCardAvatar src="https://picsum.photos/200" />
     <mat-card-title>{{ formatedFileData?.hash }}</mat-card-title>
     <mat-card-subtitle>{{ formatedFileData?.authors }}</mat-card-subtitle>
     <div fxFlex></div>
@@ -11,21 +11,57 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <p>ID: {{ formatedFileData?.id }}</p>
-    <p>Tip: {{ formatedFileData?.tipAmount }}</p>
-    <p>Owner: {{ formatedFileData?.owner }}</p>
+    <div class="container px-2 py-2">
+      <div class="columns-1">
+        <p>ID: {{ formatedFileData?.id }}</p>
+        <p>Title: {{ formatedFileData?.title }}</p>
+        <p>Authors: {{ decodeData(formatedFileData?.authors) }}</p>
+        <p>Tip: {{ getTipAmount(formatedFileData?.tipAmount) }}</p>
+        <p>Owner: {{ formatedFileData?.owner }}</p>
+      </div>
+
+      <mat-chip-list>
+        <mat-chip
+          *ngFor="
+            let keyword of decodeData(formatedFileData?.keywords) | splitBy: ','
+          "
+          selected
+          >{{ keyword }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <mat-divider></mat-divider>
   </mat-card-content>
   <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-stroked-button color="primary">
-      Tip
-      <mat-icon>trending_up</mat-icon>
-    </button>
+    <div>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="tipAuthor(formatedFileData?.id)"
+      >
+        Tip
+        <mat-icon class="action-icon">trending_up</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary">
+        Reviews
+        <mat-icon class="action-icon">rate_review</mat-icon>
+      </button>
+    </div>
+
     <button
-      mat-raised-button
+      mat-stroked-button
       color="primary"
-      routerLink="/preview/{{ formatedFileData.id }}"
+      [routerLink]="['/preview', formatedFileData.id]"
     >
       View
     </button>
   </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="100"
+      color="primary"
+    ></mat-progress-bar>
+  </mat-card-footer>
 </mat-card>

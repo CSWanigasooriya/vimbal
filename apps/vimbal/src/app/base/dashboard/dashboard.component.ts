@@ -14,6 +14,7 @@ export class DashboardComponent {
   public currentBlockNumber!: number;
   public chainData!: ChainData;
   public files: FileContract[] = [];
+  public selectedTabIndex = 0;
 
   constructor(
     private _authService: AuthService,
@@ -22,13 +23,14 @@ export class DashboardComponent {
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.isLoading = false;
-      console.log(data);
       this.chainData = data;
       const fileCount = await this.chainData.methods?.fileCount().call();
       const fileCountInt = parseInt(fileCount, 16);
       for (let index = 1; index <= fileCountInt; index++) {
         const file = await this.chainData.methods?.files(index).call();
-        this.files = [...this.files, this.formatFileData(file)];
+        this.files = [...this.files, this.formatFileData(file)].sort(
+          (a, b) => b.tipAmount - a.tipAmount
+        );
       }
     });
   }

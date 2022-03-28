@@ -124,11 +124,13 @@ export class SubmitComponent
       title: this.paperSubmitForm.value?.title,
       authors: this.encodeData(
         this.paperSubmitForm.value.authors
+          .filter((author: string) => author !== '')
           .map((author: any) => author)
           .join(',')
       ),
       keywords: this.encodeData(
         this.paperSubmitForm.value?.keywords
+          .filter((author: string) => author !== '')
           .map((keyword: any) => keyword)
           .join(',')
       ),
