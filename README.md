@@ -12,15 +12,22 @@
 
 ![image](https://user-images.githubusercontent.com/53285026/159238772-6c711d55-e072-4d85-a7ab-70deac50dbaf.png)
 
-2. Setup MetaMask Network for Testing
-
-![image](https://user-images.githubusercontent.com/53285026/160362174-23c3026b-2ec6-4cf1-9dd6-53e55635264f.png)
-
-3. Copy Private Key from Ganache Account
+2. Copy Private Key from Ganache Account
 
 ![image](https://user-images.githubusercontent.com/53285026/160361607-2eeb1baf-2820-4678-acfd-84b35de73283.png)
 
-4. Install Angular CLI
+3. Setup MetaMask Network for Testing by Clicking on Add Network
+
+![image](https://user-images.githubusercontent.com/53285026/160362174-23c3026b-2ec6-4cf1-9dd6-53e55635264f.png)
+
+4. Insert the RPC Server URL from the Ganache Instance Created
+
+![image](https://user-images.githubusercontent.com/53285026/160363036-f948e32b-a6d5-4b7b-9ff7-ebf0deaba36d.png)
+
+![image](https://user-images.githubusercontent.com/53285026/160363341-b1be896e-b25f-45a8-a164-a1d2039a1a20.png)
+
+
+6. Install Angular CLI
 ```
 npm install -g @angular/cli
 ```
