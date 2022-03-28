@@ -22,9 +22,9 @@ export class DashboardComponent {
     private _ipfsService: IpfsService
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
-      this.isLoading = false;
+      if (data) this.isLoading = false;
       this.chainData = data;
-      const fileCount = await this.chainData.methods?.fileCount().call();
+      const fileCount = await this.chainData?.methods?.fileCount().call();
       const fileCountInt = parseInt(fileCount, 16);
       for (let index = 1; index <= fileCountInt; index++) {
         const file = await this.chainData.methods?.files(index).call();
