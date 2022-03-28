@@ -37,34 +37,32 @@
 ```
 npm install -g @angular/cli
 ```
-
-7. Install Truffle
+7. Install NX
+```
+ npm install -g nx
+```
+8. Install Truffle
 ```
 npm install -g truffle@5.1.65
 ```
-
-8. Clone Project and Navigate to Folder
+9. Clone Project and Navigate to Folder
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
 ```
-
-9. Install Node Modules
+10. Install Node Modules
 ```
 npm install
 ```
-
-8. Compile Smart Contracts
+11. Compile Smart Contracts
 ```
 truffle compile
 ```
-
-10. Migrate Contracts to Blockchain
+12. Migrate Contracts to Blockchain
 ```
 truffle migrate --reset
 ```
-
-11. Serve the application
+13. Serve the application
 ```
 npm start
 ```
