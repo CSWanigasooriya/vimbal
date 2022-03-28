@@ -81,8 +81,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleSidebar() {
     // this.snav?.toggle();
-    // this.isCompact = !this.isCompact;
     this.store.dispatch(toggle());
+    this.isCompact = true;
   }
 
   toggleDarkMode() {

@@ -16,7 +16,7 @@
     </button>
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
 
-    <span class="spacer"></span>
+    <span class="flex-auto"></span>
     <input
       class="search"
       type="text"
@@ -61,7 +61,7 @@
       (mouseleave)="isCompact = true"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [@openCloseSidenav]="
-        !mobileQuery.matches ? (!isCompact ? 'open' : 'closed') : ''
+        !mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null
       "
       [fixedInViewport]="mobileQuery.matches"
       [class.is-compact]="isCompact"
@@ -98,7 +98,7 @@
           <div mat-line *ngIf="!isCompact">Dashboard</div>
         </mat-list-item>
 
-        <mat-list-item
+        <!-- <mat-list-item
           class="item"
           [routerLink]="'/auth'"
           routerLinkActive="active"
@@ -106,8 +106,8 @@
           [matRippleDisabled]="true"
         >
           <mat-icon mat-list-icon>search</mat-icon>
-          <div mat-line *ngIf="!isCompact">Browse</div>
-        </mat-list-item>
+          <div mat-line *ngIf="!isCompact">Search</div>
+        </mat-list-item> -->
 
         <div class="bottom">
           <mat-list-item
@@ -126,7 +126,7 @@
 
     <mat-sidenav-content
       [@openCloseSidenavContent]="
-        !mobileQuery.matches ? (!isCompact ? 'open' : 'closed') : ''
+        !mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null
       "
     >
       <router-outlet></router-outlet>

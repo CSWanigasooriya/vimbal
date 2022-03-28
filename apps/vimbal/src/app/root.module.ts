@@ -38,7 +38,7 @@ export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
   return localStorageSync({
-    keys: ['count', 'theme', 'sidebar'],
+    keys: ['count', 'theme'],
     rehydrate: true,
   })(reducer);
 }

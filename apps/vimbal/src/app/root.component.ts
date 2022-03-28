@@ -13,6 +13,7 @@ import {
   reset,
 } from './core/state/counter/counter.actions';
 import Web3 from 'web3';
+import { AuthService } from '@vimbal/service';
 
 @Component({
   selector: 'vimbal-root',
@@ -27,6 +28,7 @@ export class RootComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor(
+    private _authService: AuthService,
     private _iconRegistry: MatIconRegistry,
     private _overlayContainer: OverlayContainer,
     private store: Store<{ count: number; theme: boolean }>,
@@ -84,11 +86,12 @@ export class RootComponent implements OnInit, OnDestroy {
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      //..
+      this._authService.isMetaMaskInstalled()
+        ? this._authService.requestWalletPermission()
+        : this._authService.metaMaskStartOnBoarding();
     }
   }
 }
