@@ -20,7 +20,7 @@
 
 ![image](https://user-images.githubusercontent.com/53285026/160362174-23c3026b-2ec6-4cf1-9dd6-53e55635264f.png)
 
-4. Insert the RPC Server URL from the Ganache Instance Created
+4. Insert the RPC Server URL from the Ganache Instance and Save the Network as Shown Below.
 
 ![image](https://user-images.githubusercontent.com/53285026/160363036-f948e32b-a6d5-4b7b-9ff7-ebf0deaba36d.png)
 
