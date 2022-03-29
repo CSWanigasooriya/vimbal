@@ -106,8 +106,6 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(SubmitComponent, {
       // panelClass: ['md:w-4/5', 'w-5/6'],
-      height: '98vh',
-      width: '98vw',
       data: {
         title: 'SUBMIT PAPER',
         cancelButton: {
