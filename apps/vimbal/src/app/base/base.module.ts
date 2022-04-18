@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +11,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SubmitComponent } from './components/submit/submit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReviewComponent } from './review/review.component';
 
 const baseModules = [DashboardComponent];
 
@@ -20,6 +22,7 @@ const baseModules = [DashboardComponent];
     PreviewComponent,
     UploaderComponent,
     FeedComponent,
+    ReviewComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ const baseModules = [DashboardComponent];
     FormsModule,
     ReactiveFormsModule,
     PipeModule,
+    ScrollingModule,
   ],
 })
 export class BaseModule {}

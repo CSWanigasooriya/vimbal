@@ -40,6 +40,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     | undefined;
 
   isCompact = false;
+  isPinned = false;
   theme$: Observable<boolean>;
   sidebar$: Observable<boolean>;
 
@@ -84,6 +85,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.snav?.toggle();
     this.store.dispatch(toggle());
     this.isCompact = true;
+    this.isPinned = false;
   }
 
   toggleDarkMode() {

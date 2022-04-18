@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileContract } from '@vimbal/model';
 import { AuthService, ChainService } from '@vimbal/service';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'vimbal-feed',

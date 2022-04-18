@@ -44,7 +44,11 @@
         Tip
         <mat-icon class="action-icon">trending_up</mat-icon>
       </button>
-      <button mat-stroked-button color="primary">
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/review', formatedFileData?.id]"
+      >
         Reviews
         <mat-icon class="action-icon">rate_review</mat-icon>
       </button>

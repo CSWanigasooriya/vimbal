@@ -57,8 +57,8 @@
       class="sidenav"
       #snav
       [opened]="sidebar$ | async"
-      (mouseover)="isCompact = false"
-      (mouseleave)="isCompact = true"
+      (mouseover)="!isPinned ? (isCompact = false) : null"
+      (mouseleave)="!isPinned ? (isCompact = true) : null"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [@openCloseSidenav]="
         !mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null
@@ -113,12 +113,12 @@
           <mat-list-item
             matRipple
             [matRippleDisabled]="true"
-            (click)="isCompact = !isCompact"
+            (click)="isPinned = !isPinned"
           >
-            <mat-icon mat-list-icon>{{
-              isCompact ? 'keyboard_arrow_right' : 'keyboard_arrow_left'
-            }}</mat-icon>
-            <div mat-line *ngIf="!isCompact">Collapse</div>
+            <mat-icon mat-list-icon>push_pin</mat-icon>
+            <div mat-line *ngIf="!isCompact">
+              {{ isPinned ? 'Enable Collapse' : 'Disable Collapse' }}
+            </div>
           </mat-list-item>
         </div>
       </mat-nav-list>
