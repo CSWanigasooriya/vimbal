@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@vimbal/material';
 import { PipeModule } from '@vimbal/pipe';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { StarRatingComponent } from '../shared/star-rating/star-rating.component';
 import { UploaderComponent } from './../shared/uploader/uploader.component';
 import { BaseRoutingModule } from './base-routing.module';
 import { FeedComponent } from './components/feed/feed.component';
@@ -23,6 +24,7 @@ const baseModules = [DashboardComponent];
     UploaderComponent,
     FeedComponent,
     ReviewComponent,
+    StarRatingComponent,
   ],
   imports: [
     CommonModule,

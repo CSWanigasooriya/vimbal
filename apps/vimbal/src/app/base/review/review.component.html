@@ -16,7 +16,7 @@
 <mat-list class="content">
   <div mat-subheader>Reviews</div>
   <mat-list-item *ngFor="let review of reviews" matRipple>
-    <mat-icon mat-list-icon>short_text</mat-icon>
+    <mat-icon mat-list-icon>star</mat-icon>
     <div mat-line>{{ review.review }}</div>
     <div mat-line>{{ review.createdAt }}</div>
   </mat-list-item>
@@ -30,3 +30,12 @@
     <mat-icon>send</mat-icon>
   </button>
 </mat-form-field>
+
+<vimbal-star-rating
+  [readonly]="false"
+  [size]="2"
+  [initialStars]="0"
+  [color]="'#FFBF00'"
+  [maxStars]="5"
+  (ratingOutput)="onRatingSet($event)"
+></vimbal-star-rating>

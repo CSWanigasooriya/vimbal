@@ -17,6 +17,7 @@ export class ReviewComponent implements OnInit {
   reviewData!: ChainData;
   reviews: ReviewContract[] = [];
   ngReviewTextModel = '';
+  ratingDisplay!: number;
 
   constructor(
     private _route: ActivatedRoute,
@@ -42,6 +43,11 @@ export class ReviewComponent implements OnInit {
     this.getFile();
     // this._reviewService.createReview(this.fileId, 'test');
     this._reviewService.deleteReview(this.fileId, 1);
+  }
+
+  onRatingSet(rating: number): void {
+    this.ratingDisplay = rating;
+    console.log(this.ratingDisplay);
   }
 
   getFile() {
