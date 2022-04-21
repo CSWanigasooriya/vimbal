@@ -45,6 +45,6 @@ export class PreviewComponent implements OnInit {
   }
 
   decodeData(data?: string) {
-    return data ? atob(data) : '';
+    return data ? data.toString() : '';
   }
 }

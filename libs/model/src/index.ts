@@ -9,3 +9,4 @@ export * from './lib/meta/request-arguments.model';
 export * from './lib/types/global';
 export * from './lib/meta/connect-info.model';
 export * from './lib/meta/provider-rpc-error.model';
+export * from './lib/meta/review-contract.model';

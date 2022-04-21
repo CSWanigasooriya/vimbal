@@ -68,12 +68,11 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // this.subscriptions.add(
-    //   this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
-    // console.log('scrolled');
-    //   })
-    // );
-    console.log('init');
+    this.subscriptions.add(
+      this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
+        console.log('scrolled');
+      })
+    );
   }
 
   ngOnDestroy(): void {

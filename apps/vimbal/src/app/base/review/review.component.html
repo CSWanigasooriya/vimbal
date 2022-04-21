@@ -1,1 +1,32 @@
-<p>Review Works</p>
+<mat-card class="header">
+  <mat-card-subtitle>{{ file?.id }}</mat-card-subtitle>
+  <mat-card-title>{{ file?.title }}</mat-card-title>
+  <mat-card-content>
+    <p>{{ file?.hash }}</p>
+    <p>
+      {{ file?.description }}
+    </p>
+    <p>
+      {{ file?.keywords }}
+    </p>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+</mat-card>
+
+<mat-list class="content">
+  <div mat-subheader>Reviews</div>
+  <mat-list-item *ngFor="let review of reviews" matRipple>
+    <mat-icon mat-list-icon>short_text</mat-icon>
+    <div mat-line>{{ review.review }}</div>
+    <div mat-line>{{ review.createdAt }}</div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+
+<mat-form-field>
+  <mat-label>Type Review</mat-label>
+  <input matInput [(ngModel)]="ngReviewTextModel" />
+  <button mat-icon-button matSuffix (click)="createReview()">
+    <mat-icon>send</mat-icon>
+  </button>
+</mat-form-field>
