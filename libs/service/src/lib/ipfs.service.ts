@@ -43,10 +43,10 @@ export class IpfsService {
               file.keywords,
               file.description //abstract
             )
-            .send({ from: accounts[0] });
-          // .on('transactionHash', (hash: any) => {
-          //   this.ipfsReceipt.next(response);
-          // });
+            .send({ from: accounts[0] })
+            .on('transactionHash', () => {
+              window.location.reload();
+            });
           this.ipfsReceipt.next(response);
         } else {
           alert('File already owned by another author');

@@ -13,6 +13,7 @@ import { PreviewComponent } from './components/preview/preview.component';
 import { SubmitComponent } from './components/submit/submit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReviewComponent } from './review/review.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const baseModules = [DashboardComponent];
 
@@ -25,6 +26,7 @@ const baseModules = [DashboardComponent];
     FeedComponent,
     ReviewComponent,
     StarRatingComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

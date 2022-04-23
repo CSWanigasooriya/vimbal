@@ -52,7 +52,7 @@ export class FeedComponent implements OnInit {
   }
 
   decodeData(data?: string) {
-    return data ? atob(data) : '';
+    return data ? window.atob(data).toString() : '';
   }
 
   isOwner() {

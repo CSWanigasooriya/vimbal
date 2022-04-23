@@ -56,4 +56,11 @@ export class AuthService {
       }
     }
   }
+
+  async getWalletBalance() {
+    const { web3 } = window;
+    const accounts = await web3.eth.getAccounts();
+    const balance = await web3.eth.getBalance(accounts[0]);
+    return balance;
+  }
 }

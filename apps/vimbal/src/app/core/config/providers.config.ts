@@ -30,9 +30,11 @@ import { Title } from '@angular/platform-browser';
 import {
   AuthService,
   ChainService,
+  FirestoreService,
   GlobalRippleOptionsService,
   IpfsService,
   LoggerService,
+  ReviewService,
   StorageService,
 } from '@vimbal/service';
 import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config';
@@ -105,4 +107,6 @@ export const PROVIDERS_CONFIG = [
   AuthService,
   IpfsService,
   ChainService,
+  ReviewService,
+  FirestoreService,
 ];

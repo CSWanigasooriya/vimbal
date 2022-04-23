@@ -1,8 +1,20 @@
 <mat-card class="mat-elevation-z4 hover:drop-shadow-lg" matRipple>
   <mat-card-header class="truncate">
     <img matCardAvatar src="https://picsum.photos/200" />
-    <mat-card-title>{{ formatedFileData?.hash }}</mat-card-title>
-    <mat-card-subtitle>{{ formatedFileData?.authors }}</mat-card-subtitle>
+    <mat-card-title-group>
+      <mat-card-title>{{ formatedFileData?.title }}</mat-card-title>
+      <mat-card-subtitle>
+        <span
+          *ngFor="
+            let author of decodeData(formatedFileData?.authors) | splitBy: ',';
+            let i = index;
+            let last = last
+          "
+        >
+          {{ author }}<span *ngIf="!last">, </span>
+        </span>
+      </mat-card-subtitle>
+    </mat-card-title-group>
     <div fxFlex></div>
     <div fxLayoutAlign="center none">
       <button mat-icon-button>
@@ -17,18 +29,19 @@
         <p>Title: {{ formatedFileData?.title }}</p>
         <p>Authors: {{ decodeData(formatedFileData?.authors) }}</p>
         <p>Tip: {{ getTipAmount(formatedFileData?.tipAmount) }}</p>
-        <p>Owner: {{ formatedFileData?.owner }}</p>
-      </div>
+        <p>Author Address: {{ formatedFileData?.owner }}</p>
 
-      <mat-chip-list>
-        <mat-chip
-          *ngFor="
-            let keyword of decodeData(formatedFileData?.keywords) | splitBy: ','
-          "
-          selected
-          >{{ keyword }}
-        </mat-chip>
-      </mat-chip-list>
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="
+              let keyword of decodeData(formatedFileData?.keywords)
+                | splitBy: ','
+            "
+            selected
+            >{{ keyword }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
     </div>
 
     <mat-divider></mat-divider>

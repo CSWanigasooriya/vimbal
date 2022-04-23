@@ -9,6 +9,7 @@ contract Vimbal {
 
     mapping(uint256 => File) public files;
     mapping(string => File) public filesByHash;
+    mapping(address => File) public filesByOwner;
 
     struct File {
         uint256 id;
@@ -68,6 +69,7 @@ contract Vimbal {
         );
 
         filesByHash[_fileHash] = files[fileCount];
+        filesByOwner[msg.sender] = files[fileCount];
 
         emit FileCreated(
             fileCount,
@@ -92,6 +94,7 @@ contract Vimbal {
         files[_id] = _file;
 
         filesByHash[_file.hash] = files[fileCount];
+        filesByOwner[msg.sender] = files[fileCount];
 
         emit FileTipped(
             _id,

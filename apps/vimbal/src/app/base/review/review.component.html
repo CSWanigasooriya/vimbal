@@ -1,26 +1,60 @@
-<mat-card class="header">
-  <mat-card-subtitle>{{ file?.id }}</mat-card-subtitle>
-  <mat-card-title>{{ file?.title }}</mat-card-title>
+<mat-card class="mat-elevation-z10">
+  <mat-card-title-group>
+    <mat-card-title>Title: {{ file?.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <b>Authors:</b>
+      <span
+        *ngFor="
+          let author of decodeData(file?.authors) | splitBy: ',';
+          let i = index;
+          let last = last
+        "
+      >
+        {{ author }}<span *ngIf="!last">, </span>
+      </span>
+    </mat-card-subtitle>
+  </mat-card-title-group>
   <mat-card-content>
-    <p>{{ file?.hash }}</p>
+    <p>https://ipfs.io/ipfs/{{ file?.hash }}</p>
+    <p><b>Description: </b>{{ file?.description }}</p>
     <p>
-      {{ file?.description }}
-    </p>
-    <p>
-      {{ file?.keywords }}
+      <b>Keywords: </b>
+
+      <span
+        *ngFor="
+          let keyword of decodeData(file?.keywords) | splitBy: ',';
+          let i = index;
+          let last = last
+        "
+      >
+        {{ keyword }}<span *ngIf="!last">, </span>
+      </span>
     </p>
   </mat-card-content>
-  <mat-divider inset></mat-divider>
 </mat-card>
 
 <mat-list class="content">
   <div mat-subheader>Reviews</div>
-  <mat-list-item *ngFor="let review of reviews" matRipple>
-    <mat-icon mat-list-icon>star</mat-icon>
-    <div mat-line>{{ review.review }}</div>
-    <div mat-line>{{ review.createdAt }}</div>
+  <mat-list-item
+    *ngFor="let review of reviews"
+    matRipple
+    class="hover:cursor-pointer"
+  >
+    <div mat-line>{{ review?.owner }}</div>
+    <div mat-line>
+      <small>{{ review?.createdAt | date: 'MMM d, y, h:mm:ss a' }}</small>
+    </div>
+    <div mat-line>{{ review?.review }}</div>
+    <vimbal-star-rating
+      [readonly]="true"
+      [size]="1"
+      [initialStars]="+review.rating || 0"
+      [color]="'#FFBF00'"
+      [maxStars]="5"
+      (ratingOutput)="onRatingSet($event)"
+    ></vimbal-star-rating>
+    <mat-divider></mat-divider>
   </mat-list-item>
-  <mat-divider></mat-divider>
 </mat-list>
 
 <mat-form-field>

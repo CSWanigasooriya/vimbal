@@ -8,3 +8,4 @@ export * from './lib/ipfs.service';
 export * from './lib/chain.service';
 export * from './lib/review.service';
 export * from './lib/whisper.service';
+export * from './lib/firestore.service';

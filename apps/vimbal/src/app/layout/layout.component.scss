@@ -234,6 +234,7 @@ h1.app-name {
 }
 
 .search {
+  width: 600px;
   height: 44px;
   border: none;
   border-radius: 5px;
@@ -246,4 +247,7 @@ h1.app-name {
 .search:focus {
   outline: none;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.search::placeholder {
+  color: #cccccc;
 }

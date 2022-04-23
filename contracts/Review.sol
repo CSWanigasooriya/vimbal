@@ -7,10 +7,12 @@ contract Review {
     uint256 public reviewCount = 0;
 
     mapping(uint256 => mapping(uint256 => FileReview)) public reviews;
+    mapping(address => mapping(uint256 => FileReview)) public reviewsByOwner;
 
     struct FileReview {
         uint256 id;
         string review;
+        string rating;
         string createdAt;
         address payable owner;
     }
@@ -18,6 +20,7 @@ contract Review {
     event ReviewCreated(
         uint256 id,
         string review,
+        string rating,
         string createdAt,
         address payable owner
     );
@@ -25,6 +28,7 @@ contract Review {
     function createReview(
         uint256 fileId,
         string memory review,
+        string memory rating,
         string memory createdAt
     ) public {
         reviewCount++;
@@ -32,6 +36,15 @@ contract Review {
         reviews[fileId][reviewCount] = FileReview(
             reviewCount,
             review,
+            rating,
+            createdAt,
+            payable(address(msg.sender))
+        );
+
+        reviewsByOwner[msg.sender][reviewCount] = FileReview(
+            reviewCount,
+            review,
+            rating,
             createdAt,
             payable(address(msg.sender))
         );
@@ -39,6 +52,7 @@ contract Review {
         emit ReviewCreated(
             reviewCount,
             review,
+            rating,
             createdAt,
             payable(address(msg.sender))
         );
@@ -49,6 +63,7 @@ contract Review {
         returns (bool)
     {
         delete reviews[fileId][reviewId];
+        delete reviewsByOwner[msg.sender][reviewId];
 
         return true;
     }

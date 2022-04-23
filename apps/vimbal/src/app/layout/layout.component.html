@@ -17,12 +17,36 @@
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
 
     <span class="flex-auto"></span>
-    <input
+    <form *ngIf="!mobileQuery.matches">
+      <input
+        class="search"
+        type="text"
+        placeholder="Search..."
+        matInput
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option
+          *ngFor="let file of filteredOptions | async"
+          [value]="file.title"
+          [id]="file.id.toString()"
+        >
+          <span>{{ file.title }}</span> |
+          <small>Authors: {{ file.authors }}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+    <!-- <input
       class="search"
       type="text"
       placeholder="Search..."
+      [formControl]="searchControl"
       *ngIf="!mobileQuery.matches"
-    />
+    /> -->
 
     <button
       mat-icon-button
@@ -37,6 +61,10 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #account="matMenu">
+      <button mat-menu-item [routerLink]="['/profile']">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>Profile</span>
+      </button>
       <button mat-menu-item (click)="openBottomSheet()">
         <mat-icon>network_ping</mat-icon>
         <span>Network</span>

@@ -1,3 +1,4 @@
+import { Observable, map } from 'rxjs';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -23,7 +24,11 @@ export class PreviewComponent implements OnInit {
     private _chainService: ChainService,
     private _route: ActivatedRoute
   ) {
-    this.fileId = Number(this._route.snapshot.paramMap.get('id'));
+    const id: Observable<string> = _route.params.pipe(map((p) => p['id']));
+    id.subscribe((id) => {
+      this.fileId = parseInt(id, 10);
+      this.getFile();
+    });
   }
 
   ngOnInit(): void {

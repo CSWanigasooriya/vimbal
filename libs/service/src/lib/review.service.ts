@@ -14,12 +14,12 @@ export class ReviewService {
       : null;
   }
 
-  async createReview(fileId: number, review: string) {
+  async createReview(fileId: number, review: string, rating: string) {
     const accounts = await window.web3.eth.getAccounts();
 
     await this.getAllReviews().then(async (reviews) => {
       await reviews.methods
-        ?.createReview(fileId, review, new Date().toString())
+        ?.createReview(fileId, review, rating, new Date().toString())
         .send({ from: accounts[0] });
       // .on('transactionHash', (hash: any) => {
       //   this.ipfsReceipt.next(response);

@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { ChainData, FileContract } from '@vimbal/model';
-import { AuthService, ChainService, IpfsService } from '@vimbal/service';
+import { ChainData, FileContract, ReviewContract } from '@vimbal/model';
+import {
+  AuthService,
+  ChainService,
+  IpfsService,
+  ReviewService,
+} from '@vimbal/service';
 
 @Component({
   selector: 'vimbal-dashboard',
@@ -13,13 +18,16 @@ export class DashboardComponent {
   userWalletAddress!: string;
   currentBlockNumber!: number;
   chainData!: ChainData;
+  reviewData!: ChainData;
+  reviewsByOwner: ReviewContract[] = [];
   files: FileContract[] = [];
   selectedTabIndex = 0;
 
   constructor(
     private _authService: AuthService,
     private _chainService: ChainService,
-    private _ipfsService: IpfsService
+    private _ipfsService: IpfsService,
+    private _reviewService: ReviewService
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
       if (data) this.isLoading = false;
@@ -31,6 +39,21 @@ export class DashboardComponent {
         this.files = [...this.files, this.formatFileData(file)].sort(
           (a, b) => b.tipAmount - a.tipAmount
         );
+      }
+    });
+
+    this._reviewService.getAllReviews().then(async (data: any) => {
+      if (data) this.isLoading = false;
+      this.reviewData = data;
+      this.userWalletAddress = await this._authService.getWalletAddress();
+      const reviewCount = await this.reviewData?.methods?.reviewCount().call();
+      const fileCountInt = parseInt(reviewCount, 16);
+      for (let index = 1; index <= fileCountInt; index++) {
+        const review = await this.reviewData.methods
+          ?.reviewsByOwner(this.userWalletAddress, index)
+          .call();
+        if (review?.id != 0)
+          this.reviewsByOwner = [...this.reviewsByOwner, review];
       }
     });
   }

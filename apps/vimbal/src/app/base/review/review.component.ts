@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChainData, FileContract, ReviewContract } from '@vimbal/model';
-import { ChainService, ReviewService } from '@vimbal/service';
+import { AuthService, ChainService, ReviewService } from '@vimbal/service';
 
 @Component({
   selector: 'vimbal-review',
@@ -17,12 +17,14 @@ export class ReviewComponent implements OnInit {
   reviewData!: ChainData;
   reviews: ReviewContract[] = [];
   ngReviewTextModel = '';
-  ratingDisplay!: number;
+  ratingValue = 0;
+  walletAddress!: string;
 
   constructor(
     private _route: ActivatedRoute,
     private _chainService: ChainService,
-    private _reviewService: ReviewService
+    private _reviewService: ReviewService,
+    private _authService: AuthService
   ) {
     this.fileId = Number(this._route.snapshot.paramMap.get('id'));
     this._reviewService.getAllReviews().then(async (data: any) => {
@@ -39,26 +41,21 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getFile();
     // this._reviewService.createReview(this.fileId, 'test');
     this._reviewService.deleteReview(this.fileId, 1);
+
+    this.walletAddress = await this._authService.getWalletAddress();
   }
 
   onRatingSet(rating: number): void {
-    this.ratingDisplay = rating;
-    console.log(this.ratingDisplay);
+    this.ratingValue = rating;
   }
 
   getFile() {
     this._chainService.getBlockchainData().then(async (data: any) => {
       this.file = await data.methods.files(this.fileId).call();
-    });
-  }
-
-  async getReviews() {
-    return this._reviewService.getAllReviews().then(async (reviews) => {
-      this.reviewData = reviews;
     });
   }
 
@@ -71,10 +68,22 @@ export class ReviewComponent implements OnInit {
   }
 
   decodeData(data?: string) {
-    return data ? data.toString() : '';
+    return data ? window.atob(data) : '';
   }
 
   createReview() {
-    this._reviewService.createReview(this.fileId, this.ngReviewTextModel);
+    this._reviewService
+      .createReview(
+        this.fileId,
+        this.ngReviewTextModel,
+        this.ratingValue?.toString()
+      )
+      .then(() => {
+        window.location.reload();
+      });
+  }
+
+  isOwner() {
+    return true;
   }
 }
