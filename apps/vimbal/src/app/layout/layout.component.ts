@@ -83,7 +83,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       startWith(''),
-      map((state) => (state ? this._filter(state) : this.files.slice()))
+      map((state) => (state ? this._filter(state) : this.files?.slice()))
     );
   }
 
@@ -102,7 +102,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private _filter(value: string): FileContract[] {
     const filterValue = value.toLowerCase();
-    return this.files.filter((state) =>
+    return this.files?.filter((state) =>
       state.title.toLowerCase().includes(filterValue)
     );
   }
@@ -139,6 +139,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(SubmitComponent, {
       // panelClass: ['md:w-4/5', 'w-5/6'],
+      maxHeight: '90vh',
       data: {
         title: 'SUBMIT PAPER',
         cancelButton: {

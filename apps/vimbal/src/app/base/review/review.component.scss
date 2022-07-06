@@ -1,3 +1,19 @@
-.mat-card {
+.header {
   padding: 2em;
+}
+
+a {
+  color: cornflowerblue;
+}
+
+// .content {
+//   margin-bottom: 500px;
+// }
+
+.pin-bottom {
+  position: sticky;
+  bottom: 0;
+  // margin: auto;
+  // width: 98%;
+  z-index: 999;
 }

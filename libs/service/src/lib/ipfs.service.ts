@@ -41,7 +41,8 @@ export class IpfsService {
               file.title,
               file.authors,
               file.keywords,
-              file.description //abstract
+              file.description,
+              file.createdAt
             )
             .send({ from: accounts[0] })
             .on('transactionHash', () => {

@@ -1,46 +1,63 @@
 <mat-card class="mat-elevation-z4 hover:drop-shadow-lg" matRipple>
   <mat-card-header class="truncate">
-    <img matCardAvatar src="https://picsum.photos/200" />
-    <mat-card-title-group>
-      <mat-card-title>{{ formatedFileData?.title }}</mat-card-title>
-      <mat-card-subtitle>
-        <span
-          *ngFor="
-            let author of decodeData(formatedFileData?.authors) | splitBy: ',';
-            let i = index;
-            let last = last
-          "
-        >
-          {{ author }}<span *ngIf="!last">, </span>
-        </span>
-      </mat-card-subtitle>
-    </mat-card-title-group>
+    <div matCardAvatar>
+      <svg [data-jdenticon-value]="formatedFileData?.owner"></svg>
+    </div>
+    <mat-card-title>{{ formatedFileData?.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <span
+        *ngFor="
+          let author of decodeData(formatedFileData?.authors) | splitBy: ',';
+          let i = index;
+          let last = last
+        "
+      >
+        {{ author }}<span *ngIf="!last">, </span>
+      </span>
+    </mat-card-subtitle>
     <div fxFlex></div>
     <div fxLayoutAlign="center none">
-      <button mat-icon-button>
-        <mat-icon>more_vert</mat-icon>
+      <button
+        class="h-10"
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/preview', formatedFileData.id]"
+      >
+        View
       </button>
     </div>
   </mat-card-header>
   <mat-card-content>
     <div class="container px-2 py-2">
       <div class="columns-1">
-        <p>ID: {{ formatedFileData?.id }}</p>
-        <p>Title: {{ formatedFileData?.title }}</p>
-        <p>Authors: {{ decodeData(formatedFileData?.authors) }}</p>
-        <p>Tip: {{ getTipAmount(formatedFileData?.tipAmount) }}</p>
-        <p>Author Address: {{ formatedFileData?.owner }}</p>
+        <div class="break-after-column">
+          <!-- <p>Paper ID: {{ formatedFileData?.id }}</p>
+          <p>Authors: {{ decodeData(formatedFileData?.authors) }}</p> -->
+          <!-- <p>Author Address: {{ formatedFileData?.owner }}</p> -->
 
-        <mat-chip-list>
-          <mat-chip
-            *ngFor="
-              let keyword of decodeData(formatedFileData?.keywords)
-                | splitBy: ','
-            "
-            selected
-            >{{ keyword }}
-          </mat-chip>
-        </mat-chip-list>
+          <div class="icon-text">
+            <mat-icon class="text-gray-400">date_range</mat-icon>
+            <code class="ml-2">
+              {{ formatedFileData?.createdAt | date: 'medium' }}
+            </code>
+          </div>
+
+          <p>
+            <code> <b>Abstract: </b>{{ formatedFileData?.description }} </code>
+          </p>
+
+          <mat-chip-list>
+            <mat-chip
+              *ngFor="
+                let keyword of decodeData(formatedFileData?.keywords)
+                  | splitBy: ','
+              "
+              selected
+              >{{ keyword }}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div></div>
       </div>
     </div>
 
@@ -66,14 +83,14 @@
         <mat-icon class="action-icon">rate_review</mat-icon>
       </button>
     </div>
-
-    <button
-      mat-stroked-button
-      color="primary"
-      [routerLink]="['/preview', formatedFileData.id]"
-    >
-      View
-    </button>
+    <div>
+      <p class="tip-text px-2">
+        <span>ETH </span>
+        <code>
+          <b>{{ getTipAmount(formatedFileData?.tipAmount) }}</b>
+        </code>
+      </p>
+    </div>
   </mat-card-actions>
   <mat-card-footer>
     <mat-progress-bar

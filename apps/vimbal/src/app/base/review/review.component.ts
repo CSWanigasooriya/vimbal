@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -84,6 +85,6 @@ export class ReviewComponent implements OnInit {
   }
 
   isOwner() {
-    return true;
+    return of(this.file?.owner.toString() === this.walletAddress);
   }
 }

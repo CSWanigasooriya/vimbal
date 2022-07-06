@@ -12,7 +12,7 @@ export class FeedComponent implements OnInit {
   @Input() fileData: FileContract;
   formatedFileData!: Partial<FileContract>;
   walletAddress!: string;
-
+  isLoading = true;
   constructor(
     private _authService: AuthService,
     private _chainService: ChainService
@@ -30,6 +30,7 @@ export class FeedComponent implements OnInit {
       keywords: this.fileData.keywords,
       owner: this.fileData.owner,
       tipAmount: this.fileData.tipAmount,
+      createdAt: this.fileData.createdAt,
     };
 
     this.formatedFileData = fileData;
@@ -57,5 +58,13 @@ export class FeedComponent implements OnInit {
 
   isOwner() {
     return of(this.fileData?.owner.toString() === this.walletAddress);
+  }
+
+  getIpfsUri() {
+    return `https://ipfs.io/ipfs/${this.fileData?.hash}`;
+  }
+
+  contentLoaded() {
+    this.isLoading = false;
   }
 }

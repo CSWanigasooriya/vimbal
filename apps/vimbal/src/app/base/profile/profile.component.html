@@ -1,7 +1,7 @@
 <div class="layout">
   <div class="profile">
     <div class="profile__picture">
-      <img src="http://i.pravatar.cc/250?img=58" alt="ananddavis" />
+      <svg [data-jdenticon-value]="walletAddress"></svg>
     </div>
     <div class="profile__header">
       <div class="profile__account">
@@ -26,7 +26,7 @@
           <i class="fas fa-signal"></i>
         </div>
         <div class="profile__value">
-          357
+          {{ userPublications.length }}
           <div class="profile__key">Publications</div>
         </div>
       </div>
@@ -35,7 +35,7 @@
           <i class="fas fa-heart"></i>
         </div>
         <div class="profile__value">
-          4
+          {{ userReviews.length }}
           <div class="profile__key">Reviews</div>
         </div>
       </div>

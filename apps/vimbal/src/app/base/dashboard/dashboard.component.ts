@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { ChainData, FileContract, ReviewContract } from '@vimbal/model';
+import { FileContract, ReviewContract } from '@vimbal/model';
 import {
   AuthService,
   ChainService,
@@ -17,8 +17,6 @@ export class DashboardComponent {
   isLoading = true;
   userWalletAddress!: string;
   currentBlockNumber!: number;
-  chainData!: ChainData;
-  reviewData!: ChainData;
   reviewsByOwner: ReviewContract[] = [];
   files: FileContract[] = [];
   selectedTabIndex = 0;
@@ -31,11 +29,10 @@ export class DashboardComponent {
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
       if (data) this.isLoading = false;
-      this.chainData = data;
-      const fileCount = await this.chainData?.methods?.fileCount().call();
+      const fileCount = await data?.methods?.fileCount().call();
       const fileCountInt = parseInt(fileCount, 16);
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await this.chainData.methods?.files(index).call();
+        const file = await data.methods?.files(index).call();
         this.files = [...this.files, this.formatFileData(file)].sort(
           (a, b) => b.tipAmount - a.tipAmount
         );
@@ -44,12 +41,11 @@ export class DashboardComponent {
 
     this._reviewService.getAllReviews().then(async (data: any) => {
       if (data) this.isLoading = false;
-      this.reviewData = data;
       this.userWalletAddress = await this._authService.getWalletAddress();
-      const reviewCount = await this.reviewData?.methods?.reviewCount().call();
+      const reviewCount = await data?.methods?.reviewCount().call();
       const fileCountInt = parseInt(reviewCount, 16);
       for (let index = 1; index <= fileCountInt; index++) {
-        const review = await this.reviewData.methods
+        const review = await data.methods
           ?.reviewsByOwner(this.userWalletAddress, index)
           .call();
         if (review?.id != 0)
@@ -67,6 +63,7 @@ export class DashboardComponent {
       keywords: file.keywords,
       description: file.description,
       tipAmount: parseInt(file.tipAmount.toString(), 16),
+      createdAt: file.createdAt,
       owner: file.owner,
     } as FileContract;
   }
