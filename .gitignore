@@ -46,3 +46,5 @@ Thumbs.db
 .runtimeconfig.json
 
 /build
+.env
+node_modules
