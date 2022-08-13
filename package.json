@@ -37,6 +37,7 @@
     "@nrwl/angular": "13.9.5",
     "buffer": "^6.0.3",
     "crypto-es": "^1.2.7",
+    "ethereumjs-testrpc": "^6.0.3",
     "firebase": "^9.4.0",
     "https-browserify": "^1.0.0",
     "ipfs-http-client": "^56.0.1",
@@ -49,7 +50,7 @@
     "stream-http": "^3.2.0",
     "tslib": "^2.0.0",
     "url": "^0.11.0",
-    "web3": "^0.20.7",
+    "web3": "^1.7.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
