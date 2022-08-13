@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- NodeJs: [NodeJs](https://nodejs.org/en/download/)  
+- NodeJs: [NodeJs](https://nodejs.org/en/download/)
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
 - MetaMask Extension: [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en)
 
@@ -32,37 +32,51 @@
 
 ![image](https://user-images.githubusercontent.com/53285026/160364068-06d22a0b-0866-4480-8ed3-76cf7ccbbef1.png)
 
-
 6. Install Angular CLI
+
 ```
 npm install -g @angular/cli
 ```
+
 7. Install NX
+
 ```
  npm install -g nx
 ```
+
 8. Install Truffle
+
 ```
 npm install -g truffle@5.1.65
 ```
+
 9. Clone Project and Navigate to Folder
+
 ```
 git clone https://github.com/CSWanigasooriya/vimbal
 cd vimbal
 ```
+
 10. Install Node Modules
+
 ```
 npm install
 ```
+
 11. Compile Smart Contracts
+
 ```
 truffle compile
 ```
+
 12. Migrate Contracts to Blockchain
+
 ```
 truffle migrate --reset
 ```
+
 13. Serve the application
+
 ```
 npm start
 ```
