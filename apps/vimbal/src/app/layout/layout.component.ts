@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -9,12 +10,14 @@ import {
   Optional,
   ViewChild,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
-import { DialogData } from '@vimbal/model';
-import { Observable, Subscription } from 'rxjs';
+import { DialogData, FileContract } from '@vimbal/model';
+import { ChainService } from '@vimbal/service';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { SubmitComponent } from '../base/components/submit/submit.component';
 import {
   sideNavAnimation,
@@ -38,10 +41,13 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSidenavContainer) sidenavContainer:
     | MatSidenavContainer
     | undefined;
-
+  searchControl = new FormControl();
   isCompact = false;
+  isPinned = false;
   theme$: Observable<boolean>;
   sidebar$: Observable<boolean>;
+  filteredOptions!: Observable<FileContract[]>;
+  files: FileContract[] = [];
 
   mobileQuery: MediaQueryList;
 
@@ -50,6 +56,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private _bottomSheet: MatBottomSheet,
+    private _chainService: ChainService,
+    private router: Router,
     private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
     changeDetectorRef: ChangeDetectorRef,
@@ -60,10 +68,23 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    this._chainService.getBlockchainData().then(async (data) => {
+      const fileCount = await data?.methods?.fileCount().call();
+      const fileCountInt = parseInt(fileCount, 16);
+      for (let index = 1; index <= fileCountInt; index++) {
+        const file = await data.methods?.files(index).call();
+        this.files = [...this.files, file].sort(
+          (a, b) => b.tipAmount - a.tipAmount
+        );
+      }
+    });
   }
 
   ngOnInit(): void {
-    console.log();
+    this.filteredOptions = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      map((state) => (state ? this._filter(state) : this.files?.slice()))
+    );
   }
 
   ngAfterViewInit(): void {
@@ -79,10 +100,23 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  private _filter(value: string): FileContract[] {
+    const filterValue = value.toLowerCase();
+    return this.files?.filter((state) =>
+      state.title.toLowerCase().includes(filterValue)
+    );
+  }
+
+  onSelectionChanged(event: { option: { id: any; value: any } }) {
+    const selectedValue = event.option.id;
+    this.router.navigate(['/preview', selectedValue]);
+  }
+
   toggleSidebar() {
     // this.snav?.toggle();
     this.store.dispatch(toggle());
     this.isCompact = true;
+    this.isPinned = false;
   }
 
   toggleDarkMode() {
@@ -105,8 +139,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(SubmitComponent, {
       // panelClass: ['md:w-4/5', 'w-5/6'],
-      height: '98vh',
-      width: '98vw',
+      maxHeight: '90vh',
       data: {
         title: 'SUBMIT PAPER',
         cancelButton: {
@@ -125,7 +158,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          window.location.reload();
+          // window.location.reload();
         }
       })
     );

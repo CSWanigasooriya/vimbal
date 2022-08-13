@@ -19,6 +19,8 @@ import {
   FormArray,
   FormBuilder,
   FormControl,
+  NgForm,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
@@ -35,12 +37,14 @@ export class SubmitComponent
   implements AfterViewInit, AfterViewChecked, OnDestroy
 {
   private subscriptions = new Subscription();
-  public isProcessing = false;
-  public removable = true;
-  public addOnBlur = true;
+
+  isProcessing = false;
+  removable = true;
+  addOnBlur = true;
 
   @ViewChild('keywordsList') keywordsList!: MatChipList;
   @ViewChildren('authorItem') authorItem!: QueryList<ElementRef>;
+  @ViewChild('paperForm') public paperForm!: NgForm;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -49,13 +53,13 @@ export class SubmitComponent
 
   paperSubmitForm = this._fb.group({
     title: ['', [Validators.required]],
-    abstract: [''],
-    authors: this._fb.array([this._fb.control('')]),
-    keywords: [],
-    fileBuffer: [''],
+    abstract: [null, [Validators.minLength(150)]],
+    authors: this._fb.array([this._fb.control('')], [Validators.required]),
+    keywords: [null, [Validators.required]],
+    fileBuffer: [null, [Validators.required]],
   });
 
-  public hasError = (controlName: string, errorName: string) => {
+  hasError = (controlName: string, errorName: string) => {
     return this.paperSubmitForm.controls[controlName].hasError(errorName);
   };
 
@@ -102,6 +106,7 @@ export class SubmitComponent
   }
 
   addKeywordFromInput(event: MatChipInputEvent) {
+    this.keywordsList.errorState = false;
     if (event.value) {
       this.keywordsSet.add(event.value);
       this.getFormControl('keywords').patchValue(Array.from(this.keywordsSet));
@@ -124,17 +129,18 @@ export class SubmitComponent
       title: this.paperSubmitForm.value?.title,
       authors: this.encodeData(
         this.paperSubmitForm.value.authors
-          .filter((author: string) => author !== '')
+          ?.filter((author: string) => author !== '')
           .map((author: any) => author)
           .join(',')
       ),
       keywords: this.encodeData(
         this.paperSubmitForm.value?.keywords
-          .filter((author: string) => author !== '')
+          ?.filter((author: string) => author !== '')
           .map((keyword: any) => keyword)
           .join(',')
       ),
-      description: this.paperSubmitForm.value.abstract,
+      description: this.paperSubmitForm.value?.abstract,
+      createdAt: new Date().toString(),
     } as FileContract;
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {
@@ -148,6 +154,27 @@ export class SubmitComponent
   }
 
   submitForm() {
-    this.uploadFileToIpfs(this.paperSubmitForm.value.fileBuffer);
+    this.getFormValidationErrors();
+    if (this.paperSubmitForm.valid) {
+      this.uploadFileToIpfs(this.paperSubmitForm.value.fileBuffer);
+      this.keywordsList.errorState = false;
+    } else {
+      this.keywordsList.errorState = true;
+    }
+  }
+
+  getFormValidationErrors() {
+    Object.keys(this.paperSubmitForm.controls).forEach((key) => {
+      const controlErrors: ValidationErrors | null =
+        this.getFormControl(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach((error) => {
+          console.log(
+            'Name: ' + key + ', Error: ' + error + ', Value: ',
+            controlErrors[error]
+          );
+        });
+      }
+    });
   }
 }

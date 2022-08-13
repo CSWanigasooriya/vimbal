@@ -2,11 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import MetaMaskOnboarding from '@metamask/onboarding';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LoggerService } from './logger.service';
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
+import { RequestArguments } from '@vimbal/model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,21 +32,21 @@ export class AuthService {
 
   //get wallet address
   async getWalletAddress(): Promise<string> {
-    const { ethereum } = window;
-    const accounts = await ethereum.enable();
+    const { web3 } = window;
+    const accounts = await web3.eth.getAccounts();
     return accounts[0];
   }
 
   async requestWalletPermission() {
     try {
-      await window.ethereum.request({
+      await window?.ethereum.request({
         method: 'wallet_requestPermissions',
         params: [
           {
             eth_accounts: {},
           },
         ],
-      });
+      } as RequestArguments);
     } catch (error: any) {
       if (error.code === 4001) {
         // userRejectedRequest error
@@ -59,5 +55,12 @@ export class AuthService {
         this._loggerService.logError(error.message);
       }
     }
+  }
+
+  async getWalletBalance() {
+    const { web3 } = window;
+    const accounts = await web3.eth.getAccounts();
+    const balance = await web3.eth.getBalance(accounts[0]);
+    return balance;
   }
 }

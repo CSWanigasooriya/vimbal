@@ -8,6 +8,8 @@ contract Vimbal {
     uint256 public fileCount = 0;
 
     mapping(uint256 => File) public files;
+    mapping(string => File) public filesByHash;
+    mapping(address => mapping(uint256 => File)) public filesByOwner;
 
     struct File {
         uint256 id;
@@ -17,6 +19,7 @@ contract Vimbal {
         string keywords;
         string description;
         uint256 tipAmount;
+        string createdAt;
         address payable owner;
     }
 
@@ -28,6 +31,7 @@ contract Vimbal {
         string keywords,
         string description,
         uint256 tipAmount,
+        string createdAt,
         address payable owner
     );
 
@@ -39,6 +43,7 @@ contract Vimbal {
         string keywords,
         string description,
         uint256 tipAmount,
+        string createdAt,
         address payable owner
     );
 
@@ -47,7 +52,8 @@ contract Vimbal {
         string memory _title,
         string memory _authors,
         string memory _keywords,
-        string memory _description
+        string memory _description,
+        string memory _createdAt
     ) public {
         require(bytes(_fileHash).length > 0);
         require(bytes(_title).length > 0);
@@ -63,8 +69,12 @@ contract Vimbal {
             _keywords,
             _description,
             0,
+            _createdAt,
             payable(address(msg.sender))
         );
+
+        filesByHash[_fileHash] = files[fileCount];
+        filesByOwner[msg.sender][fileCount] = files[fileCount];
 
         emit FileCreated(
             fileCount,
@@ -74,6 +84,7 @@ contract Vimbal {
             _keywords,
             _description,
             0,
+            _createdAt,
             payable(address(msg.sender))
         );
     }
@@ -88,6 +99,9 @@ contract Vimbal {
         _file.tipAmount = _file.tipAmount + msg.value;
         files[_id] = _file;
 
+        filesByHash[_file.hash] = files[fileCount];
+        filesByOwner[msg.sender][fileCount] = files[fileCount];
+
         emit FileTipped(
             _id,
             _file.hash,
@@ -96,7 +110,12 @@ contract Vimbal {
             _file.keywords,
             _file.description,
             _file.tipAmount,
+            _file.createdAt,
             _file.owner
         );
+    }
+
+    function isFileOwned(string memory fileHash) public view returns (bool) {
+        return fileCount > 0 && bytes(filesByHash[fileHash].hash).length > 0;
     }
 }

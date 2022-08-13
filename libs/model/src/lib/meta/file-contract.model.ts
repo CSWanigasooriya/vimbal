@@ -6,5 +6,6 @@ export interface FileContract {
   keywords: string;
   description: string;
   tipAmount: number;
+  createdAt: string;
   owner: number;
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileContract } from '@vimbal/model';
-import { ChainService } from '@vimbal/service';
+import { AuthService, ChainService } from '@vimbal/service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'vimbal-feed',
@@ -10,12 +11,16 @@ import { ChainService } from '@vimbal/service';
 export class FeedComponent implements OnInit {
   @Input() fileData: FileContract;
   formatedFileData!: Partial<FileContract>;
-
-  constructor(private _chainService: ChainService) {
+  walletAddress!: string;
+  isLoading = true;
+  constructor(
+    private _authService: AuthService,
+    private _chainService: ChainService
+  ) {
     this.fileData = {} as FileContract;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const fileData: FileContract = {
       id: this.fileData.id,
       hash: this.fileData.hash,
@@ -25,9 +30,11 @@ export class FeedComponent implements OnInit {
       keywords: this.fileData.keywords,
       owner: this.fileData.owner,
       tipAmount: this.fileData.tipAmount,
+      createdAt: this.fileData.createdAt,
     };
 
     this.formatedFileData = fileData;
+    this.walletAddress = await this._authService.getWalletAddress();
   }
 
   async tipAuthor(id?: number) {
@@ -46,6 +53,18 @@ export class FeedComponent implements OnInit {
   }
 
   decodeData(data?: string) {
-    return data ? atob(data) : '';
+    return data ? window.atob(data).toString() : '';
+  }
+
+  isOwner() {
+    return of(this.fileData?.owner.toString() === this.walletAddress);
+  }
+
+  getIpfsUri() {
+    return `https://ipfs.io/ipfs/${this.fileData?.hash}`;
+  }
+
+  contentLoaded() {
+    this.isLoading = false;
   }
 }

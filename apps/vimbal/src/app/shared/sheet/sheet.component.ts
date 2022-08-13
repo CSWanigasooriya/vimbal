@@ -12,7 +12,7 @@ import {
   styleUrls: ['./sheet.component.scss'],
 })
 export class SheetComponent implements OnInit {
-  public walletAddress!: string;
+  walletAddress!: string;
 
   constructor(
     private _authService: AuthService,

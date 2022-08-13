@@ -1,0 +1,44 @@
+<div class="layout">
+  <div class="profile">
+    <div class="profile__picture">
+      <svg [data-jdenticon-value]="walletAddress"></svg>
+    </div>
+    <div class="profile__header">
+      <div class="profile__account">
+        <h4 class="profile__username">Wallet Address: {{ walletAddress }}</h4>
+      </div>
+      <div class="profile__edit">
+        <button mat-raised-button>Edit Profile</button>
+      </div>
+    </div>
+    <div class="profile__stats">
+      <div class="profile__stat">
+        <div class="profile__icon profile__icon--gold">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div class="profile__value">
+          {{ walletBalance | number }}
+          <div class="profile__key">Balance</div>
+        </div>
+      </div>
+      <div class="profile__stat">
+        <div class="profile__icon profile__icon--blue">
+          <i class="fas fa-signal"></i>
+        </div>
+        <div class="profile__value">
+          {{ userPublications.length }}
+          <div class="profile__key">Publications</div>
+        </div>
+      </div>
+      <div class="profile__stat">
+        <div class="profile__icon profile__icon--pink">
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="profile__value">
+          {{ userReviews.length }}
+          <div class="profile__key">Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,17 +6,11 @@ import { create } from 'ipfs-http-client';
 import { BehaviorSubject } from 'rxjs';
 import { ChainService } from './chain.service';
 
-declare global {
-  interface Window {
-    ethereum: any;
-    web3: any;
-  }
-}
 @Injectable({
   providedIn: 'root',
 })
 export class IpfsService {
-  public ipfsReceipt: BehaviorSubject<Partial<IpfsReceipt>> =
+  private ipfsReceipt: BehaviorSubject<Partial<IpfsReceipt>> =
     new BehaviorSubject({} as Partial<IpfsReceipt>);
 
   chainData!: ChainData;
@@ -36,17 +30,28 @@ export class IpfsService {
     await this.client
       .add(buffer)
       .then(async (response) => {
-        const upload = await this.chainData.methods
-          ?.uploadFile(
-            response.path,
-            file.title,
-            file.authors,
-            file.keywords,
-            file.description //abstract
-          )
-          .send({ from: accounts[0] });
-        await upload.wait();
-        this.ipfsReceipt.next(response);
+        const isFileOwned = await this.chainData.methods
+          .isFileOwned(response.path)
+          .call();
+
+        if (response && !isFileOwned) {
+          await this.chainData.methods
+            ?.uploadFile(
+              response.path,
+              file.title,
+              file.authors,
+              file.keywords,
+              file.description,
+              file.createdAt
+            )
+            .send({ from: accounts[0] })
+            .on('transactionHash', () => {
+              window.location.reload();
+            });
+          this.ipfsReceipt.next(response);
+        } else {
+          alert('File already owned by another author');
+        }
       })
       .catch((err) => {
         console.log(err);

@@ -63,6 +63,13 @@
       <mat-icon class="tab-icon">reviews</mat-icon>
       Reviews
     </ng-template>
-    <ng-template matTabContent> Content 1 </ng-template>
+    <ng-template matTabContent>
+      <p>Reviews By: {{ userWalletAddress }}</p>
+      <ul>
+        <li *ngFor="let review of reviewsByOwner">
+          {{ review | json }}
+        </li>
+      </ul>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

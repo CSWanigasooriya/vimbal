@@ -17,12 +17,36 @@
     <h1 class="app-name">{{ config?.title | uppercase }}</h1>
 
     <span class="flex-auto"></span>
-    <input
+    <form *ngIf="!mobileQuery.matches">
+      <input
+        class="search"
+        type="text"
+        placeholder="Search..."
+        matInput
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option
+          *ngFor="let file of filteredOptions | async"
+          [value]="file.title"
+          [id]="file.id.toString()"
+        >
+          <span>{{ file.title }}</span> |
+          <small>Authors: {{ file.authors }}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+    <!-- <input
       class="search"
       type="text"
       placeholder="Search..."
+      [formControl]="searchControl"
       *ngIf="!mobileQuery.matches"
-    />
+    /> -->
 
     <button
       mat-icon-button
@@ -37,6 +61,10 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #account="matMenu">
+      <button mat-menu-item [routerLink]="['/profile']">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>Profile</span>
+      </button>
       <button mat-menu-item (click)="openBottomSheet()">
         <mat-icon>network_ping</mat-icon>
         <span>Network</span>
@@ -57,8 +85,8 @@
       class="sidenav"
       #snav
       [opened]="sidebar$ | async"
-      (mouseover)="isCompact = false"
-      (mouseleave)="isCompact = true"
+      (mouseover)="!isPinned ? (isCompact = false) : null"
+      (mouseleave)="!isPinned ? (isCompact = true) : null"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [@openCloseSidenav]="
         !mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null
@@ -98,27 +126,27 @@
           <div mat-line *ngIf="!isCompact">Dashboard</div>
         </mat-list-item>
 
-        <!-- <mat-list-item
+        <mat-list-item
           class="item"
-          [routerLink]="'/auth'"
+          [routerLink]="'/browse'"
           routerLinkActive="active"
           matRipple
           [matRippleDisabled]="true"
         >
-          <mat-icon mat-list-icon>search</mat-icon>
-          <div mat-line *ngIf="!isCompact">Search</div>
-        </mat-list-item> -->
+          <mat-icon mat-list-icon>travel_explore</mat-icon>
+          <div mat-line *ngIf="!isCompact">Browse</div>
+        </mat-list-item>
 
         <div class="bottom">
           <mat-list-item
             matRipple
             [matRippleDisabled]="true"
-            (click)="isCompact = !isCompact"
+            (click)="isPinned = !isPinned"
           >
-            <mat-icon mat-list-icon>{{
-              isCompact ? 'keyboard_arrow_right' : 'keyboard_arrow_left'
-            }}</mat-icon>
-            <div mat-line *ngIf="!isCompact">Collapse</div>
+            <mat-icon mat-list-icon>push_pin</mat-icon>
+            <div mat-line *ngIf="!isCompact">
+              {{ isPinned ? 'Enable Collapse' : 'Disable Collapse' }}
+            </div>
           </mat-list-item>
         </div>
       </mat-nav-list>

@@ -14,7 +14,7 @@ import {
 } from './core/state/counter/counter.actions';
 import Web3 from 'web3';
 import { AuthService } from '@vimbal/service';
-
+import { ConnectInfo, ProviderRpcError } from '@vimbal/model';
 @Component({
   selector: 'vimbal-root',
   templateUrl: './root.component.html',
@@ -61,6 +61,23 @@ export class RootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadWeb3();
+    window?.ethereum.on('accountsChanged', (accounts: any) => {
+      // Handle the new accounts, or lack thereof.
+      // "accounts" will always be an array, but it can be empty.
+      if (accounts) window.location.reload();
+    });
+    window?.ethereum.on('chainChanged', (chainId: any) => {
+      // Handle the new chain.
+      // Correctly handling chain changes can be complicated.
+      // We recommend reloading the page unless you have good reason not to.
+      if (chainId) window.location.reload();
+    });
+    window?.ethereum.on('connect', (connectInfo: ConnectInfo) => {
+      console.log('connectInfo', connectInfo);
+    });
+    window?.ethereum.on('disconnect', (error: ProviderRpcError) => {
+      console.log('error', error);
+    });
   }
 
   ngOnDestroy(): void {
@@ -86,12 +103,13 @@ export class RootComponent implements OnInit, OnDestroy {
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
+      window.web3.eth.getAccounts().then((accounts: string | unknown[]) => {
+        if (accounts.length === 0) this._authService.requestWalletPermission();
+      });
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      this._authService.isMetaMaskInstalled()
-        ? this._authService.requestWalletPermission()
-        : this._authService.metaMaskStartOnBoarding();
+      this._authService.metaMaskStartOnBoarding();
     }
   }
 }

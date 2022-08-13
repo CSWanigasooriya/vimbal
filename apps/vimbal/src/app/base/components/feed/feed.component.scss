@@ -9,3 +9,17 @@
 .mat-card-actions {
   height: 1.5em;
 }
+
+.tip-text {
+  margin: auto;
+  span {
+    // font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}

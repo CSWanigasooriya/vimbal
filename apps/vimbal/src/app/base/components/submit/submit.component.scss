@@ -11,8 +11,10 @@ div.list-container {
 .overlay {
   position: absolute;
   z-index: 1002;
-  width: 100%;
-  height: 100%;
+  left: 50%; /* Position X halfway in */
+  transform: translate(-50%, -50%); /* Move it halfway back(x,y) */
+  width: 100px; /* Any width */
+  height: 100px; /* Any height */
 }
 
 .spinner-wrapper {

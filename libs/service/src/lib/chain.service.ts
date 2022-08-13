@@ -3,12 +3,7 @@ import { Injectable } from '@angular/core';
 import { ChainData, Payment } from '@vimbal/model';
 import Vimbal from 'build/contracts/Vimbal.json';
 import { AuthService } from './auth.service';
-declare global {
-  interface Window {
-    ethereum: any;
-    web3: any;
-  }
-}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,10 +13,12 @@ export class ChainService {
   constructor(private _authService: AuthService) {}
 
   async getBlockchainData(): Promise<Partial<ChainData>> {
-    const web3 = window.web3;
-    const networkId = await web3.eth.net.getId();
-    const networkData = Vimbal.networks[5777 || networkId];
-    return new web3.eth.Contract(Vimbal.abi, networkData.address);
+    const web3 = window?.web3;
+    const networkId = await web3?.eth?.net?.getId();
+    const networkData = Vimbal?.networks[5777 || networkId];
+    return web3
+      ? new web3.eth.Contract(Vimbal?.abi, networkData?.address)
+      : null;
   }
 
   async tipAuthor(id?: string, tipAmount?: any): Promise<Payment> {

@@ -1,3 +1,4 @@
+import { Observable, map } from 'rxjs';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,11 +12,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent implements OnInit {
-  public isLoading = true;
-  public fileId!: number;
-  public file!: FileContract;
-  public authors: string[] = [];
-  public keywords: string[] = [];
+  isLoading = true;
+  fileId!: number;
+  file!: FileContract;
+  authors: string[] = [];
+  keywords: string[] = [];
 
   private subscriptions = new Subscription();
 
@@ -23,7 +24,11 @@ export class PreviewComponent implements OnInit {
     private _chainService: ChainService,
     private _route: ActivatedRoute
   ) {
-    this.fileId = Number(this._route.snapshot.paramMap.get('id'));
+    const id: Observable<string> = _route.params.pipe(map((p) => p['id']));
+    id.subscribe((id) => {
+      this.fileId = parseInt(id, 10);
+      this.getFile();
+    });
   }
 
   ngOnInit(): void {
@@ -45,6 +50,6 @@ export class PreviewComponent implements OnInit {
   }
 
   decodeData(data?: string) {
-    return data ? atob(data) : '';
+    return data ? data.toString() : '';
   }
 }

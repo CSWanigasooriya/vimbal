@@ -145,20 +145,20 @@ body {
   width: 100%;
 }
 
-.mat-dialog-override {
-  mat-dialog-container {
-    > :first-child {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    mat-dialog-content,
-    div[mat-dialog-content] {
-      flex-grow: 1;
-      max-height: unset;
-    }
-  }
-}
+// .mat-dialog-override {
+//   mat-dialog-container {
+//     > :first-child {
+//       display: flex;
+//       flex-direction: column;
+//       height: 100%;
+//     }
+//     mat-dialog-content,
+//     div[mat-dialog-content] {
+//       flex-grow: 1;
+//       max-height: unset;
+//     }
+//   }
+// }
 
 mat-card {
   border-radius: 1em !important;

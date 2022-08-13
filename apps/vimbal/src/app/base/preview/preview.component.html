@@ -1,4 +1,4 @@
-<p>{{ fileId }}</p>
+<!-- <p>{{ fileId }}</p>
 
 <p>{{ file | json }}</p>
 
@@ -6,7 +6,7 @@
   <li *ngFor="let author of decodeData(file?.authors) | splitBy: ','">
     {{ author }}
   </li>
-</ul>
+</ul> -->
 
 <mat-progress-bar
   style="margin: 0 auto"
@@ -23,7 +23,7 @@
   viewer="google"
   class="doc-viewer"
   [googleCheckContentLoaded]="true"
-  [googleCheckInterval]="3000"
+  [googleCheckInterval]="10000"
   [googleMaxChecks]="5"
   (loaded)="contentLoaded()"
 >

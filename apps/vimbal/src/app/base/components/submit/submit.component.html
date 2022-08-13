@@ -1,22 +1,32 @@
-<div class="wrapper">
-  <div class="overlay" *ngIf="isProcessing">
-    <div class="spinner-wrapper">
-      <mat-progress-spinner
-        diameter="100"
-        strokeWidth="4"
-        style="margin: 15vh auto"
-        *ngIf="isProcessing"
-        mode="indeterminate"
-        color="primary"
-      >
-      </mat-progress-spinner>
+<form
+  [formGroup]="paperSubmitForm"
+  novalidate
+  (submit)="submitForm()"
+  #paperForm="ngForm"
+>
+  <div class="wrapper">
+    <div class="overlay" *ngIf="isProcessing">
+      <div class="spinner-wrapper">
+        <mat-progress-spinner
+          diameter="100"
+          strokeWidth="4"
+          style="margin: 15vh auto"
+          *ngIf="isProcessing"
+          mode="indeterminate"
+          color="primary"
+        >
+        </mat-progress-spinner>
+      </div>
     </div>
-  </div>
 
-  <div class="loaded-content" [class.blurred]="isProcessing">
-    <h1 mat-dialog-title>{{ data?.title }}</h1>
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="paperSubmitForm" novalidate>
+    <div class="loaded-content" [class.blurred]="isProcessing">
+      <h1 mat-dialog-title>{{ data?.title }}</h1>
+
+      <mat-dialog-content class="mat-typography">
+        <p>
+          Please make sure to enter valid information, this data cannot be
+          altered after submitting to the blockchain.
+        </p>
         <p>
           <mat-form-field>
             <mat-label>Paper Title</mat-label>
@@ -38,11 +48,18 @@
           <mat-form-field>
             <mat-label>Abstract</mat-label>
             <textarea
+              #input
+              rows="10"
               matInput
               placeholder="Enter your paper abstract"
               formControlName="abstract"
             ></textarea>
-            <mat-hint>Optional</mat-hint>
+            <mat-hint align="end">{{ input.value?.length || 0 }}/150</mat-hint>
+            <mat-error *ngIf="getFormControl('abstract').invalid">
+              <span *ngIf="hasError('abstract', 'minlength')"
+                >Abstract should be atleast <b>150 characters</b></span
+              >
+            </mat-error>
           </mat-form-field>
         </p>
 
@@ -67,6 +84,11 @@
                 (matChipInputTokenEnd)="addKeywordFromInput($event)"
               />
             </mat-chip-list>
+            <mat-error *ngIf="keywordsList.errorState">
+              <span *ngIf="hasError('keywords', 'required')"
+                >Keywords are <b>required</b></span
+              >
+            </mat-error>
           </mat-form-field>
         </p>
 
@@ -139,28 +161,27 @@
         <vimbal-uploader
           (fileBuffer)="patchFileBuffer($event)"
         ></vimbal-uploader>
-      </form>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button
-        type="button"
-        mat-button
-        mat-dialog-close
-        [class]="data.cancelButton?.type"
-        [color]="data.cancelButton?.color"
-      >
-        {{ data.cancelButton?.text }}
-      </button>
-      <button
-        type="submit"
-        mat-button
-        (click)="submitForm()"
-        cdkFocusInitial
-        [class]="data.okayButton?.type"
-        [color]="data.okayButton?.color"
-      >
-        {{ data.okayButton?.text }}
-      </button>
-    </mat-dialog-actions>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button
+          type="button"
+          mat-button
+          mat-dialog-close
+          [class]="data.cancelButton?.type"
+          [color]="data.cancelButton?.color"
+        >
+          {{ data.cancelButton?.text }}
+        </button>
+        <button
+          type="submit"
+          mat-button
+          cdkFocusInitial
+          [class]="data.okayButton?.type"
+          [color]="data.okayButton?.color"
+        >
+          {{ data.okayButton?.text }}
+        </button>
+      </mat-dialog-actions>
+    </div>
   </div>
-</div>
+</form>
