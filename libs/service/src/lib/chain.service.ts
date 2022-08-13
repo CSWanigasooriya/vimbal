@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ChainData, Payment } from '@vimbal/model';
 import Vimbal from 'build/contracts/Vimbal.json';
 import { AuthService } from './auth.service';
