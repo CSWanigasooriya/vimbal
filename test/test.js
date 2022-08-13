@@ -17,6 +17,7 @@ contract('Vimbal', ([deployer, owner, tipper]) => {
       assert.notEqual(address, 0x0);
       assert.notEqual(address, '');
       assert.notEqual(address, null);
+
       assert.notEqual(address, undefined);
     });
 
@@ -26,7 +27,7 @@ contract('Vimbal', ([deployer, owner, tipper]) => {
     });
   });
 
-  describe('files', async () => {
+  describe('files', () => {
     let result, fileCount;
     const hash =
       '0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad';
