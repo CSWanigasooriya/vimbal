@@ -14,7 +14,7 @@
         class="brand-logo"
       />
     </button>
-    <h1 class="app-name">{{ config?.title | uppercase }}</h1>
+    <h1 class="app-name">{{ config.title | uppercase }}</h1>
 
     <span class="flex-auto"></span>
     <form *ngIf="!mobileQuery.matches">
@@ -53,9 +53,7 @@
       (click)="toggleDarkMode()"
       [matTooltip]="(theme$ | async) === true ? 'light_mode' : 'dark_mode'"
     >
-      <mat-icon>{{
-        (theme$ | async) === true ? 'light_mode' : 'dark_mode'
-      }}</mat-icon>
+      <mat-icon>{{ (theme$ | async) === true ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="account">
       <mat-icon>account_circle</mat-icon>
@@ -88,9 +86,7 @@
       (mouseover)="!isPinned ? (isCompact = false) : null"
       (mouseleave)="!isPinned ? (isCompact = true) : null"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [@openCloseSidenav]="
-        !mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null
-      "
+      [@openCloseSidenav]="!mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null"
       [fixedInViewport]="mobileQuery.matches"
       [class.is-compact]="isCompact"
       fixedTopGap="56"

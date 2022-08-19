@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
-import { HomeComponent } from './base/home/home.component';
-import { LayoutComponent } from './layout/layout.component';
-import { ErrorComponent } from './shared/error/error.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { AuthComponent } from './auth/auth.component'
+import { HomeComponent } from './base/home/home.component'
+import { LayoutComponent } from './layout/layout.component'
+import { ErrorComponent } from './shared/error/error.component'
 
 const routes: Routes = [
   {
@@ -28,10 +28,10 @@ const routes: Routes = [
     path: '**',
     component: ErrorComponent,
   },
-];
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabled' })],
+  imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' })],
   exports: [RouterModule],
 })
 export class RootRoutingModule {}

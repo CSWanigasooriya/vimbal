@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z10 header">
   <mat-card-title-group>
-    <mat-card-title>{{ file?.title }}</mat-card-title>
+    <mat-card-title>{{ file.title }}</mat-card-title>
     <mat-card-subtitle>
       <b>Authors:</b>
       <span
@@ -16,11 +16,10 @@
   </mat-card-title-group>
   <mat-card-content>
     <p>
-      <b>URL: </b
-      ><a class="hover:cursor-pointer">https://ipfs.io/ipfs/{{ file?.hash }}</a>
+      <b>URL: </b><a class="hover:cursor-pointer">https://ipfs.io/ipfs/{{ file.hash }}</a>
     </p>
 
-    <p><b>Abstract: </b>{{ file?.description }}</p>
+    <p><b>Abstract: </b>{{ file.description }}</p>
     <p>
       <b>Keywords: </b>
       <span
@@ -38,11 +37,7 @@
 
 <mat-list class="content">
   <div mat-subheader>Reviews</div>
-  <mat-list-item
-    *ngFor="let review of reviews"
-    matRipple
-    class="hover:cursor-pointer"
-  >
+  <mat-list-item *ngFor="let review of reviews" matRipple class="hover:cursor-pointer">
     <div matListAvatar><svg [data-jdenticon-value]="review?.owner"></svg></div>
     <div mat-line>{{ review?.owner }}</div>
     <div mat-line>
@@ -88,10 +83,6 @@
     </mat-form-field>
   </mat-card-content>
   <mat-card-footer>
-    <mat-progress-bar
-      mode="determinate"
-      [value]="100"
-      color="primary"
-    ></mat-progress-bar>
+    <mat-progress-bar mode="determinate" [value]="100" color="primary"></mat-progress-bar>
   </mat-card-footer>
 </mat-card>
