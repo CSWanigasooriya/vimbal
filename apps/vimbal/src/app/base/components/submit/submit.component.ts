@@ -1,12 +1,12 @@
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs'
 import {
   AfterViewChecked,
   AfterViewInit,
   ChangeDetectorRef,
   OnDestroy,
-} from '@angular/core';
+} from '@angular/core'
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes'
 import {
   Component,
   ElementRef,
@@ -14,7 +14,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
-} from '@angular/core';
+} from '@angular/core'
 import {
   FormArray,
   FormBuilder,
@@ -22,34 +22,32 @@ import {
   NgForm,
   ValidationErrors,
   Validators,
-} from '@angular/forms';
-import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, FileContract } from '@vimbal/model';
-import { IpfsService } from '@vimbal/service';
+} from '@angular/forms'
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { DialogData, FileContract } from '@vimbal/model'
+import { IpfsService } from '@vimbal/service'
 
 @Component({
   selector: 'vimbal-submit',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss'],
 })
-export class SubmitComponent
-  implements AfterViewInit, AfterViewChecked, OnDestroy
-{
-  private subscriptions = new Subscription();
+export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+  private subscriptions = new Subscription()
 
-  isProcessing = false;
-  removable = true;
-  addOnBlur = true;
+  isProcessing = false
+  removable = true
+  addOnBlur = true
 
-  @ViewChild('keywordsList') keywordsList!: MatChipList;
-  @ViewChildren('authorItem') authorItem!: QueryList<ElementRef>;
-  @ViewChild('paperForm') public paperForm!: NgForm;
+  @ViewChild('keywordsList') keywordsList!: MatChipList
+  @ViewChildren('authorItem') authorItem!: QueryList<ElementRef>
+  @ViewChild('paperForm') public paperForm!: NgForm
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA]
 
-  keywordsSet = new Set([] as string[]);
-  authorsSet = new Set([] as string[]);
+  keywordsSet = new Set([] as string[])
+  authorsSet = new Set([] as string[])
 
   paperSubmitForm = this._fb.group({
     title: ['', [Validators.required]],
@@ -57,11 +55,11 @@ export class SubmitComponent
     authors: this._fb.array([this._fb.control('')], [Validators.required]),
     keywords: [null, [Validators.required]],
     fileBuffer: [null, [Validators.required]],
-  });
+  })
 
   hasError = (controlName: string, errorName: string) => {
-    return this.paperSubmitForm.controls[controlName].hasError(errorName);
-  };
+    return this.paperSubmitForm.controls[controlName].hasError(errorName)
+  }
 
   constructor(
     private _changeDetectionRef: ChangeDetectorRef,
@@ -72,109 +70,108 @@ export class SubmitComponent
   ) {}
 
   ngAfterViewChecked(): void {
-    this._changeDetectionRef.detectChanges();
+    this._changeDetectionRef.detectChanges()
   }
 
   ngAfterViewInit() {
     this.subscriptions.add(
       this.authorItem.changes.subscribe(() => {
         if (this.authorItem && this.authorItem.last) {
-          this.authorItem.last.nativeElement.focus();
+          this.authorItem.last.nativeElement.focus()
         }
       })
-    );
+    )
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe()
   }
 
   getFormControl(feild: string) {
-    return this.paperSubmitForm.get(feild) as FormControl;
+    return this.paperSubmitForm.get(feild) as FormControl
   }
 
   getFormArray(feild: string) {
-    return this.paperSubmitForm.get(feild) as FormArray;
+    return this.paperSubmitForm.get(feild) as FormArray
   }
 
   addAuthor() {
-    this.getFormArray('authors').push(this._fb.control(''));
+    this.getFormArray('authors').push(this._fb.control(''))
   }
 
   removeAuthor(index: number) {
-    index > 0 ? this.getFormArray('authors').removeAt(index) : null;
+    index > 0 ? this.getFormArray('authors').removeAt(index) : null
   }
 
   addKeywordFromInput(event: MatChipInputEvent) {
-    this.keywordsList.errorState = false;
+    this.keywordsList.errorState = false
     if (event.value) {
-      this.keywordsSet.add(event.value);
-      this.getFormControl('keywords').patchValue(Array.from(this.keywordsSet));
-      event.chipInput?.clear();
+      this.keywordsSet.add(event.value)
+      this.getFormControl('keywords').patchValue(Array.from(this.keywordsSet))
+      event.chipInput?.clear()
     }
   }
 
   removeKeyword(keyword: string) {
-    this.keywordsSet.delete(keyword);
+    this.keywordsSet.delete(keyword)
   }
 
   patchFileBuffer(buffer: Buffer) {
-    console.log(buffer);
-    this.getFormControl('fileBuffer').patchValue(buffer);
+    console.log(buffer)
+    this.getFormControl('fileBuffer').patchValue(buffer)
   }
 
   uploadFileToIpfs(buffer: Buffer) {
-    this.isProcessing = true;
+    this.isProcessing = true
     const fileData = {
-      title: this.paperSubmitForm.value?.title,
+      title: this.getFormControl('title').value,
       authors: this.encodeData(
-        this.paperSubmitForm.value.authors
-          ?.filter((author: string) => author !== '')
+        this.getFormControl('authors')
+          .value?.filter((author: string) => author !== '')
           .map((author: any) => author)
           .join(',')
       ),
       keywords: this.encodeData(
-        this.paperSubmitForm.value?.keywords
-          ?.filter((author: string) => author !== '')
+        this.getFormControl('keywords')
+          .value?.filter((author: string) => author !== '')
           .map((keyword: any) => keyword)
           .join(',')
       ),
-      description: this.paperSubmitForm.value?.abstract,
+      description: this.getFormControl('abstract').value,
       createdAt: new Date().toString(),
-    } as FileContract;
+    } as FileContract
 
     this._ipfsService.uploadFile(buffer, fileData).then(() => {
-      this.isProcessing = false;
-      this.dialogRef.close(this.paperSubmitForm.value);
-    });
+      this.isProcessing = false
+      this.dialogRef.close(this.paperSubmitForm.value)
+    })
   }
 
   encodeData(data: string) {
-    return btoa(data);
+    return btoa(data)
   }
 
   submitForm() {
-    this.getFormValidationErrors();
+    this.getFormValidationErrors()
     if (this.paperSubmitForm.valid) {
-      this.uploadFileToIpfs(this.paperSubmitForm.value.fileBuffer);
-      this.keywordsList.errorState = false;
+      this.uploadFileToIpfs(this.getFormControl('fileBuffer').value)
+      this.keywordsList.errorState = false
     } else {
-      this.keywordsList.errorState = true;
+      this.keywordsList.errorState = true
     }
   }
 
   getFormValidationErrors() {
     Object.keys(this.paperSubmitForm.controls).forEach((key) => {
-      const controlErrors: ValidationErrors | null =
-        this.getFormControl(key).errors;
+      const controlErrors: ValidationErrors | null = this.getFormControl(key).errors
       if (controlErrors != null) {
         Object.keys(controlErrors).forEach((error) => {
           console.log(
             'Name: ' + key + ', Error: ' + error + ', Value: ',
             controlErrors[error]
-          );
-        });
+          )
+        })
       }
-    });
+    })
   }
 }
