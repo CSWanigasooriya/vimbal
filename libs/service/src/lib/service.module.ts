@@ -10,6 +10,8 @@ import { IpfsService } from './ipfs.service'
 import { LoggerService } from './logger.service'
 import { StorageService } from './storage.service'
 import { WhisperService } from './whisper.service'
+import { ServiceOptions } from './models/service-options.model'
+import { WEB3_STORAGE_TOKEN } from './models/tokens'
 
 const services = [
   AuthService,
@@ -26,12 +28,15 @@ const services = [
 
 @NgModule({
   imports: [CommonModule],
-  providers: services,
 })
 export class ServiceModule {
-  static forRoot() {
+  static forRoot(options: ServiceOptions) {
     return {
       ngModule: ServiceModule,
+      providers: [
+        services,
+        { provide: WEB3_STORAGE_TOKEN, useValue: options.web3_storage_token },
+      ],
     }
   }
 }

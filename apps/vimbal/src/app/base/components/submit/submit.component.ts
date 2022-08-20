@@ -1,10 +1,10 @@
-import { Subscription } from 'rxjs'
 import {
   AfterViewChecked,
   AfterViewInit,
   ChangeDetectorRef,
   OnDestroy,
 } from '@angular/core'
+import { Subscription } from 'rxjs'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { COMMA, ENTER } from '@angular/cdk/keycodes'
 import {
@@ -48,13 +48,14 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
 
   keywordsSet = new Set([] as string[])
   authorsSet = new Set([] as string[])
+  fileList: FileList | null = null
 
   paperSubmitForm = this._fb.group({
     title: ['', [Validators.required]],
     abstract: [null, [Validators.minLength(150)]],
     authors: this._fb.array([this._fb.control('')], [Validators.required]),
     keywords: [null, [Validators.required]],
-    fileBuffer: [null, [Validators.required]],
+    fileBuffer: [null],
   })
 
   hasError = (controlName: string, errorName: string) => {
@@ -116,12 +117,12 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
     this.keywordsSet.delete(keyword)
   }
 
-  patchFileBuffer(buffer: Buffer) {
-    console.log(buffer)
-    this.getFormControl('fileBuffer').patchValue(buffer)
+  setFileList(fileList: FileList | null) {
+    this.getFormControl('fileBuffer').patchValue(fileList?.item.name)
+    this.fileList = fileList
   }
 
-  uploadFileToIpfs(buffer: Buffer) {
+  uploadFileToIpfs() {
     this.isProcessing = true
     const fileData = {
       title: this.getFormControl('title').value,
@@ -141,7 +142,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
       createdAt: new Date().toString(),
     } as FileContract
 
-    this._ipfsService.uploadFile(buffer, fileData).then(() => {
+    this._ipfsService.uploadFile(this.fileList, fileData).then(() => {
       this.isProcessing = false
       this.dialogRef.close(this.paperSubmitForm.value)
     })
@@ -154,7 +155,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   submitForm() {
     this.getFormValidationErrors()
     if (this.paperSubmitForm.valid) {
-      this.uploadFileToIpfs(this.getFormControl('fileBuffer').value)
+      this.uploadFileToIpfs()
       this.keywordsList.errorState = false
     } else {
       this.keywordsList.errorState = true
