@@ -14,6 +14,7 @@ contract Vimbal {
     struct File {
         uint256 id;
         string hash;
+        string fileName;
         string title;
         string authors;
         string keywords;
@@ -26,6 +27,7 @@ contract Vimbal {
     event FileCreated(
         uint256 id,
         string hash,
+        string fileName,
         string title,
         string authors,
         string keywords,
@@ -38,6 +40,7 @@ contract Vimbal {
     event FileTipped(
         uint256 id,
         string hash,
+        string fileName,
         string title,
         string authors,
         string keywords,
@@ -49,11 +52,13 @@ contract Vimbal {
 
     function uploadFile(
         string memory _fileHash,
+        string memory _fileName,
         string memory _title,
         string memory _authors,
         string memory _keywords,
         string memory _description,
         string memory _createdAt
+
     ) public {
         require(bytes(_fileHash).length > 0);
         require(bytes(_title).length > 0);
@@ -64,6 +69,7 @@ contract Vimbal {
         files[fileCount] = File(
             fileCount,
             _fileHash,
+            _fileName,
             _title,
             _authors,
             _keywords,
@@ -79,6 +85,7 @@ contract Vimbal {
         emit FileCreated(
             fileCount,
             _fileHash,
+            _fileName,
             _title,
             _authors,
             _keywords,
@@ -105,6 +112,7 @@ contract Vimbal {
         emit FileTipped(
             _id,
             _file.hash,
+            _file.fileName,
             _file.title,
             _file.authors,
             _file.keywords,

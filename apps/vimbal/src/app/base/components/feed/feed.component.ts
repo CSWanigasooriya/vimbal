@@ -21,6 +21,7 @@ export class FeedComponent implements OnInit {
     const fileData: FileContract = {
       id: this.fileData.id,
       hash: this.fileData.hash,
+      fileName: this.fileData.fileName,
       title: this.fileData.title,
       description: this.fileData.description,
       authors: this.fileData.authors,
@@ -58,7 +59,7 @@ export class FeedComponent implements OnInit {
   }
 
   getIpfsUri() {
-    return `https://${this.fileData?.hash}.ipfs.w3s.link`
+    return `https://${this.fileData?.hash}.ipfs.w3s.link/${this.fileData?.fileName}`
   }
 
   contentLoaded() {

@@ -125,6 +125,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   uploadFileToIpfs() {
     this.isProcessing = true
     const fileData = {
+      fileName: this.fileList?.item(0)?.name,
       title: this.getFormControl('title').value,
       authors: this.encodeData(
         this.getFormControl('authors')
