@@ -19,7 +19,23 @@
           "ipfs-utils/src/env.js",
           "debug",
           "stream",
-          "web3"
+          "web3",
+          "it-drain",
+          "it-filter",
+          "it-take",
+          "browser-readablestream-to-it",
+          "it-all",
+          "it-first",
+          "stream-to-it/source.js",
+          "any-signal",
+          "deepmerge",
+          "p-retry",
+          "throttled-queue",
+          "bowser",
+          "it-peekable",
+          "it-map",
+          "merge-options",
+          "varint"
         ],
         "outputPath": "dist/apps/vimbal",
         "index": "apps/vimbal/src/index.html",
@@ -95,10 +111,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/vimbal/src/**/*.ts",
-          "apps/vimbal/src/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/vimbal/src/**/*.ts", "apps/vimbal/src/**/*.html"]
       }
     },
     "test": {

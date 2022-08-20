@@ -115,7 +115,7 @@ contract Vimbal {
         );
     }
 
-    function isFileOwned(string memory fileHash) public view returns (bool) {
-        return fileCount > 0 && bytes(filesByHash[fileHash].hash).length > 0;
+    function isFileOwned() public view returns (bool) {
+        return fileCount > 0;
     }
 }

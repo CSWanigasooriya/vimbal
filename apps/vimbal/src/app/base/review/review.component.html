@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z10 header">
   <mat-card-title-group>
-    <mat-card-title>{{ file.title }}</mat-card-title>
+    <mat-card-title>{{ file.title ? file.title : '' }}</mat-card-title>
     <mat-card-subtitle>
       <b>Authors:</b>
       <span
@@ -16,10 +16,13 @@
   </mat-card-title-group>
   <mat-card-content>
     <p>
-      <b>URL: </b><a class="hover:cursor-pointer">https://ipfs.io/ipfs/{{ file.hash }}</a>
+      <b>URL: </b
+      ><a class="hover:cursor-pointer"
+        >https://{{ file.hash ? file.hash : '' }}.ipfs.w3s.link</a
+      >
     </p>
 
-    <p><b>Abstract: </b>{{ file.description }}</p>
+    <p><b>Abstract: </b>{{ file.description ? file.description : '' }}</p>
     <p>
       <b>Keywords: </b>
       <span

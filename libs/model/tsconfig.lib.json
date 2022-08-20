@@ -8,5 +8,9 @@
     "types": []
   },
   "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "../service/src/lib/models/service-options.model.ts",
+    "../service/src/lib/models/tokens.ts"
+  ]
 }
