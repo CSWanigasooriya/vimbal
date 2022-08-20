@@ -37,17 +37,38 @@ export class IpfsService {
         if (response && !isFileOwned) {
           await this.chainData.methods
             ?.uploadFile(
-              response.toString(),
-              file.title,
-              file.authors,
-              file.keywords,
-              file.description,
-              file.createdAt
+              response ? response : '',
+              file.title ? file.title : '',
+              file.authors ? file.authors : '',
+              file.keywords ? file.keywords : '',
+              file.description ? file.description : '',
+              file.createdAt ? file.createdAt : ''
             )
-            .send({ from: accounts[0] })
-            .on('transactionHash', () => {
+            .send({
+              from: accounts[0],
+              // value: await window.web3.utils.toWei('0.1', 'Ether'),
+              gasPrice: 20000000000,
+              gas: 6721975,
+            })
+            .once('sending', (payload: any) => {
+              console.log(payload)
+            })
+            .once('sent', (payload: any) => {
+              console.log(payload)
+            })
+            .once('transactionHash', (hash: any) => {
+              console.log(hash)
               window.location.reload()
             })
+            .once('receipt', (receipt: any) => {
+              console.log(receipt)
+            })
+            .on('confirmation', (confNumber: any, receipt: any, latestBlockHash: any) => {
+              console.log(confNumber)
+              console.log(receipt)
+              console.log(latestBlockHash)
+            })
+            .on('error', (error: any) => console.log(error))
           this.ipfsReceipt.next(response)
         } else {
           alert('File already owned by another author')

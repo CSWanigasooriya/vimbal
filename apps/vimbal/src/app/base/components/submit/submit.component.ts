@@ -53,9 +53,9 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   paperSubmitForm = this._fb.group({
     title: ['', [Validators.required]],
     abstract: [null, [Validators.minLength(150)]],
-    authors: this._fb.array([this._fb.control('')], [Validators.required]),
+    authors: this._fb.array([this._fb.control('', Validators.required)]),
     keywords: [null, [Validators.required]],
-    fileBuffer: [null],
+    fileBuffer: [null, [Validators.required]],
   })
 
   hasError = (controlName: string, errorName: string) => {
@@ -118,7 +118,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   }
 
   setFileList(fileList: FileList | null) {
-    this.getFormControl('fileBuffer').patchValue(fileList?.item.name)
+    this.getFormControl('fileBuffer').patchValue(fileList?.item(0)?.name)
     this.fileList = fileList
   }
 
