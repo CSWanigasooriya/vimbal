@@ -6,17 +6,17 @@
     "firsttris.vscode-jest-runner",
     "dbaeumer.vscode-eslint",
     "amatiasq.sort-imports",
-    "DSKWRK.vscode-generate-getter-setter",
+    "dskwrk.vscode-generate-getter-setter",
     "eamodio.gitlens",
     "johnpapa.vscode-peacock",
     "ms-azuretools.vscode-docker",
     "ms-vscode.vscode-typescript-tslint-plugin",
-    "PKief.material-icon-theme",
-    "WallabyJs.quokka-vscode",
+    "pkief.material-icon-theme",
+    "wallabyjs.quokka-vscode",
     "expertly-simple.ng-evergreen",
     "formulahendry.auto-close-tag",
-    "HookyQR.beautify",
+    "hookyqr.beautify",
     "johnpapa.angular-essentials",
-    "msjsdiag.debugger-for-edge"
+    "WallabyJs.quokka-vscode"
   ]
 }

@@ -60,7 +60,7 @@ cd vimbal
 10. Install Node Modules
 
 ```
-npm install
+npm install --legacy-peer-deps
 ```
 
 11. Compile Smart Contracts
