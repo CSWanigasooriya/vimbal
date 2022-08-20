@@ -39,7 +39,7 @@ export class PreviewComponent implements OnInit {
   }
 
   getIpfsUri() {
-    return `https://${this.file?.hash}.ipfs.w3s.link`
+    return `https://${this.file?.hash}.ipfs.w3s.link/${this.file?.fileName}`
   }
 
   contentLoaded() {

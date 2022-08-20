@@ -38,6 +38,7 @@ export class IpfsService {
           await this.chainData.methods
             ?.uploadFile(
               response ? response : '',
+              file.fileName ? file.fileName : '',
               file.title ? file.title : '',
               file.authors ? file.authors : '',
               file.keywords ? file.keywords : '',
