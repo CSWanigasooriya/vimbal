@@ -1,6 +1,7 @@
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
+import { Component } from '@angular/core'
+import { mode } from '../../core/state/theme/theme.actions'
 
 @Component({
   selector: 'vimbal-home',
@@ -8,11 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  theme$: Observable<boolean>;
+  theme$: Observable<boolean>
 
-  constructor(
-    private store: Store<{ count: number; theme: boolean; sidebar: boolean }>
-  ) {
-    this.theme$ = store.select('theme');
+  constructor(private store: Store<{ count: number; theme: boolean; sidebar: boolean }>) {
+    this.theme$ = store.select('theme')
+  }
+
+  toggleDarkMode() {
+    this.store.dispatch(mode())
   }
 }

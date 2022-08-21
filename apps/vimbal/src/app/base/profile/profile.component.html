@@ -42,3 +42,15 @@
     </div>
   </div>
 </div>
+
+<ul>
+  <li *ngFor="let review of userReviews">
+    {{ review | json }}
+  </li>
+</ul>
+
+<ul>
+  <li *ngFor="let review of userPublications">
+    {{ review | json }}
+  </li>
+</ul>

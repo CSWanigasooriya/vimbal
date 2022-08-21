@@ -1,5 +1,4 @@
-import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout'
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -9,24 +8,33 @@ import {
   OnInit,
   Optional,
   ViewChild,
-} from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
-import { Store } from '@ngrx/store';
-import { DialogData, FileContract } from '@vimbal/model';
-import { ChainService } from '@vimbal/service';
-import { map, Observable, startWith, Subscription } from 'rxjs';
-import { SubmitComponent } from '../base/components/submit/submit.component';
+} from '@angular/core'
+import { FormControl } from '@angular/forms'
+import { MatBottomSheet } from '@angular/material/bottom-sheet'
+import { MatDialog } from '@angular/material/dialog'
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav'
+import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { DialogData, FileContract } from '@vimbal/model'
+import { ChainService } from '@vimbal/service'
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  Observable,
+  startWith,
+  Subscription,
+  switchMap,
+} from 'rxjs'
+import { SubmitComponent } from '../base/components/submit/submit.component'
 import {
   sideNavAnimation,
   sideNavContainerAnimation,
-} from '../core/animation/side-bar.animations';
-import { toggle } from '../core/state/sidebar/sidebar.actions';
-import { mode } from '../core/state/theme/theme.actions';
-import { AppConfig, APP_CONFIG } from './../core/config/app.config';
-import { SheetComponent } from './../shared/sheet/sheet.component';
+} from '../core/animation/side-bar.animations'
+import { toggle } from '../core/state/sidebar/sidebar.actions'
+import { mode } from '../core/state/theme/theme.actions'
+import { AppConfig, APP_CONFIG } from './../core/config/app.config'
+import { SheetComponent } from './../shared/sheet/sheet.component'
 
 @Component({
   selector: 'vimbal-layout',
@@ -35,23 +43,21 @@ import { SheetComponent } from './../shared/sheet/sheet.component';
   animations: [sideNavAnimation, sideNavContainerAnimation],
 })
 export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
-  private subscriptions = new Subscription();
+  private subscriptions = new Subscription()
 
-  @ViewChild('snav') snav: MatSidenav | undefined;
-  @ViewChild(MatSidenavContainer) sidenavContainer:
-    | MatSidenavContainer
-    | undefined;
-  searchControl = new FormControl();
-  isCompact = false;
-  isPinned = false;
-  theme$: Observable<boolean>;
-  sidebar$: Observable<boolean>;
-  filteredOptions!: Observable<FileContract[]>;
-  files: FileContract[] = [];
+  @ViewChild('snav') snav: MatSidenav | undefined
+  @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer | undefined
+  searchControl = new FormControl()
+  isCompact = false
+  isPinned = false
+  theme$: Observable<boolean>
+  sidebar$: Observable<boolean>
+  filteredOptions!: Observable<FileContract[]>
+  files: FileContract[] = []
 
-  mobileQuery: MediaQueryList;
+  mobileQuery: MediaQueryList
 
-  private _mobileQueryListener: () => void;
+  private _mobileQueryListener: () => void
 
   constructor(
     public dialog: MatDialog,
@@ -63,64 +69,62 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher
   ) {
-    this.theme$ = store.select('theme');
-    this.sidebar$ = store.select('sidebar');
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    this.theme$ = store.select('theme')
+    this.sidebar$ = store.select('sidebar')
+    this.mobileQuery = media.matchMedia('(max-width: 600px)')
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges()
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener)
     this._chainService.getBlockchainData().then(async (data) => {
-      const fileCount = await data?.methods?.fileCount().call();
-      const fileCountInt = parseInt(fileCount, 16);
+      const fileCount = await data?.methods?.fileCount().call()
+      const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await data.methods?.files(index).call();
-        this.files = [...this.files, file].sort(
-          (a, b) => b.tipAmount - a.tipAmount
-        );
+        const file = await data.methods?.files(index).call()
+        this.files = [...this.files, file].sort((a, b) => b.tipAmount - a.tipAmount)
       }
-    });
+    })
   }
 
   ngOnInit(): void {
     this.filteredOptions = this.searchControl.valueChanges.pipe(
+      distinctUntilChanged(),
+      debounceTime(100),
       startWith(''),
       map((state) => (state ? this._filter(state) : this.files?.slice()))
-    );
+    )
   }
 
   ngAfterViewInit(): void {
     this.subscriptions.add(
       this.sidenavContainer?.scrollable.elementScrolled().subscribe(() => {
-        console.log('scrolled');
+        console.log('scrolled')
       })
-    );
+    )
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
-    this.subscriptions.unsubscribe();
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener)
+    this.subscriptions.unsubscribe()
   }
 
   private _filter(value: string): FileContract[] {
-    const filterValue = value.toLowerCase();
-    return this.files?.filter((state) =>
-      state.title.toLowerCase().includes(filterValue)
-    );
+    const filterValue = value.toLowerCase()
+    return this.files?.filter((state) => state.title.toLowerCase().includes(filterValue))
   }
 
   onSelectionChanged(event: { option: { id: any; value: any } }) {
-    const selectedValue = event.option.id;
-    this.router.navigate(['/preview', selectedValue]);
+    const selectedValue = event.option.id
+    this.router.navigate(['/preview', selectedValue])
   }
 
   toggleSidebar() {
     // this.snav?.toggle();
-    this.store.dispatch(toggle());
-    this.isCompact = true;
-    this.isPinned = false;
+    this.store.dispatch(toggle())
+    this.isCompact = true
+    this.isPinned = false
   }
 
   toggleDarkMode() {
-    this.store.dispatch(mode());
+    this.store.dispatch(mode())
   }
 
   openBottomSheet() {
@@ -128,12 +132,12 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       data: {
         names: ['One', 'Two', 'Three'],
       },
-    });
+    })
     this.subscriptions.add(
       bottomSheetRef.afterDismissed().subscribe((result) => {
-        console.log(result);
+        console.log(result)
       })
-    );
+    )
   }
 
   openDialog(): void {
@@ -153,7 +157,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
           type: 'mat-raised-button',
         },
       } as DialogData,
-    });
+    })
 
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe((result) => {
@@ -161,6 +165,6 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
           // window.location.reload();
         }
       })
-    );
+    )
   }
 }
