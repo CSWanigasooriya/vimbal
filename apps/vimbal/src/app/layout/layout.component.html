@@ -48,11 +48,10 @@
       *ngIf="!mobileQuery.matches"
     /> -->
 
-    <button
-      mat-icon-button
-      (click)="toggleDarkMode()"
-      [matTooltip]="(theme$ | async) === true ? 'light_mode' : 'dark_mode'"
-    >
+    <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toggleDarkMode()" matTooltip="Toggle Theme">
       <mat-icon>{{ (theme$ | async) === true ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="account">

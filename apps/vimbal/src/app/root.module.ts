@@ -17,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker'
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { MaterialModule } from '@vimbal/material'
+import { PipeModule } from '@vimbal/pipe'
 import { ServiceModule } from '@vimbal/service'
 import { localStorageSync } from 'ngrx-store-localstorage'
 import { environment } from '../environments/environment'
@@ -56,6 +57,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    PipeModule,
     ServiceModule.forRoot({ web3_storage_token: environment.web3_storage_token }),
     StoreModule.forRoot(
       { count: counterReducer, theme: themeReducer, sidebar: sidebarReducer },
