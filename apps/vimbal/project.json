@@ -35,7 +35,8 @@
           "it-peekable",
           "it-map",
           "merge-options",
-          "varint"
+          "varint",
+          "hamt-sharding"
         ],
         "outputPath": "dist/apps/vimbal",
         "index": "apps/vimbal/src/index.html",

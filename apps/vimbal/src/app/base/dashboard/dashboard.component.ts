@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FileContract, ReviewContract } from '@vimbal/model'
-import { AuthService, ChainService, IpfsService, ReviewService } from '@vimbal/service'
+import { AuthService, ChainService, ReviewService } from '@vimbal/service'
 
 @Component({
   selector: 'vimbal-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   isLoading = true
   userWalletAddress!: string
   currentBlockNumber!: number
@@ -19,7 +19,6 @@ export class DashboardComponent {
   constructor(
     private _authService: AuthService,
     private _chainService: ChainService,
-    private _ipfsService: IpfsService,
     private _reviewService: ReviewService
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
@@ -45,6 +44,12 @@ export class DashboardComponent {
           .call()
         if (review?.id != 0) this.reviewsByOwner = [...this.reviewsByOwner, review]
       }
+    })
+  }
+
+  ngOnInit(): void {
+    window.web3.eth.getAccounts().then((accounts: string | unknown[]) => {
+      if (accounts.length === 0) this._authService.requestWalletPermission()
     })
   }
 
