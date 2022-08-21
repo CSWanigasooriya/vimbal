@@ -51,12 +51,12 @@ export class RootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadWeb3()
-    window?.ethereum.on('accountsChanged', (accounts: any) => {
+    window?.ethereum.on('accountsChanged', (accounts: unknown) => {
       // Handle the new accounts, or lack thereof.
       // "accounts" will always be an array, but it can be empty.
       if (accounts) window.location.reload()
     })
-    window?.ethereum.on('chainChanged', (chainId: any) => {
+    window?.ethereum.on('chainChanged', (chainId: unknown) => {
       // Handle the new chain.
       // Correctly handling chain changes can be complicated.
       // We recommend reloading the page unless you have good reason not to.

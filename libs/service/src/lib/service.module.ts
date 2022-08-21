@@ -12,6 +12,7 @@ import { StorageService } from './storage.service'
 import { WhisperService } from './whisper.service'
 import { ServiceOptions } from './models/service-options.model'
 import { WEB3_STORAGE_TOKEN } from './models/tokens'
+import { SplashScreenStateService } from './splash-screen-state.service'
 
 const services = [
   AuthService,
@@ -24,6 +25,7 @@ const services = [
   StorageService,
   Web3StorageService,
   WhisperService,
+  SplashScreenStateService,
 ]
 
 @NgModule({
