@@ -24,7 +24,6 @@ import {
   Observable,
   startWith,
   Subscription,
-  switchMap,
 } from 'rxjs'
 import { SubmitComponent } from '../base/components/submit/submit.component'
 import {
@@ -111,7 +110,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.files?.filter((state) => state.title.toLowerCase().includes(filterValue))
   }
 
-  onSelectionChanged(event: { option: { id: any; value: any } }) {
+  onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {
     const selectedValue = event.option.id
     this.router.navigate(['/preview', selectedValue])
   }

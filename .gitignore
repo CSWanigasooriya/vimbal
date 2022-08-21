@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+/build
+/cache
 
 # dependencies
 /node_modules
@@ -44,7 +46,3 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-
-/build
-.env
-node_modules
