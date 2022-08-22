@@ -1,22 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable } from '@angular/core'
+import { Inject, Injectable } from '@angular/core'
 import { ChainData, Payment } from '@vimbal/model'
-import Vimbal from './contracts/Vimbal.json'
+import File from 'fileContract'
 import { AuthService } from './auth.service'
+import { GANACHE_URL } from './models/tokens'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChainService {
-  ganacheUrl = 'http://127.0.0.1:7545'
-
-  constructor(private _authService: AuthService) {}
+  constructor(
+    @Inject(GANACHE_URL) private ganacheUrl: string,
+    private _authService: AuthService
+  ) {}
 
   async getBlockchainData(): Promise<Partial<ChainData>> {
     const web3 = window?.web3
     const networkId = await web3?.eth?.net?.getId()
-    const networkData = Vimbal?.networks[5777 || networkId]
-    return web3 ? new web3.eth.Contract(Vimbal?.abi, networkData?.address) : null
+    const networkData = File?.networks[5777 || networkId]
+    return web3 ? new web3.eth.Contract(File?.abi, networkData?.address) : null
   }
 
   async tipAuthor(id?: string, tipAmount?: any): Promise<Payment> {

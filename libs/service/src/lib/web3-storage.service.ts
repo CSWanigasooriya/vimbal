@@ -42,7 +42,7 @@ export class Web3StorageService {
   }
 
   private getAccessToken(): string {
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDNEMmJhYjFFRjJDM0Q1ODU1OTAyNzVERDExREZEODE1MzRmNDJiZTAiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA5MzY4MTMyMDQsIm5hbWUiOiJ2aW1iYWwifQ.OPIuj9A2nlWUCAg_Q3W79oX4C1NxWh4HGi7gMJvfeqE'
+    return this.web3StorageToken
   }
 
   makeStorageClient() {

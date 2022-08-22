@@ -60,7 +60,10 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
     FormsModule,
     ReactiveFormsModule,
     PipeModule,
-    ServiceModule.forRoot({ web3_storage_token: environment.web3_storage_token }),
+    ServiceModule.forRoot({
+      web3_storage_token: environment.web3_storage_token,
+      ganacheUrl: environment.ganacheUrl,
+    }),
     StoreModule.forRoot(
       { count: counterReducer, theme: themeReducer, sidebar: sidebarReducer },
       { metaReducers: metaReducers }

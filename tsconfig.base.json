@@ -37,7 +37,10 @@
       "url": ["./node_modules/url"],
       "util": ["./node_modules/util"],
       "vm": ["./node_modules/vm"],
-      "zlib": ["./node_modules/browserify-zlib"]
+      "zlib": ["./node_modules/browserify-zlib"],
+      "fileContract": ["./libs/service/src/lib/contracts/FileContract.json"],
+      "userContract": ["./libs/service/src/lib/contracts/UserContract.json"],
+      "reviewContract": ["./libs/service/src/lib/contracts/ReviewContract.json"]
     }
   },
   "exclude": ["node_modules", "tmp"]
