@@ -70,6 +70,12 @@
           {{ review | json }}
         </li>
       </ul>
+
+      <ul>
+        <li *ngFor="let user of users">
+          {{ user | json }}
+        </li>
+      </ul>
     </ng-template>
   </mat-tab>
 </mat-tab-group>

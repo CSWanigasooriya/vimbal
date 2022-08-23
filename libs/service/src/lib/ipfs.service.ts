@@ -28,16 +28,15 @@ export class IpfsService {
   async uploadFile(files: FileList | null, file: FileContract) {
     const web3 = window.web3
     const accounts = await web3.eth.getAccounts()
-    console.log(accounts)
     console.log('Uploading file to ipfs...')
     await this._web3StorageService
       .storeFiles(files)
-      .then(async (response) => {
+      .then(async (hash) => {
         const isFileOwned = await this.chainData.methods.isFileOwned().call()
-        if (response && !isFileOwned) {
+        if (hash && !isFileOwned) {
           await this.chainData.methods
             ?.uploadFile(
-              response ? response : '',
+              hash ? hash : '',
               file.fileName ? file.fileName : '',
               file.title ? file.title : '',
               file.authors ? file.authors : '',
@@ -70,7 +69,7 @@ export class IpfsService {
               console.log(latestBlockHash)
             })
             .on('error', (error: any) => console.log(error))
-          this.ipfsReceipt.next(response)
+          this.ipfsReceipt.next(hash)
         } else {
           alert('File already owned by another author')
         }

@@ -1,6 +1,10 @@
-var Vimbal = artifacts.require('Vimbal')
-var Review = artifacts.require('Review')
+const { artifacts } = require('truffle')
+const File = artifacts.require('FileContract')
+const Review = artifacts.require('ReviewContract')
+const User = artifacts.require('UserContract')
+
 module.exports = function (deployer) {
-  deployer.deploy(Vimbal)
+  deployer.deploy(File)
   deployer.deploy(Review)
+  deployer.deploy(User)
 }

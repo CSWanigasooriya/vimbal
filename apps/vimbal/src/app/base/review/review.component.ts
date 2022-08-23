@@ -28,7 +28,7 @@ export class ReviewComponent implements OnInit {
     private _authService: AuthService
   ) {
     this.fileId = Number(this._route.snapshot.paramMap.get('id'))
-    this._reviewService.getAllReviews().then(async (data: any) => {
+    this._reviewService.getReviewContract().then(async (data: any) => {
       if (data) this.isLoading = false
       this.reviewData = data
       const reviewCount = await this.reviewData?.methods?.reviewCount().call()

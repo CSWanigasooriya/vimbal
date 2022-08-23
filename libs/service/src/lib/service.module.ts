@@ -11,7 +11,9 @@ import { LoggerService } from './logger.service'
 import { StorageService } from './storage.service'
 import { WhisperService } from './whisper.service'
 import { ServiceOptions } from './models/service-options.model'
-import { WEB3_STORAGE_TOKEN } from './models/tokens'
+import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
+import { SplashScreenStateService } from './splash-screen-state.service'
+import { UserService } from './user.service'
 
 const services = [
   AuthService,
@@ -24,6 +26,8 @@ const services = [
   StorageService,
   Web3StorageService,
   WhisperService,
+  UserService,
+  SplashScreenStateService,
 ]
 
 @NgModule({
@@ -36,6 +40,7 @@ export class ServiceModule {
       providers: [
         services,
         { provide: WEB3_STORAGE_TOKEN, useValue: options.web3_storage_token },
+        { provide: GANACHE_URL, useValue: options.ganacheUrl },
       ],
     }
   }

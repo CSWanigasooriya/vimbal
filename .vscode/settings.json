@@ -30,5 +30,8 @@
   },
   "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 12,
-  "ng-evergreen.upgradeChannel": "Latest"
+  "ng-evergreen.upgradeChannel": "Latest",
+  "[solidity]": {
+    "editor.defaultFormatter": "JuanBlanco.solidity"
+  }
 }
