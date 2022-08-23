@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core'
-import { FileContract, ReviewContract } from '@vimbal/model'
-import { AuthService, ChainService, ReviewService } from '@vimbal/service'
-
+import { FileContract, ReviewContract, UserContract } from '@vimbal/model'
+import { AuthService, ChainService, ReviewService, UserService } from '@vimbal/service'
 @Component({
   selector: 'vimbal-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,12 +13,14 @@ export class DashboardComponent implements OnInit {
   currentBlockNumber!: number
   reviewsByOwner: ReviewContract[] = []
   files: FileContract[] = []
+  users: UserContract[] = []
   selectedTabIndex = 0
 
   constructor(
     private _authService: AuthService,
     private _chainService: ChainService,
-    private _reviewService: ReviewService
+    private _reviewService: ReviewService,
+    private _userService: UserService
   ) {
     this._chainService.getBlockchainData().then(async (data: any) => {
       if (data) this.isLoading = false
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
       }
     })
 
-    this._reviewService.getAllReviews().then(async (data: any) => {
+    this._reviewService.getReviewContract().then(async (data: any) => {
       if (data) this.isLoading = false
       this.userWalletAddress = await this._authService.getWalletAddress()
       const reviewCount = await data?.methods?.reviewCount().call()
@@ -43,6 +44,16 @@ export class DashboardComponent implements OnInit {
           ?.reviewsByOwner(this.userWalletAddress, index)
           .call()
         if (review?.id != 0) this.reviewsByOwner = [...this.reviewsByOwner, review]
+      }
+    })
+
+    this._userService.getUserContract().then(async (data: any) => {
+      if (data) this.isLoading = false
+      const userCount = await data?.methods?.userCount().call()
+      const userCountInt = parseInt(userCount, 16)
+      for (let index = 1; index <= userCountInt; index++) {
+        const user = await data.methods?.users(index).call()
+        this.users = [...this.users, user]
       }
     })
   }
