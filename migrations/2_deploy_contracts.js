@@ -1,3 +1,4 @@
+const { artifacts } = require('truffle')
 const File = artifacts.require('FileContract')
 const Review = artifacts.require('ReviewContract')
 const User = artifacts.require('UserContract')
