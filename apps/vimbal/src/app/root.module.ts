@@ -26,6 +26,7 @@ import { PROVIDERS_CONFIG } from './core/config/providers.config'
 import { counterReducer } from './core/state/counter/counter.reducer'
 import { sidebarReducer } from './core/state/sidebar/sidebar.reducer'
 import { themeReducer } from './core/state/theme/theme.reducer'
+import { HomeComponent } from './home/home.component'
 import { LayoutComponent } from './layout/layout.component'
 import { RootComponent } from './root.component'
 import { RootRoutingModule } from './root.routing'
@@ -45,6 +46,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
 @NgModule({
   declarations: [
     RootComponent,
+    HomeComponent,
     LayoutComponent,
     SheetComponent,
     ErrorComponent,

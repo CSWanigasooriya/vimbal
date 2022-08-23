@@ -15,7 +15,6 @@ import { CardComponent } from './components/card/card.component'
 import { FeedComponent } from './components/feed/feed.component'
 import { SubmitComponent } from './components/submit/submit.component'
 import { DashboardComponent } from './dashboard/dashboard.component'
-import { HomeComponent } from './home/home.component'
 import { PreviewComponent } from './preview/preview.component'
 import { ProfileComponent } from './profile/profile.component'
 import { ReviewComponent } from './review/review.component'
@@ -33,7 +32,6 @@ const baseModules = [DashboardComponent]
     StarRatingComponent,
     ProfileComponent,
     BrowseComponent,
-    HomeComponent,
     CardComponent,
     BounceComponent,
   ],

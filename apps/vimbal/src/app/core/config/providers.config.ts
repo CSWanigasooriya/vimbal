@@ -26,6 +26,8 @@ import {
 import { Title } from '@angular/platform-browser'
 import { GlobalRippleOptionsService } from '@vimbal/service'
 import { APP_CONFIG, VIMBAL_DI_CONFIG } from './app.config'
+import { FIREBASE_OPTIONS } from '@angular/fire/compat'
+import { environment } from '../../../environments/environment'
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const tooltipOptions: MatTooltipDefaultOptions = {
@@ -87,6 +89,7 @@ export const PROVIDERS_CONFIG = [
     },
   },
   { provide: APP_CONFIG, useValue: VIMBAL_DI_CONFIG },
+  { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ScreenTrackingService,
   UserTrackingService,
   Title,

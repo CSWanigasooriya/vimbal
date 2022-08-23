@@ -14,7 +14,7 @@ import { create } from 'ipfs-http-client'
 export class IpfsService {
   private ipfsReceipt: BehaviorSubject<string> = new BehaviorSubject('')
 
-  chainData!: ChainData
+  fileData!: ChainData
   // connect to the default API address http://localhost:5001
   client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
@@ -24,7 +24,7 @@ export class IpfsService {
     private _notificationService: NotificationService
   ) {
     this._chainService.getFileData().then((data: any) => {
-      this.chainData = data
+      this.fileData = data
     })
   }
 
@@ -35,9 +35,9 @@ export class IpfsService {
     await this._web3StorageService
       .storeFiles(files)
       .then(async (hash) => {
-        const isFileOwned = await this.chainData.methods.isFileOwned().call()
+        const isFileOwned = await this.fileData.methods.isFileOwned(accounts[0]).call()
         if (hash && !isFileOwned) {
-          await this.chainData.methods
+          await this.fileData.methods
             ?.uploadFile(
               hash,
               file.fileName,
@@ -50,8 +50,8 @@ export class IpfsService {
             .send({
               from: accounts[0],
               // value: await window.web3.utils.toWei('0.1', 'Ether'),
-              gasPrice: 20000000000,
-              gas: 6721975,
+              // gasPrice: 20000000000,
+              // gas: 6721975,
             })
             .once('sending', (payload: any) => {
               console.log(payload)
@@ -78,7 +78,7 @@ export class IpfsService {
         }
       })
       .catch((err) => {
-        console.log(err)
+        this._notificationService.showError(err)
       })
 
     return this.ipfsReceipt.value

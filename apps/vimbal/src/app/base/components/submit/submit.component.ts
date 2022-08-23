@@ -26,7 +26,7 @@ import {
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { DialogData, FileContract } from '@vimbal/model'
-import { IpfsService } from '@vimbal/service'
+import { FirestoreService, IpfsService } from '@vimbal/service'
 
 @Component({
   selector: 'vimbal-submit',
@@ -63,6 +63,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   }
 
   constructor(
+    private _firestoreService: FirestoreService,
     private _changeDetectionRef: ChangeDetectorRef,
     private _ipfsService: IpfsService,
     private _fb: FormBuilder,
@@ -146,7 +147,9 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
     this._ipfsService.uploadFile(this.fileList, fileData).then((receipt: unknown) => {
       this.isProcessing = false
       if (receipt) {
-        this.dialogRef.close(this.paperSubmitForm.value)
+        this._firestoreService.createFile(fileData).then(() => {
+          this.dialogRef.close(this.paperSubmitForm.value)
+        })
       }
     })
   }

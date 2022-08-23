@@ -4,7 +4,6 @@ import MetaMaskOnboarding from '@metamask/onboarding'
 import { RequestArguments } from '@vimbal/model'
 import { LoggerService } from './logger.service'
 import { GANACHE_URL } from './models/tokens'
-import { UserService } from './user.service'
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +17,7 @@ export class AuthService {
   constructor(
     @Inject(GANACHE_URL) private ganacheUrl: string,
     private _ngZone: NgZone,
-    private _loggerService: LoggerService,
-    private _userService: UserService
+    private _loggerService: LoggerService
   ) {}
 
   isMetaMaskInstalled = () => {
