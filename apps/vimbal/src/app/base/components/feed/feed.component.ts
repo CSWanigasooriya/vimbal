@@ -1,6 +1,7 @@
+import { AuthService, FileService } from '@vimbal/service'
 import { Component, Input, OnInit } from '@angular/core'
+
 import { FileContract } from '@vimbal/model'
-import { AuthService, ChainService } from '@vimbal/service'
 import { of } from 'rxjs'
 
 @Component({
@@ -13,7 +14,7 @@ export class FeedComponent implements OnInit {
   formatedFileData!: Partial<FileContract>
   walletAddress!: string
   isLoading = true
-  constructor(private _authService: AuthService, private _chainService: ChainService) {
+  constructor(private _authService: AuthService, private _chainService: FileService) {
     this.fileData = {} as FileContract
   }
 

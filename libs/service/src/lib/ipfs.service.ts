@@ -1,7 +1,7 @@
 import { ChainData, FileContract } from '@vimbal/model'
 
 import { BehaviorSubject } from 'rxjs'
-import { ChainService } from './chain.service'
+import { FileService } from './file.service'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core'
 import { NotificationService } from './notification.service'
@@ -19,11 +19,11 @@ export class IpfsService {
   client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
   constructor(
-    private _chainService: ChainService,
+    private _chainService: FileService,
     private _web3StorageService: Web3StorageService,
     private _notificationService: NotificationService
   ) {
-    this._chainService.getBlockchainData().then((data: any) => {
+    this._chainService.getFileData().then((data: any) => {
       this.chainData = data
     })
   }
@@ -74,9 +74,7 @@ export class IpfsService {
             .on('error', (error: any) => console.log(error))
           this.ipfsReceipt.next(hash)
         } else {
-          this._notificationService.showNotification(
-            'File already owned by another author'
-          )
+          this._notificationService.showError('File already owned by another author')
         }
       })
       .catch((err) => {

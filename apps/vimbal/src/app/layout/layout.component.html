@@ -81,11 +81,11 @@
     <mat-sidenav
       class="sidenav"
       #snav
-      [opened]="sidebar$ | async"
+      [opened]="!mobileQuery.matches"
       (mouseover)="!isPinned ? (isCompact = false) : null"
       (mouseleave)="!isPinned ? (isCompact = true) : null"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [@openCloseSidenav]="!mobileQuery.matches ? (isCompact ? 'closed' : 'open') : null"
+      [@openCloseSidenav]="toggleSidebarAnimation()"
       [fixedInViewport]="mobileQuery.matches"
       [class.is-compact]="isCompact"
       fixedTopGap="56"
@@ -138,9 +138,11 @@
             [matRippleDisabled]="true"
             (click)="isPinned = !isPinned"
           >
-            <mat-icon mat-list-icon>push_pin</mat-icon>
+            <mat-icon mat-list-icon>{{
+              isCompact ? 'arrow_forward_ios' : isPinned ? 'push_pin' : 'arrow_back_ios'
+            }}</mat-icon>
             <div mat-line *ngIf="!isCompact">
-              {{ isPinned ? 'Pinned' : 'Pin' }}
+              {{ isPinned ? 'Unpin' : 'Pin drawer' }}
             </div>
           </mat-list-item>
         </div>

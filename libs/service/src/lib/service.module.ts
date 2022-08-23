@@ -1,8 +1,8 @@
 import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
 
 import { AuthService } from './auth.service'
-import { ChainService } from './chain.service'
 import { CommonModule } from '@angular/common'
+import { FileService } from './file.service'
 import { FirestoreService } from './firestore.service'
 import { GlobalRippleOptionsService } from './global-ripple-options.service'
 import { IpfsService } from './ipfs.service'
@@ -19,7 +19,7 @@ import { WhisperService } from './whisper.service'
 
 const services = [
   AuthService,
-  ChainService,
+  FileService,
   FirestoreService,
   GlobalRippleOptionsService,
   IpfsService,
