@@ -45,31 +45,14 @@ export class AuthService {
 
   async requestWalletPermission() {
     try {
-      await window?.ethereum
-        .request({
-          method: 'wallet_requestPermissions',
-          params: [
-            {
-              eth_accounts: {},
-            },
-          ],
-        } as RequestArguments)
-        .then(async (permissions: any) => {
-          const accountsPermission = permissions.find(
-            (permission: { parentCapability: string }) =>
-              permission.parentCapability === 'eth_accounts'
-          )
-          if (accountsPermission) {
-            this._userService.createUser({
-              createdAt: new Date().toString(),
-              displayName: '',
-              email: '',
-              walletAddress: await this.getWalletAddress(),
-              role: 'user',
-            })
-            alert('Permission granted')
-          }
-        })
+      await window?.ethereum.request({
+        method: 'wallet_requestPermissions',
+        params: [
+          {
+            eth_accounts: {},
+          },
+        ],
+      } as RequestArguments)
     } catch (error: any) {
       if (error.code === 4001) {
         // userRejectedRequest error

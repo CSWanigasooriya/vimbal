@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { ReviewService } from './review.service'
-import { Web3StorageService } from './web3-storage.service'
+import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
+
 import { AuthService } from './auth.service'
 import { ChainService } from './chain.service'
+import { CommonModule } from '@angular/common'
 import { FirestoreService } from './firestore.service'
 import { GlobalRippleOptionsService } from './global-ripple-options.service'
 import { IpfsService } from './ipfs.service'
 import { LoggerService } from './logger.service'
-import { StorageService } from './storage.service'
-import { WhisperService } from './whisper.service'
+import { NgModule } from '@angular/core'
+import { NotificationService } from './notification.service'
+import { ReviewService } from './review.service'
 import { ServiceOptions } from './models/service-options.model'
-import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
 import { SplashScreenStateService } from './splash-screen-state.service'
+import { StorageService } from './storage.service'
 import { UserService } from './user.service'
+import { Web3StorageService } from './web3-storage.service'
+import { WhisperService } from './whisper.service'
 
 const services = [
   AuthService,
@@ -27,6 +29,7 @@ const services = [
   Web3StorageService,
   WhisperService,
   UserService,
+  NotificationService,
   SplashScreenStateService,
 ]
 
