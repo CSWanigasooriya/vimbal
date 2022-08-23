@@ -1,9 +1,10 @@
-import { Observable, map } from 'rxjs'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core'
+import { Observable, map } from 'rxjs'
+
 import { ActivatedRoute } from '@angular/router'
 import { FileContract } from '@vimbal/model'
-import { ChainService } from '@vimbal/service'
+import { FileService } from '@vimbal/service'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -20,7 +21,7 @@ export class PreviewComponent implements OnInit {
 
   private subscriptions = new Subscription()
 
-  constructor(private _chainService: ChainService, private _route: ActivatedRoute) {
+  constructor(private _chainService: FileService, private _route: ActivatedRoute) {
     const id: Observable<string> = _route.params.pipe(map((p) => p['id']))
     id.subscribe((id) => {
       this.fileId = parseInt(id, 10)
@@ -33,7 +34,7 @@ export class PreviewComponent implements OnInit {
   }
 
   getFile() {
-    this._chainService.getBlockchainData().then(async (data: any) => {
+    this._chainService.getFileData().then(async (data: any) => {
       this.file = await data.methods.files(this.fileId).call()
     })
   }

@@ -153,8 +153,7 @@ h1.app-name {
   display: flex;
   align-items: center;
   margin: 10px 8px;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
   border: none;
   background: white;
   padding: 10px;
@@ -167,8 +166,7 @@ h1.app-name {
   pointer-events: none;
 }
 .new-btn:hover {
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-    0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
   background: #f8f9fa;
 }
 .new-btn:focus {
@@ -191,8 +189,7 @@ h1.app-name {
   display: flex;
   align-items: center;
   margin: 10px 8px;
-  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302),
-    0 1px 3px 1px rgba(14, 14, 14, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302), 0 1px 3px 1px rgba(14, 14, 14, 0.149);
   border: none;
   background: #1d1d1d;
   padding: 10px;
@@ -203,8 +200,7 @@ h1.app-name {
 }
 
 .is-dark .new-btn:hover {
-  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302),
-    0 1px 3px 1px rgba(14, 14, 14, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(14, 14, 14, 0.302), 0 1px 3px 1px rgba(14, 14, 14, 0.149);
   background: #444444;
 }
 .is-dark .new-btn:focus {

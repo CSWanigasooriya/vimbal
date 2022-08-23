@@ -1,10 +1,12 @@
+import { ChainData, FileContract } from '@vimbal/model'
+
+import { BehaviorSubject } from 'rxjs'
+import { FileService } from './file.service'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core'
-import { ChainData, FileContract } from '@vimbal/model'
-import { create } from 'ipfs-http-client'
-import { BehaviorSubject } from 'rxjs'
-import { ChainService } from './chain.service'
+import { NotificationService } from './notification.service'
 import { Web3StorageService } from './web3-storage.service'
+import { create } from 'ipfs-http-client'
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +19,11 @@ export class IpfsService {
   client = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
   constructor(
-    private _chainService: ChainService,
-    private _web3StorageService: Web3StorageService
+    private _chainService: FileService,
+    private _web3StorageService: Web3StorageService,
+    private _notificationService: NotificationService
   ) {
-    this._chainService.getBlockchainData().then((data: any) => {
+    this._chainService.getFileData().then((data: any) => {
       this.chainData = data
     })
   }
@@ -36,13 +39,13 @@ export class IpfsService {
         if (hash && !isFileOwned) {
           await this.chainData.methods
             ?.uploadFile(
-              hash ? hash : '',
-              file.fileName ? file.fileName : '',
-              file.title ? file.title : '',
-              file.authors ? file.authors : '',
-              file.keywords ? file.keywords : '',
-              file.description ? file.description : '',
-              file.createdAt ? file.createdAt : ''
+              hash,
+              file.fileName,
+              file.title,
+              file.authors,
+              file.keywords,
+              file.description,
+              file.createdAt
             )
             .send({
               from: accounts[0],
@@ -71,7 +74,7 @@ export class IpfsService {
             .on('error', (error: any) => console.log(error))
           this.ipfsReceipt.next(hash)
         } else {
-          alert('File already owned by another author')
+          this._notificationService.showError('File already owned by another author')
         }
       })
       .catch((err) => {

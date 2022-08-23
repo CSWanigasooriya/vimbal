@@ -1,6 +1,6 @@
+import { AuthService, FileService, ReviewService } from '@vimbal/service'
 import { Component, OnInit } from '@angular/core'
 import { FileContract, ReviewContract } from '@vimbal/model'
-import { AuthService, ChainService, ReviewService } from '@vimbal/service'
 
 @Component({
   selector: 'vimbal-profile',
@@ -15,10 +15,10 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
-    private _chainService: ChainService,
+    private _chainService: FileService,
     private _reviewService: ReviewService
   ) {
-    this._chainService.getBlockchainData().then(async (data) => {
+    this._chainService.getFileData().then(async (data) => {
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {

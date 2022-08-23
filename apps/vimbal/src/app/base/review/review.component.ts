@@ -1,9 +1,10 @@
-import { of } from 'rxjs'
+import { AuthService, FileService, ReviewService } from '@vimbal/service'
+import { ChainData, FileContract, ReviewContract } from '@vimbal/model'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core'
+
 import { ActivatedRoute } from '@angular/router'
-import { ChainData, FileContract, ReviewContract } from '@vimbal/model'
-import { AuthService, ChainService, ReviewService } from '@vimbal/service'
+import { of } from 'rxjs'
 
 @Component({
   selector: 'vimbal-review',
@@ -23,7 +24,7 @@ export class ReviewComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _chainService: ChainService,
+    private _chainService: FileService,
     private _reviewService: ReviewService,
     private _authService: AuthService
   ) {
@@ -53,7 +54,7 @@ export class ReviewComponent implements OnInit {
   }
 
   getFile() {
-    this._chainService.getBlockchainData().then(async (data: any) => {
+    this._chainService.getFileData().then(async (data: any) => {
       this.file = await data.methods.files(this.fileId).call()
     })
   }

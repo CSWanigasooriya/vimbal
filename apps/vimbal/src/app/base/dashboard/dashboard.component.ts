@@ -1,7 +1,7 @@
+import { AuthService, FileService, ReviewService, UserService } from '@vimbal/service'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core'
 import { FileContract, ReviewContract, UserContract } from '@vimbal/model'
-import { AuthService, ChainService, ReviewService, UserService } from '@vimbal/service'
 @Component({
   selector: 'vimbal-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,31 +12,36 @@ export class DashboardComponent implements OnInit {
   userWalletAddress!: string
   currentBlockNumber!: number
   reviewsByOwner: ReviewContract[] = []
+  filesByOwner: FileContract[] = []
   files: FileContract[] = []
   users: UserContract[] = []
   selectedTabIndex = 0
 
   constructor(
     private _authService: AuthService,
-    private _chainService: ChainService,
+    private _fileService: FileService,
     private _reviewService: ReviewService,
     private _userService: UserService
   ) {
-    this._chainService.getBlockchainData().then(async (data: any) => {
+    this.getWalletAddress()
+
+    this._fileService.getFileData().then(async (data: any) => {
       if (data) this.isLoading = false
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await data.methods?.files(index).call()
-        this.files = [...this.files, this.formatFileData(file)].sort(
-          (a, b) => b.tipAmount - a.tipAmount
-        )
+        const file = await data.methods
+          ?.filesByOwner(this.userWalletAddress, index)
+          .call()
+        if (file?.id != 0)
+          this.filesByOwner = [...this.files, this.formatFileData(file)].sort(
+            (a, b) => b.tipAmount - a.tipAmount
+          )
       }
     })
 
     this._reviewService.getReviewContract().then(async (data: any) => {
       if (data) this.isLoading = false
-      this.userWalletAddress = await this._authService.getWalletAddress()
       const reviewCount = await data?.methods?.reviewCount().call()
       const fileCountInt = parseInt(reviewCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
@@ -62,6 +67,10 @@ export class DashboardComponent implements OnInit {
     window.web3.eth.getAccounts().then((accounts: string | unknown[]) => {
       if (accounts.length === 0) this._authService.requestWalletPermission()
     })
+  }
+
+  async getWalletAddress() {
+    this.userWalletAddress = await this._authService.getWalletAddress()
   }
 
   formatFileData(file: FileContract) {
