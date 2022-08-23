@@ -1,16 +1,16 @@
 import { OverlayContainer } from '@angular/cdk/overlay'
-import { Component, Inject, OnDestroy, Optional, OnInit } from '@angular/core'
+import { Component, Inject, OnDestroy, OnInit, Optional } from '@angular/core'
 import { MatIconRegistry } from '@angular/material/icon'
 import { Title } from '@angular/platform-browser'
 import { RouterOutlet } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { ConnectInfo, ProviderRpcError } from '@vimbal/model'
+import { AuthService } from '@vimbal/service'
 import { Observable, Subscription } from 'rxjs'
+import Web3 from 'web3'
 import { fadeInAnimation } from './core/animation/fade-in.animation'
 import { AppConfig, APP_CONFIG } from './core/config/app.config'
 import { decrement, increment, reset } from './core/state/counter/counter.actions'
-import Web3 from 'web3'
-import { AuthService } from '@vimbal/service'
-import { ConnectInfo, ProviderRpcError } from '@vimbal/model'
 @Component({
   selector: 'vimbal-root',
   templateUrl: './root.component.html',
@@ -51,7 +51,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadWeb3()
-    window?.ethereum.on('accountsChanged', (accounts: unknown) => {
+    window?.ethereum.on('accountsChanged', (accounts: []) => {
       // Handle the new accounts, or lack thereof.
       // "accounts" will always be an array, but it can be empty.
       if (accounts) window.location.reload()

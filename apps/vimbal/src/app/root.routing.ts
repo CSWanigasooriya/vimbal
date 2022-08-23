@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AuthComponent } from './auth/auth.component'
 import { BrowseComponent } from './base/browse/browse.component'
-import { HomeComponent } from './base/home/home.component'
+import { HomeComponent } from './home/home.component'
 import { LayoutComponent } from './layout/layout.component'
 import { ErrorComponent } from './shared/error/error.component'
 

@@ -15,17 +15,18 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
-    private _chainService: FileService,
+    private _fileService: FileService,
     private _reviewService: ReviewService
   ) {
-    this._chainService.getFileData().then(async (data) => {
+    this._fileService.getFileData().then(async (data) => {
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
         const file = await data.methods?.filesByOwner(this.walletAddress, index).call()
-        this.userPublications = [...this.userPublications, file].sort(
-          (a, b) => b.tipAmount - a.tipAmount
-        )
+        if (file?.id != 0)
+          this.userPublications = [...this.userPublications, file].sort(
+            (a, b) => b.tipAmount - a.tipAmount
+          )
       }
     })
 

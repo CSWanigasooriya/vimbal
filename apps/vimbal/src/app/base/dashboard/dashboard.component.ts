@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
           ?.filesByOwner(this.userWalletAddress, index)
           .call()
         if (file?.id != 0)
-          this.filesByOwner = [...this.files, this.formatFileData(file)].sort(
+          this.filesByOwner = [...this.filesByOwner, this.formatFileData(file)].sort(
             (a, b) => b.tipAmount - a.tipAmount
           )
       }
