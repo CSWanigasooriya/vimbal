@@ -2,11 +2,12 @@
 
 ## Working Prototype
 
-- https://vimbal.web.app 
+- https://vimbal.web.app
 
 ## How to Setup
 
 ### Prerequisites
+
 - Git: [Git](https://git-scm.com/)
 - NodeJs: [NodeJs](https://nodejs.org/en/download/)
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
