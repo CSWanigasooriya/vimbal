@@ -36,7 +36,7 @@
           [id]="file.id.toString()"
         >
           <span>{{ file.title }}</span> |
-          <small>Authors: {{ file.authors }}</small>
+          <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
         </mat-option>
       </mat-autocomplete>
     </form>

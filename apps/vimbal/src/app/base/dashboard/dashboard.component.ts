@@ -30,11 +30,17 @@ export class DashboardComponent implements OnInit {
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
-        const file = await data.methods
+        const file = await data.methods?.files(index).call()
+        const filesByOwner = await data.methods
           ?.filesByOwner(this.userWalletAddress, index)
           .call()
+        if (filesByOwner?.id != 0)
+          this.filesByOwner = [
+            ...this.filesByOwner,
+            this.formatFileData(filesByOwner),
+          ].sort((a, b) => b.tipAmount - a.tipAmount)
         if (file?.id != 0)
-          this.filesByOwner = [...this.filesByOwner, this.formatFileData(file)].sort(
+          this.files = [...this.files, this.formatFileData(file)].sort(
             (a, b) => b.tipAmount - a.tipAmount
           )
       }
@@ -85,5 +91,9 @@ export class DashboardComponent implements OnInit {
       createdAt: file.createdAt,
       owner: file.owner,
     } as FileContract
+  }
+
+  getFileById(id: number) {
+    return this.files.find((file) => file.id.toString().includes(id.toString()))
   }
 }
