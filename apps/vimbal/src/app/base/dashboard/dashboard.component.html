@@ -36,6 +36,12 @@
             <div class="review-date mb-1">
               <small>{{ review.createdAt | date: 'MMM d, y, h:mm:ss a' }}</small>
             </div>
+            <div fxFlex></div>
+            <div>
+              <button mat-raised-button [routerLink]="['/review', review.id]">
+                VIEW
+              </button>
+            </div>
           </div>
           <h4 class="review__title">{{ getFileById(review.id)?.title }}</h4>
           <div class="review__score">
