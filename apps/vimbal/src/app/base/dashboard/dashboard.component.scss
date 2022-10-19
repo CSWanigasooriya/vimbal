@@ -7,3 +7,31 @@
 //     margin-left: auto;
 //   }
 // }
+
+.review {
+  width: 100%;
+  padding: 1.1rem;
+
+  #{&} &__title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+
+  #{&} &__score {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+
+    .score {
+      //margin-right: 1rem;
+      font-size: 2rem;
+    }
+
+    .score-stars {
+      margin-left: 0.8rem;
+    }
+  }
+  #{&} &__text {
+    line-height: 1.45;
+  }
+}

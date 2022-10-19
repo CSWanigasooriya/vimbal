@@ -30,7 +30,6 @@ import {
   sideNavAnimation,
   sideNavContainerAnimation,
 } from '../core/animation/side-bar.animations'
-import { toggle } from '../core/state/sidebar/sidebar.actions'
 import { mode } from '../core/state/theme/theme.actions'
 import { AppConfig, APP_CONFIG } from './../core/config/app.config'
 import { SheetComponent } from './../shared/sheet/sheet.component'
@@ -127,6 +126,10 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleSidebarAnimation(): string {
     return this.isCompact ? 'closed' : 'open'
+  }
+
+  decodeData(data?: string) {
+    return data ? window.atob(data).toString() : ''
   }
 
   openBottomSheet() {
