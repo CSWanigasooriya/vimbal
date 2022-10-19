@@ -33,5 +33,6 @@
   "ng-evergreen.upgradeChannel": "Latest",
   "[solidity]": {
     "editor.defaultFormatter": "JuanBlanco.solidity"
-  }
+  },
+  "githubPullRequests.ignoredPullRequestBranches": ["dev"]
 }
