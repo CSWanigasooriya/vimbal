@@ -23,14 +23,14 @@ export class FirestoreService {
   }
 
   async createUser(user: UserContract) {
-    await this.usersCollection.add(user)
+    return await this.usersCollection.add(user)
   }
 
   getFiles() {
     return this.filesCollection.valueChanges()
   }
 
-  async createFile(file: FileContract) {
-    await this.filesCollection.add(file)
+  async updateFile(file: FileContract) {
+    return await this.filesCollection.doc().set(file, { merge: true })
   }
 }

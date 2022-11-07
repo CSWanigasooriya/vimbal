@@ -52,7 +52,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
 
   paperSubmitForm = this._fb.group({
     title: ['', [Validators.required]],
-    abstract: [null, [Validators.minLength(150)]],
+    abstract: [null, [Validators.required, Validators.minLength(100)]],
     authors: this._fb.array([this._fb.control('', Validators.required)]),
     keywords: [null, [Validators.required]],
     fileBuffer: [null, [Validators.required]],
@@ -144,13 +144,11 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
       createdAt: new Date().toString(),
     } as FileContract
 
-    this._ipfsService.uploadFile(this.fileList, fileData).then((receipt: unknown) => {
+    this._ipfsService.uploadFile(this.fileList, fileData).then(() => {
       this.isProcessing = false
-      if (receipt) {
-        this._firestoreService.createFile(fileData).then(() => {
-          this.dialogRef.close(this.paperSubmitForm.value)
-        })
-      }
+      this._firestoreService.updateFile(fileData).then(() => {
+        this.dialogRef.close(this.paperSubmitForm.value)
+      })
     })
   }
 
@@ -159,13 +157,9 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
   }
 
   submitForm() {
+    if (this.paperSubmitForm.invalid) return
     this.getFormValidationErrors()
-    if (this.paperSubmitForm.valid) {
-      this.uploadFileToIpfs()
-      this.keywordsList.errorState = false
-    } else {
-      this.keywordsList.errorState = true
-    }
+    this.uploadFileToIpfs()
   }
 
   getFormValidationErrors() {

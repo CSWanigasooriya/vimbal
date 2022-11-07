@@ -58,7 +58,7 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #account="matMenu">
-      <button mat-menu-item [routerLink]="['/profile']">
+      <button mat-menu-item [routerLink]="['/base/profile']">
         <mat-icon>account_balance_wallet</mat-icon>
         <span>Profile</span>
       </button>
@@ -112,7 +112,7 @@
 
         <mat-list-item
           class="item"
-          [routerLink]="'/dashboard'"
+          [routerLink]="'/base/dashboard'"
           routerLinkActive="active"
           matRipple
           [matRippleDisabled]="true"
@@ -123,7 +123,7 @@
 
         <mat-list-item
           class="item"
-          [routerLink]="'/profile'"
+          [routerLink]="'/base/profile'"
           routerLinkActive="active"
           matRipple
           [matRippleDisabled]="true"

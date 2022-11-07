@@ -25,7 +25,7 @@ import {
   startWith,
   Subscription,
 } from 'rxjs'
-import { SubmitComponent } from '../base/components/submit/submit.component'
+import { SubmitComponent } from '../base/submit/submit.component'
 import {
   sideNavAnimation,
   sideNavContainerAnimation,
@@ -60,7 +60,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private _bottomSheet: MatBottomSheet,
-    private _chainService: FileService,
+    private _fileService: FileService,
     private router: Router,
     private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
@@ -72,7 +72,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => changeDetectorRef.detectChanges()
     this.mobileQuery.addEventListener('change', this._mobileQueryListener)
-    this._chainService.getFileData().then(async (data) => {
+    this._fileService.getFileData().then(async (data) => {
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {

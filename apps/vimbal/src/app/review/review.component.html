@@ -1,0 +1,159 @@
+<div class="mat-app-background min-h-screen">
+  <p class="p-2">
+    <mat-toolbar class="toolbar mat-elevation-z4">
+      <button mat-icon-button [routerLink]="['/']">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="app-name">REVIEW {{ config.title | uppercase }}</h1>
+
+      <span class="flex-auto"></span>
+      <form *ngIf="!mobileQuery.matches">
+        <input
+          class="search"
+          type="text"
+          placeholder="Search..."
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onSelectionChanged($event)"
+        >
+          <mat-option
+            *ngFor="let file of filteredOptions | async"
+            [value]="file.title"
+            [id]="file.id.toString()"
+          >
+            <span>{{ file.title }}</span> |
+            <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </form>
+      <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleDarkMode()" matTooltip="Toggle Theme">
+        <mat-icon>{{ (theme$ | async) === true ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+  <mat-card class="mat-elevation-z10 header">
+    <mat-card-title-group>
+      <mat-card-title>{{ file?.title }}</mat-card-title>
+      <mat-card-subtitle>
+        <b>Authors:</b>
+        <span
+          *ngFor="
+            let author of decodeData(file?.authors) | splitBy: ',';
+            let i = index;
+            let last = last
+          "
+        >
+          {{ author }}<span *ngIf="!last">, </span>
+        </span>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <p>
+        <b>URL: </b
+        ><a class="hover:cursor-pointer"
+          >https://{{ file?.hash }}.ipfs.w3s.link/{{ file?.fileName }}</a
+        >
+      </p>
+
+      <p><b>Abstract: </b>{{ file?.description }}</p>
+      <p>
+        <b>Keywords: </b>
+        <span
+          *ngFor="
+            let keyword of decodeData(file?.keywords) | splitBy: ',';
+            let i = index;
+            let last = last
+          "
+        >
+          {{ keyword }}<span *ngIf="!last">, </span>
+        </span>
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-container
+    *ngIf="reviews.length > 0; then available; else unavailable"
+  ></ng-container>
+
+  <ng-template #unavailable>
+    <div class="container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
+      <div class="lg:flex-grow flex flex-col items-center text-center">
+        <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium">
+          Reviews Unavailable
+        </h2>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #available>
+    <div class="container h-full">
+      <mat-list class="content">
+        <div mat-subheader>Reviews</div>
+        <mat-list-item
+          *ngFor="let review of reviews"
+          matRipple
+          class="hover:cursor-pointer"
+        >
+          <div matListAvatar><svg [data-jdenticon-value]="review?.owner"></svg></div>
+          <div mat-line>{{ review?.owner }}</div>
+          <div mat-line>
+            <small>{{ review?.createdAt | date: 'MMM d, y, h:mm:ss a' }}</small>
+          </div>
+          <div mat-line>{{ review?.review }}</div>
+          <vimbal-star-rating
+            [readonly]="true"
+            [size]="1"
+            [initialStars]="+review.rating || 0"
+            [color]="'#FFBF00'"
+            [maxStars]="5"
+            (ratingOutput)="onRatingSet($event)"
+          ></vimbal-star-rating>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </ng-template>
+
+  <br />
+
+  <mat-card
+    class="pin-bottom mat-elevation-z3 hover:shadow-2xl"
+    *ngIf="(isOwner() | async) === false"
+  >
+    <mat-card-title-group>
+      <vimbal-star-rating
+        [readonly]="false"
+        [size]="2"
+        [initialStars]="0"
+        [color]="'#FFBF00'"
+        [maxStars]="5"
+        (ratingOutput)="onRatingSet($event)"
+      ></vimbal-star-rating>
+      <mat-card-title>Post Review</mat-card-title>
+      <mat-card-subtitle>Leave your review here</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Type Review</mat-label>
+        <input matInput [(ngModel)]="ngReviewTextModel" />
+        <button mat-icon-button matSuffix (click)="createReview()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="100"
+        color="primary"
+      ></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

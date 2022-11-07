@@ -57,12 +57,12 @@
             mat-raised-button
             color="primary"
             class="inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg"
-            [routerLink]="['/dashboard']"
+            [routerLink]="['/base/dashboard']"
           >
             PUBLISH
           </button>
           <button
-            class="ml-4 inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
+            class="ml-4 inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 hover:bg-opacity-50 rounded text-lg"
             [routerLink]="['/browse']"
           >
             BROWSE
@@ -99,6 +99,15 @@
               <div class="flex-grow">
                 <p class="leading-relaxed text-base text-justify abstract text-gray-500">
                   {{ file.description }}
+                </p>
+                <p>
+                  <vimbal-star-rating
+                    [readonly]="true"
+                    [size]="1"
+                    [initialStars]="1 || 0"
+                    [color]="'#FFBF00'"
+                    [maxStars]="5"
+                  ></vimbal-star-rating>
                 </p>
                 <a
                   class="mt-3 inline-flex items-center hover:cursor-pointer text-cyan-800"

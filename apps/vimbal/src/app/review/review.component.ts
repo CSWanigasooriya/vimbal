@@ -1,7 +1,21 @@
-import { AuthService, FileService, ReviewService } from '@vimbal/service'
 import { ChainData, FileContract, ReviewContract } from '@vimbal/model'
+import { AuthService, FileService, ReviewService } from '@vimbal/service'
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit } from '@angular/core'
+import { MediaMatcher } from '@angular/cdk/layout'
+import {
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Optional,
+} from '@angular/core'
+import { FormControl } from '@angular/forms'
+import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { Observable, Subscription } from 'rxjs'
+import { AppConfig, APP_CONFIG } from '../core/config/app.config'
+import { mode } from '../core/state/theme/theme.actions'
 
 import { ActivatedRoute } from '@angular/router'
 import { of } from 'rxjs'
@@ -11,7 +25,7 @@ import { of } from 'rxjs'
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss'],
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent implements OnInit, OnDestroy {
   fileId!: number
   file!: FileContract
   isLoading = true
@@ -22,13 +36,32 @@ export class ReviewComponent implements OnInit {
   ratingValue = 0
   walletAddress!: string
 
+  private subscriptions = new Subscription()
+
+  mobileQuery: MediaQueryList
+  theme$: Observable<boolean>
+  searchControl = new FormControl('')
+  filteredOptions!: Observable<FileContract[]>
+  files: FileContract[] = []
+
+  private _mobileQueryListener: () => void
+
   constructor(
+    private router: Router,
+    private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
+    @Optional() @Inject(APP_CONFIG) public config: AppConfig,
+    media: MediaMatcher,
+    changeDetectorRef: ChangeDetectorRef,
     private _route: ActivatedRoute,
-    private _chainService: FileService,
+    private _fileService: FileService,
     private _reviewService: ReviewService,
     private _authService: AuthService
   ) {
     this.fileId = Number(this._route.snapshot.paramMap.get('id'))
+    this.theme$ = store.select('theme')
+    this.mobileQuery = media.matchMedia('(max-width: 600px)')
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges()
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener)
     this._reviewService.getReviewContract().then(async (data: any) => {
       if (data) this.isLoading = false
       this.reviewData = data
@@ -49,12 +82,31 @@ export class ReviewComponent implements OnInit {
     this.walletAddress = await this._authService.getWalletAddress()
   }
 
+  ngOnDestroy(): void {
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener)
+    this.subscriptions.unsubscribe()
+  }
+
+  private _filter(value: string): FileContract[] {
+    const filterValue = value.toLowerCase()
+    return this.files?.filter((state) => state.title.toLowerCase().includes(filterValue))
+  }
+
+  onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {
+    const selectedValue = event.option.id
+    this.router.navigate(['/preview', selectedValue])
+  }
+
+  toggleDarkMode() {
+    this.store.dispatch(mode())
+  }
+
   onRatingSet(rating: number): void {
     this.ratingValue = rating
   }
 
   getFile() {
-    this._chainService.getFileData().then(async (data: any) => {
+    this._fileService.getFileData().then(async (data: any) => {
       this.file = await data.methods.files(this.fileId).call()
     })
   }

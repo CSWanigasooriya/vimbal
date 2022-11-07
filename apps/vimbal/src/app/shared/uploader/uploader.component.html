@@ -16,17 +16,12 @@
     </div>
     <div class="flex-initial">
       <div class="file-upload">
-        <button mat-mini-fab color="primary" (click)="fileUpload.click()">
+        <button type="button" mat-mini-fab color="primary" (click)="fileUpload.click()">
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
     </div>
   </div>
 
-  <input
-    type="file"
-    (change)="captureFile($event)"
-    class="file-input"
-    #fileUpload
-  />
+  <input type="file" (change)="captureFile($event)" class="file-input" #fileUpload />
 </form>

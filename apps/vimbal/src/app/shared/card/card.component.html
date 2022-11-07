@@ -1,0 +1,29 @@
+<div class="card">
+  <header>Quote of the Day</header>
+  <div class="content">
+    <div class="quote-area">
+      <i class="fas fa-quote-left"></i>
+      <p class="quote">
+        Nothing ever goes away until it has taught us what we need to know.
+      </p>
+      <i class="fas fa-quote-right"></i>
+    </div>
+    <div class="author">
+      <span>__</span>
+      <span
+        *ngFor="
+          let author of decodeData(formatedFileData?.authors) | splitBy: ',';
+          let i = index;
+          let last = last
+        "
+      >
+        {{ author }}<span *ngIf="!last">, </span>
+      </span>
+    </div>
+  </div>
+  <div class="buttons">
+    <div class="features">
+      <button mat-stroked-button>TIP AUTHOR</button>
+    </div>
+  </div>
+</div>

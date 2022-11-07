@@ -3,10 +3,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 
 import { Store } from '@ngrx/store'
 import { FileContract, UserContract } from '@vimbal/model'
-import { AuthService, FileService, FirestoreService } from '@vimbal/service'
+import {
+  AuthService,
+  FileService,
+  FirestoreService,
+  ReviewService,
+} from '@vimbal/service'
 import { Observable, Subscription } from 'rxjs'
 import { mode } from '../core/state/theme/theme.actions'
-
 @Component({
   selector: 'vimbal-home',
   templateUrl: './home.component.html',
@@ -21,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   constructor(
+    private _reviewService: ReviewService,
     private _authService: AuthService,
     private _fileService: FileService,
     private _firestoreService: FirestoreService,
@@ -78,5 +83,22 @@ export class HomeComponent implements OnInit, OnDestroy {
       createdAt: file.createdAt,
       owner: file.owner,
     } as FileContract
+  }
+
+  getAverageRating(file: FileContract): number {
+    let reviewCountPerFile = 0
+    let totalReviewsPerFile = 0
+    this._reviewService.getReviewContract().then(async (data: any) => {
+      const reviewCount = await data?.methods?.reviewCount().call()
+      const reviewCountInt = parseInt(reviewCount, 16)
+      for (let index = 1; index <= reviewCountInt; index++) {
+        const review = await data.methods?.reviews(file.id).call()
+        if (review?.id != 0) {
+          totalReviewsPerFile += 1
+          reviewCountPerFile += parseInt(review.rating.toString(), 16)
+        }
+      }
+    })
+    return reviewCountPerFile / totalReviewsPerFile
   }
 }

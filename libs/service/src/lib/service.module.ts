@@ -16,6 +16,7 @@ import { StorageService } from './storage.service'
 import { UserService } from './user.service'
 import { Web3StorageService } from './web3-storage.service'
 import { WhisperService } from './whisper.service'
+import { GunService } from './gun.service'
 
 const services = [
   AuthService,
@@ -31,6 +32,7 @@ const services = [
   UserService,
   NotificationService,
   SplashScreenStateService,
+  GunService,
 ]
 
 @NgModule({
