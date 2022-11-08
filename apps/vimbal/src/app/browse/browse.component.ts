@@ -15,6 +15,7 @@ import {
 } from 'rxjs'
 import { AppConfig, APP_CONFIG } from '../core/config/app.config'
 import { mode } from '../core/state/theme/theme.actions'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'vimbal-browse',
@@ -33,14 +34,15 @@ export class BrowseComponent implements OnDestroy {
   private _mobileQueryListener: () => void
 
   constructor(
-    private router: Router,
-    private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
+    public location: Location,
+    private _router: Router,
+    private _store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
     media: MediaMatcher,
     private _fileService: FileService,
     changeDetectorRef: ChangeDetectorRef
   ) {
-    this.theme$ = store.select('theme')
+    this.theme$ = _store.select('theme')
     this.mobileQuery = media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => changeDetectorRef.detectChanges()
     this.mobileQuery.addEventListener('change', this._mobileQueryListener)
@@ -72,11 +74,11 @@ export class BrowseComponent implements OnDestroy {
 
   onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {
     const selectedValue = event.option.id
-    this.router.navigate(['/preview', selectedValue])
+    this._router.navigate(['/review', selectedValue])
   }
 
   toggleDarkMode() {
-    this.store.dispatch(mode())
+    this._store.dispatch(mode())
   }
 
   decodeData(data?: string) {

@@ -1,22 +1,21 @@
 import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
 
-import { AuthService } from './auth.service'
 import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { AuthService } from './auth.service'
 import { FileService } from './file.service'
 import { FirestoreService } from './firestore.service'
 import { GlobalRippleOptionsService } from './global-ripple-options.service'
 import { IpfsService } from './ipfs.service'
 import { LoggerService } from './logger.service'
-import { NgModule } from '@angular/core'
+import { ServiceOptions } from './models/service-options.model'
 import { NotificationService } from './notification.service'
 import { ReviewService } from './review.service'
-import { ServiceOptions } from './models/service-options.model'
 import { SplashScreenStateService } from './splash-screen-state.service'
 import { StorageService } from './storage.service'
 import { UserService } from './user.service'
 import { Web3StorageService } from './web3-storage.service'
 import { WhisperService } from './whisper.service'
-import { GunService } from './gun.service'
 
 const services = [
   AuthService,
@@ -32,7 +31,6 @@ const services = [
   UserService,
   NotificationService,
   SplashScreenStateService,
-  GunService,
 ]
 
 @NgModule({

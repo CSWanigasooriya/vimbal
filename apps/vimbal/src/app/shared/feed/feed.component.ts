@@ -1,4 +1,4 @@
-import { AuthService, FileService } from '@vimbal/service'
+import { AuthService, FileService, FirestoreService } from '@vimbal/service'
 import { Component, Input, OnInit } from '@angular/core'
 
 import { FileContract } from '@vimbal/model'
@@ -14,7 +14,11 @@ export class FeedComponent implements OnInit {
   formatedFileData!: Partial<FileContract>
   walletAddress!: string
   isLoading = true
-  constructor(private _authService: AuthService, private _chainService: FileService) {
+  constructor(
+    private _authService: AuthService,
+    private _fileService: FileService,
+    private _firestoreService: FirestoreService
+  ) {
     this.fileData = {} as FileContract
   }
 
@@ -38,7 +42,7 @@ export class FeedComponent implements OnInit {
 
   async tipAuthor(id?: number) {
     const tipAmount = await window.web3.utils.toWei('0.1', 'Ether')
-    this._chainService.tipAuthor(id?.toString(), tipAmount).then((payment) => {
+    this._fileService.tipAuthor(id?.toString(), tipAmount).then((payment) => {
       console.log('payment', payment)
       window.location.reload()
     })

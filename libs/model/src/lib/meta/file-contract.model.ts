@@ -10,3 +10,7 @@ export interface FileContract {
   createdAt: string
   owner: number
 }
+
+export type FileContractWrapper = FileContract & {
+  averageRating: number
+}

@@ -22,7 +22,7 @@
         mat-stroked-button
         [routerLink]="['/preview', formatedFileData.id]"
       >
-        View Paper
+        Full Paper
       </button>
     </div>
   </mat-card-header>
@@ -33,7 +33,6 @@
         {{ formatedFileData.createdAt | date: 'medium' }}
       </code>
     </div>
-
     <p>
       <code> <b>Abstract: </b>{{ formatedFileData.description }} </code>
     </p>

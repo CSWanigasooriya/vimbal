@@ -1,7 +1,7 @@
 <div class="mat-app-background min-h-screen">
   <p class="p-2">
     <mat-toolbar class="toolbar mat-elevation-z4">
-      <button mat-icon-button [routerLink]="['/']">
+      <button mat-icon-button (click)="location.back()">
         <mat-icon>arrow_back</mat-icon>
       </button>
       <h1 class="app-name">REVIEW {{ config.title | uppercase }}</h1>
@@ -52,6 +52,15 @@
         >
           {{ author }}<span *ngIf="!last">, </span>
         </span>
+        <div>
+          <vimbal-star-rating
+            [readonly]="true"
+            [size]="1"
+            [initialStars]="file.averageRating || 0"
+            [color]="'#FFBF00'"
+            [maxStars]="5"
+          ></vimbal-star-rating>
+        </div>
       </mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
@@ -76,6 +85,16 @@
         </span>
       </p>
     </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        matTooltip="Preview the full paper"
+        [routerLink]="['/preview', file.id]"
+      >
+        Full Paper
+      </button>
+    </mat-card-actions>
   </mat-card>
 
   <ng-container

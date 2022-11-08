@@ -6,6 +6,10 @@
 
 a {
   color: cornflowerblue;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .pin-bottom {
@@ -69,6 +73,7 @@ h1.app-name {
   position: absolute;
   bottom: 0;
   width: 100%;
+  z-index: 999;
 
   .mat-line {
     font-weight: 600;

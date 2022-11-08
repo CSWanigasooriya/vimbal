@@ -12,6 +12,7 @@ import { NgxJdenticonModule } from 'ngx-jdenticon'
 import { SplashComponent } from './splash/splash.component'
 import { SheetComponent } from './sheet/sheet.component'
 import { DialogComponent } from './dialog/dialog.component'
+import { NgxDocViewerModule } from 'ngx-doc-viewer'
 
 const sharedComponents = [
   SplashComponent,
@@ -26,7 +27,14 @@ const sharedComponents = [
 
 @NgModule({
   declarations: [...sharedComponents],
-  imports: [CommonModule, MaterialModule, RouterModule, NgxJdenticonModule, PipeModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    NgxJdenticonModule,
+    NgxDocViewerModule,
+    PipeModule,
+  ],
   exports: [...sharedComponents],
 })
 export class SharedModule {}

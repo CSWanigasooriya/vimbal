@@ -4,18 +4,20 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore'
-import { FileContract, UserContract } from '@vimbal/model'
+import { FileContract, ReviewContract, UserContract } from '@vimbal/model'
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirestoreService {
   private usersCollection: AngularFirestoreCollection<UserContract>
-  private filesCollection: AngularFirestoreCollection<FileContract>
+  private filesCollection: AngularFirestoreCollection<Partial<FileContract>>
+  private reviewsCollection: AngularFirestoreCollection<Partial<ReviewContract>>
 
   constructor(private afs: AngularFirestore) {
     this.usersCollection = this.afs.collection<UserContract>('users')
-    this.filesCollection = this.afs.collection<FileContract>('files')
+    this.filesCollection = this.afs.collection<Partial<FileContract>>('files')
+    this.reviewsCollection = this.afs.collection<Partial<ReviewContract>>('reviews')
   }
 
   getUsers(): Observable<UserContract[]> {
@@ -30,7 +32,24 @@ export class FirestoreService {
     return this.filesCollection.valueChanges()
   }
 
-  async updateFile(file: FileContract) {
+  getReviews() {
+    return this.reviewsCollection.valueChanges()
+  }
+
+  async getAverageReviewScore(fileId: number) {
+    const reviews = await this.reviewsCollection.ref.where('id', '==', fileId).get()
+    const reviewCount = reviews.docs.length
+    const reviewScore = reviews.docs.reduce((acc, curr) => {
+      return acc + (curr.data().rating ? Number(curr.data().rating) : 0)
+    }, 0)
+    return reviewScore / reviewCount
+  }
+
+  async updateFile(file: Partial<FileContract>) {
     return await this.filesCollection.doc().set(file, { merge: true })
+  }
+
+  async updateReview(review: Partial<ReviewContract>) {
+    return await this.reviewsCollection.doc().set(review, { merge: true })
   }
 }

@@ -148,6 +148,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
       this.isProcessing = false
       this._firestoreService.updateFile(fileData).then(() => {
         this.dialogRef.close(this.paperSubmitForm.value)
+        location.reload()
       })
     })
   }

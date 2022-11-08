@@ -101,3 +101,27 @@ ul .speech.active {
   opacity: 0.7;
   pointer-events: none;
 }
+
+.doc-viewer {
+  width: 100%;
+  height: 220px;
+}
+
+.card {
+  height: 620px;
+  border: 1px white solid;
+}
+
+h1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

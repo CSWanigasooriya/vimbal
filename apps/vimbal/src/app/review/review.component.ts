@@ -1,5 +1,15 @@
-import { ChainData, FileContract, ReviewContract } from '@vimbal/model'
-import { AuthService, FileService, ReviewService } from '@vimbal/service'
+import {
+  ChainData,
+  FileContract,
+  FileContractWrapper,
+  ReviewContract,
+} from '@vimbal/model'
+import {
+  AuthService,
+  FileService,
+  FirestoreService,
+  ReviewService,
+} from '@vimbal/service'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MediaMatcher } from '@angular/cdk/layout'
 import {
@@ -16,6 +26,7 @@ import { Store } from '@ngrx/store'
 import { Observable, Subscription } from 'rxjs'
 import { AppConfig, APP_CONFIG } from '../core/config/app.config'
 import { mode } from '../core/state/theme/theme.actions'
+import { Location } from '@angular/common'
 
 import { ActivatedRoute } from '@angular/router'
 import { of } from 'rxjs'
@@ -27,11 +38,11 @@ import { of } from 'rxjs'
 })
 export class ReviewComponent implements OnInit, OnDestroy {
   fileId!: number
-  file!: FileContract
+  file!: FileContractWrapper
   isLoading = true
   symKeyId!: string
   reviewData!: ChainData
-  reviews: ReviewContract[] = []
+  reviews: Array<ReviewContract> = []
   ngReviewTextModel = ''
   ratingValue = 0
   walletAddress!: string
@@ -47,8 +58,10 @@ export class ReviewComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void
 
   constructor(
-    private router: Router,
-    private store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
+    public location: Location,
+    private _router: Router,
+    private _firestoreService: FirestoreService,
+    private _store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     @Optional() @Inject(APP_CONFIG) public config: AppConfig,
     media: MediaMatcher,
     changeDetectorRef: ChangeDetectorRef,
@@ -58,28 +71,16 @@ export class ReviewComponent implements OnInit, OnDestroy {
     private _authService: AuthService
   ) {
     this.fileId = Number(this._route.snapshot.paramMap.get('id'))
-    this.theme$ = store.select('theme')
+    this.theme$ = _store.select('theme')
     this.mobileQuery = media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => changeDetectorRef.detectChanges()
     this.mobileQuery.addEventListener('change', this._mobileQueryListener)
-    this._reviewService.getReviewContract().then(async (data: any) => {
-      if (data) this.isLoading = false
-      this.reviewData = data
-      const reviewCount = await this.reviewData?.methods?.reviewCount().call()
-      const fileCountInt = parseInt(reviewCount, 16)
-      for (let index = 1; index <= fileCountInt; index++) {
-        const review = await this.reviewData.methods?.reviews(this.fileId, index).call()
-        if (review?.id != 0) this.reviews = [...this.reviews, review]
-      }
-    })
   }
 
-  async ngOnInit() {
-    this.getFile()
-    // this._reviewService.createReview(this.fileId, 'test');
-    this._reviewService.deleteReview(this.fileId, 1)
-
-    this.walletAddress = await this._authService.getWalletAddress()
+  ngOnInit() {
+    this.getWalletAddress()
+    this.setFileData()
+    this.setReviewData()
   }
 
   ngOnDestroy(): void {
@@ -87,27 +88,42 @@ export class ReviewComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  private _filter(value: string): FileContract[] {
-    const filterValue = value.toLowerCase()
-    return this.files?.filter((state) => state.title.toLowerCase().includes(filterValue))
-  }
-
   onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {
     const selectedValue = event.option.id
-    this.router.navigate(['/preview', selectedValue])
+    this._router.navigate(['/preview', selectedValue])
+  }
+
+  setReviewData() {
+    this._reviewService.getReviewContract().then(async (data: any) => {
+      if (data) this.isLoading = false
+      this.reviewData = data
+      const reviewCount = await this.reviewData?.methods?.reviewCount().call()
+      const reviewCountInt = parseInt(reviewCount, 16)
+      for (let index = 1; index <= reviewCountInt; index++) {
+        const review = await this.reviewData.methods?.reviews(this.fileId, index).call()
+        if (review?.id != 0) {
+          this.reviews = [...this.reviews, review]
+        }
+      }
+    })
   }
 
   toggleDarkMode() {
-    this.store.dispatch(mode())
+    this._store.dispatch(mode())
   }
 
   onRatingSet(rating: number): void {
     this.ratingValue = rating
   }
 
-  getFile() {
+  setFileData() {
     this._fileService.getFileData().then(async (data: any) => {
-      this.file = await data.methods.files(this.fileId).call()
+      this.getAverageRating(this.fileId).then(async (averageRating) => {
+        this.file = this.formatFileData({
+          ...(await data.methods.files(this.fileId).call()),
+          averageRating,
+        })
+      })
     })
   }
 
@@ -127,11 +143,48 @@ export class ReviewComponent implements OnInit, OnDestroy {
     this._reviewService
       .createReview(this.fileId, this.ngReviewTextModel, this.ratingValue?.toString())
       .then(() => {
-        window.location.reload()
+        this._firestoreService
+          .updateReview({
+            id: this.fileId,
+            review: this.ngReviewTextModel,
+            rating: this.ratingValue?.toString(),
+            createdAt: new Date().toISOString(),
+            owner: this.walletAddress,
+          })
+          .then(() => {
+            this.ngReviewTextModel = ''
+            this.ratingValue = 0
+            location.reload()
+          })
       })
   }
 
+  private formatFileData(file: FileContractWrapper) {
+    return {
+      id: file.id,
+      hash: file.hash,
+      title: file.title,
+      authors: file.authors,
+      keywords: file.keywords,
+      description: file.description,
+      tipAmount: file.tipAmount,
+      createdAt: file.createdAt,
+      owner: file.owner,
+      averageRating: file.averageRating,
+    } as FileContractWrapper
+  }
+
+  async getWalletAddress() {
+    this.walletAddress = await this._authService.getWalletAddress()
+  }
+
   isOwner() {
+    if (!this.file.id) return of(false)
     return of(this.file?.owner.toString() === this.walletAddress)
+  }
+
+  async getAverageRating(fileId: number) {
+    const data = await this._firestoreService.getAverageReviewScore(fileId)
+    return data
   }
 }

@@ -2,15 +2,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 
 import { Store } from '@ngrx/store'
-import { FileContract, UserContract } from '@vimbal/model'
-import {
-  AuthService,
-  FileService,
-  FirestoreService,
-  ReviewService,
-} from '@vimbal/service'
+import { FileContractWrapper, UserContract } from '@vimbal/model'
+import { AuthService, FileService, FirestoreService } from '@vimbal/service'
 import { Observable, Subscription } from 'rxjs'
 import { mode } from '../core/state/theme/theme.actions'
+
 @Component({
   selector: 'vimbal-home',
   templateUrl: './home.component.html',
@@ -19,13 +15,12 @@ import { mode } from '../core/state/theme/theme.actions'
 export class HomeComponent implements OnInit, OnDestroy {
   theme$: Observable<boolean>
   users: UserContract[] = []
-  files: FileContract[] = []
+  files: FileContractWrapper[] = []
   userWalletAddress = ''
 
   private subscriptions = new Subscription()
 
   constructor(
-    private _reviewService: ReviewService,
     private _authService: AuthService,
     private _fileService: FileService,
     private _firestoreService: FirestoreService,
@@ -36,18 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._fileService.getFileData().then(async (data: any) => {
-      const fileCount = await data?.methods?.fileCount().call()
-      const fileCountInt = parseInt(fileCount, 16)
-      for (let index = 1; index <= fileCountInt; index++) {
-        const file = await data.methods?.files(index).call()
-        if (file?.id != 0)
-          this.files = [...this.files, this.formatFileData(file)].sort(
-            (a, b) => b.tipAmount - a.tipAmount
-          )
-      }
-    })
-
+    this.setFileData()
     this.subscriptions.add(
       this._firestoreService.getUsers().subscribe((users) => {
         this.users = users as UserContract[]
@@ -71,34 +55,40 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.store.dispatch(mode())
   }
 
-  formatFileData(file: FileContract) {
+  private setFileData() {
+    this._fileService.getFileData().then(async (data: any) => {
+      const fileCount = await data?.methods?.fileCount().call()
+      const fileCountInt = parseInt(fileCount, 16)
+      for (let index = 1; index <= fileCountInt; index++) {
+        const file = await data.methods?.files(index).call()
+        if (file?.id != 0)
+          this.getAverageRating(index).then(async (averageRating) => {
+            this.files = [
+              ...this.files,
+              this.formatFileData({ ...file, averageRating }),
+            ].sort((a, b) => b.averageRating - a.averageRating)
+          })
+      }
+    })
+  }
+
+  private formatFileData(file: FileContractWrapper) {
     return {
-      id: parseInt(file.id.toString(), 16),
+      id: file.id,
       hash: file.hash,
       title: file.title,
       authors: file.authors,
       keywords: file.keywords,
       description: file.description,
-      tipAmount: parseInt(file.tipAmount.toString(), 16),
+      tipAmount: file.tipAmount,
       createdAt: file.createdAt,
       owner: file.owner,
-    } as FileContract
+      averageRating: file.averageRating || 0,
+    } as FileContractWrapper
   }
 
-  getAverageRating(file: FileContract): number {
-    let reviewCountPerFile = 0
-    let totalReviewsPerFile = 0
-    this._reviewService.getReviewContract().then(async (data: any) => {
-      const reviewCount = await data?.methods?.reviewCount().call()
-      const reviewCountInt = parseInt(reviewCount, 16)
-      for (let index = 1; index <= reviewCountInt; index++) {
-        const review = await data.methods?.reviews(file.id).call()
-        if (review?.id != 0) {
-          totalReviewsPerFile += 1
-          reviewCountPerFile += parseInt(review.rating.toString(), 16)
-        }
-      }
-    })
-    return reviewCountPerFile / totalReviewsPerFile
+  private async getAverageRating(fileId: number) {
+    const data = await this._firestoreService.getAverageReviewScore(fileId)
+    return data
   }
 }
