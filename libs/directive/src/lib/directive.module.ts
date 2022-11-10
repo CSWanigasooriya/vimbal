@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ScrollToDirective } from './scroll-to.directive';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { ScrollToDirective } from './scroll-to.directive'
 
 @NgModule({
   imports: [CommonModule],

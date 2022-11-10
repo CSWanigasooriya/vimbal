@@ -1,8 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AuthService } from '@vimbal/service';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, ViewChild } from '@angular/core'
+import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { AuthService } from '@vimbal/service'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'vimbal-auth',
@@ -11,23 +11,23 @@ import { Observable } from 'rxjs';
 })
 export class AuthComponent {
   @ViewChild('container', { read: ElementRef, static: false })
-  container!: ElementRef;
+  container!: ElementRef
 
-  theme$: Observable<boolean>;
+  theme$: Observable<boolean>
 
   constructor(
     private store: Store<{ count: number; theme: boolean }>,
     private _authService: AuthService,
     private _router: Router
   ) {
-    this.theme$ = this.store.select('theme');
+    this.theme$ = this.store.select('theme')
   }
 
   connectMetaMask() {
-    this._authService.requestWalletPermission();
+    this._authService.requestWalletPermission()
   }
 
   toggleClass() {
-    this.container.nativeElement.classList.toggle('slide');
+    this.container.nativeElement.classList.toggle('slide')
   }
 }

@@ -1,3 +1,3 @@
-import { createAction } from '@ngrx/store';
+import { createAction } from '@ngrx/store'
 
-export const toggle = createAction('[Sidebar Component] Toggle');
+export const toggle = createAction('[Sidebar Component] Toggle')

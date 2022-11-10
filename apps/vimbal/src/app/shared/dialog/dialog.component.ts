@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '@vimbal/model';
+import { Component, Inject } from '@angular/core'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { DialogData } from '@vimbal/model'
 
 @Component({
   selector: 'vimbal-dialog',
@@ -14,6 +14,6 @@ export class DialogComponent {
   ) {}
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close()
   }
 }

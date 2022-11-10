@@ -1,11 +1,11 @@
 export interface IpfsReceipt {
-  path: string;
+  path: string
   cid: {
-    code: number;
-    version: number;
+    code: number
+    version: number
     hash?: {
-      [key: string]: number;
-    };
-  };
-  size: number;
+      [key: string]: number
+    }
+  }
+  size: number
 }

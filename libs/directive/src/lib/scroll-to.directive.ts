@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef } from '@angular/core'
 
 @Directive({
   selector: '[vimbalScrollTo]',
@@ -6,6 +6,6 @@ import { AfterViewInit, Directive, ElementRef } from '@angular/core';
 export class ScrollToDirective implements AfterViewInit {
   constructor(private elRef: ElementRef) {}
   ngAfterViewInit() {
-    this.elRef.nativeElement.scrollIntoView();
+    this.elRef.nativeElement.scrollIntoView()
   }
 }

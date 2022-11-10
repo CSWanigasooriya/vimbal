@@ -31,10 +31,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/service/src/**/*.ts",
-          "libs/service/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/service/src/**/*.ts", "libs/service/src/**/*.html"]
       }
     }
   },

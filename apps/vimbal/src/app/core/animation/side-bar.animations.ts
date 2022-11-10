@@ -1,11 +1,4 @@
-import {
-  animate,
-  stagger,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, stagger, state, style, transition, trigger } from '@angular/animations'
 
 /*
  * animation: sideNaveAnimation
@@ -31,7 +24,7 @@ export const sideNavAnimation = trigger('openCloseSidenav', [
   ),
   transition('open => closed', [animate('0.4s ease-out')]),
   transition('closed => open', [animate('0.25s ease-in')]),
-]);
+])
 
 /*
  * animation: sideNavContainerAnimation
@@ -55,4 +48,4 @@ export const sideNavContainerAnimation = trigger('openCloseSidenavContent', [
   ),
   transition('open => closed', [animate('0.4s ease-out')]),
   transition('closed => open', [animate('0.25s ease-in')]),
-]);
+])

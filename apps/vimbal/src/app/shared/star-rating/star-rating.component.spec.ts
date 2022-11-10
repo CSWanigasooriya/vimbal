@@ -1,24 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { StarRatingComponent } from './star-rating.component';
+import { StarRatingComponent } from './star-rating.component'
 
 describe('StarRatingComponent', () => {
-  let component: StarRatingComponent;
-  let fixture: ComponentFixture<StarRatingComponent>;
+  let component: StarRatingComponent
+  let fixture: ComponentFixture<StarRatingComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StarRatingComponent],
-    }).compileComponents();
-  });
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StarRatingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(StarRatingComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
