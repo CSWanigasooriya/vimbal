@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { ReviewContractBuild } from '@vimbal/contract'
+import { ReviewContractBuild } from './contract'
 
 @Injectable({
   providedIn: 'root',

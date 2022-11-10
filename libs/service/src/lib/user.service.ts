@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { UserContractBuild } from '@vimbal/contract'
 import { UserContract } from '@vimbal/model'
+import { UserContractBuild } from './contract'
 
 @Injectable({
   providedIn: 'root',

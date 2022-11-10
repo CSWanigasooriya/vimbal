@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "contract": "libs/contract",
     "directive": "libs/directive",
     "material": "libs/material",
     "model": "libs/model",

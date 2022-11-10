@@ -17,7 +17,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vimbal/contract": ["libs/contract/src/index.ts"],
       "@vimbal/directive": ["libs/directive/src/index.ts"],
       "@vimbal/material": ["libs/material/src/index.ts"],
       "@vimbal/model": ["libs/model/src/index.ts"],
@@ -25,6 +24,7 @@
       "@vimbal/resolver": ["libs/resolver/src/index.ts"],
       "@vimbal/service": ["libs/service/src/index.ts"],
       "@vimbal/ui": ["libs/ui/src/index.ts"],
+      "@vimbal/contract": ["libs/service/src/contract/index.ts"],
       "assert": ["./node_modules/assert"],
       "buffer": ["./node_modules/buffer"],
       "crypto": ["./node_modules/crypto-browserify"],
