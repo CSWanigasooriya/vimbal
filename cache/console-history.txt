@@ -1,3 +1,0 @@
-exit
-Vimbal
-const Vimbal = await ethers.getContractFactory('Vimbal');
