@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { RatingResolver } from '@vimbal/resolver'
 import { AuthComponent } from './auth/auth.component'
 import { BrowseComponent } from './browse/browse.component'
+import { ErrorComponent } from './error/error.component'
 import { HomeComponent } from './home/home.component'
 import { LayoutComponent } from './layout/layout.component'
-import { ErrorComponent } from './error/error.component'
 import { PreviewComponent } from './preview/preview.component'
 import { ReviewComponent } from './review/review.component'
 
@@ -38,6 +39,9 @@ const routes: Routes = [
   {
     path: 'review/:id',
     component: ReviewComponent,
+    resolve: {
+      rating: RatingResolver,
+    },
   },
   {
     path: '**',

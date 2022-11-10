@@ -839,12 +839,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xf2Fe9d8eA2AE1527b35BDcC45ab66DBaEd6A33ff",
-      "transactionHash": "0xf164f32407e38ee5e9cf1705f544e70a57b09c47b3effa20f025de1d5a45229b"
+      "address": "0xCa65dDc2A71982Fd5Ca2165f49860F4aa0441920",
+      "transactionHash": "0xccb03756d5f789930dd7aacbabb1a5a3e9cb77a34a115ae5a4fdb553caa66f4a"
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2022-11-07T06:21:48.766Z",
+  "updatedAt": "2022-11-10T16:34:59.310Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

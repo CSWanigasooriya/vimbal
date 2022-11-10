@@ -2,7 +2,14 @@ import { OverlayContainer } from '@angular/cdk/overlay'
 import { Component, Inject, OnDestroy, OnInit, Optional } from '@angular/core'
 import { MatIconRegistry } from '@angular/material/icon'
 import { Title } from '@angular/platform-browser'
-import { RouterOutlet } from '@angular/router'
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ConnectInfo, ProviderRpcError } from '@vimbal/model'
 import { AuthService } from '@vimbal/service'
@@ -20,10 +27,12 @@ import { decrement, increment, reset } from './core/state/counter/counter.action
 export class RootComponent implements OnInit, OnDestroy {
   count$: Observable<number>
   theme$: Observable<boolean>
+  loading = false
 
   private subscriptions = new Subscription()
 
   constructor(
+    public _router: Router,
     private _authService: AuthService,
     private _iconRegistry: MatIconRegistry,
     private _overlayContainer: OverlayContainer,
@@ -33,6 +42,19 @@ export class RootComponent implements OnInit, OnDestroy {
   ) {
     this.count$ = store.select('count')
     this.theme$ = store.select('theme')
+
+    this._router.events.subscribe((ev) => {
+      if (ev instanceof NavigationStart) {
+        this.loading = true
+      }
+      if (
+        ev instanceof NavigationEnd ||
+        ev instanceof NavigationCancel ||
+        ev instanceof NavigationError
+      ) {
+        this.loading = false
+      }
+    })
 
     this._iconRegistry.setDefaultFontSetClass('material-icons-outlined')
     this._overlayContainer.getContainerElement().classList.add('dark-theme')

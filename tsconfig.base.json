@@ -17,10 +17,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@vimbal/contract": ["libs/contract/src/index.ts"],
       "@vimbal/directive": ["libs/directive/src/index.ts"],
       "@vimbal/material": ["libs/material/src/index.ts"],
       "@vimbal/model": ["libs/model/src/index.ts"],
       "@vimbal/pipe": ["libs/pipe/src/index.ts"],
+      "@vimbal/resolver": ["libs/resolver/src/index.ts"],
       "@vimbal/service": ["libs/service/src/index.ts"],
       "@vimbal/ui": ["libs/ui/src/index.ts"],
       "assert": ["./node_modules/assert"],
@@ -37,10 +39,7 @@
       "url": ["./node_modules/url"],
       "util": ["./node_modules/util"],
       "vm": ["./node_modules/vm"],
-      "zlib": ["./node_modules/browserify-zlib"],
-      "fileContract": ["./libs/service/src/lib/contracts/FileContract.json"],
-      "userContract": ["./libs/service/src/lib/contracts/UserContract.json"],
-      "reviewContract": ["./libs/service/src/lib/contracts/ReviewContract.json"]
+      "zlib": ["./node_modules/browserify-zlib"]
     }
   },
   "exclude": ["node_modules", "tmp"]

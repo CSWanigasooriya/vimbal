@@ -62,8 +62,10 @@
           >
             PUBLISH
           </button>
+          <span class="px-2"></span>
           <button
-            class="ml-4 inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 hover:bg-opacity-50 rounded text-lg"
+            mat-stroked-button
+            class="inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 hover:bg-opacity-50 rounded text-lg"
             [routerLink]="['/browse']"
           >
             BROWSE
@@ -154,25 +156,23 @@
                   class="border border-gray-300 p-6 rounded-lg"
                   [routerLink]="['/review', file.value[0].id]"
                 >
-                  <div
-                    class="w-10 h-10 inline-flex items-center justify-center rounded-ful text-cyan-700 mb-4"
-                  >
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
+                  <h2 class="text-lg font-medium title-font mb-2 title-border uppercase">
+                    {{ topic }}
+                  </h2>
+                  <div *ngFor="let value of file.value">
+                    <p class="leading-relaxed text-base">
+                      {{ value.title }}
+                    </p>
+                    <p>
+                      <vimbal-star-rating
+                        [readonly]="true"
+                        [size]="1"
+                        [initialStars]="value.averageRating || 0"
+                        [color]="'#FFBF00'"
+                        [maxStars]="5"
+                      ></vimbal-star-rating>
+                    </p>
                   </div>
-                  <h2 class="text-lg font-medium title-font mb-2">{{ topic }}</h2>
-                  <p class="leading-relaxed text-base" *ngFor="let value of file.value">
-                    {{ value.title }}
-                  </p>
                 </div>
               </div>
             </ng-container>

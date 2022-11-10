@@ -2,7 +2,20 @@
   [class.dark-theme]="(theme$ | async) === true"
   [@fadeInAnimation]="prepareRoute(outlet)"
 > -->
-<div [class.dark-theme]="(theme$ | async) === true">
+<div [class.dark-theme]="(theme$ | async) === true" class="wrapper">
+  <div class="overlay" *ngIf="loading">
+    <div class="spinner-wrapper">
+      <mat-progress-spinner
+        diameter="100"
+        strokeWidth="4"
+        style="margin: 15vh auto"
+        *ngIf="loading"
+        mode="indeterminate"
+        color="primary"
+      >
+      </mat-progress-spinner>
+    </div>
+  </div>
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
 <!-- </div> -->

@@ -44,7 +44,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
   reviewData!: ChainData
   reviews: Array<ReviewContract> = []
   ngReviewTextModel = ''
-  ratingValue = 0
+  selectedRatingValue = 0
+  averageRatingValue = 0
   walletAddress!: string
 
   private subscriptions = new Subscription()
@@ -58,22 +59,26 @@ export class ReviewComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void
 
   constructor(
+    @Optional() @Inject(APP_CONFIG) public config: AppConfig,
     public location: Location,
     private _router: Router,
     private _firestoreService: FirestoreService,
     private _store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
-    @Optional() @Inject(APP_CONFIG) public config: AppConfig,
-    media: MediaMatcher,
-    changeDetectorRef: ChangeDetectorRef,
-    private _route: ActivatedRoute,
+    private _media: MediaMatcher,
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _activatedRoute: ActivatedRoute,
     private _fileService: FileService,
     private _reviewService: ReviewService,
     private _authService: AuthService
   ) {
-    this.fileId = Number(this._route.snapshot.paramMap.get('id'))
-    this.theme$ = _store.select('theme')
-    this.mobileQuery = media.matchMedia('(max-width: 600px)')
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges()
+    this.fileId = Number(this._activatedRoute.snapshot.paramMap.get('id'))
+    this._activatedRoute.data.subscribe(({ rating }) => {
+      this.averageRatingValue = rating
+      console.log(rating)
+    })
+    this.theme$ = this._store.select('theme')
+    this.mobileQuery = this._media.matchMedia('(max-width: 600px)')
+    this._mobileQueryListener = () => this._changeDetectorRef.detectChanges()
     this.mobileQuery.addEventListener('change', this._mobileQueryListener)
   }
 
@@ -93,38 +98,12 @@ export class ReviewComponent implements OnInit, OnDestroy {
     this._router.navigate(['/preview', selectedValue])
   }
 
-  setReviewData() {
-    this._reviewService.getReviewContract().then(async (data: any) => {
-      if (data) this.isLoading = false
-      this.reviewData = data
-      const reviewCount = await this.reviewData?.methods?.reviewCount().call()
-      const reviewCountInt = parseInt(reviewCount, 16)
-      for (let index = 1; index <= reviewCountInt; index++) {
-        const review = await this.reviewData.methods?.reviews(this.fileId, index).call()
-        if (review?.id != 0) {
-          this.reviews = [...this.reviews, review]
-        }
-      }
-    })
-  }
-
   toggleDarkMode() {
     this._store.dispatch(mode())
   }
 
   onRatingSet(rating: number): void {
-    this.ratingValue = rating
-  }
-
-  setFileData() {
-    this._fileService.getFileData().then(async (data: any) => {
-      this.getAverageRating(this.fileId).then(async (averageRating) => {
-        this.file = this.formatFileData({
-          ...(await data.methods.files(this.fileId).call()),
-          averageRating,
-        })
-      })
-    })
+    this.selectedRatingValue = rating
   }
 
   getIpfsUri() {
@@ -139,24 +118,59 @@ export class ReviewComponent implements OnInit, OnDestroy {
     return data ? window.atob(data) : ''
   }
 
-  createReview() {
+  handleCreateReview() {
     this._reviewService
-      .createReview(this.fileId, this.ngReviewTextModel, this.ratingValue?.toString())
+      .createReview(
+        this.fileId,
+        this.ngReviewTextModel,
+        this.selectedRatingValue?.toString()
+      )
       .then(() => {
         this._firestoreService
           .updateReview({
             id: this.fileId,
             review: this.ngReviewTextModel,
-            rating: this.ratingValue?.toString(),
+            rating: this.selectedRatingValue?.toString(),
             createdAt: new Date().toISOString(),
             owner: this.walletAddress,
           })
           .then(() => {
             this.ngReviewTextModel = ''
-            this.ratingValue = 0
+            this.selectedRatingValue = 0
             location.reload()
           })
       })
+  }
+
+  isOwner() {
+    if (!this.file.id) return of(false)
+    return of(this.file?.owner.toString() === this.walletAddress)
+  }
+
+  private setReviewData() {
+    this._reviewService.getReviewContract().then(async (data: any) => {
+      if (data) this.isLoading = false
+      this.reviewData = data
+      const reviewCount = await this.reviewData?.methods?.reviewCount().call()
+      const reviewCountInt = parseInt(reviewCount, 16)
+      for (let index = 1; index <= reviewCountInt; index++) {
+        const review = await this.reviewData.methods?.reviews(this.fileId, index).call()
+        if (review?.id != 0) {
+          this.reviews = [...this.reviews, review]
+        }
+      }
+    })
+  }
+
+  private setFileData() {
+    this._fileService.getFileData().then(async (data: any) => {
+      this.getAverageRating(this.fileId).then(async (averageRating) => {
+        this.file = this.formatFileData({
+          ...(await data.methods.files(this.fileId).call()),
+          averageRating,
+        })
+      })
+    })
   }
 
   private formatFileData(file: FileContractWrapper) {
@@ -174,16 +188,11 @@ export class ReviewComponent implements OnInit, OnDestroy {
     } as FileContractWrapper
   }
 
-  async getWalletAddress() {
+  private async getWalletAddress() {
     this.walletAddress = await this._authService.getWalletAddress()
   }
 
-  isOwner() {
-    if (!this.file.id) return of(false)
-    return of(this.file?.owner.toString() === this.walletAddress)
-  }
-
-  async getAverageRating(fileId: number) {
+  private async getAverageRating(fileId: number) {
     const data = await this._firestoreService.getAverageReviewScore(fileId)
     return data
   }

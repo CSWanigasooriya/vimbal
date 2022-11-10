@@ -56,7 +56,7 @@
           <vimbal-star-rating
             [readonly]="true"
             [size]="1"
-            [initialStars]="file.averageRating || 0"
+            [initialStars]="file?.averageRating || 0"
             [color]="'#FFBF00'"
             [maxStars]="5"
           ></vimbal-star-rating>
@@ -90,7 +90,7 @@
         mat-raised-button
         color="primary"
         matTooltip="Preview the full paper"
-        [routerLink]="['/preview', file.id]"
+        [routerLink]="['/preview', file?.id]"
       >
         Full Paper
       </button>
@@ -162,7 +162,7 @@
       <mat-form-field>
         <mat-label>Type Review</mat-label>
         <input matInput [(ngModel)]="ngReviewTextModel" />
-        <button mat-icon-button matSuffix (click)="createReview()">
+        <button mat-icon-button matSuffix (click)="handleCreateReview()">
           <mat-icon>send</mat-icon>
         </button>
       </mat-form-field>

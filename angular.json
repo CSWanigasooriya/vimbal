@@ -1,10 +1,12 @@
 {
   "version": 2,
   "projects": {
+    "contract": "libs/contract",
     "directive": "libs/directive",
     "material": "libs/material",
     "model": "libs/model",
     "pipe": "libs/pipe",
+    "resolver": "libs/resolver",
     "service": "libs/service",
     "ui": "libs/ui",
     "vimbal": "apps/vimbal",

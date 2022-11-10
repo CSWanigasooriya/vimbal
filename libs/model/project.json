@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/model",
   "sourceRoot": "libs/model/src",
   "prefix": "vimbal",
   "targets": {

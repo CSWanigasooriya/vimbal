@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import Review from 'reviewContract'
+import { ReviewContractBuild } from '@vimbal/contract'
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,10 @@ export class ReviewService {
   async getReviewContract() {
     const web3 = window?.web3
     const networkId = await web3?.eth?.net?.getId()
-    const networkData = Review?.networks[5777 || networkId]
-    return web3 ? new web3.eth.Contract(Review?.abi, networkData?.address) : null
+    const networkData = ReviewContractBuild?.networks[5777 || networkId]
+    return web3
+      ? new web3.eth.Contract(ReviewContractBuild?.abi, networkData?.address)
+      : null
   }
 
   async createReview(fileId: number, content: string, rating: string) {
