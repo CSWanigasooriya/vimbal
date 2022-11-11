@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { AuthGuard } from '@vimbal/guard'
 import { RatingResolver } from '@vimbal/resolver'
 import { AuthComponent } from './auth/auth.component'
 import { BrowseComponent } from './browse/browse.component'
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: 'base',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     loadChildren: () => import('./base/base.module').then((m) => m.BaseModule),
   },
   {

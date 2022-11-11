@@ -28,8 +28,10 @@ export class BrowseComponent implements OnDestroy {
   mobileQuery: MediaQueryList
   theme$: Observable<boolean>
   searchControl = new FormControl('')
-  filteredOptions!: Observable<FileContract[]>
-  files: FileContract[] = []
+  allFilteredFiles!: Observable<FileContract[]>
+  filteredTrendingFiles!: Observable<FileContract[]>
+  allFiles: FileContract[] = []
+  trendingFiles: FileContract[] = []
 
   private _mobileQueryListener: () => void
 
@@ -51,12 +53,22 @@ export class BrowseComponent implements OnDestroy {
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
         const file = await data.methods?.files(index).call()
-        this.files = [...this.files, file].sort((a, b) => b.tipAmount - a.tipAmount)
-        this.filteredOptions = this.searchControl.valueChanges.pipe(
+        this.allFiles = [...this.allFiles, file].sort((a, b) => b.tipAmount - a.tipAmount)
+        this.trendingFiles = [...this.trendingFiles, file].filter(
+          (file) => file.tipAmount > 0
+        )
+        this.filteredTrendingFiles = this.searchControl.valueChanges.pipe(
+          startWith(''),
           distinctUntilChanged(),
           debounceTime(100),
           startWith(''),
-          map((state) => this._filter(state || ''))
+          map((value) => this._filterTrendingFiles(value || ''))
+        )
+        this.allFilteredFiles = this.searchControl.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(100),
+          startWith(''),
+          map((state) => this._filterAllFiles(state || ''))
         )
       }
     })
@@ -67,9 +79,36 @@ export class BrowseComponent implements OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  private _filter(value: string): FileContract[] {
+  private _filterAllFiles(value: string): FileContract[] {
     const filterValue = value.toLowerCase()
-    return this.files?.filter((state) => state.title.toLowerCase().includes(filterValue))
+    return this.allFiles?.filter((state) =>
+      state.title.toLowerCase().includes(filterValue)
+    )
+  }
+
+  private _filterTrendingFiles(value: string): FileContract[] {
+    const filterValue = value.toLowerCase()
+    return this.trendingFiles?.filter((state) =>
+      state.title.toLowerCase().includes(filterValue)
+    )
+  }
+
+  sortByTitle() {
+    this.allFilteredFiles = this.allFilteredFiles.pipe(
+      map((files) => files.sort((a, b) => a.title.localeCompare(b.title)))
+    )
+    this.filteredTrendingFiles = this.filteredTrendingFiles.pipe(
+      map((files) => files.sort((a, b) => a.title.localeCompare(b.title)))
+    )
+  }
+
+  sortByTipAmount() {
+    this.allFilteredFiles = this.allFilteredFiles.pipe(
+      map((files) => files.sort((a, b) => b.tipAmount - a.tipAmount))
+    )
+    this.filteredTrendingFiles = this.filteredTrendingFiles.pipe(
+      map((files) => files.sort((a, b) => b.tipAmount - a.tipAmount))
+    )
   }
 
   onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {

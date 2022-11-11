@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inject, Injectable } from '@angular/core'
 import { ChainData, Payment } from '@vimbal/model'
+import { FileContractBuild } from '..'
 import { AuthService } from './auth.service'
-import { FileContractBuild } from './contract'
 import { GANACHE_URL } from './models/tokens'
 
 @Injectable({

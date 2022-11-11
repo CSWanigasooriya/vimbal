@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/guard/src",
+  "prefix": "vimbal",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/guard"],
+      "options": {
+        "jestConfig": "libs/guard/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/guard/**/*.ts", "libs/guard/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

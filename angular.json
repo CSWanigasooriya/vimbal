@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "directive": "libs/directive",
+    "guard": "libs/guard",
     "material": "libs/material",
     "model": "libs/model",
     "pipe": "libs/pipe",

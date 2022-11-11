@@ -13,6 +13,13 @@ export class CardComponent implements OnInit {
 
   @Input() set fileData(data: FileContract) {
     this._fileData = data
+
+    this.getAverageRating(Number(data.id)).then(async (score) => {
+      this.formatedFileData = this.formatFileData({
+        ...data,
+        averageRating: score,
+      })
+    })
   }
 
   formatedFileData!: FileContractWrapper
@@ -27,12 +34,6 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWalletAddress()
-    this.getAverageRating(this._fileData?.id).then(async (data) => {
-      this.formatedFileData = this.formatFileData({
-        ...this._fileData,
-        averageRating: data,
-      })
-    })
   }
 
   private formatFileData(data: FileContractWrapper) {

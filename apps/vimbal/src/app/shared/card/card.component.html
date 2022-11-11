@@ -42,11 +42,11 @@
 
   <div class="py-7 px-6">
     <div class="flex justify-between items-end">
-      <span>
+      <span *ngIf="formatedFileData">
         <vimbal-star-rating
           [readonly]="true"
           [size]="1"
-          [initialStars]="0"
+          [initialStars]="formatedFileData.averageRating"
           [color]="'#FFBF00'"
           [maxStars]="5"
         ></vimbal-star-rating>
