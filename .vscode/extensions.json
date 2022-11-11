@@ -10,13 +10,12 @@
     "eamodio.gitlens",
     "johnpapa.vscode-peacock",
     "ms-azuretools.vscode-docker",
-    "ms-vscode.vscode-typescript-tslint-plugin",
     "pkief.material-icon-theme",
     "wallabyjs.quokka-vscode",
     "expertly-simple.ng-evergreen",
     "formulahendry.auto-close-tag",
     "hookyqr.beautify",
     "johnpapa.angular-essentials",
-    "WallabyJs.quokka-vscode"
+    "HookyQR.beautify"
   ]
 }
