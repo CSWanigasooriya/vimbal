@@ -1,0 +1,83 @@
+<div class="mat-app-background min-h-screen">
+  <p class="p-2">
+    <mat-toolbar class="toolbar mat-elevation-z4">
+      <button mat-icon-button (click)="location.back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="app-name">BROWSE {{ config.title | uppercase }}</h1>
+
+      <span class="flex-auto"></span>
+      <form *ngIf="!mobileQuery.matches">
+        <input
+          class="search"
+          type="text"
+          placeholder="Search..."
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onSelectionChanged($event)"
+        >
+          <mat-option
+            *ngFor="let file of filteredOptions | async"
+            [value]="file.title"
+            [id]="file.id.toString()"
+          >
+            <span>{{ file.title }}</span> |
+            <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </form>
+      <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleDarkMode()" matTooltip="Toggle Theme">
+        <mat-icon>{{ (theme$ | async) === true ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+  <div class="container mx-auto px-2">
+    <form *ngIf="!mobileQuery.matches" class="row">
+      <input
+        class="search col s12"
+        type="text"
+        placeholder="Filter..."
+        matInput
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option
+          *ngFor="let file of filteredOptions | async"
+          [value]="file.title"
+          [id]="file.id.toString()"
+        >
+          <span>{{ file.title }}</span> |
+          <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="All">
+        <div class="row">
+          <div class="col s12 l4" *ngFor="let item of filteredOptions | async">
+            <vimbal-card [fileData]="item"></vimbal-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Trending">
+        <br />
+        <div class="row">
+          <div class="col s12 l4" *ngFor="let item of filteredOptions | async">
+            <vimbal-card [fileData]="item"></vimbal-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

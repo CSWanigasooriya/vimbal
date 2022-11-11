@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { RippleGlobalOptions } from '@angular/material/core';
+import { Injectable } from '@angular/core'
+import { RippleGlobalOptions } from '@angular/material/core'
 
 @Injectable({
   providedIn: 'root',
 })
 export class GlobalRippleOptionsService implements RippleGlobalOptions {
   /** Whether ripples should be disabled globally. */
-  disabled = false;
+  disabled = false
   animation = {
     enterDuration: 500,
     exitDuration: 300,
-  };
+  }
 
-  terminateOnPointerUp = true;
+  terminateOnPointerUp = true
 }

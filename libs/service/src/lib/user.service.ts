@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import User from 'userContract'
 import { UserContract } from '@vimbal/model'
+import { UserContractBuild } from './contract'
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,10 @@ export class UserService {
   async getUserContract() {
     const web3 = window?.web3
     const networkId = await web3?.eth?.net?.getId()
-    const networkData = User?.networks[5777 || networkId]
-    return web3 ? new web3.eth.Contract(User?.abi, networkData?.address) : null
+    const networkData = UserContractBuild?.networks[5777 || networkId]
+    return web3
+      ? new web3.eth.Contract(UserContractBuild?.abi, networkData?.address)
+      : null
   }
 
   async createUser(user: UserContract) {

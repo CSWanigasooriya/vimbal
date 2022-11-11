@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import Web3 from 'web3';
+import { Injectable } from '@angular/core'
+import Web3 from 'web3'
 
 @Injectable({
   providedIn: 'root',
 })
 export class WhisperService {
-  web3 = new Web3();
-  DEFAULT_CHANNEL = 'default';
+  web3 = new Web3()
+  DEFAULT_CHANNEL = 'default'
 
   constructor() {
     // this.connectRpcServer();
@@ -15,29 +15,27 @@ export class WhisperService {
   // Web3 connection
   async connectRpcServer() {
     try {
-      this.web3.setProvider(
-        new Web3.providers.WebsocketProvider('ws://localhost:3334')
-      );
-      await this.web3.eth.net.isListening();
-      console.log('Web3 connection established');
+      this.web3.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:3334'))
+      await this.web3.eth.net.isListening()
+      console.log('Web3 connection established')
     } catch (err) {
-      console.log('Web3 connection failed');
+      console.log('Web3 connection failed')
     }
   }
 
   async generateKeyPair() {
     // Generate keypair
-    return await this.web3.shh.newKeyPair();
+    return await this.web3.shh.newKeyPair()
   }
 
   async generateSymKey() {
     // Generate a symmetric key
-    return await this.web3.shh?.generateSymKeyFromPassword('mychat');
+    return await this.web3.shh?.generateSymKeyFromPassword('mychat')
   }
 
   async getPublicKey(privateKey: string) {
     // Get public key from private key
-    return await this.web3.shh?.getPublicKey(privateKey);
+    return await this.web3.shh?.getPublicKey(privateKey)
   }
 
   async sendPublicMessage(symKeyId: string, keyPair: string, message: string) {
@@ -50,7 +48,7 @@ export class WhisperService {
       payload: this.web3.utils.fromAscii(message),
       powTime: 1000,
       powTarget: 1000,
-    });
+    })
   }
 
   async subscribeToPublicChat(channelSymKey: string, channelTopic: string) {
@@ -63,8 +61,8 @@ export class WhisperService {
       })
       .on('data', (data) => {
         // Display message in the UI
-        console.log(data.sig, this.web3.utils.toAscii(data.payload));
-      });
+        console.log(data.sig, this.web3.utils.toAscii(data.payload))
+      })
   }
 
   async sendPrivateMessage(
@@ -82,7 +80,7 @@ export class WhisperService {
       payload: this.web3.utils.fromAscii(messageContent),
       powTime: 1000,
       powTarget: 1000,
-    });
+    })
   }
 
   async subscribeToPrivateChat(keyPair: string, channelTopic: string) {
@@ -94,7 +92,7 @@ export class WhisperService {
         topics: [this.DEFAULT_CHANNEL],
       })
       .on('data', (data) => {
-        console.log(data.sig, this.web3.utils.toAscii(data.payload), true);
-      });
+        console.log(data.sig, this.web3.utils.toAscii(data.payload), true)
+      })
   }
 }

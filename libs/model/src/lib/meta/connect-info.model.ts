@@ -1,3 +1,3 @@
 export interface ConnectInfo {
-  chainId: string;
+  chainId: string
 }

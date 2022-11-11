@@ -19,7 +19,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "explorer.openEditors.visible": 0,
   "files.trimTrailingWhitespace": true,
-  "files.autoSave": "onFocusChange",
+  "files.autoSave": "off",
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "typescript.tsdk": "node_modules/typescript/lib",

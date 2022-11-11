@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/directive",
   "sourceRoot": "libs/directive/src",
   "prefix": "vimbal",
   "targets": {
@@ -31,10 +30,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/directive/src/**/*.ts",
-          "libs/directive/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/directive/src/**/*.ts", "libs/directive/src/**/*.html"]
       }
     }
   },

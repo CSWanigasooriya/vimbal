@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/vimbal",
   "sourceRoot": "apps/vimbal/src",
   "prefix": "vimbal",
   "targets": {

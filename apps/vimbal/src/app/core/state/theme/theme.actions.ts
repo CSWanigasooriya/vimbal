@@ -1,3 +1,3 @@
-import { createAction } from '@ngrx/store';
+import { createAction } from '@ngrx/store'
 
-export const mode = createAction('[DarkMode Component] Toggle');
+export const mode = createAction('[DarkMode Component] Toggle')

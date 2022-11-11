@@ -1,0 +1,82 @@
+<mat-card class="mat-elevation-z4 hover:drop-shadow-lg" matRipple>
+  <mat-card-header class="truncate">
+    <div matCardAvatar>
+      <svg [data-jdenticon-value]="formatedFileData.owner"></svg>
+    </div>
+    <mat-card-title>{{ formatedFileData.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <span
+        *ngFor="
+          let author of decodeData(formatedFileData?.authors) | splitBy: ',';
+          let i = index;
+          let last = last
+        "
+      >
+        {{ author }}<span *ngIf="!last">, </span>
+      </span>
+    </mat-card-subtitle>
+    <div fxFlex></div>
+    <div fxLayoutAlign="center none">
+      <button
+        class="h-10"
+        mat-stroked-button
+        [routerLink]="['/preview', formatedFileData.id]"
+      >
+        Full Paper
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="icon-text">
+      <mat-icon class="text-gray-400">date_range</mat-icon>
+      <code class="ml-2">
+        {{ formatedFileData.createdAt | date: 'medium' }}
+      </code>
+    </div>
+    <p>
+      <code> <b>Abstract: </b>{{ formatedFileData.description }} </code>
+    </p>
+
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let keyword of decodeData(formatedFileData?.keywords) | splitBy: ','"
+        selected
+        >{{ keyword }}
+      </mat-chip>
+    </mat-chip-list>
+    <br />
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <button
+        *ngIf="(isOwner() | async) === false"
+        mat-stroked-button
+        color="primary"
+        (click)="tipAuthor(formatedFileData.id)"
+      >
+        Tip
+        <mat-icon class="action-icon">trending_up</mat-icon>
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/review', formatedFileData.id]"
+      >
+        Reviews
+        <mat-icon class="action-icon">rate_review</mat-icon>
+      </button>
+    </div>
+    <div>
+      <p class="tip-text px-2">
+        <span>ETH </span>
+        <code>
+          <b>{{ getTipAmount(formatedFileData.tipAmount) }}</b>
+        </code>
+      </p>
+    </div>
+  </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar mode="determinate" [value]="100" color="primary"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

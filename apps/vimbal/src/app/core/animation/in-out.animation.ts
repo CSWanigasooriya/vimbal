@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations'
 
 export const inOutAnimation = trigger('inOutAnimation', [
   transition(':enter', [
@@ -9,4 +9,4 @@ export const inOutAnimation = trigger('inOutAnimation', [
     style({ opacity: 1 }),
     animate('0.5s ease-in', style({ opacity: 0 })),
   ]),
-]);
+])

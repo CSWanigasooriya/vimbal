@@ -6,7 +6,7 @@ import {
   style,
   transition,
   trigger,
-} from '@angular/animations';
+} from '@angular/animations'
 
 export const slideInAnimation = trigger('slideInAnimation', [
   transition('* <=> *', [
@@ -39,11 +39,9 @@ export const slideInAnimation = trigger('slideInAnimation', [
     query(':enter', [style({ left: '-100%' })]),
     query(':leave', animateChild()),
     group([
-      query(':leave', [
-        animate('200ms ease-out', style({ left: '100%', opacity: 0 })),
-      ]),
+      query(':leave', [animate('200ms ease-out', style({ left: '100%', opacity: 0 }))]),
       query(':enter', [animate('300ms ease-out', style({ left: '0%' }))]),
       query('@*', animateChild()),
     ]),
   ]),
-]);
+])

@@ -6,18 +6,13 @@ import { MaterialModule } from '@vimbal/material'
 import { PipeModule } from '@vimbal/pipe'
 import { NgxDocViewerModule } from 'ngx-doc-viewer'
 import { NgxJdenticonModule } from 'ngx-jdenticon'
-import { StarRatingComponent } from '../shared/star-rating/star-rating.component'
-import { UploaderComponent } from './../shared/uploader/uploader.component'
+import { SharedModule } from '../shared/shared.module'
 import { BaseRoutingModule } from './base-routing.module'
-import { BrowseComponent } from './browse/browse.component'
-import { BounceComponent } from './components/bounce/bounce.component'
-import { CardComponent } from './components/card/card.component'
-import { FeedComponent } from './components/feed/feed.component'
-import { SubmitComponent } from './components/submit/submit.component'
 import { DashboardComponent } from './dashboard/dashboard.component'
-import { PreviewComponent } from './preview/preview.component'
+import { PreviewComponent } from '../preview/preview.component'
 import { ProfileComponent } from './profile/profile.component'
-import { ReviewComponent } from './review/review.component'
+import { ReviewComponent } from '../review/review.component'
+import { SubmitComponent } from './submit/submit.component'
 
 const baseModules = [DashboardComponent]
 
@@ -26,14 +21,9 @@ const baseModules = [DashboardComponent]
     baseModules,
     SubmitComponent,
     PreviewComponent,
-    UploaderComponent,
-    FeedComponent,
+    DashboardComponent,
     ReviewComponent,
-    StarRatingComponent,
     ProfileComponent,
-    BrowseComponent,
-    CardComponent,
-    BounceComponent,
   ],
   imports: [
     CommonModule,
@@ -42,9 +32,10 @@ const baseModules = [DashboardComponent]
     NgxDocViewerModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxJdenticonModule,
     PipeModule,
     ScrollingModule,
-    NgxJdenticonModule,
+    SharedModule,
   ],
 })
 export class BaseModule {}

@@ -22,18 +22,17 @@ import { ServiceModule } from '@vimbal/service'
 import { localStorageSync } from 'ngrx-store-localstorage'
 import { environment } from '../environments/environment'
 import { AuthComponent } from './auth/auth.component'
+import { BrowseComponent } from './browse/browse.component'
 import { PROVIDERS_CONFIG } from './core/config/providers.config'
 import { counterReducer } from './core/state/counter/counter.reducer'
 import { sidebarReducer } from './core/state/sidebar/sidebar.reducer'
 import { themeReducer } from './core/state/theme/theme.reducer'
+import { ErrorComponent } from './error/error.component'
 import { HomeComponent } from './home/home.component'
 import { LayoutComponent } from './layout/layout.component'
 import { RootComponent } from './root.component'
 import { RootRoutingModule } from './root.routing'
-import { DialogComponent } from './shared/dialog/dialog.component'
-import { ErrorComponent } from './shared/error/error.component'
-import { SheetComponent } from './shared/sheet/sheet.component'
-import { SplashComponent } from './shared/splash/splash.component'
+import { SharedModule } from './shared/shared.module'
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
@@ -48,11 +47,9 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
     RootComponent,
     HomeComponent,
     LayoutComponent,
-    SheetComponent,
-    ErrorComponent,
     AuthComponent,
-    DialogComponent,
-    SplashComponent,
+    ErrorComponent,
+    BrowseComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +59,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
     FormsModule,
     ReactiveFormsModule,
     PipeModule,
+    SharedModule,
     ServiceModule.forRoot({
       web3_storage_token: environment.web3_storage_token,
       ganacheUrl: environment.ganacheUrl,

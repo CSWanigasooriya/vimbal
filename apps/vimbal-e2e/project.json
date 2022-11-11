@@ -1,5 +1,4 @@
 {
-  "root": "apps/vimbal-e2e",
   "sourceRoot": "apps/vimbal-e2e/src",
   "projectType": "application",
   "targets": {

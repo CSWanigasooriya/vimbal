@@ -61,7 +61,7 @@ export class IpfsService {
             })
             .once('transactionHash', (hash: any) => {
               console.log(hash)
-              window.location.reload()
+              // window.location.reload()
             })
             .once('receipt', (receipt: any) => {
               console.log(receipt)

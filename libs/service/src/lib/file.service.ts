@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inject, Injectable } from '@angular/core'
 import { ChainData, Payment } from '@vimbal/model'
-import File from 'fileContract'
 import { AuthService } from './auth.service'
+import { FileContractBuild } from './contract'
 import { GANACHE_URL } from './models/tokens'
 
 @Injectable({
@@ -17,8 +17,10 @@ export class FileService {
   async getFileData(): Promise<Partial<ChainData>> {
     const web3 = window?.web3
     const networkId = await web3?.eth?.net?.getId()
-    const networkData = File?.networks[5777 || networkId]
-    return web3 ? new web3.eth.Contract(File?.abi, networkData?.address) : null
+    const networkData = FileContractBuild?.networks[5777 || networkId]
+    return web3
+      ? new web3.eth.Contract(FileContractBuild?.abi, networkData?.address)
+      : null
   }
 
   async tipAuthor(id?: string, tipAmount?: any): Promise<Payment> {

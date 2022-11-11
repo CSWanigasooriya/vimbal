@@ -6,8 +6,8 @@
 </mat-nav-list> -->
 
 <mat-nav-list>
-  <h3 matSubheader>Whisper Chat</h3>
-  <ng-container *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+  <h3 matSubheader>Gun Chat</h3>
+  <ng-container *ngFor="let item of [1]">
     <mat-list-item disableRipple>
       <img matListAvatar src="https://picsum.photos/200" />
       <span mat-line>{{ item }}</span>
@@ -20,7 +20,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Type a message</mat-label>
     <input matInput />
-    <button mat-icon-button matSuffix>
+    <button mat-icon-button matSuffix (click)="openLink($event)">
       <mat-icon>send</mat-icon>
     </button>
   </mat-form-field>

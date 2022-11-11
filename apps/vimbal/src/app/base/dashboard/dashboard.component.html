@@ -30,24 +30,39 @@
       Reviews
     </ng-template>
     <ng-template matTabContent>
-      <p>Reviews By: {{ userWalletAddress }}</p>
-      <ul>
-        <li *ngFor="let review of reviewsByOwner">
-          {{ review | json }}
-        </li>
-      </ul>
-
-      <ul>
-        <li *ngFor="let file of filesByOwner">
-          {{ file | json }}
-        </li>
-      </ul>
-
-      <ul>
-        <li *ngFor="let user of users">
-          {{ user | json }}
-        </li>
-      </ul>
+      <ng-container *ngFor="let review of reviewsByOwner">
+        <div class="review shadow-lg">
+          <div class="review-header">
+            <div class="review-date mb-1">
+              <small>{{ review.createdAt | date: 'MMM d, y, h:mm:ss a' }}</small>
+            </div>
+            <div fxFlex></div>
+            <div>
+              <button mat-raised-button [routerLink]="['/review', review.id]">
+                VIEW
+              </button>
+            </div>
+          </div>
+          <h4 class="review__title">{{ getFileById(review.id)?.title }}</h4>
+          <div class="review__score">
+            <span class="score">{{ review.rating }}</span>
+            <span>&nbsp;/&nbsp;5&nbsp;</span>
+            <vimbal-star-rating
+              class="score-stars"
+              [readonly]="true"
+              [size]="1"
+              [initialStars]="+review.rating || 0"
+              [color]="'#FFBF00'"
+              [maxStars]="5"
+            ></vimbal-star-rating>
+          </div>
+          <div class="review__text">
+            "<i>{{ review.review }}</i
+            >" – <small>{{ review.owner }}</small>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </ng-container>
     </ng-template>
   </mat-tab>
 </mat-tab-group>
