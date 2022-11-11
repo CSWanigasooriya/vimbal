@@ -2,7 +2,7 @@
 
 ## Working Prototype
 
-- https://vimbal.web.app 
+- https://vimbal.web.app
 
 ## How to Setup
 
