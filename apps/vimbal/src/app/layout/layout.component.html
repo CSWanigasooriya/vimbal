@@ -109,28 +109,18 @@
 
           <span class="name truncate" *ngIf="!isCompact">Submit Paper</span>
         </button>
-
-        <mat-list-item
-          class="item"
-          [routerLink]="'/base/dashboard'"
-          routerLinkActive="active"
-          matRipple
-          [matRippleDisabled]="true"
-        >
-          <mat-icon mat-list-icon>home</mat-icon>
-          <div mat-line *ngIf="!isCompact">Dashboard</div>
-        </mat-list-item>
-
-        <mat-list-item
-          class="item"
-          [routerLink]="'/base/profile'"
-          routerLinkActive="active"
-          matRipple
-          [matRippleDisabled]="true"
-        >
-          <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
-          <div mat-line *ngIf="!isCompact">Profile</div>
-        </mat-list-item>
+        <ng-container *ngFor="let navItem of navItems">
+          <mat-list-item
+            class="item"
+            [routerLink]="navItem.route"
+            routerLinkActive="active"
+            matRipple
+            [matRippleDisabled]="true"
+          >
+            <mat-icon mat-list-icon>{{ navItem.icon }}</mat-icon>
+            <div mat-line *ngIf="!isCompact">{{ navItem.name }}</div>
+          </mat-list-item>
+        </ng-container>
 
         <div class="bottom">
           <mat-list-item

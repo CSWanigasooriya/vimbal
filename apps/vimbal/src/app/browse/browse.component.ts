@@ -94,19 +94,19 @@ export class BrowseComponent implements OnDestroy {
   }
 
   sortByTitle() {
-    this.allFilteredFiles = this.allFilteredFiles.pipe(
+    this.allFilteredFiles = this.allFilteredFiles?.pipe(
       map((files) => files.sort((a, b) => a.title.localeCompare(b.title)))
     )
-    this.filteredTrendingFiles = this.filteredTrendingFiles.pipe(
+    this.filteredTrendingFiles = this.filteredTrendingFiles?.pipe(
       map((files) => files.sort((a, b) => a.title.localeCompare(b.title)))
     )
   }
 
   sortByTipAmount() {
-    this.allFilteredFiles = this.allFilteredFiles.pipe(
+    this.allFilteredFiles = this.allFilteredFiles?.pipe(
       map((files) => files.sort((a, b) => b.tipAmount - a.tipAmount))
     )
-    this.filteredTrendingFiles = this.filteredTrendingFiles.pipe(
+    this.filteredTrendingFiles = this.filteredTrendingFiles?.pipe(
       map((files) => files.sort((a, b) => b.tipAmount - a.tipAmount))
     )
   }

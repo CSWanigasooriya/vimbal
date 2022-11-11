@@ -34,6 +34,12 @@ import { mode } from '../core/state/theme/theme.actions'
 import { AppConfig, APP_CONFIG } from './../core/config/app.config'
 import { SheetComponent } from './../shared/sheet/sheet.component'
 
+interface NavItem {
+  name: string
+  icon: string
+  route: string
+}
+
 @Component({
   selector: 'vimbal-layout',
   templateUrl: './layout.component.html',
@@ -52,6 +58,23 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   sidebar$: Observable<boolean>
   filteredOptions!: Observable<FileContract[]>
   files: FileContract[] = []
+  navItems: NavItem[] = [
+    {
+      name: 'Dashboard',
+      icon: 'home',
+      route: '/base/dashboard',
+    },
+    {
+      name: 'Profile',
+      icon: 'account_balance_wallet',
+      route: '/base/profile',
+    },
+    {
+      name: 'Chat',
+      icon: 'chat',
+      route: '/base/chat',
+    },
+  ]
 
   mobileQuery: MediaQueryList
 

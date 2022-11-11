@@ -13,6 +13,7 @@ import { PreviewComponent } from '../preview/preview.component'
 import { ProfileComponent } from './profile/profile.component'
 import { ReviewComponent } from '../review/review.component'
 import { SubmitComponent } from './submit/submit.component'
+import { ChatComponent } from '../chat/chat.component'
 
 const baseModules = [DashboardComponent]
 
@@ -24,6 +25,7 @@ const baseModules = [DashboardComponent]
     DashboardComponent,
     ReviewComponent,
     ProfileComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,

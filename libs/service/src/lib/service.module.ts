@@ -11,11 +11,9 @@ import { LoggerService } from './logger.service'
 import { ServiceOptions } from './models/service-options.model'
 import { NotificationService } from './notification.service'
 import { ReviewService } from './review.service'
-import { SplashScreenStateService } from './splash-screen-state.service'
 import { StorageService } from './storage.service'
 import { UserService } from './user.service'
 import { Web3StorageService } from './web3-storage.service'
-import { WhisperService } from './whisper.service'
 
 const services = [
   AuthService,
@@ -27,10 +25,8 @@ const services = [
   ReviewService,
   StorageService,
   Web3StorageService,
-  WhisperService,
   UserService,
   NotificationService,
-  SplashScreenStateService,
 ]
 
 @NgModule({
