@@ -7,6 +7,7 @@
 ## How to Setup
 
 ### Prerequisites
+
 - Git: [Git](https://git-scm.com/)
 - NodeJs: [NodeJs](https://nodejs.org/en/download/)
 - Ganache: [Ganache](https://trufflesuite.com/ganache/index.html)
