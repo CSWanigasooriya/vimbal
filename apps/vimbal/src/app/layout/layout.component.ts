@@ -5,7 +5,6 @@ import {
   Component,
   Inject,
   OnDestroy,
-  OnInit,
   Optional,
   ViewChild,
 } from '@angular/core'
@@ -31,8 +30,8 @@ import {
   sideNavContainerAnimation,
 } from '../core/animation/side-bar.animations'
 import { mode } from '../core/state/theme/theme.actions'
+import { SheetComponent } from '../shared/sheet/sheet.component'
 import { AppConfig, APP_CONFIG } from './../core/config/app.config'
-import { SheetComponent } from './../shared/sheet/sheet.component'
 
 interface NavItem {
   name: string
@@ -46,7 +45,7 @@ interface NavItem {
   styleUrls: ['./layout.component.scss'],
   animations: [sideNavAnimation, sideNavContainerAnimation],
 })
-export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LayoutComponent implements AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
 
   @ViewChild('snav') snav: MatSidenav | undefined
@@ -70,9 +69,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       route: '/base/profile',
     },
     {
-      name: 'Chat',
-      icon: 'chat',
-      route: '/base/chat',
+      name: 'Notifications',
+      icon: 'notifications',
+      route: '/base/notification',
     },
   ]
 
@@ -100,18 +99,15 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
       const fileCountInt = parseInt(fileCount, 16)
       for (let index = 1; index <= fileCountInt; index++) {
         const file = await data.methods?.files(index).call()
+        this.filteredOptions = this.searchControl.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(100),
+          startWith(''),
+          map((state) => (state ? this._filter(state) : this.files?.slice()))
+        )
         this.files = [...this.files, file].sort((a, b) => b.tipAmount - a.tipAmount)
       }
     })
-  }
-
-  ngOnInit(): void {
-    this.filteredOptions = this.searchControl.valueChanges.pipe(
-      distinctUntilChanged(),
-      debounceTime(100),
-      startWith(''),
-      map((state) => (state ? this._filter(state) : this.files?.slice()))
-    )
   }
 
   ngAfterViewInit(): void {
@@ -156,11 +152,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openBottomSheet() {
-    const bottomSheetRef = this._bottomSheet.open(SheetComponent, {
-      data: {
-        names: ['One', 'Two', 'Three'],
-      },
-    })
+    const bottomSheetRef = this._bottomSheet.open(SheetComponent, {})
     this.subscriptions.add(
       bottomSheetRef.afterDismissed().subscribe((result) => {
         console.log(result)

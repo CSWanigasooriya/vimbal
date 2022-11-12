@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>{{ snav.opened ? 'menu' : 'menu' }}</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button [routerLink]="['/home']">
       <img
         matListAvatar
         [src]="

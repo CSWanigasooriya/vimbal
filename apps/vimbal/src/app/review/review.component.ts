@@ -153,6 +153,10 @@ export class ReviewComponent implements OnInit, OnDestroy {
     return of(this.file?.owner.toString() === this.walletAddress)
   }
 
+  getChatId(receiver?: number) {
+    return `${this.walletAddress}-${receiver}`
+  }
+
   private setReviewData() {
     this._reviewService.getReviewContract().then(async (data: any) => {
       if (data) this.isLoading = false

@@ -1,33 +1,3 @@
-<!-- <div class="card">
-  <header>Quote of the Day</header>
-  <div class="content">
-    <div class="quote-area">
-      <i class="fas fa-quote-left"></i>
-      <p class="quote">
-        Nothing ever goes away until it has taught us what we need to know.
-      </p>
-      <i class="fas fa-quote-right"></i>
-    </div>
-    <div class="author">
-      <span>__</span>
-      <span
-        *ngFor="
-          let author of decodeData(formatedFileData?.authors) | splitBy: ',';
-          let i = index;
-          let last = last
-        "
-      >
-        {{ author }}<span *ngIf="!last">, </span>
-      </span>
-    </div>
-  </div>
-  <div class="buttons">
-    <div class="features">
-      <button mat-stroked-button>TIP AUTHOR</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="shadow-lg rounded-md overflow-hidden card">
   <ngx-doc-viewer
     [url]="getIpfsUri()"
@@ -70,13 +40,14 @@
     }}</span>
     <div class="flex justify-between items-end">
       <button
+        *ngIf="(isOwner() | async) === false"
         (click)="tipAuthor(formatedFileData?.id)"
         mat-stroked-button
         class="capitalize bg-blue-500 rounded-md pt-1 pb-1.5 px-3.5 text-white"
       >
         tip author
       </button>
-      <button class="text-gray-500 ml-2">
+      <button class="text-gray-500">
         ETH {{ getTipAmount(formatedFileData?.tipAmount) }}
       </button>
     </div>

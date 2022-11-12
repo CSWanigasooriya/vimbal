@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { ChatComponent } from '../chat/chat.component'
+
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { NgModule } from '@angular/core'
+import { NotificationComponent } from './notification/notification.component'
 import { ProfileComponent } from './profile/profile.component'
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path: 'chat',
-    component: ChatComponent,
+    path: 'notification',
+    component: NotificationComponent,
   },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 ]

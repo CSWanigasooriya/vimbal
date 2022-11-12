@@ -7,29 +7,6 @@
       <h1 class="app-name">BROWSE {{ config.title | uppercase }}</h1>
 
       <span class="flex-auto"></span>
-      <form *ngIf="!mobileQuery.matches">
-        <input
-          class="search"
-          type="text"
-          placeholder="Search..."
-          matInput
-          [formControl]="searchControl"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          (optionSelected)="onSelectionChanged($event)"
-        >
-          <mat-option
-            *ngFor="let file of allFilteredFiles | async"
-            [value]="file.title"
-            [id]="file.id.toString()"
-          >
-            <span>{{ file.title }}</span> |
-            <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
-          </mat-option>
-        </mat-autocomplete>
-      </form>
       <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
         <mat-icon>home</mat-icon>
       </button>

@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { AuthGuard } from '@vimbal/guard'
-import { RatingResolver } from '@vimbal/resolver'
+
 import { AuthComponent } from './auth/auth.component'
+import { AuthGuard } from '@vimbal/guard'
 import { BrowseComponent } from './browse/browse.component'
+import { ChatComponent } from './chat/chat.component'
 import { ErrorComponent } from './error/error.component'
 import { HomeComponent } from './home/home.component'
 import { LayoutComponent } from './layout/layout.component'
+import { NgModule } from '@angular/core'
 import { PreviewComponent } from './preview/preview.component'
+import { RatingResolver } from '@vimbal/resolver'
 import { ReviewComponent } from './review/review.component'
 
 const routes: Routes = [
@@ -37,6 +39,10 @@ const routes: Routes = [
   {
     path: 'preview/:id',
     component: PreviewComponent,
+  },
+  {
+    path: 'chat/:id',
+    component: ChatComponent,
   },
   {
     path: 'review/:id',

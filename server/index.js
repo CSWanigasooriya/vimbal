@@ -9,4 +9,4 @@ const server = app.listen(port, () => {
   console.log(`Gun server running on port ${port}🔥`)
 })
 
-Gun({ web: server })
+Gun({ file: 'db/data.json', web: server, radisk: false, localStorage: true })
