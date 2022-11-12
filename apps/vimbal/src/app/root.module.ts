@@ -20,6 +20,7 @@ import { MaterialModule } from '@vimbal/material'
 import { PipeModule } from '@vimbal/pipe'
 import { ServiceModule } from '@vimbal/service'
 import { localStorageSync } from 'ngrx-store-localstorage'
+import { NgxJdenticonModule } from 'ngx-jdenticon'
 import { environment } from '../environments/environment'
 import { AuthComponent } from './auth/auth.component'
 import { BrowseComponent } from './browse/browse.component'
@@ -56,6 +57,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
     BrowserAnimationsModule,
     RootRoutingModule,
     MaterialModule,
+    NgxJdenticonModule,
     FormsModule,
     ReactiveFormsModule,
     PipeModule,

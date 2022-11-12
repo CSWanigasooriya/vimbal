@@ -2,8 +2,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 
 import { Store } from '@ngrx/store'
-import { FileContractWrapper, UserContract } from '@vimbal/model'
-import { AuthService, FileService, FirestoreService } from '@vimbal/service'
+import { FileContractWrapper, ReviewContract, UserContract } from '@vimbal/model'
+import {
+  AuthService,
+  FileService,
+  FirestoreService,
+  ReviewService,
+} from '@vimbal/service'
 import { Observable, Subscription } from 'rxjs'
 import { mode } from '../core/state/theme/theme.actions'
 
@@ -17,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   users: UserContract[] = []
   files: FileContractWrapper[] = []
   userWalletAddress = ''
+  reviews: ReviewContract[] = []
 
   private subscriptions = new Subscription()
 
@@ -24,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _fileService: FileService,
     private _firestoreService: FirestoreService,
+    private _reviewService: ReviewService,
     private store: Store<{ count: number; theme: boolean; sidebar: boolean }>
   ) {
     this.getWalletAddress()
@@ -59,10 +66,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._fileService.getFileData().then(async (data: any) => {
       const fileCount = await data?.methods?.fileCount().call()
       const fileCountInt = parseInt(fileCount, 16)
-      for (let index = 1; index <= fileCountInt; index++) {
-        const file = await data.methods?.files(index).call()
+      for (let fileId = 1; fileId <= fileCountInt; fileId++) {
+        const file = await data.methods?.files(fileId).call()
+        this._reviewService.getReviewContract().then(async (data: any) => {
+          const reviewCount = await data?.methods?.reviewCount().call()
+          const fileCountInt = parseInt(reviewCount, 16)
+          for (let index = 1; index <= fileCountInt; index++) {
+            const review = await data.methods?.reviews(fileId, index).call()
+            if (review?.id != 0)
+              this.reviews = [...this.reviews, review].sort(
+                (a, b) => b.createdAt - a.createdAt
+              )
+          }
+        })
         if (file?.id != 0)
-          this.getAverageRating(index).then(async (averageRating) => {
+          this.getAverageRating(fileId).then(async (averageRating) => {
             this.files = [
               ...this.files,
               this.formatFileData({ ...file, averageRating }),
