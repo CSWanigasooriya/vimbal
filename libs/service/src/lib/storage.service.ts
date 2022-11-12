@@ -26,4 +26,18 @@ export class StorageService {
   clear() {
     this.storage.clear()
   }
+
+  getAll() {
+    const archive: string[] = []
+    const keys = Object.keys(localStorage)
+    console.log(keys)
+    let i = 0
+    let key
+
+    for (; (key = keys[i]); i++) {
+      archive.push(String(localStorage.getItem(key)))
+    }
+
+    return archive
+  }
 }

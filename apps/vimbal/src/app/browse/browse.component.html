@@ -7,29 +7,6 @@
       <h1 class="app-name">BROWSE {{ config.title | uppercase }}</h1>
 
       <span class="flex-auto"></span>
-      <form *ngIf="!mobileQuery.matches">
-        <input
-          class="search"
-          type="text"
-          placeholder="Search..."
-          matInput
-          [formControl]="searchControl"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          (optionSelected)="onSelectionChanged($event)"
-        >
-          <mat-option
-            *ngFor="let file of filteredOptions | async"
-            [value]="file.title"
-            [id]="file.id.toString()"
-          >
-            <span>{{ file.title }}</span> |
-            <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
-          </mat-option>
-        </mat-autocomplete>
-      </form>
       <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
         <mat-icon>home</mat-icon>
       </button>
@@ -39,33 +16,52 @@
     </mat-toolbar>
   </p>
   <div class="container mx-auto px-2">
-    <form *ngIf="!mobileQuery.matches" class="row">
-      <input
-        class="search col s12"
-        type="text"
-        placeholder="Filter..."
-        matInput
-        [formControl]="searchControl"
-        [matAutocomplete]="auto"
-      />
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="onSelectionChanged($event)"
-      >
-        <mat-option
-          *ngFor="let file of filteredOptions | async"
-          [value]="file.title"
-          [id]="file.id.toString()"
-        >
-          <span>{{ file.title }}</span> |
-          <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
-        </mat-option>
-      </mat-autocomplete>
-    </form>
+    <div class="row">
+      <div class="col s12">
+        <form>
+          <input
+            class="search col s12"
+            type="text"
+            placeholder="Filter..."
+            matInput
+            [formControl]="searchControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onSelectionChanged($event)"
+          >
+            <mat-option
+              *ngFor="let file of allFilteredFiles | async"
+              [value]="file.title"
+              [id]="file.id.toString()"
+            >
+              <span>{{ file.title }}</span> |
+              <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </form>
+      </div>
+    </div>
+    <div class="row px-2">
+      <button mat-stroked-button [matMenuTriggerFor]="menu">
+        Sort By <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="sortByTitle()">
+          <mat-icon>sort_by_alpha</mat-icon>
+          <span>Title</span>
+        </button>
+        <button mat-menu-item (click)="sortByTipAmount()">
+          <mat-icon>generating_tokens</mat-icon>
+          <span>Tip Amount</span>
+        </button>
+      </mat-menu>
+    </div>
     <mat-tab-group dynamicHeight>
       <mat-tab label="All">
         <div class="row">
-          <div class="col s12 l4" *ngFor="let item of filteredOptions | async">
+          <div class="col s12 l4" *ngFor="let item of allFilteredFiles | async">
             <vimbal-card [fileData]="item"></vimbal-card>
           </div>
         </div>
@@ -73,7 +69,7 @@
       <mat-tab label="Trending">
         <br />
         <div class="row">
-          <div class="col s12 l4" *ngFor="let item of filteredOptions | async">
+          <div class="col s12 l4" *ngFor="let item of filteredTrendingFiles | async">
             <vimbal-card [fileData]="item"></vimbal-card>
           </div>
         </div>

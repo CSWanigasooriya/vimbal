@@ -35,7 +35,7 @@ export class IpfsService {
     await this._web3StorageService
       .storeFiles(files)
       .then(async (hash) => {
-        const isFileOwned = await this.fileData.methods.isFileOwned(accounts[0]).call()
+        const isFileOwned = await this.fileData.methods.isFileOwned(hash).call()
         if (hash && !isFileOwned) {
           await this.fileData.methods
             ?.uploadFile(

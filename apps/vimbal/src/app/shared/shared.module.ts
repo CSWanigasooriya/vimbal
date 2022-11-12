@@ -1,28 +1,24 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { UploaderComponent } from './uploader/uploader.component'
-import { FeedComponent } from './feed/feed.component'
-import { StarRatingComponent } from './star-rating/star-rating.component'
-import { CardComponent } from './card/card.component'
-import { BounceComponent } from './bounce/bounce.component'
-import { MaterialModule } from '@vimbal/material'
+import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { MaterialModule } from '@vimbal/material'
 import { PipeModule } from '@vimbal/pipe'
-import { NgxJdenticonModule } from 'ngx-jdenticon'
-import { SplashComponent } from './splash/splash.component'
-import { SheetComponent } from './sheet/sheet.component'
-import { DialogComponent } from './dialog/dialog.component'
 import { NgxDocViewerModule } from 'ngx-doc-viewer'
+import { NgxJdenticonModule } from 'ngx-jdenticon'
+import { CardComponent } from './card/card.component'
+import { DialogComponent } from './dialog/dialog.component'
+import { FeedComponent } from './feed/feed.component'
+import { SheetComponent } from './sheet/sheet.component'
+import { StarRatingComponent } from './star-rating/star-rating.component'
+import { UploaderComponent } from './uploader/uploader.component'
 
 const sharedComponents = [
-  SplashComponent,
   SheetComponent,
   UploaderComponent,
   DialogComponent,
   FeedComponent,
   StarRatingComponent,
   CardComponent,
-  BounceComponent,
 ]
 
 @NgModule({

@@ -73,13 +73,19 @@ export class ReviewComponent implements OnInit, OnDestroy {
   ) {
     this.fileId = Number(this._activatedRoute.snapshot.paramMap.get('id'))
     this._activatedRoute.data.subscribe(({ rating }) => {
-      this.averageRatingValue = rating
-      console.log(rating)
+      rating.subscribe((data: number) => {
+        this.averageRatingValue = data
+      })
     })
     this.theme$ = this._store.select('theme')
     this.mobileQuery = this._media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => this._changeDetectorRef.detectChanges()
     this.mobileQuery.addEventListener('change', this._mobileQueryListener)
+
+    // Authenticate user
+    window.web3.eth.getAccounts().then((accounts: string | unknown[]) => {
+      if (accounts.length === 0) this._authService.requestWalletPermission()
+    })
   }
 
   ngOnInit() {
@@ -143,8 +149,12 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }
 
   isOwner() {
-    if (!this.file.id) return of(false)
+    if (!this.file?.id) return of(false)
     return of(this.file?.owner.toString() === this.walletAddress)
+  }
+
+  getChatId(receiver?: number) {
+    return `${this.walletAddress}-${receiver}`
   }
 
   private setReviewData() {
@@ -164,11 +174,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   private setFileData() {
     this._fileService.getFileData().then(async (data: any) => {
-      this.getAverageRating(this.fileId).then(async (averageRating) => {
-        this.file = this.formatFileData({
-          ...(await data.methods.files(this.fileId).call()),
-          averageRating,
-        })
+      this.file = this.formatFileData({
+        ...(await data.methods.files(this.fileId).call()),
       })
     })
   }
@@ -190,10 +197,5 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   private async getWalletAddress() {
     this.walletAddress = await this._authService.getWalletAddress()
-  }
-
-  private async getAverageRating(fileId: number) {
-    const data = await this._firestoreService.getAverageReviewScore(fileId)
-    return data
   }
 }

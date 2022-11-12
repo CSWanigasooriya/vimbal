@@ -7,29 +7,7 @@
       <h1 class="app-name">REVIEW {{ config.title | uppercase }}</h1>
 
       <span class="flex-auto"></span>
-      <form *ngIf="!mobileQuery.matches">
-        <input
-          class="search"
-          type="text"
-          placeholder="Search..."
-          matInput
-          [formControl]="searchControl"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          (optionSelected)="onSelectionChanged($event)"
-        >
-          <mat-option
-            *ngFor="let file of filteredOptions | async"
-            [value]="file.title"
-            [id]="file.id.toString()"
-          >
-            <span>{{ file.title }}</span> |
-            <small>Authors: {{ decodeData(file?.authors) | splitBy: ',' }}</small>
-          </mat-option>
-        </mat-autocomplete>
-      </form>
+
       <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
         <mat-icon>home</mat-icon>
       </button>
@@ -56,7 +34,7 @@
           <vimbal-star-rating
             [readonly]="true"
             [size]="1"
-            [initialStars]="file?.averageRating || 0"
+            [initialStars]="averageRatingValue || 0"
             [color]="'#FFBF00'"
             [maxStars]="5"
           ></vimbal-star-rating>
@@ -92,7 +70,16 @@
         matTooltip="Preview the full paper"
         [routerLink]="['/preview', file?.id]"
       >
-        Full Paper
+        FULL PAPER
+      </button>
+      <button
+        *ngIf="(isOwner() | async) === false"
+        mat-stroked-button
+        color="primary"
+        matTooltip="Chat with the author"
+        [routerLink]="['/chat', getChatId(file?.owner)]"
+      >
+        CHAT WITH AUTHOR
       </button>
     </mat-card-actions>
   </mat-card>

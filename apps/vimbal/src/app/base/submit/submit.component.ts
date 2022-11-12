@@ -144,11 +144,13 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
       createdAt: new Date().toString(),
     } as FileContract
 
-    this._ipfsService.uploadFile(this.fileList, fileData).then(() => {
+    this._ipfsService.uploadFile(this.fileList, fileData).then((res) => {
       this.isProcessing = false
       this._firestoreService.updateFile(fileData).then(() => {
-        this.dialogRef.close(this.paperSubmitForm.value)
-        location.reload()
+        if (res) {
+          this.dialogRef.close(this.paperSubmitForm.value)
+          location.reload()
+        }
       })
     })
   }

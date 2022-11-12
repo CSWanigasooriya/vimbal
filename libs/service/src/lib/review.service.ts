@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { ReviewContractBuild } from './contract'
+import { ReviewContractBuild } from '..'
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,6 @@ export class ReviewService {
 
   async createReview(fileId: number, content: string, rating: string) {
     const accounts = await window.web3.eth.getAccounts()
-
     await this.getReviewContract().then(async (review) => {
       await review.methods
         ?.createReview(fileId, content, rating, new Date().toString())

@@ -1,0 +1,76 @@
+<div *ngIf="walletAddress | async as address" class="mat-app-background min-h-screen">
+  <p class="p-2">
+    <mat-toolbar class="toolbar mat-elevation-z4">
+      <button mat-icon-button (click)="location.back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="app-name">{{ config.title | uppercase }} CHAT</h1>
+
+      <span class="flex-auto"></span>
+
+      <button mat-icon-button matTooltip="Home" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleDarkMode()" matTooltip="Toggle Theme">
+        <mat-icon>{{ (theme$ | async) === true ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+  <div class="container p-2">
+    <section class="msger">
+      <header class="msger-header">
+        <button mat-icon-button class="msger-header-title">
+          <mat-icon>chat</mat-icon>
+          {{ address }}
+        </button>
+        <div class="msger-header-options">
+          <button mat-icon-button><mat-icon>settings</mat-icon></button>
+        </div>
+      </header>
+
+      <main class="msger-chat" #scroller>
+        <div *ngFor="let msg of messages">
+          <div>
+            <div class="msg left-msg" *ngIf="msg?.sender !== address">
+              <img [src]="msg?.avatar" class="msg-img" />
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">{{ msg?.sender }}</div>
+                  <div class="msg-info-time">{{ msg?.timestamp }}</div>
+                </div>
+
+                <div class="msg-text">
+                  {{ msg?.content }}
+                </div>
+              </div>
+            </div>
+
+            <div class="msg right-msg" *ngIf="msg?.sender === address">
+              <img [src]="msg?.avatar" class="msg-img" />
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">{{ msg?.sender }}</div>
+                  <div class="msg-info-time">{{ msg?.timestamp }}</div>
+                </div>
+
+                <div class="msg-text">
+                  {{ msg?.content }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <form class="msger-inputarea" (ngSubmit)="sendMessage(address)">
+        <input
+          type="text"
+          class="msger-input"
+          [formControl]="messageContent"
+          placeholder="Enter your message..."
+        />
+        <button type="submit" class="msger-send-btn">SEND</button>
+      </form>
+    </section>
+  </div>
+</div>
