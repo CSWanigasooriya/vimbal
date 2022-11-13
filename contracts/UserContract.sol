@@ -10,7 +10,7 @@ contract UserContract {
 
   struct User {
     uint256 id;
-    string walletAddress;
+    address payable walletAddress;
     string displayName;
     string email;
     string role;
@@ -19,7 +19,7 @@ contract UserContract {
 
   event UserCreated(
     uint256 id,
-    string walletAddress,
+    address payable walletAddress,
     string displayName,
     string email,
     string role,
@@ -27,7 +27,6 @@ contract UserContract {
   );
 
   function createUser(
-    string memory _walletAddress,
     string memory _displayName,
     string memory _email,
     string memory _role,
@@ -37,13 +36,44 @@ contract UserContract {
 
     users[userCount] = User(
       userCount,
-      _walletAddress,
+      payable(address(msg.sender)),
       _displayName,
       _email,
       _role,
       _createdAt
     );
 
-    emit UserCreated(userCount, _walletAddress, _displayName, _email, _role, _createdAt);
+    emit UserCreated(
+      userCount,
+      payable(address(msg.sender)),
+      _displayName,
+      _email,
+      _role,
+      _createdAt
+    );
+  }
+
+  function tipUser(uint256 _id) public payable {
+    // Make sure the id is valid
+    require(userCount > 0, 'No users');
+    // Fetch the file
+    User memory _user = users[_id];
+    // Fetch the owner
+    address payable _author = _user.walletAddress;
+    // Pay the author by sending them Ether
+    _author.transfer(msg.value);
+    // Increment the tip amount
+    _user.id = userCount;
+    // Update the file
+    users[userCount] = _user;
+    // Trigger an event
+    emit UserCreated(
+      userCount,
+      payable(address(msg.sender)),
+      _user.displayName,
+      _user.email,
+      _user.role,
+      _user.createdAt
+    );
   }
 }
