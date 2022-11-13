@@ -8,7 +8,7 @@ import SEA from 'gun/sea'
 @Injectable({
   providedIn: 'root',
 })
-export class ChatService {
+export class GunService {
   private currentUser = new BehaviorSubject<{
     type: string
     payload: {
