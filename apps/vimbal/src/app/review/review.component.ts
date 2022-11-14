@@ -192,6 +192,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
       createdAt: file.createdAt,
       owner: file.owner,
       averageRating: file.averageRating,
+      isPublic: file.isPublic,
     } as FileContractWrapper
   }
 
