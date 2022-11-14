@@ -7,6 +7,15 @@
   -webkit-box-orient: vertical;
 }
 
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .title-border {
   border: 1px solid #ccc;
   background-color: rgba(100, 148, 237, 0.1);

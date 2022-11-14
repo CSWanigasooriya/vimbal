@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
+    "start": "concurrently --kill-others \"nx serve -o\" \"nodemon ./server/index.js\"",
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
@@ -92,6 +92,7 @@
     "autoprefixer": "^10.4.8",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
+    "concurrently": "^7.5.0",
     "cypress": "^10.6.0",
     "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
