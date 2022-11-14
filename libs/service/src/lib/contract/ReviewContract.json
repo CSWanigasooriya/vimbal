@@ -4730,20 +4730,20 @@
   "ast": {
     "absolutePath": "project:/contracts/ReviewContract.sol",
     "exportedSymbols": {
-      "ReviewContract": [505]
+      "ReviewContract": [517]
     },
-    "id": 506,
+    "id": 518,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 362,
+        "id": 374,
         "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "40:32:2"
       },
       {
-        "id": 363,
+        "id": 375,
         "literals": ["abicoder", "v2"],
         "nodeType": "PragmaDirective",
         "src": "74:19:2"
@@ -4754,19 +4754,19 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 505,
-        "linearizedBaseContracts": [505],
+        "id": 517,
+        "linearizedBaseContracts": [517],
         "name": "ReviewContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
             "functionSelector": "06fdde03",
-            "id": 366,
+            "id": 378,
             "mutability": "mutable",
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 505,
+            "scope": 517,
             "src": "126:29:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4775,7 +4775,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 364,
+              "id": 376,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "126:6:2",
@@ -4786,7 +4786,7 @@
             },
             "value": {
               "hexValue": "526576696577",
-              "id": 365,
+              "id": 377,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4805,11 +4805,11 @@
           {
             "constant": false,
             "functionSelector": "eff5924f",
-            "id": 369,
+            "id": 381,
             "mutability": "mutable",
             "name": "reviewCount",
             "nodeType": "VariableDeclaration",
-            "scope": 505,
+            "scope": 517,
             "src": "160:30:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4818,7 +4818,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 367,
+              "id": 379,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "160:7:2",
@@ -4829,7 +4829,7 @@
             },
             "value": {
               "hexValue": "30",
-              "id": 368,
+              "id": 380,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4848,22 +4848,22 @@
           {
             "constant": false,
             "functionSelector": "a7264f88",
-            "id": 375,
+            "id": 387,
             "mutability": "mutable",
             "name": "reviews",
             "nodeType": "VariableDeclaration",
-            "scope": 505,
+            "scope": 517,
             "src": "197:65:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
               "typeString": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview))"
             },
             "typeName": {
-              "id": 374,
+              "id": 386,
               "keyType": {
-                "id": 370,
+                "id": 382,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "205:7:2",
@@ -4875,13 +4875,13 @@
               "nodeType": "Mapping",
               "src": "197:50:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                 "typeString": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview))"
               },
               "valueType": {
-                "id": 373,
+                "id": 385,
                 "keyType": {
-                  "id": 371,
+                  "id": 383,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "224:7:2",
@@ -4893,17 +4893,17 @@
                 "nodeType": "Mapping",
                 "src": "216:30:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                   "typeString": "mapping(uint256 => struct ReviewContract.FileReview)"
                 },
                 "valueType": {
-                  "id": 372,
+                  "id": 384,
                   "name": "FileReview",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 392,
+                  "referencedDeclaration": 404,
                   "src": "235:10:2",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_FileReview_$392_storage_ptr",
+                    "typeIdentifier": "t_struct$_FileReview_$404_storage_ptr",
                     "typeString": "struct ReviewContract.FileReview"
                   }
                 }
@@ -4914,22 +4914,22 @@
           {
             "constant": false,
             "functionSelector": "ad3f2f27",
-            "id": 381,
+            "id": 393,
             "mutability": "mutable",
             "name": "reviewsByOwner",
             "nodeType": "VariableDeclaration",
-            "scope": 505,
+            "scope": 517,
             "src": "267:72:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
               "typeString": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview))"
             },
             "typeName": {
-              "id": 380,
+              "id": 392,
               "keyType": {
-                "id": 376,
+                "id": 388,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "275:7:2",
@@ -4941,13 +4941,13 @@
               "nodeType": "Mapping",
               "src": "267:50:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                 "typeString": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview))"
               },
               "valueType": {
-                "id": 379,
+                "id": 391,
                 "keyType": {
-                  "id": 377,
+                  "id": 389,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "294:7:2",
@@ -4959,17 +4959,17 @@
                 "nodeType": "Mapping",
                 "src": "286:30:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                   "typeString": "mapping(uint256 => struct ReviewContract.FileReview)"
                 },
                 "valueType": {
-                  "id": 378,
+                  "id": 390,
                   "name": "FileReview",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 392,
+                  "referencedDeclaration": 404,
                   "src": "305:10:2",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_FileReview_$392_storage_ptr",
+                    "typeIdentifier": "t_struct$_FileReview_$404_storage_ptr",
                     "typeString": "struct ReviewContract.FileReview"
                   }
                 }
@@ -4979,15 +4979,15 @@
           },
           {
             "canonicalName": "ReviewContract.FileReview",
-            "id": 392,
+            "id": 404,
             "members": [
               {
                 "constant": false,
-                "id": 383,
+                "id": 395,
                 "mutability": "mutable",
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 392,
+                "scope": 404,
                 "src": "371:10:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -4996,7 +4996,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 382,
+                  "id": 394,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "371:7:2",
@@ -5009,11 +5009,11 @@
               },
               {
                 "constant": false,
-                "id": 385,
+                "id": 397,
                 "mutability": "mutable",
                 "name": "review",
                 "nodeType": "VariableDeclaration",
-                "scope": 392,
+                "scope": 404,
                 "src": "388:13:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -5022,7 +5022,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 384,
+                  "id": 396,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "388:6:2",
@@ -5035,11 +5035,11 @@
               },
               {
                 "constant": false,
-                "id": 387,
+                "id": 399,
                 "mutability": "mutable",
                 "name": "rating",
                 "nodeType": "VariableDeclaration",
-                "scope": 392,
+                "scope": 404,
                 "src": "408:13:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -5048,7 +5048,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 386,
+                  "id": 398,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "408:6:2",
@@ -5061,11 +5061,11 @@
               },
               {
                 "constant": false,
-                "id": 389,
+                "id": 401,
                 "mutability": "mutable",
                 "name": "createdAt",
                 "nodeType": "VariableDeclaration",
-                "scope": 392,
+                "scope": 404,
                 "src": "428:16:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -5074,7 +5074,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 388,
+                  "id": 400,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "428:6:2",
@@ -5087,11 +5087,11 @@
               },
               {
                 "constant": false,
-                "id": 391,
+                "id": 403,
                 "mutability": "mutable",
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
-                "scope": 392,
+                "scope": 404,
                 "src": "451:21:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -5100,7 +5100,7 @@
                   "typeString": "address payable"
                 },
                 "typeName": {
-                  "id": 390,
+                  "id": 402,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "451:15:2",
@@ -5115,27 +5115,27 @@
             ],
             "name": "FileReview",
             "nodeType": "StructDefinition",
-            "scope": 505,
+            "scope": 517,
             "src": "346:132:2",
             "visibility": "public"
           },
           {
             "anonymous": false,
-            "id": 404,
+            "id": 416,
             "name": "ReviewCreated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 403,
+              "id": 415,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 394,
+                  "id": 406,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 404,
+                  "scope": 416,
                   "src": "510:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5144,7 +5144,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 393,
+                    "id": 405,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "510:7:2",
@@ -5157,12 +5157,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 396,
+                  "id": 408,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "review",
                   "nodeType": "VariableDeclaration",
-                  "scope": 404,
+                  "scope": 416,
                   "src": "527:13:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5171,7 +5171,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 395,
+                    "id": 407,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "527:6:2",
@@ -5184,12 +5184,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 398,
+                  "id": 410,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "rating",
                   "nodeType": "VariableDeclaration",
-                  "scope": 404,
+                  "scope": 416,
                   "src": "547:13:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5198,7 +5198,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 397,
+                    "id": 409,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "547:6:2",
@@ -5211,12 +5211,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 400,
+                  "id": 412,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "createdAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 404,
+                  "scope": 416,
                   "src": "567:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5225,7 +5225,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 399,
+                    "id": 411,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "567:6:2",
@@ -5238,12 +5238,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 402,
+                  "id": 414,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 404,
+                  "scope": 416,
                   "src": "590:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5252,7 +5252,7 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 401,
+                    "id": 413,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "590:15:2",
@@ -5271,13 +5271,13 @@
           },
           {
             "body": {
-              "id": 476,
+              "id": 488,
               "nodeType": "Block",
               "src": "762:500:2",
               "statements": [
                 {
                   "expression": {
-                    "id": 416,
+                    "id": 428,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5287,11 +5287,11 @@
                     "prefix": false,
                     "src": "769:13:2",
                     "subExpression": {
-                      "id": 415,
+                      "id": 427,
                       "name": "reviewCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 369,
+                      "referencedDeclaration": 381,
                       "src": "769:11:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -5303,13 +5303,13 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 417,
+                  "id": 429,
                   "nodeType": "ExpressionStatement",
                   "src": "769:13:2"
                 },
                 {
                   "expression": {
-                    "id": 437,
+                    "id": 449,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5317,24 +5317,24 @@
                     "leftHandSide": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 418,
+                          "id": 430,
                           "name": "reviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 375,
+                          "referencedDeclaration": 387,
                           "src": "791:7:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                             "typeString": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview storage ref))"
                           }
                         },
-                        "id": 421,
+                        "id": 433,
                         "indexExpression": {
-                          "id": 419,
+                          "id": 431,
                           "name": "fileId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 406,
+                          "referencedDeclaration": 418,
                           "src": "799:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -5348,17 +5348,17 @@
                         "nodeType": "IndexAccess",
                         "src": "791:15:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                           "typeString": "mapping(uint256 => struct ReviewContract.FileReview storage ref)"
                         }
                       },
-                      "id": 422,
+                      "id": 434,
                       "indexExpression": {
-                        "id": 420,
+                        "id": 432,
                         "name": "reviewCount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 369,
+                        "referencedDeclaration": 381,
                         "src": "807:11:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5372,7 +5372,7 @@
                       "nodeType": "IndexAccess",
                       "src": "791:28:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                        "typeIdentifier": "t_struct$_FileReview_$404_storage",
                         "typeString": "struct ReviewContract.FileReview storage ref"
                       }
                     },
@@ -5381,11 +5381,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 424,
+                          "id": 436,
                           "name": "reviewCount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 369,
+                          "referencedDeclaration": 381,
                           "src": "841:11:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -5393,11 +5393,11 @@
                           }
                         },
                         {
-                          "id": 425,
+                          "id": 437,
                           "name": "review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 408,
+                          "referencedDeclaration": 420,
                           "src": "861:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5405,11 +5405,11 @@
                           }
                         },
                         {
-                          "id": 426,
+                          "id": 438,
                           "name": "rating",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 410,
+                          "referencedDeclaration": 422,
                           "src": "876:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5417,11 +5417,11 @@
                           }
                         },
                         {
-                          "id": 427,
+                          "id": 439,
                           "name": "createdAt",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 412,
+                          "referencedDeclaration": 424,
                           "src": "891:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5434,7 +5434,7 @@
                               "arguments": [
                                 {
                                   "expression": {
-                                    "id": 432,
+                                    "id": 444,
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
@@ -5445,7 +5445,7 @@
                                       "typeString": "msg"
                                     }
                                   },
-                                  "id": 433,
+                                  "id": 445,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -5466,7 +5466,7 @@
                                     "typeString": "address payable"
                                   }
                                 ],
-                                "id": 431,
+                                "id": 443,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5478,14 +5478,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 430,
+                                  "id": 442,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "917:7:2",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 434,
+                              "id": 446,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -5508,7 +5508,7 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 429,
+                            "id": 441,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -5520,7 +5520,7 @@
                               "typeString": "type(address payable)"
                             },
                             "typeName": {
-                              "id": 428,
+                              "id": 440,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "909:8:2",
@@ -5528,7 +5528,7 @@
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 435,
+                          "id": 447,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5567,18 +5567,18 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 423,
+                        "id": 435,
                         "name": "FileReview",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 392,
+                        "referencedDeclaration": 404,
                         "src": "822:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_FileReview_$392_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_FileReview_$404_storage_ptr_$",
                           "typeString": "type(struct ReviewContract.FileReview storage pointer)"
                         }
                       },
-                      "id": 436,
+                      "id": 448,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5589,23 +5589,23 @@
                       "src": "822:122:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_memory_ptr",
+                        "typeIdentifier": "t_struct$_FileReview_$404_memory_ptr",
                         "typeString": "struct ReviewContract.FileReview memory"
                       }
                     },
                     "src": "791:153:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                      "typeIdentifier": "t_struct$_FileReview_$404_storage",
                       "typeString": "struct ReviewContract.FileReview storage ref"
                     }
                   },
-                  "id": 438,
+                  "id": 450,
                   "nodeType": "ExpressionStatement",
                   "src": "791:153:2"
                 },
                 {
                   "expression": {
-                    "id": 459,
+                    "id": 471,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5613,21 +5613,21 @@
                     "leftHandSide": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 439,
+                          "id": 451,
                           "name": "reviewsByOwner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 381,
+                          "referencedDeclaration": 393,
                           "src": "953:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                             "typeString": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview storage ref))"
                           }
                         },
-                        "id": 443,
+                        "id": 455,
                         "indexExpression": {
                           "expression": {
-                            "id": 440,
+                            "id": 452,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -5638,7 +5638,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 441,
+                          "id": 453,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5658,17 +5658,17 @@
                         "nodeType": "IndexAccess",
                         "src": "953:26:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                           "typeString": "mapping(uint256 => struct ReviewContract.FileReview storage ref)"
                         }
                       },
-                      "id": 444,
+                      "id": 456,
                       "indexExpression": {
-                        "id": 442,
+                        "id": 454,
                         "name": "reviewCount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 369,
+                        "referencedDeclaration": 381,
                         "src": "980:11:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5682,7 +5682,7 @@
                       "nodeType": "IndexAccess",
                       "src": "953:39:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                        "typeIdentifier": "t_struct$_FileReview_$404_storage",
                         "typeString": "struct ReviewContract.FileReview storage ref"
                       }
                     },
@@ -5691,11 +5691,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 446,
+                          "id": 458,
                           "name": "reviewCount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 369,
+                          "referencedDeclaration": 381,
                           "src": "1014:11:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -5703,11 +5703,11 @@
                           }
                         },
                         {
-                          "id": 447,
+                          "id": 459,
                           "name": "review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 408,
+                          "referencedDeclaration": 420,
                           "src": "1034:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5715,11 +5715,11 @@
                           }
                         },
                         {
-                          "id": 448,
+                          "id": 460,
                           "name": "rating",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 410,
+                          "referencedDeclaration": 422,
                           "src": "1049:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5727,11 +5727,11 @@
                           }
                         },
                         {
-                          "id": 449,
+                          "id": 461,
                           "name": "createdAt",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 412,
+                          "referencedDeclaration": 424,
                           "src": "1064:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -5744,7 +5744,7 @@
                               "arguments": [
                                 {
                                   "expression": {
-                                    "id": 454,
+                                    "id": 466,
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
@@ -5755,7 +5755,7 @@
                                       "typeString": "msg"
                                     }
                                   },
-                                  "id": 455,
+                                  "id": 467,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -5776,7 +5776,7 @@
                                     "typeString": "address payable"
                                   }
                                 ],
-                                "id": 453,
+                                "id": 465,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5788,14 +5788,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 452,
+                                  "id": 464,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "1090:7:2",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 456,
+                              "id": 468,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -5818,7 +5818,7 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 451,
+                            "id": 463,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -5830,7 +5830,7 @@
                               "typeString": "type(address payable)"
                             },
                             "typeName": {
-                              "id": 450,
+                              "id": 462,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "1082:8:2",
@@ -5838,7 +5838,7 @@
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 457,
+                          "id": 469,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5877,18 +5877,18 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 445,
+                        "id": 457,
                         "name": "FileReview",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 392,
+                        "referencedDeclaration": 404,
                         "src": "995:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_FileReview_$392_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_FileReview_$404_storage_ptr_$",
                           "typeString": "type(struct ReviewContract.FileReview storage pointer)"
                         }
                       },
-                      "id": 458,
+                      "id": 470,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5899,17 +5899,17 @@
                       "src": "995:122:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_memory_ptr",
+                        "typeIdentifier": "t_struct$_FileReview_$404_memory_ptr",
                         "typeString": "struct ReviewContract.FileReview memory"
                       }
                     },
                     "src": "953:164:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                      "typeIdentifier": "t_struct$_FileReview_$404_storage",
                       "typeString": "struct ReviewContract.FileReview storage ref"
                     }
                   },
-                  "id": 460,
+                  "id": 472,
                   "nodeType": "ExpressionStatement",
                   "src": "953:164:2"
                 },
@@ -5917,11 +5917,11 @@
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 462,
+                        "id": 474,
                         "name": "reviewCount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 369,
+                        "referencedDeclaration": 381,
                         "src": "1153:11:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5929,11 +5929,11 @@
                         }
                       },
                       {
-                        "id": 463,
+                        "id": 475,
                         "name": "review",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 408,
+                        "referencedDeclaration": 420,
                         "src": "1173:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -5941,11 +5941,11 @@
                         }
                       },
                       {
-                        "id": 464,
+                        "id": 476,
                         "name": "rating",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 410,
+                        "referencedDeclaration": 422,
                         "src": "1188:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -5953,11 +5953,11 @@
                         }
                       },
                       {
-                        "id": 465,
+                        "id": 477,
                         "name": "createdAt",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 412,
+                        "referencedDeclaration": 424,
                         "src": "1203:9:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -5970,7 +5970,7 @@
                             "arguments": [
                               {
                                 "expression": {
-                                  "id": 470,
+                                  "id": 482,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -5981,7 +5981,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 471,
+                                "id": 483,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -6002,7 +6002,7 @@
                                   "typeString": "address payable"
                                 }
                               ],
-                              "id": 469,
+                              "id": 481,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -6014,14 +6014,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 468,
+                                "id": 480,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "1229:7:2",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 472,
+                            "id": 484,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -6044,7 +6044,7 @@
                               "typeString": "address"
                             }
                           ],
-                          "id": 467,
+                          "id": 479,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -6056,7 +6056,7 @@
                             "typeString": "type(address payable)"
                           },
                           "typeName": {
-                            "id": 466,
+                            "id": 478,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1221:8:2",
@@ -6064,7 +6064,7 @@
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 473,
+                        "id": 485,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -6103,18 +6103,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 461,
+                      "id": 473,
                       "name": "ReviewCreated",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 404,
+                      "referencedDeclaration": 416,
                       "src": "1131:13:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_payable_$returns$__$",
                         "typeString": "function (uint256,string memory,string memory,string memory,address payable)"
                       }
                     },
-                    "id": 474,
+                    "id": 486,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -6129,30 +6129,30 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 475,
+                  "id": 487,
                   "nodeType": "EmitStatement",
                   "src": "1126:130:2"
                 }
               ]
             },
             "functionSelector": "6195a3a3",
-            "id": 477,
+            "id": 489,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "createReview",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 413,
+              "id": 425,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 406,
+                  "id": 418,
                   "mutability": "mutable",
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 477,
+                  "scope": 489,
                   "src": "651:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6161,7 +6161,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 405,
+                    "id": 417,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "651:7:2",
@@ -6174,11 +6174,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 408,
+                  "id": 420,
                   "mutability": "mutable",
                   "name": "review",
                   "nodeType": "VariableDeclaration",
-                  "scope": 477,
+                  "scope": 489,
                   "src": "672:20:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6187,7 +6187,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 407,
+                    "id": 419,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "672:6:2",
@@ -6200,11 +6200,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 410,
+                  "id": 422,
                   "mutability": "mutable",
                   "name": "rating",
                   "nodeType": "VariableDeclaration",
-                  "scope": 477,
+                  "scope": 489,
                   "src": "699:20:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6213,7 +6213,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 409,
+                    "id": 421,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "699:6:2",
@@ -6226,11 +6226,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 412,
+                  "id": 424,
                   "mutability": "mutable",
                   "name": "createdAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 477,
+                  "scope": 489,
                   "src": "726:23:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6239,7 +6239,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 411,
+                    "id": 423,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "726:6:2",
@@ -6254,12 +6254,12 @@
               "src": "644:110:2"
             },
             "returnParameters": {
-              "id": 414,
+              "id": 426,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "762:0:2"
             },
-            "scope": 505,
+            "scope": 517,
             "src": "623:639:2",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6267,13 +6267,13 @@
           },
           {
             "body": {
-              "id": 503,
+              "id": 515,
               "nodeType": "Block",
               "src": "1346:115:2",
               "statements": [
                 {
                   "expression": {
-                    "id": 491,
+                    "id": 503,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -6285,24 +6285,24 @@
                     "subExpression": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 486,
+                          "id": 498,
                           "name": "reviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 375,
+                          "referencedDeclaration": 387,
                           "src": "1360:7:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                             "typeString": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview storage ref))"
                           }
                         },
-                        "id": 488,
+                        "id": 500,
                         "indexExpression": {
-                          "id": 487,
+                          "id": 499,
                           "name": "fileId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 479,
+                          "referencedDeclaration": 491,
                           "src": "1368:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -6316,17 +6316,17 @@
                         "nodeType": "IndexAccess",
                         "src": "1360:15:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                           "typeString": "mapping(uint256 => struct ReviewContract.FileReview storage ref)"
                         }
                       },
-                      "id": 490,
+                      "id": 502,
                       "indexExpression": {
-                        "id": 489,
+                        "id": 501,
                         "name": "reviewId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 481,
+                        "referencedDeclaration": 493,
                         "src": "1376:8:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -6340,7 +6340,7 @@
                       "nodeType": "IndexAccess",
                       "src": "1360:25:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                        "typeIdentifier": "t_struct$_FileReview_$404_storage",
                         "typeString": "struct ReviewContract.FileReview storage ref"
                       }
                     },
@@ -6349,13 +6349,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 492,
+                  "id": 504,
                   "nodeType": "ExpressionStatement",
                   "src": "1353:32:2"
                 },
                 {
                   "expression": {
-                    "id": 499,
+                    "id": 511,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -6367,21 +6367,21 @@
                     "subExpression": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 493,
+                          "id": 505,
                           "name": "reviewsByOwner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 381,
+                          "referencedDeclaration": 393,
                           "src": "1399:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$_$",
                             "typeString": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview storage ref))"
                           }
                         },
-                        "id": 496,
+                        "id": 508,
                         "indexExpression": {
                           "expression": {
-                            "id": 494,
+                            "id": 506,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -6392,7 +6392,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 495,
+                          "id": 507,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -6412,17 +6412,17 @@
                         "nodeType": "IndexAccess",
                         "src": "1399:26:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$392_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_FileReview_$404_storage_$",
                           "typeString": "mapping(uint256 => struct ReviewContract.FileReview storage ref)"
                         }
                       },
-                      "id": 498,
+                      "id": 510,
                       "indexExpression": {
-                        "id": 497,
+                        "id": 509,
                         "name": "reviewId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 481,
+                        "referencedDeclaration": 493,
                         "src": "1426:8:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -6436,7 +6436,7 @@
                       "nodeType": "IndexAccess",
                       "src": "1399:36:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_FileReview_$392_storage",
+                        "typeIdentifier": "t_struct$_FileReview_$404_storage",
                         "typeString": "struct ReviewContract.FileReview storage ref"
                       }
                     },
@@ -6445,14 +6445,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 500,
+                  "id": 512,
                   "nodeType": "ExpressionStatement",
                   "src": "1392:43:2"
                 },
                 {
                   "expression": {
                     "hexValue": "74727565",
-                    "id": 501,
+                    "id": 513,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -6466,31 +6466,31 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 485,
-                  "id": 502,
+                  "functionReturnParameters": 497,
+                  "id": 514,
                   "nodeType": "Return",
                   "src": "1444:11:2"
                 }
               ]
             },
             "functionSelector": "24d41a03",
-            "id": 504,
+            "id": 516,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "deleteReview",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 482,
+              "id": 494,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 479,
+                  "id": 491,
                   "mutability": "mutable",
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 504,
+                  "scope": 516,
                   "src": "1290:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6499,7 +6499,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 478,
+                    "id": 490,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1290:7:2",
@@ -6512,11 +6512,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 481,
+                  "id": 493,
                   "mutability": "mutable",
                   "name": "reviewId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 504,
+                  "scope": 516,
                   "src": "1306:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6525,7 +6525,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 480,
+                    "id": 492,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1306:7:2",
@@ -6540,16 +6540,16 @@
               "src": "1289:34:2"
             },
             "returnParameters": {
-              "id": 485,
+              "id": 497,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 484,
+                  "id": 496,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 504,
+                  "scope": 516,
                   "src": "1340:4:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6558,7 +6558,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 483,
+                    "id": 495,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1340:4:2",
@@ -6572,14 +6572,14 @@
               ],
               "src": "1339:6:2"
             },
-            "scope": 505,
+            "scope": 517,
             "src": "1268:193:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 506,
+        "scope": 518,
         "src": "97:1367:2"
       }
     ],
@@ -6589,7 +6589,7 @@
     "attributes": {
       "absolutePath": "project:/contracts/ReviewContract.sol",
       "exportedSymbols": {
-        "ReviewContract": [505]
+        "ReviewContract": [517]
       },
       "license": "UNLICENSED"
     },
@@ -6598,7 +6598,7 @@
         "attributes": {
           "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"]
         },
-        "id": 362,
+        "id": 374,
         "name": "PragmaDirective",
         "src": "40:32:2"
       },
@@ -6606,7 +6606,7 @@
         "attributes": {
           "literals": ["abicoder", "v2"]
         },
-        "id": 363,
+        "id": 375,
         "name": "PragmaDirective",
         "src": "74:19:2"
       },
@@ -6617,9 +6617,9 @@
           "contractDependencies": [null],
           "contractKind": "contract",
           "fullyImplemented": true,
-          "linearizedBaseContracts": [505],
+          "linearizedBaseContracts": [517],
           "name": "ReviewContract",
-          "scope": 506
+          "scope": 518
         },
         "children": [
           {
@@ -6628,7 +6628,7 @@
               "functionSelector": "06fdde03",
               "mutability": "mutable",
               "name": "name",
-              "scope": 505,
+              "scope": 517,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "string",
@@ -6640,7 +6640,7 @@
                   "name": "string",
                   "type": "string"
                 },
-                "id": 364,
+                "id": 376,
                 "name": "ElementaryTypeName",
                 "src": "126:6:2"
               },
@@ -6655,12 +6655,12 @@
                   "type": "literal_string \"Review\"",
                   "value": "Review"
                 },
-                "id": 365,
+                "id": 377,
                 "name": "Literal",
                 "src": "147:8:2"
               }
             ],
-            "id": 366,
+            "id": 378,
             "name": "VariableDeclaration",
             "src": "126:29:2"
           },
@@ -6670,7 +6670,7 @@
               "functionSelector": "eff5924f",
               "mutability": "mutable",
               "name": "reviewCount",
-              "scope": 505,
+              "scope": 517,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256",
@@ -6682,7 +6682,7 @@
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 367,
+                "id": 379,
                 "name": "ElementaryTypeName",
                 "src": "160:7:2"
               },
@@ -6697,12 +6697,12 @@
                   "type": "int_const 0",
                   "value": "0"
                 },
-                "id": 368,
+                "id": 380,
                 "name": "Literal",
                 "src": "189:1:2"
               }
             ],
-            "id": 369,
+            "id": 381,
             "name": "VariableDeclaration",
             "src": "160:30:2"
           },
@@ -6712,7 +6712,7 @@
               "functionSelector": "a7264f88",
               "mutability": "mutable",
               "name": "reviews",
-              "scope": 505,
+              "scope": 517,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview))",
@@ -6729,7 +6729,7 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 370,
+                    "id": 382,
                     "name": "ElementaryTypeName",
                     "src": "205:7:2"
                   },
@@ -6743,32 +6743,32 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 371,
+                        "id": 383,
                         "name": "ElementaryTypeName",
                         "src": "224:7:2"
                       },
                       {
                         "attributes": {
                           "name": "FileReview",
-                          "referencedDeclaration": 392,
+                          "referencedDeclaration": 404,
                           "type": "struct ReviewContract.FileReview"
                         },
-                        "id": 372,
+                        "id": 384,
                         "name": "UserDefinedTypeName",
                         "src": "235:10:2"
                       }
                     ],
-                    "id": 373,
+                    "id": 385,
                     "name": "Mapping",
                     "src": "216:30:2"
                   }
                 ],
-                "id": 374,
+                "id": 386,
                 "name": "Mapping",
                 "src": "197:50:2"
               }
             ],
-            "id": 375,
+            "id": 387,
             "name": "VariableDeclaration",
             "src": "197:65:2"
           },
@@ -6778,7 +6778,7 @@
               "functionSelector": "ad3f2f27",
               "mutability": "mutable",
               "name": "reviewsByOwner",
-              "scope": 505,
+              "scope": 517,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview))",
@@ -6795,7 +6795,7 @@
                       "name": "address",
                       "type": "address"
                     },
-                    "id": 376,
+                    "id": 388,
                     "name": "ElementaryTypeName",
                     "src": "275:7:2"
                   },
@@ -6809,32 +6809,32 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 377,
+                        "id": 389,
                         "name": "ElementaryTypeName",
                         "src": "294:7:2"
                       },
                       {
                         "attributes": {
                           "name": "FileReview",
-                          "referencedDeclaration": 392,
+                          "referencedDeclaration": 404,
                           "type": "struct ReviewContract.FileReview"
                         },
-                        "id": 378,
+                        "id": 390,
                         "name": "UserDefinedTypeName",
                         "src": "305:10:2"
                       }
                     ],
-                    "id": 379,
+                    "id": 391,
                     "name": "Mapping",
                     "src": "286:30:2"
                   }
                 ],
-                "id": 380,
+                "id": 392,
                 "name": "Mapping",
                 "src": "267:50:2"
               }
             ],
-            "id": 381,
+            "id": 393,
             "name": "VariableDeclaration",
             "src": "267:72:2"
           },
@@ -6842,7 +6842,7 @@
             "attributes": {
               "canonicalName": "ReviewContract.FileReview",
               "name": "FileReview",
-              "scope": 505,
+              "scope": 517,
               "visibility": "public"
             },
             "children": [
@@ -6851,7 +6851,7 @@
                   "constant": false,
                   "mutability": "mutable",
                   "name": "id",
-                  "scope": 392,
+                  "scope": 404,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -6863,12 +6863,12 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 382,
+                    "id": 394,
                     "name": "ElementaryTypeName",
                     "src": "371:7:2"
                   }
                 ],
-                "id": 383,
+                "id": 395,
                 "name": "VariableDeclaration",
                 "src": "371:10:2"
               },
@@ -6877,7 +6877,7 @@
                   "constant": false,
                   "mutability": "mutable",
                   "name": "review",
-                  "scope": 392,
+                  "scope": 404,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string",
@@ -6889,12 +6889,12 @@
                       "name": "string",
                       "type": "string"
                     },
-                    "id": 384,
+                    "id": 396,
                     "name": "ElementaryTypeName",
                     "src": "388:6:2"
                   }
                 ],
-                "id": 385,
+                "id": 397,
                 "name": "VariableDeclaration",
                 "src": "388:13:2"
               },
@@ -6903,7 +6903,7 @@
                   "constant": false,
                   "mutability": "mutable",
                   "name": "rating",
-                  "scope": 392,
+                  "scope": 404,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string",
@@ -6915,12 +6915,12 @@
                       "name": "string",
                       "type": "string"
                     },
-                    "id": 386,
+                    "id": 398,
                     "name": "ElementaryTypeName",
                     "src": "408:6:2"
                   }
                 ],
-                "id": 387,
+                "id": 399,
                 "name": "VariableDeclaration",
                 "src": "408:13:2"
               },
@@ -6929,7 +6929,7 @@
                   "constant": false,
                   "mutability": "mutable",
                   "name": "createdAt",
-                  "scope": 392,
+                  "scope": 404,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string",
@@ -6941,12 +6941,12 @@
                       "name": "string",
                       "type": "string"
                     },
-                    "id": 388,
+                    "id": 400,
                     "name": "ElementaryTypeName",
                     "src": "428:6:2"
                   }
                 ],
-                "id": 389,
+                "id": 401,
                 "name": "VariableDeclaration",
                 "src": "428:16:2"
               },
@@ -6955,7 +6955,7 @@
                   "constant": false,
                   "mutability": "mutable",
                   "name": "owner",
-                  "scope": 392,
+                  "scope": 404,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "address payable",
@@ -6968,17 +6968,17 @@
                       "stateMutability": "payable",
                       "type": "address payable"
                     },
-                    "id": 390,
+                    "id": 402,
                     "name": "ElementaryTypeName",
                     "src": "451:15:2"
                   }
                 ],
-                "id": 391,
+                "id": 403,
                 "name": "VariableDeclaration",
                 "src": "451:21:2"
               }
             ],
-            "id": 392,
+            "id": 404,
             "name": "StructDefinition",
             "src": "346:132:2"
           },
@@ -6996,168 +6996,7 @@
                       "indexed": false,
                       "mutability": "mutable",
                       "name": "id",
-                      "scope": 404,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "uint256",
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "uint256",
-                          "type": "uint256"
-                        },
-                        "id": 393,
-                        "name": "ElementaryTypeName",
-                        "src": "510:7:2"
-                      }
-                    ],
-                    "id": 394,
-                    "name": "VariableDeclaration",
-                    "src": "510:10:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "indexed": false,
-                      "mutability": "mutable",
-                      "name": "review",
-                      "scope": 404,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "string",
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "string",
-                          "type": "string"
-                        },
-                        "id": 395,
-                        "name": "ElementaryTypeName",
-                        "src": "527:6:2"
-                      }
-                    ],
-                    "id": 396,
-                    "name": "VariableDeclaration",
-                    "src": "527:13:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "indexed": false,
-                      "mutability": "mutable",
-                      "name": "rating",
-                      "scope": 404,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "string",
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "string",
-                          "type": "string"
-                        },
-                        "id": 397,
-                        "name": "ElementaryTypeName",
-                        "src": "547:6:2"
-                      }
-                    ],
-                    "id": 398,
-                    "name": "VariableDeclaration",
-                    "src": "547:13:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "indexed": false,
-                      "mutability": "mutable",
-                      "name": "createdAt",
-                      "scope": 404,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "string",
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "string",
-                          "type": "string"
-                        },
-                        "id": 399,
-                        "name": "ElementaryTypeName",
-                        "src": "567:6:2"
-                      }
-                    ],
-                    "id": 400,
-                    "name": "VariableDeclaration",
-                    "src": "567:16:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "indexed": false,
-                      "mutability": "mutable",
-                      "name": "owner",
-                      "scope": 404,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address payable",
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "stateMutability": "payable",
-                          "type": "address payable"
-                        },
-                        "id": 401,
-                        "name": "ElementaryTypeName",
-                        "src": "590:15:2"
-                      }
-                    ],
-                    "id": 402,
-                    "name": "VariableDeclaration",
-                    "src": "590:21:2"
-                  }
-                ],
-                "id": 403,
-                "name": "ParameterList",
-                "src": "503:113:2"
-              }
-            ],
-            "id": 404,
-            "name": "EventDefinition",
-            "src": "484:133:2"
-          },
-          {
-            "attributes": {
-              "functionSelector": "6195a3a3",
-              "implemented": true,
-              "isConstructor": false,
-              "kind": "function",
-              "modifiers": [null],
-              "name": "createReview",
-              "scope": 505,
-              "stateMutability": "nonpayable",
-              "virtual": false,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "mutability": "mutable",
-                      "name": "fileId",
-                      "scope": 477,
+                      "scope": 416,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -7171,21 +7010,22 @@
                         },
                         "id": 405,
                         "name": "ElementaryTypeName",
-                        "src": "651:7:2"
+                        "src": "510:7:2"
                       }
                     ],
                     "id": 406,
                     "name": "VariableDeclaration",
-                    "src": "651:14:2"
+                    "src": "510:10:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
+                      "indexed": false,
                       "mutability": "mutable",
                       "name": "review",
-                      "scope": 477,
+                      "scope": 416,
                       "stateVariable": false,
-                      "storageLocation": "memory",
+                      "storageLocation": "default",
                       "type": "string",
                       "visibility": "internal"
                     },
@@ -7197,21 +7037,22 @@
                         },
                         "id": 407,
                         "name": "ElementaryTypeName",
-                        "src": "672:6:2"
+                        "src": "527:6:2"
                       }
                     ],
                     "id": 408,
                     "name": "VariableDeclaration",
-                    "src": "672:20:2"
+                    "src": "527:13:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
+                      "indexed": false,
                       "mutability": "mutable",
                       "name": "rating",
-                      "scope": 477,
+                      "scope": 416,
                       "stateVariable": false,
-                      "storageLocation": "memory",
+                      "storageLocation": "default",
                       "type": "string",
                       "visibility": "internal"
                     },
@@ -7223,21 +7064,22 @@
                         },
                         "id": 409,
                         "name": "ElementaryTypeName",
-                        "src": "699:6:2"
+                        "src": "547:6:2"
                       }
                     ],
                     "id": 410,
                     "name": "VariableDeclaration",
-                    "src": "699:20:2"
+                    "src": "547:13:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
+                      "indexed": false,
                       "mutability": "mutable",
                       "name": "createdAt",
-                      "scope": 477,
+                      "scope": 416,
                       "stateVariable": false,
-                      "storageLocation": "memory",
+                      "storageLocation": "default",
                       "type": "string",
                       "visibility": "internal"
                     },
@@ -7249,15 +7091,173 @@
                         },
                         "id": 411,
                         "name": "ElementaryTypeName",
-                        "src": "726:6:2"
+                        "src": "567:6:2"
                       }
                     ],
                     "id": 412,
                     "name": "VariableDeclaration",
+                    "src": "567:16:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "owner",
+                      "scope": 416,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 413,
+                        "name": "ElementaryTypeName",
+                        "src": "590:15:2"
+                      }
+                    ],
+                    "id": 414,
+                    "name": "VariableDeclaration",
+                    "src": "590:21:2"
+                  }
+                ],
+                "id": 415,
+                "name": "ParameterList",
+                "src": "503:113:2"
+              }
+            ],
+            "id": 416,
+            "name": "EventDefinition",
+            "src": "484:133:2"
+          },
+          {
+            "attributes": {
+              "functionSelector": "6195a3a3",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [null],
+              "name": "createReview",
+              "scope": 517,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "fileId",
+                      "scope": 489,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 417,
+                        "name": "ElementaryTypeName",
+                        "src": "651:7:2"
+                      }
+                    ],
+                    "id": 418,
+                    "name": "VariableDeclaration",
+                    "src": "651:14:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "review",
+                      "scope": 489,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 419,
+                        "name": "ElementaryTypeName",
+                        "src": "672:6:2"
+                      }
+                    ],
+                    "id": 420,
+                    "name": "VariableDeclaration",
+                    "src": "672:20:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "rating",
+                      "scope": 489,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 421,
+                        "name": "ElementaryTypeName",
+                        "src": "699:6:2"
+                      }
+                    ],
+                    "id": 422,
+                    "name": "VariableDeclaration",
+                    "src": "699:20:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "createdAt",
+                      "scope": 489,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 423,
+                        "name": "ElementaryTypeName",
+                        "src": "726:6:2"
+                      }
+                    ],
+                    "id": 424,
+                    "name": "VariableDeclaration",
                     "src": "726:23:2"
                   }
                 ],
-                "id": 413,
+                "id": 425,
                 "name": "ParameterList",
                 "src": "644:110:2"
               },
@@ -7266,7 +7266,7 @@
                   "parameters": [null]
                 },
                 "children": [],
-                "id": 414,
+                "id": 426,
                 "name": "ParameterList",
                 "src": "762:0:2"
               },
@@ -7288,21 +7288,21 @@
                           {
                             "attributes": {
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 369,
+                              "referencedDeclaration": 381,
                               "type": "uint256",
                               "value": "reviewCount"
                             },
-                            "id": 415,
+                            "id": 427,
                             "name": "Identifier",
                             "src": "769:11:2"
                           }
                         ],
-                        "id": 416,
+                        "id": 428,
                         "name": "UnaryOperation",
                         "src": "769:13:2"
                       }
                     ],
-                    "id": 417,
+                    "id": 429,
                     "name": "ExpressionStatement",
                     "src": "769:13:2"
                   },
@@ -7339,43 +7339,43 @@
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 375,
+                                      "referencedDeclaration": 387,
                                       "type": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview storage ref))",
                                       "value": "reviews"
                                     },
-                                    "id": 418,
+                                    "id": 430,
                                     "name": "Identifier",
                                     "src": "791:7:2"
                                   },
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 406,
+                                      "referencedDeclaration": 418,
                                       "type": "uint256",
                                       "value": "fileId"
                                     },
-                                    "id": 419,
+                                    "id": 431,
                                     "name": "Identifier",
                                     "src": "799:6:2"
                                   }
                                 ],
-                                "id": 421,
+                                "id": 433,
                                 "name": "IndexAccess",
                                 "src": "791:15:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 369,
+                                  "referencedDeclaration": 381,
                                   "type": "uint256",
                                   "value": "reviewCount"
                                 },
-                                "id": 420,
+                                "id": 432,
                                 "name": "Identifier",
                                 "src": "807:11:2"
                               }
                             ],
-                            "id": 422,
+                            "id": 434,
                             "name": "IndexAccess",
                             "src": "791:28:2"
                           },
@@ -7417,55 +7417,55 @@
                                     }
                                   ],
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 392,
+                                  "referencedDeclaration": 404,
                                   "type": "type(struct ReviewContract.FileReview storage pointer)",
                                   "value": "FileReview"
                                 },
-                                "id": 423,
+                                "id": 435,
                                 "name": "Identifier",
                                 "src": "822:10:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 369,
+                                  "referencedDeclaration": 381,
                                   "type": "uint256",
                                   "value": "reviewCount"
                                 },
-                                "id": 424,
+                                "id": 436,
                                 "name": "Identifier",
                                 "src": "841:11:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 408,
+                                  "referencedDeclaration": 420,
                                   "type": "string memory",
                                   "value": "review"
                                 },
-                                "id": 425,
+                                "id": 437,
                                 "name": "Identifier",
                                 "src": "861:6:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 410,
+                                  "referencedDeclaration": 422,
                                   "type": "string memory",
                                   "value": "rating"
                                 },
-                                "id": 426,
+                                "id": 438,
                                 "name": "Identifier",
                                 "src": "876:6:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 412,
+                                  "referencedDeclaration": 424,
                                   "type": "string memory",
                                   "value": "createdAt"
                                 },
-                                "id": 427,
+                                "id": 439,
                                 "name": "Identifier",
                                 "src": "891:9:2"
                               },
@@ -7502,12 +7502,12 @@
                                           "name": "address",
                                           "stateMutability": "payable"
                                         },
-                                        "id": 428,
+                                        "id": 440,
                                         "name": "ElementaryTypeName",
                                         "src": "909:8:2"
                                       }
                                     ],
-                                    "id": 429,
+                                    "id": 441,
                                     "name": "ElementaryTypeNameExpression",
                                     "src": "909:8:2"
                                   },
@@ -7543,12 +7543,12 @@
                                             "attributes": {
                                               "name": "address"
                                             },
-                                            "id": 430,
+                                            "id": 442,
                                             "name": "ElementaryTypeName",
                                             "src": "917:7:2"
                                           }
                                         ],
-                                        "id": 431,
+                                        "id": 443,
                                         "name": "ElementaryTypeNameExpression",
                                         "src": "917:7:2"
                                       },
@@ -7569,37 +7569,37 @@
                                               "type": "msg",
                                               "value": "msg"
                                             },
-                                            "id": 432,
+                                            "id": 444,
                                             "name": "Identifier",
                                             "src": "925:3:2"
                                           }
                                         ],
-                                        "id": 433,
+                                        "id": 445,
                                         "name": "MemberAccess",
                                         "src": "925:10:2"
                                       }
                                     ],
-                                    "id": 434,
+                                    "id": 446,
                                     "name": "FunctionCall",
                                     "src": "917:19:2"
                                   }
                                 ],
-                                "id": 435,
+                                "id": 447,
                                 "name": "FunctionCall",
                                 "src": "909:28:2"
                               }
                             ],
-                            "id": 436,
+                            "id": 448,
                             "name": "FunctionCall",
                             "src": "822:122:2"
                           }
                         ],
-                        "id": 437,
+                        "id": 449,
                         "name": "Assignment",
                         "src": "791:153:2"
                       }
                     ],
-                    "id": 438,
+                    "id": 450,
                     "name": "ExpressionStatement",
                     "src": "791:153:2"
                   },
@@ -7636,11 +7636,11 @@
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 381,
+                                      "referencedDeclaration": 393,
                                       "type": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview storage ref))",
                                       "value": "reviewsByOwner"
                                     },
-                                    "id": 439,
+                                    "id": 451,
                                     "name": "Identifier",
                                     "src": "953:14:2"
                                   },
@@ -7661,33 +7661,33 @@
                                           "type": "msg",
                                           "value": "msg"
                                         },
-                                        "id": 440,
+                                        "id": 452,
                                         "name": "Identifier",
                                         "src": "968:3:2"
                                       }
                                     ],
-                                    "id": 441,
+                                    "id": 453,
                                     "name": "MemberAccess",
                                     "src": "968:10:2"
                                   }
                                 ],
-                                "id": 443,
+                                "id": 455,
                                 "name": "IndexAccess",
                                 "src": "953:26:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 369,
+                                  "referencedDeclaration": 381,
                                   "type": "uint256",
                                   "value": "reviewCount"
                                 },
-                                "id": 442,
+                                "id": 454,
                                 "name": "Identifier",
                                 "src": "980:11:2"
                               }
                             ],
-                            "id": 444,
+                            "id": 456,
                             "name": "IndexAccess",
                             "src": "953:39:2"
                           },
@@ -7729,55 +7729,55 @@
                                     }
                                   ],
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 392,
+                                  "referencedDeclaration": 404,
                                   "type": "type(struct ReviewContract.FileReview storage pointer)",
                                   "value": "FileReview"
                                 },
-                                "id": 445,
+                                "id": 457,
                                 "name": "Identifier",
                                 "src": "995:10:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 369,
+                                  "referencedDeclaration": 381,
                                   "type": "uint256",
                                   "value": "reviewCount"
                                 },
-                                "id": 446,
+                                "id": 458,
                                 "name": "Identifier",
                                 "src": "1014:11:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 408,
+                                  "referencedDeclaration": 420,
                                   "type": "string memory",
                                   "value": "review"
                                 },
-                                "id": 447,
+                                "id": 459,
                                 "name": "Identifier",
                                 "src": "1034:6:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 410,
+                                  "referencedDeclaration": 422,
                                   "type": "string memory",
                                   "value": "rating"
                                 },
-                                "id": 448,
+                                "id": 460,
                                 "name": "Identifier",
                                 "src": "1049:6:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 412,
+                                  "referencedDeclaration": 424,
                                   "type": "string memory",
                                   "value": "createdAt"
                                 },
-                                "id": 449,
+                                "id": 461,
                                 "name": "Identifier",
                                 "src": "1064:9:2"
                               },
@@ -7814,12 +7814,12 @@
                                           "name": "address",
                                           "stateMutability": "payable"
                                         },
-                                        "id": 450,
+                                        "id": 462,
                                         "name": "ElementaryTypeName",
                                         "src": "1082:8:2"
                                       }
                                     ],
-                                    "id": 451,
+                                    "id": 463,
                                     "name": "ElementaryTypeNameExpression",
                                     "src": "1082:8:2"
                                   },
@@ -7855,12 +7855,12 @@
                                             "attributes": {
                                               "name": "address"
                                             },
-                                            "id": 452,
+                                            "id": 464,
                                             "name": "ElementaryTypeName",
                                             "src": "1090:7:2"
                                           }
                                         ],
-                                        "id": 453,
+                                        "id": 465,
                                         "name": "ElementaryTypeNameExpression",
                                         "src": "1090:7:2"
                                       },
@@ -7881,37 +7881,37 @@
                                               "type": "msg",
                                               "value": "msg"
                                             },
-                                            "id": 454,
+                                            "id": 466,
                                             "name": "Identifier",
                                             "src": "1098:3:2"
                                           }
                                         ],
-                                        "id": 455,
+                                        "id": 467,
                                         "name": "MemberAccess",
                                         "src": "1098:10:2"
                                       }
                                     ],
-                                    "id": 456,
+                                    "id": 468,
                                     "name": "FunctionCall",
                                     "src": "1090:19:2"
                                   }
                                 ],
-                                "id": 457,
+                                "id": 469,
                                 "name": "FunctionCall",
                                 "src": "1082:28:2"
                               }
                             ],
-                            "id": 458,
+                            "id": 470,
                             "name": "FunctionCall",
                             "src": "995:122:2"
                           }
                         ],
-                        "id": 459,
+                        "id": 471,
                         "name": "Assignment",
                         "src": "953:164:2"
                       }
                     ],
-                    "id": 460,
+                    "id": 472,
                     "name": "ExpressionStatement",
                     "src": "953:164:2"
                   },
@@ -7955,55 +7955,55 @@
                                 }
                               ],
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 404,
+                              "referencedDeclaration": 416,
                               "type": "function (uint256,string memory,string memory,string memory,address payable)",
                               "value": "ReviewCreated"
                             },
-                            "id": 461,
+                            "id": 473,
                             "name": "Identifier",
                             "src": "1131:13:2"
                           },
                           {
                             "attributes": {
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 369,
+                              "referencedDeclaration": 381,
                               "type": "uint256",
                               "value": "reviewCount"
                             },
-                            "id": 462,
+                            "id": 474,
                             "name": "Identifier",
                             "src": "1153:11:2"
                           },
                           {
                             "attributes": {
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 408,
+                              "referencedDeclaration": 420,
                               "type": "string memory",
                               "value": "review"
                             },
-                            "id": 463,
+                            "id": 475,
                             "name": "Identifier",
                             "src": "1173:6:2"
                           },
                           {
                             "attributes": {
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 410,
+                              "referencedDeclaration": 422,
                               "type": "string memory",
                               "value": "rating"
                             },
-                            "id": 464,
+                            "id": 476,
                             "name": "Identifier",
                             "src": "1188:6:2"
                           },
                           {
                             "attributes": {
                               "overloadedDeclarations": [null],
-                              "referencedDeclaration": 412,
+                              "referencedDeclaration": 424,
                               "type": "string memory",
                               "value": "createdAt"
                             },
-                            "id": 465,
+                            "id": 477,
                             "name": "Identifier",
                             "src": "1203:9:2"
                           },
@@ -8040,12 +8040,12 @@
                                       "name": "address",
                                       "stateMutability": "payable"
                                     },
-                                    "id": 466,
+                                    "id": 478,
                                     "name": "ElementaryTypeName",
                                     "src": "1221:8:2"
                                   }
                                 ],
-                                "id": 467,
+                                "id": 479,
                                 "name": "ElementaryTypeNameExpression",
                                 "src": "1221:8:2"
                               },
@@ -8081,12 +8081,12 @@
                                         "attributes": {
                                           "name": "address"
                                         },
-                                        "id": 468,
+                                        "id": 480,
                                         "name": "ElementaryTypeName",
                                         "src": "1229:7:2"
                                       }
                                     ],
-                                    "id": 469,
+                                    "id": 481,
                                     "name": "ElementaryTypeNameExpression",
                                     "src": "1229:7:2"
                                   },
@@ -8107,42 +8107,42 @@
                                           "type": "msg",
                                           "value": "msg"
                                         },
-                                        "id": 470,
+                                        "id": 482,
                                         "name": "Identifier",
                                         "src": "1237:3:2"
                                       }
                                     ],
-                                    "id": 471,
+                                    "id": 483,
                                     "name": "MemberAccess",
                                     "src": "1237:10:2"
                                   }
                                 ],
-                                "id": 472,
+                                "id": 484,
                                 "name": "FunctionCall",
                                 "src": "1229:19:2"
                               }
                             ],
-                            "id": 473,
+                            "id": 485,
                             "name": "FunctionCall",
                             "src": "1221:28:2"
                           }
                         ],
-                        "id": 474,
+                        "id": 486,
                         "name": "FunctionCall",
                         "src": "1131:125:2"
                       }
                     ],
-                    "id": 475,
+                    "id": 487,
                     "name": "EmitStatement",
                     "src": "1126:130:2"
                   }
                 ],
-                "id": 476,
+                "id": 488,
                 "name": "Block",
                 "src": "762:500:2"
               }
             ],
-            "id": 477,
+            "id": 489,
             "name": "FunctionDefinition",
             "src": "623:639:2"
           },
@@ -8154,7 +8154,7 @@
               "kind": "function",
               "modifiers": [null],
               "name": "deleteReview",
-              "scope": 505,
+              "scope": 517,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -8167,7 +8167,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "fileId",
-                      "scope": 504,
+                      "scope": 516,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -8179,12 +8179,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 478,
+                        "id": 490,
                         "name": "ElementaryTypeName",
                         "src": "1290:7:2"
                       }
                     ],
-                    "id": 479,
+                    "id": 491,
                     "name": "VariableDeclaration",
                     "src": "1290:14:2"
                   },
@@ -8193,7 +8193,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "reviewId",
-                      "scope": 504,
+                      "scope": 516,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -8205,17 +8205,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 480,
+                        "id": 492,
                         "name": "ElementaryTypeName",
                         "src": "1306:7:2"
                       }
                     ],
-                    "id": 481,
+                    "id": 493,
                     "name": "VariableDeclaration",
                     "src": "1306:16:2"
                   }
                 ],
-                "id": 482,
+                "id": 494,
                 "name": "ParameterList",
                 "src": "1289:34:2"
               },
@@ -8226,7 +8226,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 504,
+                      "scope": 516,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -8238,17 +8238,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 483,
+                        "id": 495,
                         "name": "ElementaryTypeName",
                         "src": "1340:4:2"
                       }
                     ],
-                    "id": 484,
+                    "id": 496,
                     "name": "VariableDeclaration",
                     "src": "1340:4:2"
                   }
                 ],
-                "id": 485,
+                "id": 497,
                 "name": "ParameterList",
                 "src": "1339:6:2"
               },
@@ -8288,53 +8288,53 @@
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 375,
+                                      "referencedDeclaration": 387,
                                       "type": "mapping(uint256 => mapping(uint256 => struct ReviewContract.FileReview storage ref))",
                                       "value": "reviews"
                                     },
-                                    "id": 486,
+                                    "id": 498,
                                     "name": "Identifier",
                                     "src": "1360:7:2"
                                   },
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 479,
+                                      "referencedDeclaration": 491,
                                       "type": "uint256",
                                       "value": "fileId"
                                     },
-                                    "id": 487,
+                                    "id": 499,
                                     "name": "Identifier",
                                     "src": "1368:6:2"
                                   }
                                 ],
-                                "id": 488,
+                                "id": 500,
                                 "name": "IndexAccess",
                                 "src": "1360:15:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 481,
+                                  "referencedDeclaration": 493,
                                   "type": "uint256",
                                   "value": "reviewId"
                                 },
-                                "id": 489,
+                                "id": 501,
                                 "name": "Identifier",
                                 "src": "1376:8:2"
                               }
                             ],
-                            "id": 490,
+                            "id": 502,
                             "name": "IndexAccess",
                             "src": "1360:25:2"
                           }
                         ],
-                        "id": 491,
+                        "id": 503,
                         "name": "UnaryOperation",
                         "src": "1353:32:2"
                       }
                     ],
-                    "id": 492,
+                    "id": 504,
                     "name": "ExpressionStatement",
                     "src": "1353:32:2"
                   },
@@ -8372,11 +8372,11 @@
                                   {
                                     "attributes": {
                                       "overloadedDeclarations": [null],
-                                      "referencedDeclaration": 381,
+                                      "referencedDeclaration": 393,
                                       "type": "mapping(address => mapping(uint256 => struct ReviewContract.FileReview storage ref))",
                                       "value": "reviewsByOwner"
                                     },
-                                    "id": 493,
+                                    "id": 505,
                                     "name": "Identifier",
                                     "src": "1399:14:2"
                                   },
@@ -8397,49 +8397,49 @@
                                           "type": "msg",
                                           "value": "msg"
                                         },
-                                        "id": 494,
+                                        "id": 506,
                                         "name": "Identifier",
                                         "src": "1414:3:2"
                                       }
                                     ],
-                                    "id": 495,
+                                    "id": 507,
                                     "name": "MemberAccess",
                                     "src": "1414:10:2"
                                   }
                                 ],
-                                "id": 496,
+                                "id": 508,
                                 "name": "IndexAccess",
                                 "src": "1399:26:2"
                               },
                               {
                                 "attributes": {
                                   "overloadedDeclarations": [null],
-                                  "referencedDeclaration": 481,
+                                  "referencedDeclaration": 493,
                                   "type": "uint256",
                                   "value": "reviewId"
                                 },
-                                "id": 497,
+                                "id": 509,
                                 "name": "Identifier",
                                 "src": "1426:8:2"
                               }
                             ],
-                            "id": 498,
+                            "id": 510,
                             "name": "IndexAccess",
                             "src": "1399:36:2"
                           }
                         ],
-                        "id": 499,
+                        "id": 511,
                         "name": "UnaryOperation",
                         "src": "1392:43:2"
                       }
                     ],
-                    "id": 500,
+                    "id": 512,
                     "name": "ExpressionStatement",
                     "src": "1392:43:2"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 485
+                      "functionReturnParameters": 497
                     },
                     "children": [
                       {
@@ -8453,32 +8453,32 @@
                           "type": "bool",
                           "value": "true"
                         },
-                        "id": 501,
+                        "id": 513,
                         "name": "Literal",
                         "src": "1451:4:2"
                       }
                     ],
-                    "id": 502,
+                    "id": 514,
                     "name": "Return",
                     "src": "1444:11:2"
                   }
                 ],
-                "id": 503,
+                "id": 515,
                 "name": "Block",
                 "src": "1346:115:2"
               }
             ],
-            "id": 504,
+            "id": 516,
             "name": "FunctionDefinition",
             "src": "1268:193:2"
           }
         ],
-        "id": 505,
+        "id": 517,
         "name": "ContractDefinition",
         "src": "97:1367:2"
       }
     ],
-    "id": 506,
+    "id": 518,
     "name": "SourceUnit",
     "src": "40:1426:2"
   },
@@ -8490,12 +8490,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xbbD03435846Bc0ac260Cbc894fDF8bB5A9e408ae",
-      "transactionHash": "0xa56856541743df40ce7ecb50fc7fdb01a2ea4b2646695c2d26975a0624da2f0e"
+      "address": "0x0A12Ee102Da367C4e894803F1512C179D5fF8f12",
+      "transactionHash": "0x56122f4edce4373b3672b38f0cd40e3b46b24c7f8056757b078997523d7ef2b4"
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2022-11-12T09:18:30.565Z",
+  "updatedAt": "2022-11-14T19:55:20.372Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
