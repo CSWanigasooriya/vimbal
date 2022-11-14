@@ -29,7 +29,7 @@ export class CardComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _firestoreService: FirestoreService,
-    private _chainService: FileService
+    private _fileService: FileService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class CardComponent implements OnInit {
 
   async tipAuthor(id?: number) {
     const tipAmount = await window.web3.utils.toWei('0.1', 'Ether')
-    this._chainService.tipAuthor(id?.toString(), tipAmount).then((payment) => {
+    this._fileService.tipAuthor(id?.toString(), tipAmount).then((payment) => {
       console.log('payment', payment)
       window.location.reload()
     })

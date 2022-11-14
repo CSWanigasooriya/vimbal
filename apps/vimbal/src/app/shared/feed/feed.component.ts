@@ -34,6 +34,7 @@ export class FeedComponent implements OnInit {
       owner: this.fileData.owner,
       tipAmount: this.fileData.tipAmount,
       createdAt: this.fileData.createdAt,
+      isPublic: this.fileData.isPublic,
     }
 
     this.formatedFileData = fileData

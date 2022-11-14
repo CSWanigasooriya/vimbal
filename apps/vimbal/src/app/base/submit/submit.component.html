@@ -154,6 +154,10 @@
         </div>
 
         <vimbal-uploader (filesList)="setFileList($event)"></vimbal-uploader>
+
+        <mat-slide-toggle formControlName="isPublic">{{
+          paperSubmitForm.value.isPublic ? 'Open Access' : 'Closed Access'
+        }}</mat-slide-toggle>
       </mat-dialog-content>
       <mat-dialog-actions align="end">
         <button

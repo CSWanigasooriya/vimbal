@@ -56,6 +56,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
     authors: this._fb.array([this._fb.control('', Validators.required)]),
     keywords: [null, [Validators.required]],
     fileBuffer: [null, [Validators.required]],
+    isPublic: [true],
   })
 
   hasError = (controlName: string, errorName: string) => {
@@ -142,6 +143,7 @@ export class SubmitComponent implements AfterViewInit, AfterViewChecked, OnDestr
       ),
       description: this.getFormControl('abstract').value,
       createdAt: new Date().toString(),
+      isPublic: this.getFormControl('isPublic').value,
     } as FileContract
 
     this._ipfsService.uploadFile(this.fileList, fileData).then((res) => {
