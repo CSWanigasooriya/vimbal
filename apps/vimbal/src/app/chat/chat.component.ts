@@ -7,7 +7,7 @@ import {
   Optional,
   ViewChild,
 } from '@angular/core'
-import { AuthService, ChatService, FirestoreService } from '@vimbal/service'
+import { AuthService, GunService, FirestoreService } from '@vimbal/service'
 
 import { ActivatedRoute } from '@angular/router'
 import { Chat } from '@vimbal/model'
@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   theme$: Observable<boolean>
   messageContent = new FormControl('')
   messages: Chat[] = []
-  currentUser = this.chatService.getCurrentUser()
+  currentUser = this.gunService.getCurrentUser()
   walletAddress = this._authServie.getWalletAddress()
   chatId = ''
 
@@ -41,7 +41,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     private _activatedRouter: ActivatedRoute,
     private _authServie: AuthService,
     private _store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
-    public chatService: ChatService
+    public gunService: GunService
   ) {
     this.chatId = String(this._activatedRouter.snapshot.paramMap.get('id'))
     this.theme$ = _store.select('theme')
@@ -50,7 +50,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   async ngOnInit() {
     this.scrollToBottom()
     this.walletAddress.then((address) => {
-      this.chatService.getChats(`${this.chatId}`).on((chats) => {
+      this.gunService.getChats(`${this.chatId}`).on((chats) => {
         this.messages.push(chats as Chat)
         this._firestoreService.getNotifications(address).then((notification) => {
           this.notifications = notification
@@ -75,7 +75,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
     this.messageContent.setValue('')
     this._firestoreService.updateNotification(chat)
-    this.chatService.sendMessage(chat)
+    this.gunService.sendMessage(chat)
   }
 
   scrollToBottom(): void {

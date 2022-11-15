@@ -22,6 +22,7 @@ contract FileContract {
     uint256 tipAmount;
     string createdAt;
     address payable owner;
+    bool isPublic;
   }
 
   event FileCreated(
@@ -34,7 +35,8 @@ contract FileContract {
     string description,
     uint256 tipAmount,
     string createdAt,
-    address payable owner
+    address payable owner,
+    bool isPublic
   );
 
   event FileTipped(
@@ -47,7 +49,8 @@ contract FileContract {
     string description,
     uint256 tipAmount,
     string createdAt,
-    address payable owner
+    address payable owner,
+    bool isPublic
   );
 
   function uploadFile(
@@ -57,7 +60,8 @@ contract FileContract {
     string memory _authors,
     string memory _keywords,
     string memory _description,
-    string memory _createdAt
+    string memory _createdAt,
+    bool _isPublic
   ) public {
     require(bytes(_fileHash).length > 0);
     require(bytes(_title).length > 0);
@@ -75,7 +79,8 @@ contract FileContract {
       _description,
       0,
       _createdAt,
-      payable(address(msg.sender))
+      payable(address(msg.sender)),
+      _isPublic
     );
 
     filesByHash[_fileHash] = files[fileCount];
@@ -91,7 +96,8 @@ contract FileContract {
       _description,
       0,
       _createdAt,
-      payable(address(msg.sender))
+      payable(address(msg.sender)),
+      _isPublic
     );
   }
 
@@ -118,7 +124,8 @@ contract FileContract {
       _file.description,
       _file.tipAmount,
       _file.createdAt,
-      _file.owner
+      _file.owner,
+      _file.isPublic
     );
   }
 

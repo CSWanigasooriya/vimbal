@@ -1,7 +1,7 @@
 import { GANACHE_URL, WEB3_STORAGE_TOKEN } from './models/tokens'
 
 import { AuthService } from './auth.service'
-import { ChatService } from './chat.service'
+import { GunService } from './gun.service'
 import { CommonModule } from '@angular/common'
 import { FileService } from './file.service'
 import { FirestoreService } from './firestore.service'
@@ -28,7 +28,7 @@ const services = [
   Web3StorageService,
   UserService,
   NotificationService,
-  ChatService,
+  GunService,
 ]
 
 @NgModule({

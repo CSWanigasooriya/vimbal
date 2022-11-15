@@ -45,7 +45,8 @@ export class IpfsService {
               file.authors,
               file.keywords,
               file.description,
-              file.createdAt
+              file.createdAt,
+              file.isPublic
             )
             .send({
               from: accounts[0],

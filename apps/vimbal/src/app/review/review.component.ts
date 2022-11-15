@@ -198,4 +198,12 @@ export class ReviewComponent implements OnInit, OnDestroy {
   private async getWalletAddress() {
     this.walletAddress = await this._authService.getWalletAddress()
   }
+
+  async tipAuthor(id?: number) {
+    const tipAmount = await window.web3.utils.toWei('0.1', 'Ether')
+    this._fileService.tipAuthor(id?.toString(), tipAmount).then((payment) => {
+      console.log('payment', payment)
+      this._router.navigate(['/preview', id])
+    })
+  }
 }
