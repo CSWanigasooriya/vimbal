@@ -5,4 +5,5 @@ export interface Chat {
   receiver: string
   avatar: string
   timestamp: string
+  displayName: string
 }

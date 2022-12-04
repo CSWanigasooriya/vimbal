@@ -7,7 +7,7 @@
       *ngIf="item.receiver === walletAddress"
     >
       <span mat-list-icon><mat-icon>chat_bubble</mat-icon></span>
-      <span mat-line>Sender: {{ (item.chatId | splitBy: '-')[0] }}</span>
+      <span mat-line>Sender: {{ (item.displayName | splitBy: '-')[0] }}</span>
       <span mat-line class="message-content">{{ item.content }}</span>
       <span mat-line>Time: {{ item.timestamp }}</span>
       <!-- <button mat-icon-button>

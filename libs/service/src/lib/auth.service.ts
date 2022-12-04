@@ -1,7 +1,9 @@
 import { Inject, Injectable, NgZone } from '@angular/core'
+import { AngularFirestore } from '@angular/fire/compat/firestore'
 import MetaMaskOnboarding from '@metamask/onboarding'
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { RequestArguments } from '@vimbal/model'
+import '@metamask/legacy-web3'
+import { RequestArguments, UserContract } from '@vimbal/model'
 import { LoggerService } from './logger.service'
 import { GANACHE_URL } from './models/tokens'
 
@@ -15,10 +17,15 @@ export class AuthService {
   })
 
   constructor(
+    private afs: AngularFirestore,
     @Inject(GANACHE_URL) private ganacheUrl: string,
     private _ngZone: NgZone,
     private _loggerService: LoggerService
   ) {}
+
+  getCurrentUser(address: string) {
+    return this.afs.doc<Partial<UserContract>>(`users/${address}`).valueChanges()
+  }
 
   isMetaMaskInstalled = () => {
     //Have to check the ethereum binding on the window object to see if it's installed
@@ -38,7 +45,7 @@ export class AuthService {
   async getWalletAddress(): Promise<string> {
     const { web3 } = window
     const accounts = await web3.eth.getAccounts()
-    return accounts[0]
+    return accounts ? accounts[0] : ''
   }
 
   async requestWalletPermission() {

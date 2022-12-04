@@ -11,24 +11,24 @@ import { Observable } from 'rxjs'
   providedIn: 'root',
 })
 export class FirestoreService {
-  private usersCollection: AngularFirestoreCollection<UserContract>
+  private usersCollection: AngularFirestoreCollection<Partial<UserContract>>
   private filesCollection: AngularFirestoreCollection<Partial<FileContract>>
   private reviewsCollection: AngularFirestoreCollection<Partial<ReviewContract>>
   private chatNotificationCollection: AngularFirestoreCollection<Partial<Chat>>
 
   constructor(private afs: AngularFirestore) {
-    this.usersCollection = this.afs.collection<UserContract>('users')
+    this.usersCollection = this.afs.collection<Partial<UserContract>>('users')
     this.filesCollection = this.afs.collection<Partial<FileContract>>('files')
     this.reviewsCollection = this.afs.collection<Partial<ReviewContract>>('reviews')
     this.chatNotificationCollection = this.afs.collection<Partial<Chat>>('notifications')
   }
 
-  getUsers(): Observable<UserContract[]> {
+  getUsers(): Observable<Partial<UserContract>[]> {
     return this.usersCollection.valueChanges()
   }
 
-  async createUser(user: UserContract) {
-    return await this.usersCollection.add(user)
+  async updateUser(user: Partial<UserContract>) {
+    return await this.usersCollection.doc(user.walletAddress).set(user, { merge: true })
   }
 
   getFiles() {
