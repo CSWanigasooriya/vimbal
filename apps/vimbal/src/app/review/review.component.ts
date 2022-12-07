@@ -3,6 +3,7 @@ import {
   FileContract,
   FileContractWrapper,
   ReviewContract,
+  UserContract,
 } from '@vimbal/model'
 import {
   AuthService,
@@ -47,6 +48,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   selectedRatingValue = 0
   averageRatingValue = 0
   walletAddress!: string
+  currentUser!: Observable<Partial<UserContract> | undefined>
 
   private subscriptions = new Subscription()
 
@@ -198,6 +200,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   private async getWalletAddress() {
     this.walletAddress = await this._authService.getWalletAddress()
+    this.currentUser = this._authService.getCurrentUser(this.walletAddress)
   }
 
   async tipAuthor(id?: number) {

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   files: FileContractWrapper[] = []
   userWalletAddress = ''
   reviews: ReviewContract[] = []
+  // currentUser!: Observable<Partial<UserContract> | undefined>
 
   private subscriptions = new Subscription()
 
@@ -52,6 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async getWalletAddress() {
     this.userWalletAddress = await this._authService.getWalletAddress()
+    // this.currentUser = this._authService.getCurrentUser(this.userWalletAddress)
   }
 
   decodeData(data?: string) {

@@ -130,7 +130,7 @@ export class LayoutComponent implements AfterViewInit, OnDestroy {
 
   onSelectionChanged(event: { option: { id: unknown; value: unknown } }) {
     const selectedValue = event.option.id
-    this.router.navigate(['/preview', selectedValue])
+    this.router.navigate(['/review', selectedValue])
   }
 
   toggleSidebar() {

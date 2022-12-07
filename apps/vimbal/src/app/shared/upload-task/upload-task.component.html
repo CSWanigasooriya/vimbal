@@ -1,12 +1,16 @@
 <div *ngIf="snapshot | async as snap">
   <div class="row">
-    <div class="col s12">
+    <div class="col s2">
       <button mat-raised-button (click)="task.pause()" [disabled]="!isActive(snap)">
         Pause
       </button>
+    </div>
+    <div class="col s2">
       <button mat-raised-button (click)="task.cancel()" [disabled]="!isActive(snap)">
         Cancel
       </button>
+    </div>
+    <div class="col s2">
       <button
         mat-raised-button
         (click)="task.resume()"

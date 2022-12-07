@@ -120,8 +120,17 @@
           matRipple
           class="hover:cursor-pointer"
         >
-          <div matListAvatar><svg [data-jdenticon-value]="review?.owner"></svg></div>
-          <div mat-line>{{ review?.owner }}</div>
+          <div matListAvatar *ngIf="(currentUser | async)?.photoURL === null">
+            <svg [data-jdenticon-value]="review?.owner"></svg>
+          </div>
+          <div matListAvatar *ngIf="(currentUser | async) !== null">
+            <img [src]="(currentUser | async)?.photoURL" />
+          </div>
+          <div mat-line>
+            {{
+              (currentUser | async) ? (currentUser | async)?.displayName : review?.owner
+            }}
+          </div>
           <div mat-line>
             <small>{{ review?.createdAt | date: 'MMM d, y, h:mm:ss a' }}</small>
           </div>

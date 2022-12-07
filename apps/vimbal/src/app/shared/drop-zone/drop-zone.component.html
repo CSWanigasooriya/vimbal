@@ -7,14 +7,19 @@
   [class.hovering]="isHovering"
 >
   <h3>Drag and Drop</h3>
-  <div class="file-field input-field">
-    <div class="btn mat-button">
-      <input type="file" (change)="onButtonUpload($event)" />
-    </div>
-    <div class="file-path-wrapper">
-      <input hidden class="file-path validate" type="text" placeholder="Upload files" />
-    </div>
-  </div>
+  <br />
+  <mat-form-field class="px-8">
+    <input
+      type="file"
+      class="absolute top-0 z-10 h-full cursor-pointer opacity-0"
+      accept=".jpeg,.jpg,.png"
+      (change)="onButtonUpload($event)"
+    />
+    <mat-label>UPLOAD FILE</mat-label>
+    <input matInput cdkFocusInitial class="z-0" />
+    <mat-icon matSuffix class="mr-2">cloud_upload</mat-icon>
+    <mat-hint class="mat-form-field-hint-end">JPEG / JPG / PNG</mat-hint>
+  </mat-form-field>
 </div>
 
 <h3>Uploads</h3>

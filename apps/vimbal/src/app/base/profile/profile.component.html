@@ -1,7 +1,15 @@
 <div class="layout">
   <div class="profile">
     <div class="profile__picture">
-      <svg [data-jdenticon-value]="walletAddress"></svg>
+      <ng-container *ngIf="(currentUser | async)?.photoURL; then hasPhoto; else noPhoto">
+      </ng-container>
+      <ng-template #hasPhoto>
+        <img [src]="(currentUser | async)?.photoURL" />
+      </ng-template>
+
+      <ng-template #noPhoto>
+        <svg [data-jdenticon-value]="walletAddress"></svg>
+      </ng-template>
     </div>
     <div class="profile__header">
       <div class="profile__account">
@@ -81,7 +89,7 @@
           </mat-error>
         </mat-form-field>
       </p>
-
+      <p>Update Image</p>
       <p>
         <vimbal-drop-zone (onsuccess)="updatePhotoURL($event)"></vimbal-drop-zone>
       </p>
