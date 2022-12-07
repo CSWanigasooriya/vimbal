@@ -5,4 +5,5 @@ export interface UserContract {
   email: string
   role: string
   createdAt?: string
+  photoURL?: string
 }

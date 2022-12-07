@@ -1,0 +1,27 @@
+<div
+  *ngIf="(downloadURL | async) !== null"
+  class="dropzone"
+  appDropzone
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering"
+>
+  <h3>Drag and Drop</h3>
+  <div class="file-field input-field">
+    <div class="btn mat-button">
+      <input type="file" (change)="onButtonUpload($event)" />
+    </div>
+    <div class="file-path-wrapper">
+      <input hidden class="file-path validate" type="text" placeholder="Upload files" />
+    </div>
+  </div>
+</div>
+
+<h3>Uploads</h3>
+
+<div *ngFor="let file of files">
+  <vimbal-upload-task
+    [file]="file"
+    (onupload)="setDownloadURL($event)"
+  ></vimbal-upload-task>
+</div>

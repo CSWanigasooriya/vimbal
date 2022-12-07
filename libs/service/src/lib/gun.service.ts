@@ -39,6 +39,7 @@ export class GunService {
       content: chat.content,
       receiver: chat.receiver,
       timestamp: Date().substring(16, 21),
+      displayName: chat.displayName,
     } as Chat
 
     // this function sends/saves the message onto the network

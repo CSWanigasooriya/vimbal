@@ -12,12 +12,14 @@ import {
 } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ConnectInfo, ProviderRpcError } from '@vimbal/model'
-import { AuthService } from '@vimbal/service'
+import { AuthService, FirestoreService } from '@vimbal/service'
 import { Observable, Subscription } from 'rxjs'
 import Web3 from 'web3'
 import { fadeInAnimation } from './core/animation/fade-in.animation'
 import { AppConfig, APP_CONFIG } from './core/config/app.config'
 import { decrement, increment, reset } from './core/state/counter/counter.actions'
+import '@metamask/legacy-web3'
+
 @Component({
   selector: 'vimbal-root',
   templateUrl: './root.component.html',
@@ -32,6 +34,7 @@ export class RootComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   constructor(
+    private _firestoreService: FirestoreService,
     public _router: Router,
     private _authService: AuthService,
     private _iconRegistry: MatIconRegistry,
@@ -73,10 +76,16 @@ export class RootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadWeb3()
-    window?.ethereum.on('accountsChanged', (accounts: []) => {
+    window?.ethereum.on('accountsChanged', (accounts: string[]) => {
       // Handle the new accounts, or lack thereof.
       // "accounts" will always be an array, but it can be empty.
-      if (accounts) window.location.reload()
+      if (accounts) {
+        this._authService.getWalletAddress().then((address) => {
+          this._firestoreService.updateUser({ walletAddress: address }).then(() => {
+            window.location.reload()
+          })
+        })
+      }
     })
     window?.ethereum.on('chainChanged', (chainId: unknown) => {
       // Handle the new chain.

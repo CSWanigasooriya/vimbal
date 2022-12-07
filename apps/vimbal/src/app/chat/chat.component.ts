@@ -7,16 +7,16 @@ import {
   Optional,
   ViewChild,
 } from '@angular/core'
-import { AuthService, GunService, FirestoreService } from '@vimbal/service'
+import { AuthService, FirestoreService, GunService } from '@vimbal/service'
 
-import { ActivatedRoute } from '@angular/router'
-import { Chat } from '@vimbal/model'
-import { FormControl } from '@angular/forms'
 import { Location } from '@angular/common'
-import { Observable } from 'rxjs'
+import { FormControl } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { mode } from '../core/state/theme/theme.actions'
+import { Chat, UserContract } from '@vimbal/model'
+import { Observable } from 'rxjs'
 import { AppConfig, APP_CONFIG } from '../core/config/app.config'
+import { mode } from '../core/state/theme/theme.actions'
 
 @Component({
   selector: 'vimbal-chat',
@@ -30,8 +30,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   theme$: Observable<boolean>
   messageContent = new FormControl('')
   messages: Chat[] = []
-  currentUser = this.gunService.getCurrentUser()
-  walletAddress = this._authServie.getWalletAddress()
+  currentUser!: Observable<Partial<UserContract> | undefined>
+  walletAddress = this.authService.getWalletAddress()
   chatId = ''
 
   constructor(
@@ -39,7 +39,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     public location: Location,
     private _firestoreService: FirestoreService,
     private _activatedRouter: ActivatedRoute,
-    private _authServie: AuthService,
+    public authService: AuthService,
     private _store: Store<{ count: number; theme: boolean; sidebar: boolean }>,
     public gunService: GunService
   ) {
@@ -50,6 +50,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   async ngOnInit() {
     this.scrollToBottom()
     this.walletAddress.then((address) => {
+      this.currentUser = this.authService.getCurrentUser(address)
       this.gunService.getChats(`${this.chatId}`).on((chats) => {
         this.messages.push(chats as Chat)
         this._firestoreService.getNotifications(address).then((notification) => {
@@ -64,15 +65,16 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom()
   }
 
-  sendMessage = (sender: string) => {
+  sendMessage = (user: Partial<UserContract>, sender: string) => {
     const chat = {
       chatId: this.chatId,
-      avatar: 'https://i.pravatar.cc/300',
+      avatar: user.photoURL ? user.photoURL : 'https://i.pravatar.cc/300',
       content: this.messageContent.value || '',
       sender: sender ? sender : 'Anonymous',
       receiver: this.chatId.split('-')[1],
       timestamp: Date().substring(16, 21),
-    }
+      displayName: user?.displayName ? user?.displayName : sender,
+    } as Chat
     this.messageContent.setValue('')
     this._firestoreService.updateNotification(chat)
     this.gunService.sendMessage(chat)

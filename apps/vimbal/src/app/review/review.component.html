@@ -42,13 +42,13 @@
       </mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
-      <p *ngIf="file.isPublic">
+      <p *ngIf="file?.isPublic">
         <b>URL: </b
         ><a class="hover:cursor-pointer"
           >https://{{ file?.hash }}.ipfs.w3s.link/{{ file?.fileName }}</a
         >
       </p>
-      <p *ngIf="!file.isPublic">
+      <p *ngIf="!file?.isPublic">
         <b class="text-red-600">MARKED AS CLOSED ACCESS</b>
       </p>
 
@@ -68,7 +68,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button
-        *ngIf="!file.isPublic && (isOwner() | async) === false"
+        *ngIf="!file?.isPublic && (isOwner() | async) === false"
         mat-raised-button
         color="primary"
         (click)="tipAuthor(file.id)"
@@ -77,7 +77,7 @@
         FULL PAPER (0.1 ETH)
       </button>
       <button
-        *ngIf="file.isPublic"
+        *ngIf="file?.isPublic"
         mat-raised-button
         color="primary"
         matTooltip="Preview the full paper"

@@ -11,6 +11,8 @@ import { FeedComponent } from './feed/feed.component'
 import { SheetComponent } from './sheet/sheet.component'
 import { StarRatingComponent } from './star-rating/star-rating.component'
 import { UploaderComponent } from './uploader/uploader.component'
+import { DropZoneComponent } from './drop-zone/drop-zone.component'
+import { UploadTaskComponent } from './upload-task/upload-task.component'
 
 const sharedComponents = [
   SheetComponent,
@@ -19,10 +21,11 @@ const sharedComponents = [
   FeedComponent,
   StarRatingComponent,
   CardComponent,
+  DropZoneComponent,
 ]
 
 @NgModule({
-  declarations: [...sharedComponents],
+  declarations: [...sharedComponents, UploadTaskComponent],
   imports: [
     CommonModule,
     MaterialModule,

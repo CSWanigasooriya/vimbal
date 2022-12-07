@@ -8,7 +8,7 @@
         <h4 class="profile__username">Wallet Address: {{ walletAddress }}</h4>
       </div>
       <div class="profile__edit">
-        <button mat-raised-button>Edit Profile</button>
+        <button mat-raised-button (click)="isEditable = !isEditable">Edit Profile</button>
       </div>
     </div>
     <div class="profile__stats">
@@ -42,3 +42,53 @@
     </div>
   </div>
 </div>
+
+<form
+  (ngSubmit)="handleProfileFormSubmit()"
+  [formGroup]="profileForm"
+  [class.blurred]="!isEditable"
+>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Update Profile</mat-card-title>
+      <mat-card-subtitle>{{ walletAddress }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-form-field>
+          <mat-label>Display Name</mat-label>
+          <input
+            matInput
+            placeholder="e.g.: Chamath Wanigasooriya"
+            formControlName="displayName"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>
+            <span *ngIf="hasError('displayName', 'required')"
+              >Display name is <b>required</b></span
+            >
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="e.g.: vimbal@gmail.com" formControlName="email" />
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error>
+            <span *ngIf="hasError('email', 'email')">Valid email is <b>required</b></span>
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <vimbal-drop-zone (onsuccess)="updatePhotoURL($event)"></vimbal-drop-zone>
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button type="reset">RESET</button>
+      <button mat-raised-button color="primary" type="submit">UPDATE</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

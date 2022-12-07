@@ -35,7 +35,7 @@
               <img [src]="msg?.avatar" class="msg-img" />
               <div class="msg-bubble">
                 <div class="msg-info">
-                  <div class="msg-info-name">{{ msg?.sender }}</div>
+                  <div class="msg-info-name">{{ msg?.displayName }}</div>
                   <div class="msg-info-time">{{ msg?.timestamp }}</div>
                 </div>
 
@@ -49,7 +49,7 @@
               <img [src]="msg?.avatar" class="msg-img" />
               <div class="msg-bubble">
                 <div class="msg-info">
-                  <div class="msg-info-name">{{ msg?.sender }}</div>
+                  <div class="msg-info-name">{{ msg?.displayName }}</div>
                   <div class="msg-info-time">{{ msg?.timestamp }}</div>
                 </div>
 
@@ -61,16 +61,17 @@
           </div>
         </div>
       </main>
-
-      <form class="msger-inputarea" (ngSubmit)="sendMessage(address)">
-        <input
-          type="text"
-          class="msger-input"
-          [formControl]="messageContent"
-          placeholder="Enter your message..."
-        />
-        <button type="submit" class="msger-send-btn">SEND</button>
-      </form>
+      <ng-container *ngIf="currentUser | async as user">
+        <form class="msger-inputarea" (ngSubmit)="sendMessage(user, address)">
+          <input
+            type="text"
+            class="msger-input"
+            [formControl]="messageContent"
+            placeholder="Enter your message..."
+          />
+          <button type="submit" class="msger-send-btn">SEND</button>
+        </form>
+      </ng-container>
     </section>
   </div>
 </div>
